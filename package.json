@@ -1,0 +1,33 @@
+{
+  "name": "zc-reminder",
+  "version": "1.0.0",
+  "description": "## #team-darwin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint -c Backend/.eslintrc.js 'Backend/src/**'",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zurichat/zc_plugin_reminder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zurichat/zc_plugin_reminder/issues"
+  },
+  "homepage": "https://github.com/zurichat/zc_plugin_reminder#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2"
+  },
+  "dependencies": {
+    "prettier": "^2.3.2"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
+  }
+}
