@@ -29,6 +29,6 @@
     "prettier": "^2.3.2"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix"
+    "Backend/**/*.js": "eslint --cache --no-error-on-unmatched-pattern fix"
   }
 }

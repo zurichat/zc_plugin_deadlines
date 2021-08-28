@@ -12,11 +12,12 @@ module.exports = {
 	rules: {
 		'no-console': ['error', { allow: ['warn', 'error', 'log'] }],
 		'prettier/prettier': 'error',
+		'arrow-body-style': 'off',
 		'prefer-const': ['error'],
 		'no-var': ['error'],
 		'no-new-object': ['error'],
 		'object-shorthand': ['error'],
-		'quote-props': ['error'],
+		'quote-props': ['error', 'as-needed'],
 		'prefer-object-spread': ['error'],
 		'array-callback-return': ['error'],
 		'prefer-destructuring': [
@@ -43,5 +44,7 @@ module.exports = {
 		'no-unused-vars': ['error'],
 		eqeqeq: ['error'],
 		semi: ['error', 'never'],
+		'eol-last': 0,
+		'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
 	},
 }
