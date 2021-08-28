@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          ZC-PLUGIN
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className="App">
+			<header className="App-header">
+				<h1>Zuri Chat Reminder Plugin</h1>
+				<p>
+					Reminder plugin for the open-source{' '}
+					<a href="https://zuri.chat">Zuri Chat</a>
+				</p>
+			</header>
+		</div>
+	)
 }
 
-export default App;
+export default App
