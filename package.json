@@ -21,14 +21,15 @@
   "homepage": "https://github.com/zurichat/zc_plugin_reminder#readme",
   "devDependencies": {
     "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-prettier": "^3.4.1",
     "husky": "^7.0.2",
-    "lint-staged": "^11.1.2"
-  },
-  "dependencies": {
+    "lint-staged": "^11.1.2",
     "prettier": "^2.3.2"
   },
   "lint-staged": {
-    "Backend/**/*.js": "eslint --cache --no-error-on-unmatched-pattern fix"
+    "*.js": "eslint --cache --no-error-on-unmatched-pattern --fix"
   }
 }
