@@ -28,7 +28,7 @@
     "prettier": "^2.3.2"
   },
   "lint-staged": {
-    
-    "backend/**/*.js": "eslint --cache fix"
+    "backend/**/*.js": "eslint --cache fix",
+    "Backend/**/*.js": "eslint --cache fix"
   }
 }
