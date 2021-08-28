@@ -1,1 +1,3 @@
-console.log('hello')
+const word = 'hello world'
+
+console.log(word)
