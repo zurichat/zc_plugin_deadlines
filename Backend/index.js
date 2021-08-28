@@ -1,3 +1,9 @@
-const word = 'hello world'
+const express = require('express')
 
-console.log(word)
+const app = express()
+
+// const word = 'hello world'
+
+// console.log(word)
+
+app.listen(4000, () => console.log('Listening on 4000'))
