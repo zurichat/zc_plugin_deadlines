@@ -12,7 +12,7 @@ This project uses [create-react-app](https://reactjs.org/docs/create-a-new-react
 
 [Jest](https://archive.jestjs.io/docs/en/22.x/getting-started.html) for testing.
 
-100% test coverage is the goal with shallow assertions for components as a minimum.\
+100% test coverage is the goal with shallow Enzyme assertions as minimum for components.\
 Write tests for your components according to [Testing](#Testing)
 
 ## Setup
