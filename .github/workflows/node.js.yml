@@ -28,7 +28,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         
-    - name: Install dependencies
+    - name: Install monorepo dependencies
+      run: npm install
+        
+    - name: Install frontend dependencies
       working-directory: ./frontend
       run: npm install
     
