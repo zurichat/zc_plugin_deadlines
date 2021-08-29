@@ -10,7 +10,7 @@ module.exports = {
 		sourceType: 'module',
 	},
 	rules: {
-		'prettier/prettier': 'error',
+		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'arrow-body-style': 'off',
 		'no-console': ['error', { allow: ['warn', 'error', 'log'] }],
 		'prefer-const': ['error'],
