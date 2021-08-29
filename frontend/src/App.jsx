@@ -8,6 +8,7 @@ const App = () => {
 				<p>
 					Reminder plugin for the open-source{' '}
 					<a href="https://zuri.chat">Zuri Chat</a>
+					<p>Visible play icon</p>
 				</p>
 			</header>
 		</div>
