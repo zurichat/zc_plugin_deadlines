@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# ZC-REMINDER Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## #team-darwin
+
+## Repository Description
+
+This folder serves as the repository for the Zuri.chat reminder plugin frontend and adheres to the style and contribution guidelines as listed in the parent repository - [Readme](https://github.com/zurichat/zc_plugin_reminder#readme)
+
+## Repository Structure
+
+This project uses [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html) for bootstrapping.
+
+[Jest](https://archive.jestjs.io/docs/en/22.x/getting-started.html) for testing.
+
+100% test coverage is the goal with shallow assertions for components as a minimum.\
+Write tests for your components according to [Testing](#Testing)
+
+## Setup
+
+`clone` this repo on your pc, by typing out this command on your terminal.
+
+- `git clone https://github.com/zurichat/zc_plugin_reminder.git`
+
+- Then type this command in your terminal `cd zc_plugin_reminder/frontend`.
+- `npm install` to get the necessary packages installed.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+- `npm run start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  - Runs the app in the development mode.\
+    Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\
+    The page will reload if you make edits.\
+    You will also see any lint errors in the console.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- `npm run test`
 
-### `yarn test`
+  - Launches the test runner in the interactive watch mode.\
+    See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## React Guidelines
 
-### `yarn build`
+### Basic Rules
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Functional components only!
+- Functions are declared with ES6 [arrow function syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions).
+- Only include one React component per file.
+  - Multiple stateless components are allowed however.
+- Use JSX syntax only.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Naming
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Extensions: Use `.jsx` for React components and files containing JSX.
+- Filenames: Use PascalCase for filenames. E.g., `DateCard.jsx`
+- Reference Naming: Use PascalCase for React components and camelCase for their instances.
 
-### `yarn eject`
+## Testing
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+[Jest](https://jestjs.io/docs/tutorial-react) is used as test runner with [Enzyme](https://enzymejs.github.io/enzyme/) for assertion.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Basic Rules
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Write tests to fail then update to pass. See [zc_plugin_reminder: Testing](https://github.com/zurichat/zc_plugin_reminder#testing)
+- `test` is preferred over `it` in Jest as convention.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Naming
 
-## Learn More
+- Tests are created on a component basis in `__test__`
+- Tests are named in the format `<ComponentName>.test.js` and `<ComponentName>.test.jsx` for JSX files.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Assertion
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Mock impure functions. See [Mocking Function](https://github.com/zurichat/zc_plugin_reminder#testing)
