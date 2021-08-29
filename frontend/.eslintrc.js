@@ -5,6 +5,7 @@ module.exports = {
 		es2021: true,
 		jest: true,
 	},
+	parser: 'babel-eslint',
 	plugins: ['react'],
 	extends: ['airbnb-base', 'plugin:prettier/recommended'],
 	rules: {
