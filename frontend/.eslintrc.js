@@ -5,10 +5,10 @@ module.exports = {
 		es2021: true,
 		jest: true,
 	},
+	plugins: ['react'],
 	extends: ['airbnb-base', 'plugin:prettier/recommended'],
 	rules: {
-		'prettier/prettier': 1,
-		'prettier/prettier': 'error',
+		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'arrow-body-style': 'off',
 		'no-console': ['error', { allow: ['warn', 'error', 'log'] }],
 		'prefer-const': ['error'],
