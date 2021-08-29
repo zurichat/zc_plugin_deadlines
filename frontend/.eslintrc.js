@@ -7,7 +7,7 @@ module.exports = {
 	},
 	parser: 'babel-eslint',
 	plugins: ['react'],
-	extends: ['airbnb-base', 'plugin:prettier/recommended'],
+	extends: ['plugin:prettier/recommended', 'plugin:react/recommended'],
 	rules: {
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'arrow-body-style': 'off',
@@ -19,6 +19,7 @@ module.exports = {
 		'quote-props': ['error', 'as-needed'],
 		'prefer-object-spread': ['error'],
 		'array-callback-return': ['error'],
+		'global-require': 0,
 		'prefer-destructuring': [
 			'error',
 			{
