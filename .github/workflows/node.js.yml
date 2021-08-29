@@ -28,15 +28,15 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         
-    - name: Switch directory
-      run: cd frontend
-        
     - name: Install dependencies
+      working-directory: ./frontend
       run: npm install
     
     - name: Run tests
+      working-directory: ./frontend
       run: npm test
     
     - name: Build
+      working-directory: ./frontend
       run: npm run build
     
