@@ -1,10 +1,43 @@
 {
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon -L --exec babel-node index.js",
+    "test": "cross-env NODE_ENV=test mocha ./test/**/*.spec.js -r @babel/register --timeout=100000 --exit",
+    "test:watch": "cross-env NODE_ENV=test mocha ./test/**/*.spec.js -r @babel/register --timeout=100000 --watch --exit",
+    "clean": "rimraf dist",
+    "build": "npm run clean && babel src -d dist",
+    "start": "cd dist && node index.js"
+  },
   "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "@babel/register": "^7.15.3",
+    "@babel/runtime": "^7.15.3",
+    "@types/mysql": "^2.15.19",
+    "babel-plugin-auto-import": "^1.1.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "chai": "^4.3.4",
+    "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-prettier": "^3.4.1",
+    "mocha": "^9.1.1",
+    "nodemon": "^2.0.12",
     "prettier": "^2.3.2"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.14.7",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "joi": "^17.4.2",
+    "mongoose": "^6.0.2",
+    "mysql": "^2.18.1"
   }
 }

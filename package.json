@@ -20,9 +20,12 @@
   },
   "homepage": "https://github.com/zurichat/zc_plugin_reminder#readme",
   "devDependencies": {
+    "@babel/eslint-parser": "^7.15.0",
+    "@babel/eslint-plugin": "^7.14.5",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-babel-module": "^5.3.1",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-prettier": "^3.4.1",
     "husky": "^7.0.2",
