@@ -77,8 +77,10 @@ In the project directory, you can run:
 ## Styling
 
 - [TailwindCSS](tailwindcss.com/docs) is used for CSS styling.\
-  Styles are declared using Tailwind utility classes. Custom CSS is discouraged\
+  Styles are declared using Tailwind utility classes.\
   E.g., `<div className="h-full flex flex-1 bg-blue-50"/>`
+
+- [React-Bootstrap](https://react-bootstrap.github.io/getting-started/introduction) provides stock UI components.
 
 ### Tailwind
 
@@ -93,3 +95,20 @@ And you get to write the styles directly in your javascript so you don't have to
 Install the VSCode [Tailwind extension](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) to get suggestions and corrections on utility class names.
 
 Check the [TailwindCSS Docs](tailwindcss.com/docs) for the full utility class list.
+
+### React-Bootstrap
+
+React Bootstrap like any other component library provides ready made components for use in building app UIs.\
+Read this [introduction](https://react-bootstrap.github.io/getting-started/introduction/) from the docs.
+
+#### Usage
+
+Import the component you want to use from the corresponding component folder.\
+`import Accordion from "react-bootstrap/Accordion"`
+
+#### Styling
+
+Styling react-bootstrap components is done with bootstrap utility classes.\
+These classes are passed using the `variant` props on components.
+
+The React-Bootstrap docs have detailed information on possible variants and the [component APIs](https://react-bootstrap.github.io/components/alerts/) in general.

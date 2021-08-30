@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button'
 
 const App = () => {
 	return (
@@ -11,6 +12,7 @@ const App = () => {
 						Zuri Chat
 					</a>
 				</p>
+				<Button variant="outline-primary">Bootstrapped!</Button>
 			</header>
 		</div>
 	)
