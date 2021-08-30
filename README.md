@@ -19,7 +19,7 @@ Depending on your track, you are to work in the folder that concerns you.
 Simply `clone` this repo on your pc, by typing out this command on your terminal.
 
 - `git clone https://github.com/zurichat/zc_plugin_reminder.git`
-- Then type this command in your terminal `cd zc_plugin_reminder`. Depending on what you're working on, for example `Backend`. You are meant to go into the `Backend folder` and run `yarn install` to get the necessary packages installed.
+- Then type this command in your terminal `cd zc_plugin_reminder`. Depending on what you're working on, for example `Backend`. You are meant to go into the `Backend folder` and run `npm install` to get the necessary packages installed.
 
 ### Contributing
 1. Before working on any task, you are meant to pull the latest changes from the `dev` branch, then create a separate branch to work on that particular task. 
@@ -105,4 +105,4 @@ Method names are typically verbs or verb phrases. For example, `sendRequest` or 
 Constant names use `CONSTANT_CASE`: all uppercase letters, with words separated by underscores.
 
 ### Testing
-We use [Mocha](https://www.npmjs.com/package/mocha) for testing, and require contributors to follow a Test Driven Development (TDD) approach where you write test to fail at first and then write the corresponding function to pass the test.
+We use [Mocha](https://www.npmjs.com/package/mocha) and [Jest](jestjs.io) for testing, and require contributors to follow a Test Driven Development (TDD) approach where you write test to fail at first and then write the corresponding function to pass the test.
