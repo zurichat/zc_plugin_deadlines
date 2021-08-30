@@ -1,12 +1,13 @@
 module.exports = {
+	root: true,
 	env: {
-		node: true,
+		browser: true,
 		es2021: true,
+		jest: true,
 	},
-	extends: ['airbnb-base', 'prettier'],
-	plugins: ['import', 'prettier'],
-	ecmaVersion: 12,
-	sourceType: 'module',
+	parser: 'babel-eslint',
+	plugins: ['react'],
+	extends: ['plugin:prettier/recommended', 'plugin:react/recommended'],
 	rules: {
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'arrow-body-style': 'off',
@@ -18,6 +19,7 @@ module.exports = {
 		'quote-props': ['error', 'as-needed'],
 		'prefer-object-spread': ['error'],
 		'array-callback-return': ['error'],
+		'global-require': 0,
 		'prefer-destructuring': [
 			'error',
 			{
@@ -43,4 +45,23 @@ module.exports = {
 		'eol-last': 0,
 		'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
 	},
+	overrides: [
+		{
+			files: ['**/*.js', '**/*.jsx'],
+			plugins: ['unused-imports'],
+			extends: ['plugin:prettier/recommended'],
+			rules: {
+				'react/destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
+				'jsx-a11y/anchor-is-valid': 'off',
+				'react/require-default-props': 'off', // Allow non-defined react props as undefined
+				'import/prefer-default-export': 'off',
+				'@typescript-eslint/no-unused-vars': 'off',
+				'unused-imports/no-unused-imports': 'error',
+				'unused-imports/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+				'react/no-multi-comp': [1, { ignoreStateless: true }],
+				'react/jsx-filename-extension': [1, { allow: 'as-needed' }],
+				'react/jsx-pascal-case': 1,
+			},
+		},
+	],
 }
