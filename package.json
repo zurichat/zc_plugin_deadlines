@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint -c Backend/.eslintrc.js 'Backend/src/**'",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "npm install; (cd Backend && npm install); (cd frontend && npm install);"
   },
   "repository": {
     "type": "git",
