@@ -3,20 +3,24 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"@craco/craco": "^6.2.0",
 		"@testing-library/jest-dom": "^5.11.4",
 		"@testing-library/react": "^11.1.0",
 		"@testing-library/user-event": "^12.1.10",
+		"autoprefixer": "^9.8.6",
 		"enzyme": "^3.11.0",
+		"postcss": "^7.0.36",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-scripts": "4.0.3",
 		"react-test-renderer": "^17.0.2",
+		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.8",
 		"web-vitals": "^1.0.1"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
+		"start": "TAILWIND_MODE=watch craco start",
+		"build": "craco build",
+		"test": "craco test",
 		"eject": "react-scripts eject",
 		"lint": "eslint ."
 	},
@@ -41,6 +45,8 @@
 	"devDependencies": {
 		"@types/jest": "^27.0.1",
 		"@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
+		"babel-eslint": "^10.1.0",
+		"eslint-plugin-react": "^7.25.0",
 		"eslint-plugin-unused-imports": "^1.1.4"
 	}
 }

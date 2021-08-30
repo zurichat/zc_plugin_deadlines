@@ -9,7 +9,7 @@ test('Basic render', () => {
 
 test('Link render', () => {
 	const wrapper = shallow(<App />)
-	const link = <a href="https://zuri.chat">Zuri Chat</a>
+	const linkText = 'Zuri Chat'
 
-	expect(wrapper.contains(link)).toEqual(true)
+	expect(wrapper.contains(linkText)).toEqual(true)
 })

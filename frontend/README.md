@@ -73,3 +73,23 @@ In the project directory, you can run:
 ### Assertion
 
 - Mock impure functions. See [Mocking Function](https://github.com/zurichat/zc_plugin_reminder#testing)
+
+## Styling
+
+- [TailwindCSS](tailwindcss.com/docs) is used for CSS styling.\
+  Styles are declared using Tailwind utility classes. Custom CSS is discouraged\
+  E.g., `<div className="h-full flex flex-1 bg-blue-50"/>`
+
+### Tailwind
+
+If you're new to Tailwind, instead of writing full length CSS styles you use shorthand descriptions of the styles.
+
+For example, in rounding the top corners of an element, regular css would look like\
+`border-top-left-radius: 0.125rem; border-top-right-radius: 0.125rem;`
+
+In tailwind this is easily written with `rounded-t-sm`\
+And you get to write the styles directly in your javascript so you don't have to deal with selectors, specificity etc.
+
+Install the VSCode [Tailwind extension](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) to get suggestions and corrections on utility class names.
+
+Check the [TailwindCSS Docs](tailwindcss.com/docs) for the full utility class list.
