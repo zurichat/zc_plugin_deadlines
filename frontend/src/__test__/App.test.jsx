@@ -6,7 +6,7 @@ test('<App /> renders without crashing', () => {
 	render(<App />)
 })
 
-test('Link to zuri chat rendered', () => {
+test('link to zuri chat rendered', () => {
 	render(<App />)
 	const linkElement = screen.getByRole('link', { name: /zuri chat/i })
 	expect(linkElement).toBeInTheDocument()
