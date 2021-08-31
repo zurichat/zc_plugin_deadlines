@@ -4,16 +4,16 @@
 	"description": "## #team-darwin",
 	"main": "index.js",
 	"scripts": {
-		"lint": "eslint -c Backend/.eslintrc.js 'Backend/src/**' --fix",
+		"lint": "eslint -c .eslintrc.js \"src/**\" --fix",
 		"prepare": "husky install",
-		"holoInstall": "npm install; (cd frontend && npm install);",
+		"holoInstall": "npm install && cd frontend && npm install",
 		"test": "cross-env NODE_ENV=test mocha ./tests/**/*.spec.js -r @babel/register --timeout=100000 --exit",
 		"test:watch": "cross-env NODE_ENV=test mocha ./tests/**/*.spec.js -r @babel/register --timeout=100000 --watch --exit",
 		"start:backend": "cross-env NODE_ENV=development nodemon -L --exec babel-node ./src/index.js",
 		"start:frontend": "cd frontend && npm start",
 		"dev": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
 		"clean": "rimraf dist",
-		"build": "(cd frontend && npm run build); npm run clean && babel src -d dist --source-maps --copy-files",
+		"build": "cd frontend && npm run build && npm run clean && babel src -d dist --source-maps --copy-files",
 		"start": "node ./dist/index.js"
 	},
 	"repository": {
