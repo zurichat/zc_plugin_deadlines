@@ -5,8 +5,10 @@ module.exports = {
 	},
 	extends: ['airbnb-base', 'prettier'],
 	plugins: ['import', 'prettier'],
-	ecmaVersion: 12,
-	sourceType: 'module',
+	parserOptions: {
+		ecmaVersion: 12,
+		sourceType: 'module',
+	},
 	rules: {
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'arrow-body-style': 'off',
@@ -42,5 +44,10 @@ module.exports = {
 		semi: ['error', 'never'],
 		'eol-last': 0,
 		'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
+	},
+	settings: {
+		'import/resolver': {
+			'babel-module': {},
+		},
 	},
 }
