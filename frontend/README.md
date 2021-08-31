@@ -80,7 +80,7 @@ In the project directory, you can run:
   Styles are declared using Tailwind utility classes.\
   E.g., `<div className="h-full flex flex-1 bg-blue-50"/>`
 
-- [React-Bootstrap](https://react-bootstrap.github.io/getting-started/introduction) provides stock UI components.
+- [HeadlessUI](https://headlessui.dev) provides stock UI components.
 
 ### Tailwind
 
@@ -96,19 +96,15 @@ Install the VSCode [Tailwind extension](https://marketplace.visualstudio.com/ite
 
 Check the [TailwindCSS Docs](tailwindcss.com/docs) for the full utility class list.
 
-### React-Bootstrap
+### Headless UI
 
-React Bootstrap like any other component library provides ready made components for use in building app UIs.\
-Read this [introduction](https://react-bootstrap.github.io/getting-started/introduction/) from the docs.
+Headless UI provides ready made components for use in building app UIs.\
+Read the [docs](headlessui.dev) for more info.\
 
 #### Usage
 
-Import the component you want to use from the corresponding component folder.\
-`import Accordion from "react-bootstrap/Accordion"`
+Import the required component from `@headlessui/react`
 
 #### Styling
 
-Styling react-bootstrap components is done with bootstrap utility classes.\
-These classes are passed using the `variant` props on components.
-
-The React-Bootstrap docs have detailed information on possible variants and the [component APIs](https://react-bootstrap.github.io/components/alerts/) in general.
+Headless components do not come styled out of the box. The components exposes render props you use to style them.
