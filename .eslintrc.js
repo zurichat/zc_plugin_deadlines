@@ -56,6 +56,8 @@ module.exports = {
 		sourceType: 'module',
 	},
 	rules: {
+		'import/extensions': ['error', 'never'],
+		'import/no-unresolved': [2, { caseSensitive: false, commonjs: true }],
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'arrow-body-style': 'off',
 		'no-console': ['error', { allow: ['warn', 'error', 'log'] }],
@@ -96,6 +98,9 @@ module.exports = {
 		'import/resolver': {
 			'babel-module': {},
 		},
+		node: {
+			extensions: ['.js', '.jsx', '.ts', '.tsx'],
+			moduleDirectory: ['node_modules', 'src/', 'dist/'],
+		},
 	},
-	// ignorePatterns: [""]
 }

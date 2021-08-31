@@ -13,8 +13,8 @@
 		"start:frontend": "cd frontend && npm start",
 		"dev": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
 		"clean": "rimraf dist",
-		"build": "npm run clean && babel src -d dist --source-maps --copy-files",
-		"start": "node index.js"
+		"build": "(cd frontend && npm run build); npm run clean && babel src -d dist --source-maps --copy-files",
+		"start": "node ./dist/index.js"
 	},
 	"repository": {
 		"type": "git",
