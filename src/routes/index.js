@@ -5,10 +5,10 @@
 * */
 
 import { Router } from 'express'
-import userController from '@controllers/user.controller'
+import reminderController from '@controllers/user.controller'
 
 const router = Router()
 
-router.get('/user', userController.create)
+router.route('/reminders').get(reminderController.create)
 
 export default router
