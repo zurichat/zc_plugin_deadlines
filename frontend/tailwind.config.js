@@ -5,10 +5,15 @@ module.exports = {
 	theme: {
 		extend: {
 			backgroundColor: {
-				craPrimary: '#282c34',
+				cra: {
+					primary: '#282c34',
+				},
 			},
 			textColor: {
-				craLink: '#61dafb',
+				cra: {
+					link: '#61dafb',
+					primary: '#282c34',
+				},
 			},
 			fontFamily: {
 				craFont: [
