@@ -1,5 +1,5 @@
 import Joi from 'joi'
-import { PriorityType } from '@types/priority.type'
+import PriorityType from '@types/priority.type'
 
 const reminderSchema = async (req, next, schema) => {
 	const schemaObj = Joi.object({
@@ -10,6 +10,8 @@ const reminderSchema = async (req, next, schema) => {
 		description: Joi.string().trim().required().label('Description'),
 		shouldRemind: Joi.boolean().label('Recurring'),
 	})
+
+	return schemaObj
 }
 
 export default reminderSchema
