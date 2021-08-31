@@ -23,6 +23,7 @@ Simply `clone` this repo on your pc, by typing out this command on your terminal
 - Then type this command in your terminal `cd zc_plugin_reminder`.
 - Then run `npm run holoInstall` to install all the requisite dependencies.
 - `cd` into the folder you're working on; `Backend` for Backend and `frontend` for Frontend
+- To start the servers just type `npm run dev` and it will start up the necessary server.
 
 ### Contributing
 
