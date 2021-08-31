@@ -13,7 +13,7 @@
 		"web-vitals": "^1.0.1"
 	},
 	"scripts": {
-		"start": "TAILWIND_MODE=watch craco start",
+		"start": "set TAILWIND_MODE=watch&craco start",
 		"build": "craco build",
 		"test": "craco test",
 		"eject": "react-scripts eject",
