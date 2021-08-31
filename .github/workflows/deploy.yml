@@ -18,7 +18,7 @@ jobs:
 
       - name: Deployment
         uses: appleboy/ssh-action@master
-        with:
+        with: 
           host: ${{ secrets.HOSTNAME }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
@@ -27,4 +27,5 @@ jobs:
             git pull
             npm run holoInstall
             npm run build
+            ls -la
             pm2 start npm -- start
