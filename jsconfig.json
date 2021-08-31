@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"paths": {
+			"@utils/*": ["utils/*"],
+			"@tests/*": ["test/*"],
+			"@modules/*": ["modules/*"],
+			"@shared/*": ["shared/*"],
+			"@schemas/*": ["schemas/*"],
+			"@config/*": ["config/*"],
+			"@validations/*": ["validations/*"],
+			"@controllers/*": ["controllers/*"],
+			"@models/*": ["models/*"],
+			"@routes/*": ["routes/*"],
+		}
+	}
+}
