@@ -1,8 +1,8 @@
-/**
+/*
     Copyright 2021, Zuri plugin reminder.
     All rights reserved.
-    Written By: King Etiosasere, 30th August 2021
-**/
+    Written By: King Etiosasere, 30th August 2021 
+*/
 
 import { expect } from 'chai'
 

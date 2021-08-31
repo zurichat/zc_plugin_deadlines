@@ -2,7 +2,7 @@
     Copyright 2021, Zuri plugin reminder.
     All rights reserved.
     Written By: King Etiosasere, 30th August 2021
-**/
+* */
 
 import Mongoose from 'mongoose'
 import env from '@config/environment'
@@ -22,6 +22,7 @@ export default {
 		} catch (err) {
 			console.log('MongoDB connection failed, retrying in 5 secs', err)
 			setTimeout(this.start, 5000)
+			return err
 		}
 	},
 }

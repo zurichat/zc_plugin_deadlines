@@ -1,39 +1,39 @@
 {
-  "name": "zc-reminder",
-  "version": "1.0.0",
-  "description": "## #team-darwin",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint -c Backend/.eslintrc.js 'Backend/src/**'",
-    "prepare": "husky install",
-    "postinstall": "npm install; (cd Backend && npm install); (cd frontend && npm install);"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zurichat/zc_plugin_reminder.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zurichat/zc_plugin_reminder/issues"
-  },
-  "homepage": "https://github.com/zurichat/zc_plugin_reminder#readme",
-  "devDependencies": {
-    "@babel/eslint-parser": "^7.15.0",
-    "@babel/eslint-plugin": "^7.14.5",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-babel-module": "^5.3.1",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-prettier": "^3.4.1",
-    "husky": "^7.0.2",
-    "lint-staged": "^11.1.2",
-    "prettier": "^2.3.2"
-  },
-  "lint-staged": {
-    "*.js": "eslint --cache --no-error-on-unmatched-pattern --fix"
-  }
+	"name": "zc-reminder",
+	"version": "1.0.0",
+	"description": "## #team-darwin",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"lint": "eslint -c Backend/.eslintrc.js 'Backend/src/**' --fix",
+		"prepare": "husky install",
+		"holoInstall": "npm install; (cd Backend && npm install); (cd frontend && npm install);"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/zurichat/zc_plugin_reminder.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/zurichat/zc_plugin_reminder/issues"
+	},
+	"homepage": "https://github.com/zurichat/zc_plugin_reminder#readme",
+	"devDependencies": {
+		"@babel/eslint-parser": "^7.15.0",
+		"@babel/eslint-plugin": "^7.14.5",
+		"eslint": "^7.32.0",
+		"eslint-config-airbnb-base": "^14.2.1",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-import-resolver-babel-module": "^5.3.1",
+		"eslint-plugin-import": "^2.24.2",
+		"eslint-plugin-prettier": "^3.4.1",
+		"husky": "^7.0.2",
+		"lint-staged": "^11.1.2",
+		"prettier": "^2.3.2"
+	},
+	"lint-staged": {
+		"*.js": "eslint --cache --no-error-on-unmatched-pattern --fix"
+	}
 }
