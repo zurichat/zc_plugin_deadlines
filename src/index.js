@@ -12,7 +12,6 @@ require('dotenv').config()
 
 const start = async () => {
 	try {
-		console.log('Test log')
 		await connection.start()
 		app.listen(env.PORT, () => console.log('Server is up and running'))
 	} catch (error) {
