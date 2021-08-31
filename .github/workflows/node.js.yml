@@ -29,17 +29,17 @@ jobs:
         cache: 'npm'
         
     - name: Install monorepo dependencies
-      run: npm install
+      run: yarn install
         
     - name: Install frontend dependencies
       working-directory: ./frontend
-      run: npm install
+      run: yarn install
     
     - name: Run tests
       working-directory: ./frontend
-      run: npm test
+      run: yarn test
     
     - name: Build
       working-directory: ./frontend
-      run: npm run build
+      run: yarn build
     
