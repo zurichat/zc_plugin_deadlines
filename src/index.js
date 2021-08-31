@@ -8,8 +8,6 @@ import env from '@config/environment/index'
 import app from '@shared/http/server'
 import connection from '@shared/connection'
 
-require('dotenv').config()
-
 const start = async () => {
 	try {
 		await connection.start()
