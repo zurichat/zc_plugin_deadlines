@@ -31,7 +31,7 @@ module.exports = {
 				},
 			},
 		],
-		[('@babel/plugin-proposal-class-properties', { loose: true })],
+		['@babel/plugin-proposal-class-properties'],
 		[
 			'@babel/plugin-transform-runtime',
 			{
@@ -39,7 +39,7 @@ module.exports = {
 				version: '^7.8.3',
 			},
 		],
-		['@babel/plugin-proposal-private-methods', { loose: true }],
-		['@babel/plugin-proposal-private-property-in-object', { loose: true }],
+		['@babel/plugin-proposal-private-methods'],
+		['@babel/plugin-proposal-private-property-in-object'],
 	],
 }
