@@ -27,4 +27,4 @@ jobs:
             git pull
             npm run holoInstall
             npm run build
-            pm2 start npm --start
+            pm2 start npm -- start
