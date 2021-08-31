@@ -24,7 +24,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd /var/www/zc_plugin_reminder/
-            rm rf .
+            rm -rf .
             git clone https://github.com/zurichat/zc_plugin_reminder.git . --branch master
             touch .env
             echo MONGO_DB_URL=${{secrets.MONGO_DB_URL}} >> .env
