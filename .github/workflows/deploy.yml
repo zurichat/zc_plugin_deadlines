@@ -28,4 +28,4 @@ jobs:
             cd /var/www/zc_plugin_reminder/frontend
             yarn install
             yarn build
-            pm2 restart reminders_plugin
+            PM2_HOME=/opt/pm2/.pm2 pm2 restart reminders_plugin
