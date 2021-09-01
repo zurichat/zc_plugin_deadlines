@@ -1,14 +1,14 @@
 /**
     Copyright 2021, Zuri plugin reminder.
     All rights reserved.
-    Written By: King Etiosasere, ed_knowah 30th August 2021
+    Written By: King Etiosasere 30th August 2021, ed_knowah 2nd Spetember 2021.
 * */
 const reminderController = {
 	create: async (req, res) => {
 		return res.send('heelo')
 	},
 
-	getReminders: async (req, res) => {
+	findAll: async (req, res) => {
 		// eslint-disable-next-line consistent-return
 		const getReminders = async () => {
 			try {
