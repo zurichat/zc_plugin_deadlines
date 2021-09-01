@@ -27,7 +27,6 @@ app.use((req, res, next) => {
 app.use(errorHandler)
 
 app.get('*', async (req, res) => {
-	console.log('Here')
 	res.redirect('/')
 })
 
