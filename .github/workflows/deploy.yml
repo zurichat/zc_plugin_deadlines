@@ -28,5 +28,4 @@ jobs:
             cd /var/www/zc_plugin_reminder/frontend
             yarn holoInstall
             yarn build
-            pm2 list
-#            pm2 restart reminders_plugin
+            pm2 start reminders_plugin
