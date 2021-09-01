@@ -26,7 +26,6 @@ jobs:
             cd /var/www/zc_plugin_reminder/
             git stash
             git pull
-            cd /var/www/zc_plugin_reminder/frontend
             yarn run holoInstall
             yarn build
             pm2 start reminders_plugin
