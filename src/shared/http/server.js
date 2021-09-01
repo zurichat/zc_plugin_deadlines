@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 
 app.use(errorHandler)
 
-app.all('*', async (req, res) => {
+app.get('*', async (req, res) => {
 	res.redirect('/')
 })
 
