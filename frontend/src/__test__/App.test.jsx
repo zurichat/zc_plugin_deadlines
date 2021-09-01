@@ -1,15 +1,13 @@
 import React from 'react'
-import { shallow } from 'enzyme'
-
 import App from '../App'
+import { render, screen } from '@testing-library/react'
 
-test('Basic render', () => {
-	shallow(<App />)
+test('<App /> renders without crashing', () => {
+	render(<App />)
 })
 
-test('Link render', () => {
-	const wrapper = shallow(<App />)
-	const linkText = 'Zuri Chat'
-
-	expect(wrapper.contains(linkText)).toEqual(true)
+test('link to zuri chat rendered', () => {
+	render(<App />)
+	const linkElement = screen.getByRole('link', { name: /zuri chat/i })
+	expect(linkElement).toBeInTheDocument()
 })
