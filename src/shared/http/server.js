@@ -26,4 +26,8 @@ app.use((req, res, next) => {
 
 app.use(errorHandler)
 
+app.all('*', async (req, res) => {
+	res.redirect('/')
+})
+
 export default app
