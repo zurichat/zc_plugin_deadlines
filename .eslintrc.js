@@ -45,7 +45,7 @@ module.exports = {
 		'import/prefer-default-export': 0,
 		'no-undef': 0,
 		'prefer-arrow-callback': ['error'],
-		'implicit-arrow-linebreak': ['error'],
+		'implicit-arrow-linebreak': 0,
 		'no-useless-constructor': ['error'],
 		semi: ['error', 'never'],
 		'eol-last': 0,
