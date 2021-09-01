@@ -50,7 +50,6 @@ module.exports = {
 		semi: ['error', 'never'],
 		'eol-last': 0,
 		'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
-		// 'no-unused-vars': ['error', { vars: 'local', args: 'none' }],
 		'no-unused-vars': 0,
 	},
 	settings: {
