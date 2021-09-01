@@ -1,8 +1,9 @@
 import Joi from 'joi'
 import PriorityType from '@types/priority.type'
+import { validateBodyRequest } from './common'
 
-const reminderSchema = async (req, next, schema) => {
-	const schemaObj = Joi.object({
+const reminderSchema = async (req, res, next) => {
+	const schema = Joi.object({
 		priority: Joi.string()
 			.valid(...Object.values(PriorityType))
 			.label('Priority Type'),
@@ -10,8 +11,7 @@ const reminderSchema = async (req, next, schema) => {
 		description: Joi.string().trim().required().label('Description'),
 		shouldRemind: Joi.boolean().label('Recurring'),
 	})
-
-	return schemaObj
+	return validateBodyRequest(req, next, schema)
 }
 
 export default reminderSchema

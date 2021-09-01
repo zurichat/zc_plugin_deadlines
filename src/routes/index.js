@@ -5,7 +5,7 @@
 * */
 
 import { Router } from 'express'
-import reminderController from '@controllers/user.controller'
+import reminderController from '@controllers/reminder.controller'
 
 const router = Router()
 

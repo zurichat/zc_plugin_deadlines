@@ -8,6 +8,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import routes from '@routes'
 import path from 'path'
+import { errorHandler } from '@shared/errors/ErrorClass'
 
 dotenv.config()
 const build = path.resolve('frontend', 'build')
@@ -22,5 +23,7 @@ app.use('/v1', routes)
 app.use((req, res, next) => {
 	res.sendFile(path.join(build, 'index.html'))
 })
+
+app.use(errorHandler)
 
 export default app

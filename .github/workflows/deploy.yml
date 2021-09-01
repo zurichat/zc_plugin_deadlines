@@ -24,12 +24,8 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd /var/www/zc_plugin_reminder/
-            rm -rf .
-            git clone https://github.com/zurichat/zc_plugin_reminder.git . --branch master
-            touch .env
-            echo MONGO_DB_URL=${{secrets.MONGO_DB_URL}} >> .env
-            echo PORT=${{secrets.PORT}} >> .env
-            cat .env
+            git pull
+            cd /var/www/zc_plugin_reminder/frontend
             yarn holoInstall
             yarn build
-            yarn start
+            pm2 restart reminders_plugin
