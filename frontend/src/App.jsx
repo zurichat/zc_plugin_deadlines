@@ -1,9 +1,11 @@
 import React from 'react'
+import './index.css'
+import { WhiteBoard } from './whiteBoard'
 
 const App = () => {
 	return (
-		<div className="flex flex-col items-center justify-center h-screen text-center ">
-			<header className="text-3xl text-cra-primary font-craFont">
+		<div>
+			{/* <header className="text-3xl text-cra-primary font-craFont">
 				<h1>Zuri Chat Reminder Plugin</h1>
 				<p>
 					Reminder plugin for the open-source{' '}
@@ -11,7 +13,8 @@ const App = () => {
 						Zuri Chat
 					</a>
 				</p>
-			</header>
+			</header> */}
+			<WhiteBoard />
 		</div>
 	)
 }
