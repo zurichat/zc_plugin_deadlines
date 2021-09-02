@@ -1,8 +1,8 @@
 import React from 'react'
 
-const DueDatePicker = () => {
+const DueDatePicker = ({ ...props }) => {
 	return (
-		<div className="w-full flex flex-col">
+		<div className="w-full flex flex-col" {...props}>
 			<label className="text-left flex items-center" htmlFor="due">
 				<div className="mr-[.4rem] w-[1rem] h-[1rem] rounded-full bg-[#EAF2FD] flex justify-center items-center">
 					<svg
