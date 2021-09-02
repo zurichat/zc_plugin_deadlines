@@ -7,7 +7,6 @@
 import env from '@config/environment/index'
 import app from '@shared/http/server'
 import connection from '@shared/connection'
-import makeDb from './db'
 
 const start = async () => {
 	try {
