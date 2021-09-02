@@ -5,10 +5,13 @@
 * */
 
 import { Router } from 'express'
-import reminderController from '@controllers/user.controller'
+import reminderController from '@controllers/reminder.controller'
 
 const router = Router()
 
+router.get('/ping', (req, res) =>
+	res.json({ message: 'Hello! You have found the zc_plugin_reminder api' })
+)
 router.route('/reminders').get(reminderController.create)
 
 export default router
