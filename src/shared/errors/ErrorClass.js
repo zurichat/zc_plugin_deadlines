@@ -11,6 +11,26 @@ export class InvalidPropertyError extends Error {
 	}
 }
 
+export class UniqueConstraintError extends Error {
+	/**
+	 *
+	 * @param {*} statusCode
+	 * @param {*} msg
+	 * @param {*} isOperational
+	 * @param {*} stack
+	 */
+	constructor(msg, statusCode = 409, isOperational = true, stack = '') {
+		super(msg)
+		this.statusCode = statusCode
+		this.isOperational = isOperational
+		if (stack) {
+			this.stack = stack
+		} else {
+			Error.captureStackTrace(this, this.constructor)
+		}
+	}
+}
+
 export const errorHandler = (err, req, res, next) => {
 	console.log(err)
 	if (process.env.NODE_ENV === 'development') {
