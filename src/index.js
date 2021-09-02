@@ -7,12 +7,14 @@
 import env from '@config/environment/index'
 import app from '@shared/http/server'
 import connection from '@shared/connection'
+import makeDb from './db'
 
 const start = async () => {
 	try {
 		if (process.env.NODE_ENV === 'development') {
 			await connection.start()
 		}
+
 		app.listen(env.PORT, () => console.log('Server is up and running'))
 	} catch (error) {
 		console.log('error', error)
