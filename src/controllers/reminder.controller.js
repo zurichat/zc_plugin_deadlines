@@ -3,6 +3,8 @@
     All rights reserved.
     Written By: King Etiosasere 30th August 2021, ed_knowah 2nd Spetember 2021.
 * */
+
+const db = makeDb()
 const reminderController = {
 	create: async (req, res) => {
 		return res.send('heelo')
@@ -11,7 +13,6 @@ const reminderController = {
 	findAll: async (req, res) => {
 		// eslint-disable-next-line consistent-return
 		try {
-			const db = makeDb()
 			const reminders = await db.getAllReminders()
 			res.json({
 				allReminders: reminders,
