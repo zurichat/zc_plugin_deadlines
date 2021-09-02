@@ -6,7 +6,8 @@ const Modal = () => {
 	const openModal =()=>setIsOpen(true)
 	const closeModal =()=>setIsOpen(false)
 	return (<>
-		<Transition appear show={isOpen} as={Fragment}>
+		
+      <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"
@@ -24,7 +25,11 @@ const Modal = () => {
             >
               <Dialog.Overlay className="fixed inset-0" />
             </Transition.Child>
+
 			<div>Reusable Modal</div>
+			</div>
+			</Dialog>
+			</Transition>
 		</>
 	)
 }
