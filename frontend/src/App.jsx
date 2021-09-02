@@ -1,4 +1,6 @@
 import React from 'react'
+import SearchInput from './components/SearchInput'
+import Dropdown from './components/Dropdown'
 
 const App = () => {
 	return (
@@ -11,6 +13,10 @@ const App = () => {
 						Zuri Chat
 					</a>
 				</p>
+				<div className="flex mt-6">
+					<SearchInput />
+					<Dropdown />
+				</div>
 			</header>
 		</div>
 	)
