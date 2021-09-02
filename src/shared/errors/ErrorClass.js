@@ -19,8 +19,9 @@ export class UniqueConstraintError extends Error {
 	 * @param {*} isOperational
 	 * @param {*} stack
 	 */
-	constructor(msg, statusCode = 409, isOperational = true, stack = '') {
-		super(msg)
+	constructor(message, statusCode = 409, isOperational = true, stack = '') {
+		super(message)
+		this.name = 'UniqueConstraintError'
 		this.statusCode = statusCode
 		this.isOperational = isOperational
 		if (stack) {
