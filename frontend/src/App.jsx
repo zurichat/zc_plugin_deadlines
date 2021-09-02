@@ -1,5 +1,5 @@
 import React from 'react'
-
+import StartingDate from './StartingDate.jsx'
 const App = () => {
 	return (
 		<div className="flex flex-col items-center justify-center h-screen text-center ">
@@ -11,6 +11,7 @@ const App = () => {
 						Zuri Chat
 					</a>
 				</p>
+				<StartingDate />
 			</header>
 		</div>
 	)
