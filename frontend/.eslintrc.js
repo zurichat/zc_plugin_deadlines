@@ -10,6 +10,7 @@ module.exports = {
 	extends: ['plugin:prettier/recommended', 'plugin:react/recommended'],
 	rules: {
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
+		'indent': ['error', 2],
 		'arrow-body-style': 'off',
 		'prefer-const': ['error'],
 		'no-var': ['error'],
