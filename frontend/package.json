@@ -43,9 +43,12 @@
 		"@types/jest": "^27.0.1",
 		"autoprefixer": "^9.8.6",
 		"babel-eslint": "^10.1.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-prettier": "^4.0.0",
 		"eslint-plugin-react": "^7.25.0",
 		"eslint-plugin-unused-imports": "^1.1.4",
 		"postcss": "^7.0.36",
+		"prettier": "2.3.2",
 		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.9"
 	}
 }

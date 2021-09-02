@@ -6,10 +6,16 @@ module.exports = {
 		jest: true,
 	},
 	parser: 'babel-eslint',
-	plugins: ['react'],
+	plugins: ['prettier'],
 	extends: ['plugin:prettier/recommended', 'plugin:react/recommended'],
 	rules: {
-		'prettier/prettier': ['error', { endOfLine: 'auto' }],
+		'prettier/prettier': [
+			'error',
+			{
+				endOfLine: 'auto',
+			},
+		],
+		'react/prop-types': 0,
 		'arrow-body-style': 'off',
 		'prefer-const': ['error'],
 		'no-var': ['error'],
