@@ -2,8 +2,9 @@
     Copyright 2021, ZC-Plugin-reminder.
     All rights reserved.
     Written by Oyekola Damilare Isaac 'odaisaac'
-    [zurichat/zc_plugin_reminder]: Issue #203 Display Avatar of users assigned to a task
+    [zurichat/zc_plugin_reminder]: Issue #203 Display Avatar of users assigned to a task.
 **/
+
 import React from 'react'
 
 function UserAvatar() {
