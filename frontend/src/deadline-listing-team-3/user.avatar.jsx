@@ -9,27 +9,35 @@ import React from 'react'
 
 function UserAvatar() {
 	return (
-		<div className="flex -space-x-2 overflow-hidden">
-			<img
-				className="inline-block h-10 w-10 rounded-full ring-2 ring-green-600"
-				src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairTheCaesar&accessoriesType=Blank&hairColor=BrownDark&facialHairType=BeardMedium&facialHairColor=BrownDark&clotheType=ShirtCrewNeck&clotheColor=Gray02&eyeType=Wink&eyebrowType=FlatNatural&mouthType=Serious&skinColor=Pale"
-				alt=""
-			/>
-			<img
-				className="inline-block h-10 w-10 rounded-full ring-2 ring-green-600"
-				src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-				alt=""
-			/>
-			<img
-				className="inline-block h-10 w-10 rounded-full ring-2 ring-green-600"
-				src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
-				alt=""
-			/>
-			<img
-				className="inline-block h-10 w-10 rounded-full ring-2 ring-green-600"
-				src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-				alt=""
-			/>
+		<div className="flex -space-x-5 p-2 justify-center self-auto overflow-hidden">
+			<a href="#">
+				<img
+					className="inline-block h-10 w-10 bg-red-50 rounded-full ring-2 ring-green-600"
+					src="https://avataaars.io/?avatarStyle=Transparen&topType=ShortHairTheCaesar&accessoriesType=Blank&hairColor=BrownDark&facialHairType=BeardMedium&facialHairColor=BrownDark&clotheType=ShirtCrewNeck&clotheColor=Gray02&eyeType=Wink&eyebrowType=FlatNatural&mouthType=Serious&skinColor=Pale"
+					alt=""
+				/>
+			</a>
+			<a href="#">
+				<img
+					className="inline-block h-10 w-10 bg-red-50 rounded-full ring-2 ring-green-600"
+					src="https://avataaars.io/?avatarStyle=Transparen&topType=LongHairMiaWallace&accessoriesType=Blank&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=PastelYellow&eyeType=WinkWacky&eyebrowType=RaisedExcitedNatural&mouthType=Smile&skinColor=Light"
+					alt=""
+				/>
+			</a>
+			<a href="#">
+				<img
+					className="inline-block h-10 w-10 bg-red-50 rounded-full ring-2 ring-green-600"
+					src="https://avataaars.io/?avatarStyle=Transparen&topType=Hijab&accessoriesType=Prescription01&hatColor=Black&clotheType=ShirtScoopNeck&clotheColor=PastelGreen&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Smile&skinColor=Yellow"
+					alt=""
+				/>
+			</a>
+			<a href="#">
+				<img
+					className="inline-block h-10 w-10 bg-red-50 rounded-full ring-2 ring-green-600"
+					src="https://avataaars.io/?avatarStyle=Transparen&topType=Eyepatch&facialHairType=Blank&clotheType=BlazerShirt&eyeType=EyeRoll&eyebrowType=UpDownNatural&mouthType=Smile&skinColor=Light"
+					alt=""
+				/>
+			</a>
 		</div>
 	)
 }

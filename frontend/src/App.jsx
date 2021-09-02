@@ -1,5 +1,4 @@
 import React from 'react'
-import UserAvatar from './deadline-listing-team-3/user.avatar'
 
 const App = () => {
 	return (
