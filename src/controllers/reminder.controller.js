@@ -10,19 +10,20 @@ const reminderController = {
 
 	findAll: async (req, res) => {
 		// eslint-disable-next-line consistent-return
-		const getReminders = async () => {
-			try {
-				return await axios.get(process.env.MONGO_DB_URL)
-			} catch (error) {
-				console.error(error)
-			}
+		try {
+			const db = makeDb()
+			const reminders = await db.getAllReminders()
+			res.json({
+				allReminders: reminders,
+			})
+		} catch (error) {
+			console.log(error)
+			res.json({
+				status: 400,
+				data: null,
+				message: error.message,
+			})
 		}
-		const reminders = async () => {
-			const foundReminders = await getReminders()
-			return res.send(foundReminders.data)
-		}
-
-		return reminders()
 	},
 }
 
