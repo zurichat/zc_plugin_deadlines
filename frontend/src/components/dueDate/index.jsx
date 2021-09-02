@@ -2,10 +2,10 @@ import React from 'react'
 
 const DueDatePicker = () => {
 	return (
-		<div className="w-60 flex flex-col">
+		<div className="w-1/4 min-w-[160px] flex flex-col">
 			<div className="flex flex-col justify-start">
 				<label className="text-left flex items-center" htmlFor="due">
-					<div className="mr-1 w-4 h-4 rounded-full bg-[#EAF2FD] flex justify-center items-center">
+					<div className="mr-[.4rem] w-[1rem] h-[1rem] rounded-full bg-[#EAF2FD] flex justify-center items-center">
 						<svg
 							width="9"
 							height="8"
@@ -23,9 +23,9 @@ const DueDatePicker = () => {
 						Due Date
 					</span>
 				</label>
-				<div className="text-left ">
+				<div className="text-left">
 					<input
-						className="h-6 w-full text-[#24242499] tracking-wide  uppercase mt-3 p-4 font-normal text-xs bg-[#FBFCFC] border rounded-md border-[#99999933]"
+						className="h-[1.5rem] w-full text-[#24242499] tracking-wide  uppercase mt-[0.75rem] p-[1rem] font-normal text-xs bg-[#FBFCFC] border rounded-md border-[#99999933]"
 						type="date"
 						id="due"
 					/>
