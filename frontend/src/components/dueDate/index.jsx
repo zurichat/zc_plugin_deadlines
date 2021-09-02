@@ -2,8 +2,8 @@ import React from 'react'
 
 const DueDatePicker = () => {
 	return (
-		<div className="w-1/4 min-w-[160px] flex flex-col">
-			<div className="flex flex-col justify-start">
+		<div className="w-full">
+			<div className="w-1/4 min-w-[160px] mx-auto flex flex-col justify-start">
 				<label className="text-left flex items-center" htmlFor="due">
 					<div className="mr-[.4rem] w-[1rem] h-[1rem] rounded-full bg-[#EAF2FD] flex justify-center items-center">
 						<svg
