@@ -32,7 +32,7 @@ const DueDatePicker = ({ ...props }) => {
 					type="date"
 					id="due"
 					value={value}
-					onChange={value}
+					onChange={handleChange}
 				/>
 			</div>
 		</div>
