@@ -12,6 +12,6 @@ const router = Router()
 router.get('/ping', (req, res) =>
 	res.json({ message: 'Hello! You have found the zc_plugin_reminder api' })
 )
-router.route('/reminders').get(reminderController.create)
+router.route('/reminders').get(reminderController.getAll)
 
 export default router
