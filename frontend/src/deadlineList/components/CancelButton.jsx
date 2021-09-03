@@ -1,3 +1,8 @@
+/**
+    Copyright 2021, ZC-Plugin-reminder.
+    All rights reserved.
+    Written by spykelion
+**/
 import React from 'react'
 
 const CancelButton = () => {
