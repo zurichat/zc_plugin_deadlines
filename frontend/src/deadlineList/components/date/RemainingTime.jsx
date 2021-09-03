@@ -7,6 +7,7 @@ const RemainingTime = () => {
 		dateTopic: 'Time:',
 		date: '05:00 pm',
 		icon: <img src={Remaining} className="h-full" alt="time-icon" />,
+		iconColor: 'bg-brand-avatar-green bg-opacity-25',
 	}
 
 	return <Date {...props} />

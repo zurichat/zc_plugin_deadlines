@@ -7,6 +7,7 @@ const DueDate = () => {
 		dateTopic: 'Due Date',
 		date: '31st Aug,2021',
 		icon: <img src={CalenderIcon} className="h-full" alt="calender-icon" />,
+		iconColor: 'bg-brand-avatar-blue',
 	}
 	return <Date {...props} />
 }
