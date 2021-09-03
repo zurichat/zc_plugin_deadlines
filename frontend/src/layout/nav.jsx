@@ -1,9 +1,10 @@
 import React from 'react'
+import Button from './button' 
 
 const Nav = () => {
 	return (
 		<nav>
-			<p>Nav</p>
+			<Button {...props}/> 
 		</nav>
 	)
 }
