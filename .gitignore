@@ -2,3 +2,5 @@ node_modules
 .eslintcache
 .env
 dist
+seedData.js
+yarn-error.log
