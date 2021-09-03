@@ -2,7 +2,7 @@ import React from 'react'
 
 const Date = ({ icon, iconColor, dateTopic, date }) => {
 	return (
-		<div className="inline-flex items-center justify-center bg-brand-bg-lightGrey p-2">
+		<div className="inline-flex items-center justify-center p-2">
 			<div className="flex items-start">
 				<div
 					className={`h-9 p-2 rounded-full leading-none flex ${iconColor} item-center justify-center  mr-2`}
