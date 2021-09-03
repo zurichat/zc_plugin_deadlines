@@ -1,4 +1,5 @@
 import React from 'react'
+import DeadlineList from '../src/deadlineList/index'
 
 const App = () => {
 	return (
@@ -12,6 +13,7 @@ const App = () => {
 					</a>
 				</p>
 			</header>
+			<DeadlineList />
 		</div>
 	)
 }
