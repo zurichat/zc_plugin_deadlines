@@ -1,7 +1,7 @@
 /**
-    Copyright 2021, Zuri plugin reminder.
-    All rights reserved.
-    Written By: King Etiosasere, 30th August 2021
+		Copyright 2021, Zuri plugin reminder.
+		All rights reserved.
+		Written By: King Etiosasere, 30th August 2021
 * */
 import dotenv from 'dotenv'
 
