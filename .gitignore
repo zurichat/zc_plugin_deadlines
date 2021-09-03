@@ -3,3 +3,4 @@ node_modules
 .env
 dist
 seedData.js
+yarn-error.log
