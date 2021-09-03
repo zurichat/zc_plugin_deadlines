@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const DueDatePicker = ({ ...props }) => {
+	const [value, setValue] = useState(new Date())
+
+	const handleChange = (e) => {
+		setValue(e.target.value)
+	}
+
 	return (
 		<div className="w-full flex flex-col" {...props}>
 			<label className="text-left flex items-center" htmlFor="due">
@@ -25,6 +31,8 @@ const DueDatePicker = ({ ...props }) => {
 					className="h-[1%] w-full text-[#24242499] tracking-wide  uppercase mt-[0.75rem] p-[1rem] font-normal text-xs bg-[#FBFCFC] border rounded-md border-[#99999933]"
 					type="date"
 					id="due"
+					value={value}
+					onChange={value}
 				/>
 			</div>
 		</div>
