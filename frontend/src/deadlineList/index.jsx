@@ -6,10 +6,11 @@ import StartDate from './components/date/StartDate'
 const DeadlineList = () => {
 	return (
 		<>
-			<div>Deadline Lis</div>
-			<DueDate />
-			<RemainingTime />
-			<StartDate />
+			<div id="list-card" className="flex">
+				<StartDate />
+				<DueDate />
+				<RemainingTime />
+			</div>
 		</>
 	)
 }
