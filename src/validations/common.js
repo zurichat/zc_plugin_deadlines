@@ -10,7 +10,8 @@ export function validateBodyRequest(req, next, schema) {
 
 	const { error, value } = schema.validate(req.body, options)
 	if (error?.message) {
-		throw new InvalidPropertyError(error.message)
+		const err = new InvalidPropertyError(error.message)
+		next(err)
 	}
 
 	if (error) {
@@ -31,7 +32,8 @@ export function validateQueryRequest(req, next, schema) {
 
 	const { error, value } = schema.validate(req.body, options)
 	if (error?.message) {
-		throw new InvalidPropertyError(error.message)
+		const err = new InvalidPropertyError(error.message)
+		next(err)
 	}
 
 	if (error) {
@@ -52,7 +54,8 @@ export function validateParamRequest(req, next, schema) {
 
 	const { error, value } = schema.validate(req.body, options)
 	if (error?.message) {
-		throw new InvalidPropertyError(error.message)
+		const err = new InvalidPropertyError(error.message)
+		next(err)
 	}
 
 	if (error) {
