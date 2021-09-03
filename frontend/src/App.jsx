@@ -1,8 +1,8 @@
 import React from 'react'
-import Layout from './layout'
+import TimerTextBox from './components/newDeadline/TimerTextBox'
 
 const App = () => {
-	return <Layout />
+	return <TimerTextBox />
 }
 
 export default App
