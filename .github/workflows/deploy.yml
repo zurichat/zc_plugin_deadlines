@@ -30,4 +30,4 @@ jobs:
             git pull
             yarn run holoInstall
             yarn run build
-            pm2 list
+            PORT=3020 pm2 start yarn --name "reminders_plugin" --max-memory-restart 670M  -- start
