@@ -57,6 +57,11 @@
 	"lint-staged": {
 		"*.js": "eslint --cache --no-error-on-unmatched-pattern --fix"
 	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "yarn lint"
+		}
+	},
 	"dependencies": {
 		"@babel/runtime-corejs3": "^7.15.3",
 		"amqplib": "^0.8.0",
