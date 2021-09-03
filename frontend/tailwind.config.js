@@ -50,7 +50,6 @@ module.exports = {
 					'Helvetica Neue',
 					'sans - serif',
 				],
-				lato: 'Lato',
 			},
 		},
 	},
