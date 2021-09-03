@@ -4,7 +4,6 @@ import Nav from './nav'
 
 import DeadlineList from '@deadlineList'
 import DeadlineStatus from '@deadlineStatus'
-import SortBar from '../components/sortBar'
 
 const Layout = () => {
 	return (
@@ -12,7 +11,6 @@ const Layout = () => {
 			<Nav />
 			<DeadlineList />
 			<DeadlineStatus />
-			<SortBar />
 		</>
 	)
 }
