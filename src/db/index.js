@@ -1,32 +1,38 @@
 import axios from 'axios'
 
-export default async function makeDb() {
+import env from '@config/environment'
+
+const { getDevBaseUrl, ORG_ID, PLUGIN_ID } = env
+
+export default function makeDb() {
 	// functions go here
+	const BASE_URL = `${getDevBaseUrl()}/data`
+	const readBaseUrl = `${BASE_URL}/read`
+	const writeBaseUrl = `${BASE_URL}/write`
 
-	// const ZURI_CORE_API = 'https://mock-dbapi.herokuapp.com/api/data'
-	// const readBaseUrl = `${ZURI_CORE_API}/read`
-	// const PLUGIN_ID = 'reminders_id'
-	// const ORGANIZATION_ID = 'Darwin_organization'
+	async function findAll(collectionName) {
+		/**
+		 * sample of details used
+		 * PLUGIN_ID zc_reminder
+		 * ORG_ID darwin_organization
+		 */
+		const data = await axios.get(
+			`${readBaseUrl}/${PLUGIN_ID}/${collectionName}/${ORG_ID}`
+		)
 
-	// const findById = async (collectionName, id) => {
-	// 	try {
-	// 		const res = await axios.get(
-	// 			`${readBaseUrl}/${PLUGIN_ID}/${collectionName}/${ORGANIZATION_ID}?id=${id}`
-	// 		)
-	// 		return res.data
-	// 	} catch (err) {
-	// 		console.log(err)
-	// 	}
+		return data
+	}
 
-	// 	// await axios.get(`${readBaseUrl}/${PLUGIN_ID}/${collectionName}/${ORGANIZATION_ID}?id=${id}`)
-	// 	// 	.then(res => {
-	// 	// 		res.filter(function (id) {
-	// 	// 			return id === this.state.query
-	// 	// 		})
-	// 	// 	})
-	// 	// 	.catch((err) => {
-	// 	// 		console.log(err)
-	// 	// 	})
-	// }
-	return Object.freeze({ findById })
+	async function findById(collectionName, id) {
+		try {
+			const res = await axios.get(
+				`${readBaseUrl}/${PLUGIN_ID}/${collectionName}/${ORGANIZATION_ID}?id=${id}`
+			)
+			return res.data
+		} catch (err) {
+			console.log(err)
+		}
+
+		return Object.freeze({ findAll })
+	}
 }
