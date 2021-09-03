@@ -51,6 +51,7 @@ module.exports = {
 		'eol-last': 0,
 		'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
 		'no-unused-vars': 0,
+		'max-classes-per-file': 0,
 	},
 	settings: {
 		'import/resolver': {
