@@ -11,7 +11,7 @@ const App = () => {
 					</a>
 				</p>
 			</header>
-			<button className="w-30 bg-green-500 hover:bg-blue-500 text-white py-2 px-4 rounded">
+			<button className="w-30 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
 				Set Deadline
 			</button>
 		</div>
