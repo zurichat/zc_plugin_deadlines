@@ -12,6 +12,7 @@ module.exports = {
 			'@deadlineList': path.resolve(__dirname, './src/deadlineList'),
 			'@components': path.resolve(__dirname, './src/components'),
 			'@layout': path.resolve(__dirname, './src/layout'),
+			'@assets': path.resolve(__dirname, './src/assets'),
 		},
 	},
 }
