@@ -1,6 +1,11 @@
 import axios from 'axios'
+import env from '@config/environment'
 
-const DATAPOINT_URL = 'https://mock-dbapi.herokuapp.com/api'
+const { getDevBaseUrl, ORG_ID, PLUGIN_ID } = env
+
+const BASE_URL = `${getDevBaseUrl()}/data`
+const readBaseUrl = `${BASE_URL}/read`
+const writeBaseUrl = `${BASE_URL}/write`
 
 export default function makeDb() {
 	// functions go here
@@ -14,9 +19,9 @@ export default function makeDb() {
 		if (typeof data !== 'object')
 			throw new Error('Invalid data format. Expected an array or object.')
 
-		const dbResponse = await axios.post(`${DATAPOINT_URL}/data/write`, {
-			plugin_id: '100001',
-			organization_id: '10000001',
+		const dbResponse = await axios.post(writeBaseUrl, {
+			plugin_id: PLUGIN_ID,
+			organization_id: ORG_ID,
 			collection_name: modelName,
 			bulk_write: Array.isArray(data), // returns true if data is an array
 			payload: data,
@@ -35,6 +40,19 @@ export default function makeDb() {
 		}
 	}
 
+	async function findAll(modelName) {
+		/**
+		 * sample of details used
+		 * PLUGIN_ID zc_reminder
+		 * ORG_ID darwin_organization
+		 */
+		const data = await axios.get(
+			`${readBaseUrl}/${PLUGIN_ID}/${modelName}/${ORG_ID}`
+		)
+
+		return data
+	}
+
 	return Object.freeze({
 		/**
 		 * Persists data to a db on a thrid party api
@@ -43,5 +61,6 @@ export default function makeDb() {
 		 * @returns saved document
 		 */
 		create,
+		findAll,
 	})
 }

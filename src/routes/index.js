@@ -15,5 +15,6 @@ router.get('/ping', (req, res) =>
 )
 
 router.post('/reminders', reminderValidation, reminderController.create)
+router.route('/reminders').get(reminderController.getAll)
 
 export default router
