@@ -10,7 +10,7 @@ const DueDatePicker = ({ ...props }) => {
 	return (
 		<div className="w-full flex flex-col" {...props}>
 			<label className="text-left flex items-center" htmlFor="due">
-				<div className="mr-[.4rem] w-[1rem] h-[1rem] rounded-full bg-[#EAF2FD] flex justify-center items-center">
+				<div className="mr-1 w-4 h-4 rounded-full bg-white flex justify-center items-center">
 					<svg
 						width="9"
 						height="8"
@@ -24,11 +24,11 @@ const DueDatePicker = ({ ...props }) => {
 						/>
 					</svg>
 				</div>
-				<span className="block font-bold text-xs text-[#242424">Due Date</span>
+				<span className="block font-bold text-xs text-header">Due Date</span>
 			</label>
-			<div className="text-left">
+			<div className="text-left mt-1">
 				<input
-					className="h-[1%] w-full text-[#24242499] tracking-wide  uppercase mt-[0.75rem] p-[1rem] font-normal text-xs bg-[#FBFCFC] border rounded-md border-[#99999933]"
+					className="h-full w-full text-header tracking-wide  uppercase px-4 py-1 font-normal text-xs bg-white border rounded-md border-leftNav"
 					type="date"
 					id="due"
 					value={value}
