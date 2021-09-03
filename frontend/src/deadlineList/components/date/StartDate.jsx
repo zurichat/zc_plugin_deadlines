@@ -1,17 +1,15 @@
 import React from 'react'
 import Date from './Date'
 
-import Calender from '../../../assets/svg icons/calender.svg'
+import CalenderIcon from '../../../assets/svg icons/calender.svg'
 const StartDate = () => {
-	return (
-		<>
-			<Date
-				icon={<img src={Calender} className="h-full" alt="c-icon" />}
-				dateTopic="StartDate:"
-				date="05:00 pm"
-			/>
-		</>
-	)
+	const props = {
+		dateTopic: 'Start Date:',
+		date: '31st Aug,2021',
+		icon: <img src={CalenderIcon} className="h-full" alt="c-icon" />,
+	}
+
+	return <Date {...props} />
 }
 
 export default StartDate

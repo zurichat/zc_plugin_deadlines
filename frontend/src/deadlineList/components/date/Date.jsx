@@ -2,12 +2,9 @@ import React from 'react'
 
 const Date = ({ icon, dateTopic, date }) => {
 	return (
-		<div className="inline-flex items-center justify-center bg-gray-50 p-2">
+		<div className="inline-flex items-center justify-center bg-brand-bg-lightGrey p-2">
 			<div className="flex items-start">
-				<div
-					className="h-7 p-1 rounded-full leading-none flex item-center justify-center  mr-2"
-					style={{ backgroundColor: '#EAF2FD' }}
-				>
+				<div className="h-9 p-2 rounded-full leading-none bg-gray-200 flex item-center justify-center  mr-2">
 					{icon}
 				</div>
 				<div className="flex flex-col text-left">
