@@ -3,7 +3,7 @@ import React from 'react'
 const Modal = () => {
 	return (
 		<>
-			<div>Reusable Modal</div>
+			<div>Reusable Modal </div>
 		</>
 	)
 }
