@@ -30,4 +30,4 @@ jobs:
             git pull
             yarn run holoInstall
             yarn run build
-            pm2 start reminders_plugin
+            pm2 restart reminders_plugin
