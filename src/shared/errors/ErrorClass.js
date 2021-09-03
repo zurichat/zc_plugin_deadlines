@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 // your code goes here
 export class InvalidPropertyError extends Error {
 	constructor(msg, statusCode = 400) {
@@ -7,6 +8,18 @@ export class InvalidPropertyError extends Error {
 		this.statusCode = statusCode
 		if (Error.captureStackTrace) {
 			Error.captureStackTrace(this, InvalidPropertyError)
+		}
+	}
+}
+
+export class RequiredPropertyError extends Error {
+	constructor(msg, statusCode = 400) {
+		super(msg)
+
+		this.name = 'RequiredPropertyError'
+		this.statusCode = statusCode
+		if (Error.captureStackTrace) {
+			Error.captureStackTrace(this, RequiredPropertyError)
 		}
 	}
 }
