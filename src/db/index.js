@@ -23,5 +23,26 @@ export default function makeDb() {
 		return data
 	}
 
-	return Object.freeze({ findAll })
+	async function update({ id, ...params}) {
+		try {
+			const res = await axios ({
+				method: 'put',
+				url: `${getDevBaseUrl()}/data/write`,
+				data: {
+					plugin_id: PLUGIN_ID,
+					organisation_id: ORG_ID,
+					collection_name: REMINDER_COLLECTION,
+					filter: {
+						object_id: id,
+					},
+					payload: { ...params },
+				},
+			})
+			return res.data.data.modified_document > 0
+		} catch {error} {
+			next (error)
+		}
+	}
+
+	return Object.freeze({ findAll, update })
 }
