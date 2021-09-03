@@ -7,7 +7,7 @@ const TabNav = ({ tabs, setSelected, selected, children }) => {
 				<ul className="flex items-center mt-15 mb-10 font-bold cursor-pointer text-lg">
 					{tabs.map((tab) => {
 						const active =
-							tab === selected ? 'active border-b-2 border-green-500' : ''
+							tab === selected ? 'active border-b-2 border-brand-primary' : ''
 						return (
 							<li className="-mb-px mr-1" key={tab}>
 								<a

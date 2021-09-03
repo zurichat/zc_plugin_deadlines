@@ -1,37 +1,9 @@
-import React, { useState } from 'react'
-import TabNav from './Components/TabNav.jsx'
-import Tab from './Components/Tab.jsx'
+import React from 'react'
 
 const App = () => {
-	const [prevState, nextState] = useState({
-		selected: 'Overdue',
-	})
-
-	const setSelected = (tab) => {
-		nextState({ selected: tab })
-	}
-
 	return (
-		<div className="flex justify-center items-center mt-4">
-			<TabNav
-				tabs={['Overdue', 'Completed']}
-				selected={prevState.selected}
-				setSelected={setSelected}
-			>
-				<Tab
-					isSelected={prevState.selected === 'Overdue'}
-					className="font-bold"
-				>
-					<p>Designing Zuris Dashboard</p>
-				</Tab>
-
-				<Tab
-					isSelected={prevState.selected === 'Completed'}
-					className="font-bold"
-				>
-					<p>My Completed tasks</p>
-				</Tab>
-			</TabNav>
+		<div>
+			<div>App</div>
 		</div>
 	)
 }
