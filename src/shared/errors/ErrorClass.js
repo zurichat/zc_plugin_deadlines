@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 // your code goes here
 export class InvalidPropertyError extends Error {
 	constructor(msg, statusCode = 400) {
@@ -28,6 +29,14 @@ export class UniqueConstraintError extends Error {
 			this.stack = stack
 		} else {
 			Error.captureStackTrace(this, this.constructor)
+export class RequiredPropertyError extends Error {
+	constructor(msg, statusCode = 400) {
+		super(msg)
+
+		this.name = 'RequiredPropertyError'
+		this.statusCode = statusCode
+		if (Error.captureStackTrace) {
+			Error.captureStackTrace(this, RequiredPropertyError)
 		}
 	}
 }
