@@ -25,6 +25,7 @@ export default function makeDb() {
 	}
 
 	async function findById(collectionName, id) {
+		// findById function that interacts with the database endpoint
 		try {
 			const res = await axios({
 				url: `${readBaseUrl}/${PLUGIN_ID}/${collectionName}/${ORG_ID}?id=${id}`,
