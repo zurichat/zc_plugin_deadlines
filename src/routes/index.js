@@ -14,4 +14,6 @@ router.get('/ping', (req, res) =>
 )
 router.route('/reminders').get(reminderController.getAll)
 
+// router.route('/scheduler').get(schedulerController.agenda)
+
 export default router
