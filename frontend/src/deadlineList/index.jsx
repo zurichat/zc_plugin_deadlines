@@ -39,7 +39,7 @@ const DeadlineList = () => {
 		</div>
 		
 		
-		<div className="border-black border-2 mt-1 w-6/7 ml-7 flex justify-around h-auto sm:hidden">
+		<div className="mt-1 w-6/7 ml-7 flex justify-around h-auto sm:hidden">
 			<div className="border-2 border-black"></div>
 		</div>
 	</div>
