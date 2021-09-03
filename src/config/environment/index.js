@@ -9,7 +9,6 @@ dotenv.config()
 
 const env = {
 	PORT: process.env.PORT,
-	BASE_URL: process.env.BASE_URL,
 	ENVIRONMENT: {
 		development: process.env.NODE_ENV === 'development',
 		test: process.env.NODE_ENV === 'test',
@@ -24,12 +23,6 @@ const env = {
 	},
 	MAIL: {
 		email: process.env.SSN_FOR_ORGS_MAIL,
-	},
-	getEnvironment() {
-		if (this.ENVIRONMENT.development) {
-			this.BASE_URL = 'https://mock-dbapi.herokuapp.com/'
-		}
-		return { BASE_URL: this.BASE_URL }
 	},
 }
 
