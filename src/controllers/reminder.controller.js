@@ -9,10 +9,15 @@ const reminderController = {
 		return res.send('heelo')
 	},
 
-	deleteById: async (req, res) => {
+	deleteReminder: async (req, res) => {
 		try {
 			const db = makeDb()
 			const deleteReminder = await db.findByIdAndDelete(req.params.id)
+
+			if (!id) {
+				throw new Error('id is required')
+			}
+
 			res.status(200).send(deleteReminder)
 		} catch (error) {
 			console.log(error)
