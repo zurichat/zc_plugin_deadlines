@@ -29,6 +29,7 @@ module.exports = {
 					'@models': './src/models',
 					'@routes': './src/routes',
 					'@types': './src/types',
+					'@sockets': './src/sockets',
 				},
 			},
 		],
