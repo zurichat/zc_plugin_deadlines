@@ -55,7 +55,12 @@
 		"rimraf": "^3.0.2"
 	},
 	"lint-staged": {
-		"*.js": "eslint --cache --no-error-on-unmatched-pattern --fix"
+		"*.{js,jsx}": "eslint --cache --no-error-on-unmatched-pattern --fix"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "yarn lint-staged"
+		}
 	},
 	"dependencies": {
 		"@babel/runtime-corejs3": "^7.15.3",
