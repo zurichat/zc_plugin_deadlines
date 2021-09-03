@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 import env from '@config/environment'
+import { get } from 'mongoose'
 
 const { getDevBaseUrl, ORG_ID, PLUGIN_ID } = env
 
@@ -25,14 +26,14 @@ export default function makeDb() {
 
 	async function findById(collectionName, id) {
 		try {
-			const res = await axios.get(
-				`${readBaseUrl}/${PLUGIN_ID}/${collectionName}/${ORGANIZATION_ID}?id=${id}`
-			)
-			return res.data
-		} catch (err) {
-			console.log(err)
+			const res = await axios({
+				url: `${readBaseUrl}/${PLUGIN_ID}/${collectionName}/${ORG_ID}?id=${id}`,
+				method: get,
+			})
+			return res.data.data
+		} catch (error) {
+			return error.response.data
 		}
-
-		return Object.freeze({ findAll })
 	}
+	return Object.freeze({ findAll, findById })
 }
