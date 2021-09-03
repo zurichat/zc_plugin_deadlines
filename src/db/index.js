@@ -70,5 +70,22 @@ export default function makeDb() {
 			return error.response.data
 		}
 	}
-	return Object.freeze({ create, findAll, findById })
+
+	async function deleteOne(collectionName, id) {
+		// Delete a document by
+		try {
+			const res = await axios.post(writeBaseUrl, {
+				plugin_id: PLUGIN_ID,
+				organization_id: ORG_ID,
+				collection_name: collectionName,
+				bulk_write: false,
+				object_id: id,
+			})
+			return res.data
+		} catch (error) {
+			return error.response.data
+		}
+	}
+
+	return Object.freeze({ create, findAll, findById, deleteOne })
 }
