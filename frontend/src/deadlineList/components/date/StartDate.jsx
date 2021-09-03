@@ -1,7 +1,7 @@
 import React from 'react'
 import Date from './Date'
 
-import Calender from '../../../img/svg icons/calender.svg'
+import Calender from '../../../assets/svg icons/calender.svg'
 const StartDate = () => {
 	return (
 		<>

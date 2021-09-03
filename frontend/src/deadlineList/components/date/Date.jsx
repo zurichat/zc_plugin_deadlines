@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 const Date = ({ icon, dateTopic, date }) => {
 	return (
@@ -20,11 +19,6 @@ const Date = ({ icon, dateTopic, date }) => {
 			</div>
 		</div>
 	)
-}
-Date.propTypes = {
-	icon: PropTypes.element.isRequired,
-	dateTopic: PropTypes.string.isRequired,
-	date: PropTypes.string.isRequired,
 }
 
 export default Date
