@@ -6,7 +6,7 @@ const StartDate = () => {
 	const props = {
 		dateTopic: 'Start Date:',
 		date: '31st Aug,2021',
-		icon: <img src={CalenderIcon} className="h-full" alt="c-icon" />,
+		icon: <img src={CalenderIcon} className="h-full" alt="calender-icon" />,
 	}
 
 	return <Date {...props} />
