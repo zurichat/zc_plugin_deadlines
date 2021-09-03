@@ -33,7 +33,7 @@ const reminderController = {
 		const config = {
 			headers: {
 				'Content-Type': 'application/json',
-				token: 'Token For Authentication Here',
+				Authorization: 'Token For Authentication Here',
 			},
 		}
 		try {
