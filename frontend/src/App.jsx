@@ -1,9 +1,10 @@
 import React from 'react'
+import Dropdown from './component/Dropdown'
 
 const App = () => {
 	return (
-		<div>
-			<div>App</div>
+		<div className="h-screen flex justify-center items-center">
+			<Dropdown />
 		</div>
 	)
 }
