@@ -26,7 +26,8 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd /var/www/zc_plugin_reminder/
-            git pull
+            git checkout dev
+            git pull origin dev
             yarn run holoInstall
             yarn run build
             pm2 restart reminders_plugin
