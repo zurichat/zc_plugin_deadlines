@@ -2,13 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import './index.css'
-// import App from './App.jsx'
-import Modal from './components/modal'
+import App from './App.jsx'
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Modal />
-		{/* <App /> */}
+		<App />
 	</React.StrictMode>,
 	document.getElementById('root')
 )
