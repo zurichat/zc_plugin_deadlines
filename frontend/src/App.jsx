@@ -1,5 +1,4 @@
 import React from 'react'
-import DeadlineList from '../src/deadlineList/index'
 
 const App = () => {
 	return (
@@ -13,7 +12,6 @@ const App = () => {
 					</a>
 				</p>
 			</header>
-			<DeadlineList />
 			<div className="flex flex-col items-center justify-center h-screen text-center">
 				App
 			</div>
