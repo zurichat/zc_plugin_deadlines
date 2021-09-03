@@ -1,8 +1,9 @@
 /**
     Copyright 2021, Zuri plugin reminder.
     All rights reserved.
-    Written By: King Etiosasere, 30th August 2021
+    Written By: King Etiosasere 30th August 2021, ed_knowah 2nd Spetember 2021.
 * */
+
 import Response from '@utils/response.handler'
 import { StatusCodes } from 'http-status-codes'
 import { MESSAGE } from '@utils/constant'
@@ -31,6 +32,22 @@ const reminderController = {
 		}
 	},
 
+	findAll: async (req, res) => {
+		// eslint-disable-next-line consistent-return
+		try {
+			const reminders = await db.getAllReminders()
+			res.json({
+				allReminders: reminders,
+			})
+		} catch (error) {
+			console.log(error)
+			res.json({
+				status: 400,
+				data: null,
+				message: error.message,
+			})
+		}
+  },
 	getAll: async (req, res) => {
 		const data = await db.findAll('Reminders')
 		return Response.send(
