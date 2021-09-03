@@ -1,7 +1,8 @@
 import React from 'react'
 import Date from './Date'
 
-import Remaining from '@assets/img/svg/remaining.svg'
+import Remaining from '../../../assets/img/svg/remaining.svg'
+
 const RemainingTime = () => {
 	const props = {
 		dateTopic: 'Time:',
