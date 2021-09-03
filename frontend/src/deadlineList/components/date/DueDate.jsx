@@ -1,7 +1,7 @@
 import React from 'react'
 import Date from './Date'
 
-import CalenderIcon from '../../../assets/svg icons/calender.svg'
+import CalenderIcon from '@assets/svg icons/calender.svg'
 const DueDate = () => {
 	const props = {
 		dateTopic: 'Due Date',
