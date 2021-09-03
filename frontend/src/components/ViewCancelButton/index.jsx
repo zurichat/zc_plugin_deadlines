@@ -5,11 +5,16 @@
 **/
 import React from 'react'
 
-const CancelButton = () => {
+const CancelButton = ({ handleClick }) => {
 	return (
 		<>
 			<div>
-				<button className="bg-red-500 text-white px-2 py-4 hover:bg-red-700 rounded">Cancel </button>
+				<button
+					onClick={handleClick}
+					className="bg-red-500 text-white p-2 hover:bg-red-700 rounded"
+				>
+					Cancel{' '}
+				</button>
 			</div>
 		</>
 	)
