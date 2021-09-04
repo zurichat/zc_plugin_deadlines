@@ -7,22 +7,27 @@ import ViewTitle from './components/ViewTitle'
 import ViewAssigned from './components/ViewAssigned'
 import ViewDueDate from './components/ViewDueDate'
 
-const ViewDeadline = () => {
+const ViewDeadline = ({
+	modalData: {
+		viewDeadline: { title, description, date, time },
+	},
+}) => {
 	return (
-		<Modal open={true} title={'View Deadline'}>
+		<Modal title={'View Deadline'}>
 			<div className="flex flex-row">
 				<div className="text-left">
-					<ViewTitle title={'Designing Zuri Dashboard'} />
+					<ViewTitle title={title || 'Designing Zuri Dashboard'} />
 					<ViewDescription
 						description={
+							description ||
 							'This task will be a sprint, we are to use the design to implement a responsive dashboard'
 						}
 					/>
 				</div>
 				<div id="divider" className="border-l mx-5" />
 				<div>
-					<ViewDueDate dueDate={new Date()} />
-					<ViewTime time={'3:00 PM'} />
+					<ViewDueDate dueDate={date || new Date()} />
+					<ViewTime time={time || '3:00 PM'} />
 					<ViewAssigned />
 				</div>
 			</div>
