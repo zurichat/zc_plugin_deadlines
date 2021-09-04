@@ -9,7 +9,6 @@ import dotenv from 'dotenv'
 import routes from '@routes/index'
 import path from 'path'
 import { errorHandler } from '@shared/errors/ErrorClass'
-import agenda from '../../agenda'
 
 dotenv.config()
 const build = path.resolve('frontend', 'build')
@@ -31,12 +30,5 @@ app.get('*', async (req, res) => {
 	console.log('Here')
 	res.redirect('/')
 })
-;(async () => {
-	await agenda.start()
-	await agenda
-		.create('schedule reminders')
-		.repeatEvery('60 seconds', 'schedule reminders')
-		.save()
-})()
 
 export default app
