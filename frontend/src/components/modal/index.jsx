@@ -2,7 +2,6 @@ import React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { XIcon } from '@heroicons/react/solid'
-import NewDeadline from '../newDeadline'
 
 const Modal = ({ title, children, ...props }) => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -63,7 +62,7 @@ const Modal = ({ title, children, ...props }) => {
 									</button>
 								</Dialog.Title>
 								<div className="mt-2 w-full h-full p-5">
-									{children || <NewDeadline />}
+									{children || <h4>Insert modal content </h4>}
 								</div>
 							</div>
 						</Transition.Child>
