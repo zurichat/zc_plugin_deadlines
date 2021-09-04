@@ -29,7 +29,11 @@ const env = {
 	ORG_ID: process.env.ORG_ID,
 	getDevBaseUrl() {
 		const self = env
-		if (self.ENVIRONMENT.development || self.ENVIRONMENT.test) {
+		if (
+			self.ENVIRONMENT.development ||
+			self.ENVIRONMENT.test ||
+			self.ENVIRONMENT.production
+		) {
 			self.BASE_URL = 'https://mock-dbapi.herokuapp.com/api'
 		}
 		return self.BASE_URL
