@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-const DueDatePicker = ({ ...props }) => {
-	const [value, setValue] = useState(new Date())
+const DueDatePicker = ({ dateValue, inputDisabled, ...props }) => {
+	const [value, setValue] = useState(dateValue || new Date())
 
 	const handleChange = (e) => {
 		setValue(e.target.value)
@@ -33,6 +33,7 @@ const DueDatePicker = ({ ...props }) => {
 					id="due"
 					value={value}
 					onChange={handleChange}
+					disabled={inputDisabled}
 				/>
 			</div>
 		</div>

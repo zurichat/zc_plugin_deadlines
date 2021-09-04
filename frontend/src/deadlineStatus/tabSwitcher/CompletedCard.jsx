@@ -1,8 +1,8 @@
 import React from 'react'
 
-import UserIcon from './png/users.png'
-import DateIcon from './png/date.png'
-import TimeIcon from './png/time.png'
+import UserIcon from '../../assets/img/png/users.png'
+import DateIcon from '../../assets/img/png/date.png'
+import TimeIcon from '../../assets/img/png/time.png'
 
 const CompletedCard = () => {
 	return (
