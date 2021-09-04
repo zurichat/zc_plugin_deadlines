@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-useless-constructor */
 import React from 'react'
 
 const Nav = () => {
@@ -8,15 +10,14 @@ const Nav = () => {
 	)
 }
 
-class DeadlineText extends React.Component{
-	constructor(props){
-		super(props);
+// eslint-disable-next-line unused-imports/no-unused-vars
+class DeadlineText extends React.Component {
+	constructor(props) {
+		super(props)
 	}
 
-	render(){
-		return(
-			<Nav/>
-		);
+	render() {
+		return <Nav />
 	}
 }
 
