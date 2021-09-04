@@ -1,7 +1,7 @@
 /**
-    Copyright 2021, Zuri plugin reminder.
-    All rights reserved.
-    Written By: King Etiosasere, 30th August 2021
+		Copyright 2021, Zuri plugin reminder.
+		All rights reserved.
+		Written By: King Etiosasere, 30th August 2021
 * */
 import dotenv from 'dotenv'
 
@@ -9,6 +9,7 @@ dotenv.config()
 
 const env = {
 	PORT: process.env.PORT,
+	BASE_URL: process.env.BASE_URL,
 	ENVIRONMENT: {
 		development: process.env.NODE_ENV === 'development',
 		test: process.env.NODE_ENV === 'test',
@@ -23,6 +24,19 @@ const env = {
 	},
 	MAIL: {
 		email: process.env.SSN_FOR_ORGS_MAIL,
+	},
+	PLUGIN_ID: process.env.PLUGIN_ID,
+	ORG_ID: process.env.ORG_ID,
+	getDevBaseUrl() {
+		const self = env
+		if (
+			self.ENVIRONMENT.development ||
+			self.ENVIRONMENT.test ||
+			self.ENVIRONMENT.production
+		) {
+			self.BASE_URL = 'https://mock-dbapi.herokuapp.com/api'
+		}
+		return self.BASE_URL
 	},
 }
 
