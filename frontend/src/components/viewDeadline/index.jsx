@@ -1,9 +1,11 @@
 import React from 'react'
+import Modal from '../modal'
 
 const ViewDeadline = () => {
 	return (
 		<>
-			<div>View Deadline Modal</div>
+			<Modal modalTitle={'Deadline Details'} />
+			{/* Add modal body here */}
 		</>
 	)
 }

@@ -2,6 +2,8 @@ import React from 'react'
 import Nav from './nav'
 import DeadlineList from '../deadlineList'
 import DeadlineStatus from '../deadlineStatus'
+import ViewDeadline from '../components/viewDeadline'
+import NewDeadline from '../components/newDeadline'
 
 const Layout = () => {
 	return (
@@ -15,6 +17,9 @@ const Layout = () => {
 					<DeadlineStatus />
 				</div>
 			</div>
+			<NewDeadline />
+
+			<ViewDeadline />
 		</div>
 	)
 }
