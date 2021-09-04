@@ -74,8 +74,7 @@ const reminderController = {
     @param {expiryDate} expiry date of the reminder to be searched
     @returns {result} reminder fetched from the database 
 */
-
-	// Get reminder based on the parameter Comurule created
+	// Get reminder using query
 	getReminder: async (req, res) => {
 		const { taskName, priority, expiryDate } = req.param
 
