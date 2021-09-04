@@ -11,6 +11,7 @@ const reminderController = {
 		return res.send('heelo')
 	},
 	setDeadline: async (req, res) => {
+		// eslint-disable-next-line consistent-return
 		// get inputs from the request body
 		const {
 			teamsAssigned,
