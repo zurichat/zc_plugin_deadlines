@@ -1,24 +1,15 @@
 import React from 'react'
 
-const selectStyle = {
-	width: '300px',
-	borderBottom: '1px solid gray',
-	height: '48px',
-	outline: 'unset',
-	padding: '0 20px',
-}
-
-const Dropdown = () => {
+const Dropdown = (props) => {
 	return (
 		<div>
-			<select style={selectStyle}>
-				<option selected value="null">
-					Select an assigne
-				</option>
-				<option>Assigne 1</option>
-				<option>Assigne 2</option>
-				<option>Assigne 3</option>
-				<option>Assigne 4</option>
+			<select className="w-80 border-b-2 border-solid border-gray-200 h-16 outline-none py-0 px-2">
+				<option value="null">Select an assigne</option>
+				{props.assignes.map((assigne) => (
+					<option key={assigne.id} value={assigne.assigne_name}>
+						{assigne.assigne_name}
+					</option>
+				))}
 			</select>
 		</div>
 	)
