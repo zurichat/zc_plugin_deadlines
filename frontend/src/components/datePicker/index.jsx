@@ -35,7 +35,7 @@ const DateSelector = () => {
 				className="items-left mb-3 pl-0 cursor-pointer"
 				onClick={handleCalendarState}
 			>
-				<div className="inline-flex rounded-full h-6 w-6 bg-gray-200 m-0 ">
+				<div className="inline-flex rounded-full h-6 w-6 bg-gray-200 m-0">
 					<img
 						className="flex m-auto self-center"
 						src={calendarSvg}
