@@ -10,7 +10,7 @@ const TabNav = ({ tabs, setSelected, selected, children }) => {
 							const active =
 								tab === selected ? 'active border-b-2 border-brand-primary' : ''
 							return (
-								<li className="-mb-px mr-1" key={tab}>
+								<li className="-mb-px" key={tab}>
 									<a
 										className={`bg-white inline-block py-2 px-4 text-black-900 ${active}`}
 										onClick={() => setSelected(tab)}

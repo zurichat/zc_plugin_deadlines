@@ -20,5 +20,4 @@ router.route('/getReminders').get(reminderController.findAll)
 router.get('/reminders', reminderController.getAll)
 router.get('/upcoming', reminderController.getUpcomingReminders)
 
-
 export default router
