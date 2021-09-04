@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
+
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { XIcon } from '@heroicons/react/solid'
+import { ModalContext } from '../../context/ModalContext'
 
-const Modal = ({ open, title, children, ...props }) => {
-	const [isOpen, setIsOpen] = useState(open || false)
+const Modal = ({ title, children, ...props }) => {
+	// Clunky and should be updated to use local state
 
-	const closeModal = () => setIsOpen(false)
+	const { modalData, setModalData } = useContext(ModalContext)
 
-	// const openModal = () => setIsOpen(true)
+	const closeModal = () => setModalData({ ...modalData, modalShow: false })
 
 	return (
 		<>
-			<Transition appear show={isOpen} as={Fragment}>
+			<Transition appear show={modalData.modalShow} as={Fragment}>
 				<Dialog
 					as="div"
 					initialFocus={null}
