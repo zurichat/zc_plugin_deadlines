@@ -1,21 +1,26 @@
 /**
     Copyright 2021, Zuri plugin reminder.
     All rights reserved.
-    Written By: King Etiosasere 30th August 2021, ed_knowah 2nd Spetember 2021.
+    Written By: King Etiosasere 30th August 2021, ed_knowah 2nd Spetember 2021, Adedeji Yusuf 2nd Spetember 2021.
 * */
 
 import Response from '@utils/response.handler'
 import { StatusCodes } from 'http-status-codes'
 import { MESSAGE } from '@utils/constant'
 import makeFakeReminder from '@utils/fake.reminder'
+import axios from 'axios'
 import makeDb from '../db'
 
 const { GET_ALL_REMINDERS } = MESSAGE
 const { OK } = StatusCodes
 
-const db = makeDb()
+const { getDevBaseUrl, ORG_ID, PLUGIN_ID } = env
 
-const zuriCoreDBApi = `mock`
+const BASE_URL = `${getDevBaseUrl()}/data`
+const readBaseUrl = `${BASE_URL}/read`
+const writeBaseUrl = `${BASE_URL}/write`
+
+const db = makeDb()
 
 const reminderController = {
 	create: async (req, res, next) => {
@@ -70,7 +75,7 @@ const reminderController = {
     @returns {result} reminder fetched from the database 
 */
 
-	// Get reminder based on the parameter @Comurule created
+	// Get reminder based on the parameter Comurule created
 	getReminder: async (req, res) => {
 		const { taskName, priority, expiryDate } = req.param
 
@@ -83,18 +88,27 @@ const reminderController = {
 
 		try {
 			// if there is any endpoint in the zc_core to provide us the search through our reminder database to fetch each reminder, then we use this search and the API will be `${zcDBApi}`
-			const search = await axios.post(zuriCoreDBApi, {
-				reminderName: taskName,
-				priority,
-				expiryDate,
+
+			// const search = await axios.get(`${readBaseUrl}/zc_reminder/reminders/darwin_organisation`)
+			const search = await axios.get(
+				'https://reminders.zuri.chat/api/v1/reminders'
+			)
+			const result = search.data.result.filter((item) => {
+				if (
+					item.collection_name === taskName ||
+					item.payload.priority === priority ||
+					item.payload.expiryDate === expiryDate
+				)
+					return true
+				return false
 			})
 
-			const result = {
+			const data = {
 				message: 'Reminder fetched successfully',
-				...search,
+				...result,
 			}
-
-			return res.status(201).json(result)
+			Object.freeze(data)
+			return res.status(201).json(data)
 
 			// if there is no endpoint to do the above then we use the below code to search the reminder plugin database
 			// const search2 = await db.find({ reminderName: taskName, priority: priority})
@@ -140,7 +154,6 @@ const reminderController = {
 				throw new Error('id is required')
 			}
 
-			const db = makeDb()
 			const deleteReminder = await db.findByIdAndDelete(req.params.id)
 			res.status(200).send(deleteReminder)
 		} catch (error) {

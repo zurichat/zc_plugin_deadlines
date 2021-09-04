@@ -17,8 +17,11 @@ router.get('/ping', (req, res) =>
 router.route('/reminders/:id').delete(reminderController.deleteReminder)
 router.post('/reminders', reminderValidation, reminderController.create)
 router.route('/getReminders').get(reminderController.findAll)
+router.get(
+	'/getReminder/:reminderName/:priority/:expiryDate',
+	reminderController.getReminder
+)
 router.get('/reminders', reminderController.getAll)
 router.get('/upcoming', reminderController.getUpcomingReminders)
-
 
 export default router
