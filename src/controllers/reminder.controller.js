@@ -8,11 +8,14 @@ import Response from '@utils/response.handler'
 import { StatusCodes } from 'http-status-codes'
 import { MESSAGE } from '@utils/constant'
 import makeFakeReminder from '@utils/fake.reminder'
+import env from '@config/environment'
 import makeDb from '../db'
+
+const Agenda = require('agenda')
 
 const { GET_ALL_REMINDERS } = MESSAGE
 const { OK } = StatusCodes
-
+const { MONGODB } = env
 const db = makeDb()
 
 const zuriCoreDBApi = `mock`
@@ -136,40 +139,51 @@ const reminderController = {
 
 	getOneHourToGoReminder: async (req, res) => {
 		try {
-			const date = new Date()
-			const currentDate = date.getTime()
-			const reminderData = {
-				priority: 1,
-				expiryDate: currentDate + 60100,
-				description: 'new reminder',
-				shouldRemind: true,
-			}
-
-			await db.create('Reminders', reminderData)
-
-			const data = await db.findAll('Reminders')
-
-			const queue = []
-			data.data.result.map((element) => {
-				if (
-					element.payload === undefined ||
-					element.payload.expiryDate === undefined
-				) {
-					return false
-				}
-				const endDate = new Date(element.payload.expiryDate).getTime()
-				// const timeLeft = Math.ceil((currentDate - endDate) / 60000)
-				const timeLeft = Math.ceil((endDate - currentDate) / 60000)
-				if (timeLeft > 59 && timeLeft < 61) {
-					queue.push(element)
-				}
-				return true
+			const agenda = new Agenda({
+				db: { address: MONGODB.url, collection: 'jobScheduler' },
 			})
-			return res
-				.status(200)
-				.json({ data: queue, message: 'Successful', status: 200 })
+
+			agenda.define('one hour reminder', async (job) => {
+				console.log('hey')
+				const date = new Date()
+				const currentDate = date.getTime()
+				// const reminderData = {
+				// 	priority: 1,
+				// 	expiryDate: currentDate + 60100,
+				// 	description: 'new reminder',
+				// 	shouldRemind: true,
+				// }
+
+				// await db.create('Reminders', reminderData)
+
+				// const data = await db.findAll('Reminders')
+
+				// const queue = []
+				// data.data.result.map((element) => {
+				// 	if (
+				// 		element.payload === undefined ||
+				// 		element.payload.expiryDate === undefined
+				// 	) {
+				// 		return false
+				// 	}
+				// 	const endDate = new Date(element.payload.expiryDate).getTime()
+				// 	// const timeLeft = Math.ceil((endDate - currentDate) / 60000)
+				// 	const timeLeft = Math.ceil((currentDate - endDate) / 60000)
+				// 	if (timeLeft > 59 && timeLeft < 601) {
+				// 		queue.push(element)
+				// 	}
+				// 	return true
+				// })
+				return res
+					.status(200)
+					.json({ data: 'helo', message: 'Successful', status: 200 })
+			})
+			;(async () => {
+				await agenda.start()
+				await agenda.every('60 seconds', 'one hour reminder')
+			})()
+			return true
 		} catch (error) {
-			console.log(error)
 			return res.json({
 				status: 400,
 				data: null,
