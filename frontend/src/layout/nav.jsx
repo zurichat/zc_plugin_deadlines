@@ -1,9 +1,10 @@
 import React from 'react'
+import Searchbar from './searchbar'
 
 const Nav = () => {
 	return (
 		<nav>
-			<p>Nav</p>
+			<Searchbar/>
 		</nav>
 	)
 }
