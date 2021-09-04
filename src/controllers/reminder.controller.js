@@ -7,6 +7,7 @@
 import Response from '@utils/response.handler'
 import { StatusCodes } from 'http-status-codes'
 import { MESSAGE } from '@utils/constant'
+import makeFakeReminder from '@utils/fake.reminder'
 import makeDb from '../db'
 
 const { GET_ALL_REMINDERS } = MESSAGE
@@ -93,8 +94,6 @@ const reminderController = {
 				...search,
 			}
 
-			Object.freeze(result)
-
 			return res.status(201).json(result)
 
 			// if there is no endpoint to do the above then we use the below code to search the reminder plugin database
@@ -113,9 +112,25 @@ const reminderController = {
 				error,
 			}
 
-			Object.freeze(errorResult)
-
 			return res.status(400).json(errorResult)
+		}
+	},
+	getUpcomingReminders: async (req, res, next) => {
+		try {
+			const reminder = [
+				makeFakeReminder({ shouldRemind: 'Every 2 days' }),
+				makeFakeReminder({ shouldRemind: 'Every 1 hour' }),
+				makeFakeReminder({ shouldRemind: 'Every day' }),
+				makeFakeReminder({ shouldRemind: 'Every 30 minutes' }),
+			]
+			Response.send(res, StatusCodes.OK, reminder, 'Upcoming reminders')
+		} catch (error) {
+			Response.send(
+				res,
+				StatusCodes.BAD_REQUEST,
+				null,
+				'An error occured getting upcoming reminders'
+			)
 		}
 	},
 }
