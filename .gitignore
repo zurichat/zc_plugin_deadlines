@@ -4,3 +4,4 @@ node_modules
 dist
 seedData.js
 yarn-error.log
+.DS_Store
