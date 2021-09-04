@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+
 import TabNav from './TabNav.jsx'
 import Tab from './Tab.jsx'
+import OverdueCard from './OverdueCard.jsx'
+import CompletedCard from './CompletedCard.jsx'
 
 const TabSwitcher = () => {
 	const [prevState, nextState] = useState({
@@ -12,7 +15,7 @@ const TabSwitcher = () => {
 	}
 
 	return (
-		<div className="flex justify-center items-center mt-4">
+		<div className="flex justify-center items-center">
 			<TabNav
 				tabs={['Overdue', 'Completed']}
 				selected={prevState.selected}
@@ -20,16 +23,26 @@ const TabSwitcher = () => {
 			>
 				<Tab
 					isSelected={prevState.selected === 'Overdue'}
-					className="font-bold"
+					className="font-bold text-lg"
 				>
-					<p>Designing Zuris Dashboard</p>
+					<div className="my-10">
+						<OverdueCard />
+					</div>
+					<div className="my-10">
+						<OverdueCard />
+					</div>
 				</Tab>
 
 				<Tab
 					isSelected={prevState.selected === 'Completed'}
-					className="font-bold"
+					className="font-bold text-lg"
 				>
-					<p>My Completed tasks</p>
+					<div className="my-10">
+						<CompletedCard />
+					</div>
+					<div className="my-10">
+						<CompletedCard />
+					</div>
 				</Tab>
 			</TabNav>
 		</div>
