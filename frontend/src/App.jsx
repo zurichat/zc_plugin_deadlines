@@ -1,12 +1,8 @@
 import React from 'react'
-import Dropdown from './component/Dropdown'
+import Layout from './layout'
 
 const App = () => {
-	return (
-		<div className="h-screen flex justify-center items-center">
-			<Dropdown />
-		</div>
-	)
+	return <Layout />
 }
 
 export default App
