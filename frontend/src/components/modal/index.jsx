@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react'
 import { XIcon } from '@heroicons/react/solid'
 
 const Modal = ({ title, children, ...props }) => {
-	const [isOpen, setIsOpen] = useState(true)
+	const [isOpen, setIsOpen] = useState(false)
 
 	const closeModal = () => setIsOpen(false)
 
@@ -25,7 +25,7 @@ const Modal = ({ title, children, ...props }) => {
 			<Transition appear show={isOpen} as={Fragment}>
 				<Dialog
 					as="div"
-					className="fixed inset-0 z-7 overflow-y-auto backdrop-blur-md "
+					className="fixed inset-0 z-7 overflow-y-auto backdrop-filter backdrop-blur backdrop-brightness-50 "
 					onClose={closeModal}
 					{...props}
 				>
