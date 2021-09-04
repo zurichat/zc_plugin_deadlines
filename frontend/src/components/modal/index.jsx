@@ -56,7 +56,7 @@ const Modal = ({ title, children, ...props }) => {
 							leaveFrom="opacity-100 scale-100"
 							leaveTo="opacity-0 scale-95"
 						>
-							<div className="inline-block w-3/5 max-w-5xl align-middle transition-all bg-white shadow-xl rounded-lg">
+							<div className="inline-block w-5/6 md:w-3/5 max-w-5xl align-middle transition-all bg-white shadow-xl rounded-lg">
 								<Dialog.Title
 									as="h3"
 									className="w-full font-medium leading-6 bg-brand-primary p-5 flex items-center justify-between rounded-t-lg"
