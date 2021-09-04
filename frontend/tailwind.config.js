@@ -8,12 +8,14 @@ module.exports = {
 					primary: '#00B87C',
 					secondary: '#1A61DB',
 					accent: '#B8003C',
+					border: '#DADADA',
 					text: {
 						header: '#242424',
 						body: '#3A3A3A',
 						leftNav: '#999999',
 						time: '#DADADA',
 						lightIcon: '#BEBEBE',
+						listTitle: '#000000',
 					},
 					error: '#F40101',
 					bg: {
