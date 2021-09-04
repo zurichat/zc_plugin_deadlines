@@ -3,6 +3,7 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import '../../index.css'
 import './styles/style.css'
+import calendarSvg from '../../assets/img/svg/calender.svg'
 
 const DateSelector = () => {
 	const [calendarDisplay, setCalendarDisplay] = useState(false)
@@ -29,24 +30,26 @@ const DateSelector = () => {
 	}, [date])
 
 	return (
-		<div className="w-full" style={{ width: '300px' }}>
-			{/*used to set the width of the container 👆 for some reason i cant do this with tailwind */}
-			<div className="items-left mb-3 pl-0">
-				<div className="inline-block rounded-full h-6 w-6 m-0">
+		<div className="w-80">
+			<div
+				className="items-left mb-3 pl-0 cursor-pointer"
+				onClick={handleCalendarState}
+			>
+				<div className="inline-flex rounded-full h-6 w-6 bg-gray-200 m-0 ">
 					<img
-						className="inline pl-0"
-						src="https://img.icons8.com/ios-filled/12/4a90e2/calendar--v1.png"
+						className="flex m-auto self-center"
+						src={calendarSvg}
 						alt="tiny calender"
 					/>
 				</div>
-				<b className="mr-28 w-"> Start Date </b>
+				<b className="mr-28"> Start Date </b>
 			</div>
 			<input
 				type="date"
 				value={readableDate}
-				className="inline border rounded-md text-gray-400 w-60"
+				className="invisible md:visible inline border rounded-md text-gray-400 bg-gray-200 w-60 cursor-pointer"
 				onClick={handleCalendarState}
-				onChange={(e) => setDate(e.target.value)}
+				// onChange={setStartDate}
 			/>
 			{calendarDisplay ? (
 				<Calendar className="absolute" onChange={setDate} value={date} />
@@ -54,4 +57,5 @@ const DateSelector = () => {
 		</div>
 	)
 }
+
 export default DateSelector
