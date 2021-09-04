@@ -47,7 +47,7 @@ const reminderController = {
 				message: error.message,
 			})
 		}
-  },
+	},
 	getAll: async (req, res) => {
 		const data = await db.findAll('Reminders')
 		return Response.send(
