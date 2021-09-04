@@ -9,6 +9,15 @@ const TimerTextBox = () => {
 				defaultValue="00:00"
 				// placeHolder="00:00"
 			/>
+			<select
+				className="p-2 bg-brand-bg-lightGrey px-3 rounded border-2 appearance-none m-2 text-brand-text-lightIcon"
+				name="time"
+			>
+				<option value="AM" selected>
+					AM
+				</option>
+				<option value="PM">PM</option>
+			</select>
 		</div>
 	)
 }
