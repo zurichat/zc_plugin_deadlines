@@ -14,8 +14,17 @@ import makeDb from '../db'
 const { GET_ALL_REMINDERS } = MESSAGE
 const { OK } = StatusCodes
 
+const { getDevBaseUrl, ORG_ID, PLUGIN_ID } = env
+
+const BASE_URL = `${getDevBaseUrl()}/data`
+const readBaseUrl = `${BASE_URL}/read`
+const writeBaseUrl = `${BASE_URL}/write`
+
+<<<<<<< HEAD
+=======
 const db = makeDb()
 
+>>>>>>> 573369f (fixes #260 Search Route for Reminder Using Query)
 const reminderController = {
 	create: async (req, res, next) => {
 		const { priority, expiryDate, description, shouldRemind } = req.body
@@ -57,7 +66,12 @@ const reminderController = {
     @param {expiryDate} expiry date of the reminder to be searched
     @returns {result} reminder fetched from the database 
 */
+<<<<<<< HEAD
 	// Get reminder using query
+=======
+
+	// Get reminder based on the parameter Comurule created
+>>>>>>> 573369f (fixes #260 Search Route for Reminder Using Query)
 	getReminder: async (req, res) => {
 		const { taskName, priority, expiryDate } = req.query
 
@@ -68,6 +82,7 @@ const reminderController = {
 		)
 			throw new Error('Invalid data format. Expected a string.')
 
+<<<<<<< HEAD
 		// Search Function
 		const searchFunction = (data, query) => {
 			const result = data.data.result.filter((item) => {
@@ -75,11 +90,26 @@ const reminderController = {
 					item.collection_name === query.taskName &&
 					item.payload.priority === query.priority &&
 					item.payload.expiryDate === query.expiryDate
+=======
+		try {
+			// if there is any endpoint in the zc_core to provide us the search through our reminder database to fetch each reminder, then we use this search and the API will be `${zcDBApi}`
+
+			// const search = await axios.get(`${readBaseUrl}/zc_reminder/reminders/darwin_organisation`)
+			const search = await axios.get(
+				'https://reminders.zuri.chat/api/v1/reminders'
+			)
+			const result = search.data.result.filter((item) => {
+				if (
+					item.collection_name === taskName ||
+					item.payload.priority === priority ||
+					item.payload.expiryDate === expiryDate
+>>>>>>> 573369f (fixes #260 Search Route for Reminder Using Query)
 				)
 					return true
 				return false
 			})
 
+<<<<<<< HEAD
 			return result
 		}
 
@@ -87,6 +117,14 @@ const reminderController = {
 			const search = await axios.get(
 				'https://reminders.zuri.chat/api/v1/reminders'
 			)
+=======
+			const data = {
+				message: 'Reminder fetched successfully',
+				...result,
+			}
+			Object.freeze(data)
+			return res.status(201).json(data)
+>>>>>>> 573369f (fixes #260 Search Route for Reminder Using Query)
 
 			const result = await searchFunction(search, req.query)
 
