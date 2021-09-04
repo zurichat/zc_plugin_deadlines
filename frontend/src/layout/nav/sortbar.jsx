@@ -22,7 +22,7 @@ const Sortbar = () => {
 				</Menu.Button>
 			</div>
 			<Menu.Items
-				className="right-1/2 -right-1/12 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg 
+				className="right-1/2 pl-2 -right-1/12 w-44 text-center mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg 
         ring-1 ring-black ring-opacity-5 focus:outline-none"
 			>
 				{sort_tags.map((i, index) => (
