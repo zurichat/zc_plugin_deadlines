@@ -5,10 +5,12 @@ import StartDate from './components/date/StartDate'
 
 const ListCard = () => {
 	return (
-		<div className="flex mb-3">
-			<div className="">
+		<div className="flex mb-3 mx-3">
+			<div className="w-4/7 flex justify-between">
 				<StartDate />
+				<div id="divider" className="h-full border-l-1/2" />
 				<DueDate />
+				<div id="divider" className="h-full border-l-1/2" />
 				<RemainingTime />
 			</div>
 		</div>
