@@ -87,7 +87,7 @@ export default function makeDb() {
 		}
 	}
 
-	async function update({ id, ...params }) {
+	async function updateById({ id, ...params }) {
 		try {
 			const res = await axios({
 				method: 'put',
@@ -104,9 +104,9 @@ export default function makeDb() {
 			})
 			return res.data.data.modified_document > 0
 		} catch (err) {
-			return err.response
+			return err.response.data
 		}
 	}
 
-	return Object.freeze({ create, findAll, update, findById, deleteOne })
+	return Object.freeze({ create, findAll, updateById, findById, deleteOne })
 }
