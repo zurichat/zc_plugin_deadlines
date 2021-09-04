@@ -27,6 +27,11 @@
 			"react-app/jest"
 		]
 	},
+	"jest": {
+		"moduleNameMapper": {
+			"@/(.+)": "<rootDir>/src/*"
+		}
+	},
 	"browserslist": {
 		"production": [
 			">0.2%",
