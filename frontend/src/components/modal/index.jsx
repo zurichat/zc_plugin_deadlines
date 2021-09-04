@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { XIcon } from '@heroicons/react/solid'
 
-const Modal = () => {
+const Modal = ({ title, children, ...props }) => {
 	const [isOpen, setIsOpen] = useState(true)
 
 	const closeModal = () => setIsOpen(false)
@@ -27,6 +27,7 @@ const Modal = () => {
 					as="div"
 					className="fixed inset-0 z-7 overflow-y-auto bg-brand-backdrop "
 					onClose={closeModal}
+					{...props}
 				>
 					<div className="min-h-screen min-w-screen px-4 text-center ">
 						<Transition.Child
@@ -60,17 +61,18 @@ const Modal = () => {
 							<div className="inline-block h-3/4 w-3/5 max-w-5xl max-h-52 my-0 overflow- align-middle transition-all transform bg-white shadow-xl rounded-md z-30">
 								<Dialog.Title
 									as="div"
-									className="m-0 ml-0 mr-0 w-full font-medium leading-6 text-green  bg-brand-primary p-5 flex-none md:flex-1 items-center justify-end rounded-t-lg"
+									className="m-0 ml-0 mr-0 w-full font-medium leading-6 text-green  bg-brand-primary p-5 flex items-center justify-between rounded-t-lg"
 								>
-									<div
-										className="  m-0 p-3 w-10 h-10 rounded-full bg-white rounded  text-center hover:grey-200"
+									<p className="text-white text-xl">{title}</p>
+									<button
+										className="m-0 w-10 h-10 rounded-full bg-white text-brand-primary hover:text-brand-error text-center"
 										onClick={closeModal}
 									>
-										<XIcon className="text-brand-primary h-5 w-5 self-center" />
-									</div>
+										<XIcon className="h-5 w-5 m-auto" />
+									</button>
 								</Dialog.Title>
 								<div className="mt-2 w-full h-full p-5">
-									<h4>Insert modal content </h4>
+									{children || <h4>Insert modal content </h4>}
 								</div>
 							</div>
 						</Transition.Child>
