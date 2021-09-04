@@ -22,7 +22,7 @@ const Searchbar = ({ ...props }) => {
 
 	return (
 		<div
-			className="appearance-none border rounded w-full py-2 px-5 inline-flex justify-between items-center"
+			className="appearance-none border rounded w-full py-2 px-5 inline-flex justify-between items-center hover:text-green-400 hover:shadow-lg hover:shadow-black-700 focus:ring-green-700"
 			{...props}
 		>
 			<label htmlFor="task search" role="search">
