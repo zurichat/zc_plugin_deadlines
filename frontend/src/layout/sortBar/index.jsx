@@ -1,15 +1,16 @@
 import { React } from 'react'
 import { Menu } from '@headlessui/react'
 
-function MenuItem(props) {
+const MenuItem = ({ item }) => {
 	return (
 		<Menu.Item>
 			<button className="text-gray-900 group flex rounded-md items-center w-full px-2 py-2 text-sm hover:bg-gray-100 ">
-				{props.item}
+				{item}
 			</button>
 		</Menu.Item>
 	)
 }
+
 const SortBar = () => {
 	return (
 		<div className="w-56 text-right fixed top-16 right-10">
