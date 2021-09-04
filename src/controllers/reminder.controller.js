@@ -95,8 +95,8 @@ const reminderController = {
 			)
 			const result = search.data.result.filter((item) => {
 				if (
-					item.collection_name === taskName ||
-					item.payload.priority === priority ||
+					item.collection_name === taskName &&
+					item.payload.priority === priority &&
 					item.payload.expiryDate === expiryDate
 				)
 					return true
