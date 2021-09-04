@@ -5,7 +5,7 @@ import '../../index.css'
 import './styles/style.css'
 import calendarSvg from '../../assets/img/svg/calender.svg'
 
-const DateSelector = () => {
+const DatePicker = () => {
 	const [calendarDisplay, setCalendarDisplay] = useState(false)
 
 	const handleCalendarState = () => {
@@ -58,4 +58,4 @@ const DateSelector = () => {
 	)
 }
 
-export default DateSelector
+export default DatePicker
