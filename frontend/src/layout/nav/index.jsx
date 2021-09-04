@@ -3,8 +3,11 @@ import Sortbar from './sortbar'
 
 const Nav = () => {
 	return (
-		<nav>
-			<Sortbar />
+		<nav className="flex justify-evenly">
+			<p className="font-bold text-xl">Deadlines</p>
+			<div>
+				<Sortbar />
+			</div>
 		</nav>
 	)
 }
