@@ -1,1 +1,1 @@
-import "./db.spec";
+import './db.spec'
