@@ -1,3 +1,9 @@
+/**
+ * COPYRIGHT 2021, ZC-Plugin-reminder.
+ * All rights reserved.
+ * Written by Akintokun, Pelumi Eyitimonwa.
+ */
+
 import React from 'react'
 import ListCard from '../../listCard'
 import UserIcon from './png/users.png'
