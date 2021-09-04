@@ -5,7 +5,7 @@ import ViewDeadline from './components/viewDeadline'
 import { ModalContext } from './context/ModalContext.jsx'
 
 const App = () => {
-	const { modalData } = useContext(ModalContext)
+	const { modalData } = useContext(ModalContext || {})
 
 	return (
 		<>
