@@ -1,4 +1,8 @@
 import React from 'react'
-export default function Title() {
-    return (<h3>Designing Zuri Dashbord</h3>)
+
+const Title = (props) => {
+	const { title } = props
+	return <h1 className="font-bold">{title}</h1>
 }
+
+export default Title
