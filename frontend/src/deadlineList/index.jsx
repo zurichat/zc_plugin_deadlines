@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ListCard from './listCard'
+import DeadlineReminderCard from './components/DeadlineReminder/DeadlineReminderCard'
 
 const DeadlineContainer = ({}) => {
 	const n = 7
@@ -10,7 +10,7 @@ const DeadlineContainer = ({}) => {
 		<div>
 			{[...Array(n)].map((value, index) => (
 				<div className="w-full border-b mt-5" key={index}>
-					<ListCard />
+					<DeadlineReminderCard />
 				</div>
 			))}
 		</div>
