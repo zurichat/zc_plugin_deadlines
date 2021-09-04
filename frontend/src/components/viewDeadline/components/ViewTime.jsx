@@ -8,7 +8,7 @@ const ViewTime = ({ time }) => {
 			<p className="text-sm text-left ml-2 font-bold">
 				Time:
 				<br />
-				<b className="text-sm text-red-600 font-normal"> {time}</b>
+				<b className="text-sm font-normal"> {time}</b>
 			</p>
 		</div>
 	)
