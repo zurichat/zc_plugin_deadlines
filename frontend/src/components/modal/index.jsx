@@ -1,3 +1,5 @@
+// TODO - Click outside modal catches all pointer events including those meant for the modal. Probably a z-index issue. Disabled until fixed
+
 import React, { useContext } from 'react'
 
 import { Dialog, Transition } from '@headlessui/react'
