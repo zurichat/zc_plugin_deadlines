@@ -1,7 +1,7 @@
 import React from 'react'
 
 const setDeadline = (props) => {
-	return <button> {props.children}</button>
+	return <p> {props.children}</p>
 }
 
 export default setDeadline
