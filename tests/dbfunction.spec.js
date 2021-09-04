@@ -4,7 +4,7 @@
     Written By: King Etiosasere, 30th August 2021 
 */
 import { expect } from 'chai'
-import makeDb from 'db'
+import makeDb from '../src/db'
 
 const db = makeDb()
 
