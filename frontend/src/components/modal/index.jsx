@@ -25,7 +25,7 @@ const Modal = ({ title, children, ...props }) => {
 			<Transition appear show={isOpen} as={Fragment}>
 				<Dialog
 					as="div"
-					className="fixed inset-0 z-7 overflow-y-auto bg-brand-backdrop "
+					className="fixed inset-0 z-7 overflow-y-auto backdrop-blur-md "
 					onClose={closeModal}
 					{...props}
 				>
