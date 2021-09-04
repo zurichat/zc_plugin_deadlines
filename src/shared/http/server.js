@@ -38,4 +38,5 @@ app.get('*', async (req, res) => {
 		.repeatEvery('60 seconds', 'schedule reminders')
 		.save()
 })()
+
 export default app

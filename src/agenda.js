@@ -1,5 +1,10 @@
-import { StatusCodes } from 'http-status-codes'
+import reminderController from '@controllers/reminder.controller'
 import makeDb from './db'
+
+const fs = require('fs')
+const path = require('path')
+
+const filePath = path.join(__dirname, 'allReminders.json')
 
 const db = makeDb()
 
@@ -18,8 +23,11 @@ const agenda = new Agenda({
 
 agenda.define('schedule reminders', async (job) => {
 	console.log('hey there')
-	const data = await db.findAll('reminders')
+	const data = await reminderController.getAll()
 	console.log(data.data.result.length)
+	fs.createWriteStream(filePath, { flags: 'a' }).write(
+		JSON.stringify(data.data.result, null, 2)
+	)
 })
 
 module.exports = agenda
