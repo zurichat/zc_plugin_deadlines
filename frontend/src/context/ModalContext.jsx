@@ -6,7 +6,7 @@ export const ModalContext = createContext({})
 
 export const ModalContextProvider = ({ children }) => {
 	const [modalData, setModalData] = useState({
-		modalShow: true,
+		modalShow: false,
 		modalType: 'viewDeadline',
 		viewDeadline: {
 			title: 'Designing Zuri Dashboard',
