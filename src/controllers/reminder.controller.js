@@ -139,8 +139,6 @@ const reminderController = {
 			if (!id) {
 				throw new Error('id is required')
 			}
-
-			const db = makeDb()
 			const deleteReminder = await db.findByIdAndDelete(req.params.id)
 			res.status(200).send(deleteReminder)
 		} catch (error) {
