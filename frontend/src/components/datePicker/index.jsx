@@ -32,21 +32,21 @@ const DateSelector = () => {
 		<div className="w-full" style={{ width: '300px' }}>
 			{/*used to set the width of the container 👆 for some reason i cant do this with tailwind */}
 			<div className="items-left mb-3 pl-0">
-				<div className="inline-block rounded-full h-6 w-6 bg-gray-200 m-0">
+				<div className="inline-block rounded-full h-6 w-6 m-0">
 					<img
 						className="inline pl-0"
 						src="https://img.icons8.com/ios-filled/12/4a90e2/calendar--v1.png"
 						alt="tiny calender"
 					/>
 				</div>
-				<b className="mr-28"> Start Date </b>
+				<b className="mr-28 w-"> Start Date </b>
 			</div>
 			<input
 				type="date"
 				value={readableDate}
-				className="inline border rounded-md text-gray-400 bg-gray-200 w-60"
+				className="inline border rounded-md text-gray-400 w-60"
 				onClick={handleCalendarState}
-				onChange={setStartDate}
+				onChange={(e) => setDate(e.target.value)}
 			/>
 			{calendarDisplay ? (
 				<Calendar className="absolute" onChange={setDate} value={date} />
