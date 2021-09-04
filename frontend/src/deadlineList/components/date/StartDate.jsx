@@ -9,6 +9,7 @@ const StartDate = () => {
 		date: '31st Aug, 2021',
 		icon: <img src={CalenderIcon} className="h-full" alt="calender-icon" />,
 		iconColor: 'bg-brand-avatar-blue',
+		rightBorder: true,
 	}
 
 	return <Date {...props} />
