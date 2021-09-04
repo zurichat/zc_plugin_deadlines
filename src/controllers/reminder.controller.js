@@ -150,6 +150,30 @@ const reminderController = {
 			})
 		}
 	},
+
+	updateById: async (req, res) => {
+		const { priority, expiryDate, description, shouldRemind } = req.body
+
+		try {
+			const reminderData = { priority, expiryDate, description, shouldRemind }
+
+			const { id } = req.params
+
+			const updateReminder = await db.findByIdAndupdate(id, reminderData)
+
+			if (!id) {
+				throw new Error('id is required')
+			}
+			res.status(200).send('reminder updated successfully ')
+		} catch (error) {
+			console.log(error)
+			res.json({
+				status: 400,
+				data: null,
+				message: error.message.data,
+			})
+		}
+	},
 }
 
 export default reminderController
