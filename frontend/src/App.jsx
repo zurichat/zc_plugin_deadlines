@@ -1,11 +1,15 @@
-import React from 'react'
-import ViewDeadline from './components/viewDeadline'
+import React, { useContext } from 'react'
+
 import Layout from './layout'
+import ViewDeadline from './components/viewDeadline'
+import { ModalContext } from './context/ModalContext.jsx'
 
 const App = () => {
+	const { modalData } = useContext(ModalContext)
+
 	return (
 		<>
-			<ViewDeadline />
+			{modalData.modalShow ? <ViewDeadline modalData={modalData} /> : null}
 			<Layout />
 		</>
 	)
