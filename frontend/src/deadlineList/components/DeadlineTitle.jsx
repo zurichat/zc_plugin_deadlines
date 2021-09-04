@@ -1,8 +1,7 @@
 import React from 'react'
 
-const Title = (props) => {
-	const { title } = props
+const DeadlineTitle = ({ title }) => {
 	return <h1 className="font-bold">{title}</h1>
 }
 
-export default Title
+export default DeadlineTitle
