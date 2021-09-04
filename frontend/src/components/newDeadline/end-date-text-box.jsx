@@ -3,7 +3,7 @@ import React from 'react'
 const EndDateTextBox = () => {
 	return (
 		<input
-			type="text"
+			type="date"
 			name="startDate"
 			id="startDate"
 			placeholder="DD   /    MM     /   YY"
