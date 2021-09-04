@@ -40,7 +40,7 @@ export default function makeDb() {
 			...dbResponse.data.payload,
 		}
 	}
-
+	// FFF
 	async function findAll(modelName) {
 		/**
 		 * sample of details used
@@ -50,11 +50,11 @@ export default function makeDb() {
 
 		try {
 			const res = await axios.get(
-				`${readBaseUrl}/${PLUGIN_ID}/${collectionName}/${ORG_ID}`
+				`${readBaseUrl}/zc_reminder/reminders/darwin_organisation`
 			)
-			return res.data
+			return res
 		} catch (err) {
-			return err.response.data
+			return err.response
 		}
 	}
 
@@ -70,5 +70,43 @@ export default function makeDb() {
 			return error.response.data
 		}
 	}
-	return Object.freeze({ create, findAll, findById })
+
+	async function deleteOne(collectionName, id) {
+		// Delete a document by
+		try {
+			const res = await axios.post(writeBaseUrl, {
+				plugin_id: PLUGIN_ID,
+				organization_id: ORG_ID,
+				collection_name: collectionName,
+				bulk_write: false,
+				object_id: id,
+			})
+			return res.data
+		} catch (error) {
+			return error.response.data
+		}
+	}
+
+	async function update({ id, ...params }) {
+		try {
+			const res = await axios({
+				method: 'put',
+				url: `${getDevBaseUrl()}/data/write`,
+				data: {
+					plugin_id: PLUGIN_ID,
+					organisation_id: ORG_ID,
+					collection_name: REMINDER_COLLECTION,
+					filter: {
+						object_id: id,
+					},
+					payload: { ...params },
+				},
+			})
+			return res.data.data.modified_document > 0
+		} catch (err) {
+			return err.response
+		}
+	}
+
+	return Object.freeze({ create, findAll, update, findById, deleteOne })
 }

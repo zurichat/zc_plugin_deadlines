@@ -56,10 +56,10 @@ module.exports = {
 	settings: {
 		'import/resolver': {
 			'babel-module': {},
-		},
-		node: {
-			extensions: ['.js', '.jsx', '.ts', '.tsx'],
-			moduleDirectory: ['node_modules', 'src/', 'dist/'],
+			node: {
+				extensions: ['.js', '.jsx', '.ts', '.tsx'],
+				moduleDirectory: ['node_modules', 'src/', 'dist/'],
+			},
 		},
 	},
 }
