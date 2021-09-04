@@ -61,6 +61,13 @@ module.exports = {
 				'5/7': '71.4285714%',
 				'6/7': '85.7142857%',
 			},
+			height: {
+				'screen/1.5': '75vh',
+				'screen/2': '50vh',
+				'screen/3': 'calc(100vh / 3)',
+				'screen/4': 'calc(100vh / 4)',
+				'screen/5': 'calc(100vh / 5)',
+			},
 		},
 	},
 	variants: {
