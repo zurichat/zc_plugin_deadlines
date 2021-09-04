@@ -20,8 +20,6 @@ router.post('/reminders', reminderValidation, reminderController.create)
 router.route('/getReminders').get(reminderController.findAll)
 router.get('/reminders', reminderController.getAll)
 router.get('/upcoming', reminderController.getUpcomingReminders)
-
 router.get('/conflictError', errorController)
-
 
 export default router
