@@ -1,0 +1,10 @@
+/* styling for datepicker */
+::-webkit-datetime-edit { 
+    padding: 0 2em; 
+}
+::-webkit-calendar-picker-indicator{
+    display: none;
+}
+::-webkit-datetime-edit {  padding-left: 2em }
+::-webkit-datetime-edit-text {  padding: 0 1.5em; }
+::-webkit-calendar-picker-indicator { display: none; z-index: -200; }
