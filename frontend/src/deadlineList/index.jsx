@@ -1,18 +1,20 @@
 import React from 'react'
-import DueDate from './components/date/DueDate'
-import RemainingTime from './components/date/RemainingTime'
-import StartDate from './components/date/StartDate'
 
-const DeadlineList = () => {
+import ListCard from './listCard'
+
+const DeadlineContainer = ({}) => {
+	const n = 7
+
+	//Logic to render card multiple times
 	return (
-		<>
-			<div id="list-card" className="flex">
-				<StartDate />
-				<DueDate />
-				<RemainingTime />
-			</div>
-		</>
+		<div>
+			{[...Array(n)].map((value, index) => (
+				<div className="w-full border-b mt-5" key={index}>
+					<ListCard />
+				</div>
+			))}
+		</div>
 	)
 }
 
-export default DeadlineList
+export default DeadlineContainer
