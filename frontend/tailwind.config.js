@@ -16,6 +16,7 @@ module.exports = {
 						leftNav: '#999999',
 						time: '#DADADA',
 						lightIcon: '#BEBEBE',
+						backdrop: '#808080',
 						listTitle: '#000000',
 					},
 					error: '#F40101',
