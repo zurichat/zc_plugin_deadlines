@@ -136,14 +136,18 @@ const reminderController = {
 
 	deleteReminder: async (req, res) => {
 		try {
-			if (!id) {
-				throw new Error('id is required')
+			if (!req.params.id) {
+				return Response.send(
+					res,
+					StatusCodes.BAD_REQUEST,
+					null,
+					'No id provided'
+				)
 			}
-			const deleteReminder = await db.findByIdAndDelete(req.params.id)
-			res.status(200).send(deleteReminder)
+			const deleteReminder = await db.deleteOne(req.params.id)
+			return res.status(200).send(deleteReminder)
 		} catch (error) {
-			console.log(error)
-			res.json({
+			return res.json({
 				status: 400,
 				data: null,
 				message: error.message,
