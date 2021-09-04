@@ -50,7 +50,7 @@ export default function makeDb() {
 
 		try {
 			const res = await axios.get(
-				`${readBaseUrl}/${PLUGIN_ID}/${collectionName}/${ORG_ID}`
+				`${readBaseUrl}/zc_reminder/reminders/darwin_organisation`
 			)
 			return res.data
 		} catch (err) {
