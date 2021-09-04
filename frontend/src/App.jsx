@@ -1,11 +1,8 @@
 import React from 'react'
+import Layout from './layout'
 
 const App = () => {
-	return (
-		<div className="flex flex-col items-center justify-center h-screen text-center">
-			App
-		</div>
-	)
+	return <Layout />
 }
 
 export default App
