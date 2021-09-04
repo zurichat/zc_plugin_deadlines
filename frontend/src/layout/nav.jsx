@@ -8,4 +8,16 @@ const Nav = () => {
 	)
 }
 
+class DeadlineText extends React.Component{
+	constructor(props){
+		super(props);
+	}
+
+	render(){
+		return(
+			<Nav/>
+		);
+	}
+}
+
 export default Nav
