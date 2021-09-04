@@ -15,11 +15,13 @@ router.get('/ping', (req, res) =>
 	res.json({ message: 'Hello! You have found the zc_plugin_reminder api' })
 )
 
+router.route('/reminders/:id').delete(reminderController.deleteReminder)
 router.post('/reminders', reminderValidation, reminderController.create)
 router.route('/getReminders').get(reminderController.findAll)
 router.get('/reminders', reminderController.getAll)
 router.get('/upcoming', reminderController.getUpcomingReminders)
 
 router.get('/conflictError', errorController)
+
 
 export default router
