@@ -1,6 +1,7 @@
 import React from 'react'
 import Sortbar from './sortbar'
 import Searchbar from './searchbar'
+import Modal from '../../components/modal'
 
 const Nav = () => {
 	return (
@@ -11,8 +12,11 @@ const Nav = () => {
 					<div className="mx-5">
 						<Searchbar />
 					</div>
-					<div className="mx-5 flex-grow-0">
+					<div className="mx-5  flex-grow-0">
 						<Sortbar />
+					</div>
+					<div className="ml-24">
+						<Modal />
 					</div>
 				</div>
 			</div>

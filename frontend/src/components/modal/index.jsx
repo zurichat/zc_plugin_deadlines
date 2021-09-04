@@ -6,12 +6,19 @@ import { XIcon } from '@heroicons/react/solid'
 const Modal = ({ title, children, ...props }) => {
 	const [isOpen, setIsOpen] = useState(false)
 
-	const closeModal = () => setIsOpen(false)
+	const closeModal = () => setIsOpen(true)
 
-	// const openModal = () => setIsOpen(true)
+	const openModal = () => setIsOpen(true)
 
 	return (
 		<>
+			<button
+				type="button"
+				onClick={openModal}
+				className="px-8 py-2 text-base font-medium text-white bg-green-500 rounded"
+			>
+				Set Deadline
+			</button>
 			<Transition appear show={isOpen} as={Fragment}>
 				<Dialog
 					as="div"
