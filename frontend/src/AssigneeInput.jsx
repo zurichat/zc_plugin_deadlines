@@ -10,6 +10,9 @@ function AssigneeInput() {
 					type="text"
 					aria-label="Full name"
 				/>
+				<select>
+					<option>Assigne</option>
+				</select>
 			</div>
 		</form>
 	)
