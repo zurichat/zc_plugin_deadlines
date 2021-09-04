@@ -4,7 +4,6 @@
     Written By: King Etiosasere, 30th August 2021 
 */
 import app from '@shared/http/server'
-import { expect } from 'chai'
 import request from 'supertest'
 
 describe('GET /api/v1/reminders', () => {
