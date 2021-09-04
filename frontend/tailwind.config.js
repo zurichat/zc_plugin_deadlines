@@ -8,6 +8,7 @@ module.exports = {
 					primary: '#00B87C',
 					secondary: '#1A61DB',
 					accent: '#B8003C',
+					border: '#DADADA',
 					text: {
 						header: '#242424',
 						body: '#3A3A3A',
@@ -15,6 +16,7 @@ module.exports = {
 						time: '#DADADA',
 						lightIcon: '#BEBEBE',
 						backdrop: '#808080',
+						listTitle: '#000000',
 					},
 					error: '#F40101',
 					bg: {
@@ -30,6 +32,35 @@ module.exports = {
 						blue: '#E3EEFF',
 					},
 				},
+			},
+			textColor: {
+				cra: {
+					link: '#61dafb',
+					primary: '#282c34',
+				},
+			},
+			fontFamily: {
+				craFont: [
+					'-apple - system',
+					'BlinkMacSystemFont',
+					'Segoe UI',
+					'Roboto',
+					'Oxygen',
+					'Ubuntu',
+					'Cantarell',
+					'Fira Sans',
+					'Droid Sans',
+					'Helvetica Neue',
+					'sans - serif',
+				],
+			},
+			width: {
+				'1/7': '18.5857143%',
+				'2/7': '28.5714286%',
+				'3/7': '42.8571429%',
+				'4/7': '57.1428571%',
+				'5/7': '71.4285714%',
+				'6/7': '85.7142857%',
 			},
 		},
 	},
