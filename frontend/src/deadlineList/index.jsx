@@ -1,7 +1,7 @@
 import React from 'react'
 import ListCard from './components/listCard'
 
-// Prop drilling here, should be improved.
+// Prop drilling, should be improved.
 
 const DeadlineContainer = ({ reminderArray }) => {
 	return (

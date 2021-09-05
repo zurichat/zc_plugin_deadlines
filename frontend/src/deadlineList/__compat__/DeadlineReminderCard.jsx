@@ -5,7 +5,7 @@
  */
 
 import React from 'react'
-import ListCard from '../listCard'
+import ListCard from '../components/listCard'
 import UserIcon from './png/users.png'
 import DeadlineTitle from '../components/DeadlineTitle'
 
