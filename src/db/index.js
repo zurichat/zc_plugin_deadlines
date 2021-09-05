@@ -40,7 +40,7 @@ export default function makeDb() {
 			...dbResponse.data.payload,
 		}
 	}
-
+	// FFF
 	async function findAll(modelName) {
 		/**
 		 * sample of details used
@@ -52,9 +52,9 @@ export default function makeDb() {
 			const res = await axios.get(
 				`${readBaseUrl}/zc_reminder/reminders/darwin_organisation`
 			)
-			return res.data
+			return res
 		} catch (err) {
-			return err.response.data
+			return err.response
 		}
 	}
 
@@ -87,10 +87,9 @@ export default function makeDb() {
 		}
 	}
 
-
-	async function update({ id, ...params}) {
+	async function update({ id, ...params }) {
 		try {
-			const res = await axios ({
+			const res = await axios({
 				method: 'put',
 				url: `${getDevBaseUrl()}/data/write`,
 				data: {
@@ -104,8 +103,8 @@ export default function makeDb() {
 				},
 			})
 			return res.data.data.modified_document > 0
-		} catch {error} {
-			next (error)
+		} catch (err) {
+			return err.response
 		}
 	}
 
