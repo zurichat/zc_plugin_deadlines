@@ -14,12 +14,6 @@ import makeDb from '../db'
 const { GET_ALL_REMINDERS } = MESSAGE
 const { OK } = StatusCodes
 
-const { getDevBaseUrl, ORG_ID, PLUGIN_ID } = env
-
-const BASE_URL = `${getDevBaseUrl()}/data`
-const readBaseUrl = `${BASE_URL}/read`
-const writeBaseUrl = `${BASE_URL}/write`
-
 const db = makeDb()
 
 const reminderController = {
@@ -70,14 +64,8 @@ const reminderController = {
 		if (typeof priority !== 'string' || typeof expiryDate !== 'string')
 			throw new Error('Invalid data format. Expected a string.')
 
-		try {
-			// if there is any endpoint in the zc_core to provide us the search through our reminder database to fetch each reminder, then we use this search and the API will be `${zcDBApi}`
-
-			// const search = await axios.get(`${readBaseUrl}/zc_reminder/reminders/darwin_organisation`)
-			const search = await axios.get(
-				'https://reminders.zuri.chat/api/v1/reminders'
-			)
-			const result = search.data.result.filter((item) => {
+		const searchFunction = (data, query) => {
+			const result = data.data.result.filter((item) => {
 				if (
 					item.payload.priority === query.priority ||
 					item.payload.expiryDate === query.expiryDate
@@ -85,20 +73,18 @@ const reminderController = {
 					return true
 				return false
 			})
+			return result
+		}
 
-			const data = {
-				message: 'Reminder fetched successfully',
-				...result,
-			}
-			Object.freeze(data)
-			return res.status(201).json(data)
+		try {
+			// if there is any endpoint in the zc_core to provide us the search through our reminder database to fetch each reminder, then we use this search and the API will be `${zcDBApi}`
+
+			const search = await axios.get(
+				'https://reminders.zuri.chat/api/v1/reminders'
+			)
 
 			const result = await searchFunction(search, req.query)
 
-			// const data = {
-			// 	message: 'Reminder fetched successfully',
-			// 	...result,
-			// }
 			return Response.send(
 				res,
 				201,
