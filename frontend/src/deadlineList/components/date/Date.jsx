@@ -10,11 +10,11 @@ const Date = ({ icon, iconColor, dateTopic, date, rightBorder, ...props }) => {
 		>
 			<div className="flex items-start">
 				<div
-					className={`h-7 rounded-full leading-none flex ${iconColor} item-center justify-center  mr-2`}
+					className={`h-6 p-1 mr-4 md:h-7 md:p-2 rounded-full leading-none flex ${iconColor} item-center justify-center  mr-2`}
 				>
 					{icon}
 				</div>
-				<div className="flex flex-col text-left">
+				<div className="flex flex-col text-left pt-1">
 					<div className="text-sm text-brand-text-listTitle leading-none mb-1 ">
 						{dateTopic}
 					</div>

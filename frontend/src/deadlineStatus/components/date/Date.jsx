@@ -18,11 +18,11 @@ const Date = ({
 		>
 			<div className="flex items-start">
 				<div
-					className={`h-6 p-1 mr-2 md:h-8 md:p-2 rounded-full leading-none flex ${iconColor} item-center justify-center`}
+					className={`h-6 p-1 mr-3 md:h-7 md:p-2 rounded-full leading-none flex ${iconColor} item-center justify-center`}
 				>
 					{icon}
 				</div>
-				<div className="flex flex-col text-left">
+				<div className="flex flex-col text-left pt-1">
 					<div className="text-sm text-brand-text-listTitle leading-none mb-1 md:text-sm">
 						{dateTopic}
 					</div>
