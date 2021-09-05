@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 
-const DueDatePicker = ({ ...props }) => {
-	const [value, setValue] = useState(new Date())
+const DueDatePicker = ({ dateValue, inputDisabled, className, ...props }) => {
+	const [value, setValue] = useState(dateValue || new Date())
 
 	const handleChange = (e) => {
 		setValue(e.target.value)
 	}
 
 	return (
-		<div className="w-full flex flex-col" {...props}>
+		<div className={`w-full flex flex-col ${className}`} {...props}>
 			<label className="text-left flex items-center" htmlFor="due">
 				<div className="mr-1 w-4 h-4 rounded-full bg-white flex justify-center items-center">
 					<svg
@@ -24,7 +24,7 @@ const DueDatePicker = ({ ...props }) => {
 						/>
 					</svg>
 				</div>
-				<span className="block font-bold text-xs text-header">Due Date</span>
+				<span className="block font-bold text-header">Due Date</span>
 			</label>
 			<div className="text-left mt-1">
 				<input
@@ -33,6 +33,7 @@ const DueDatePicker = ({ ...props }) => {
 					id="due"
 					value={value}
 					onChange={handleChange}
+					disabled={inputDisabled}
 				/>
 			</div>
 		</div>

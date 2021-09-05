@@ -23,43 +23,32 @@ const reminderController = {
 		try {
 			const reminderData = { priority, expiryDate, description, shouldRemind }
 
-			const savedRecord = await db.create('Reminders', reminderData)
+			const savedRecord = await db.create('reminders', reminderData)
 
-			return res.status(201).json({
-				status: true,
-				message: 'Reminder document created successfully',
-				data: savedRecord,
-			})
+			return Response.send(
+				res,
+				201,
+				savedRecord,
+				'Reminder created successfully',
+				true
+			)
 		} catch (error) {
 			return next(error)
 		}
 	},
-
-	findAll: async (req, res) => {
-		// eslint-disable-next-line consistent-return
+	getAll: async (req, res, next) => {
 		try {
-			const reminders = await db.getAllReminders()
-			res.json({
-				allReminders: reminders,
-			})
-		} catch (error) {
-			console.log(error)
-			res.json({
-				status: 400,
-				data: null,
-				message: error.message,
-			})
+			const data = await db.findAll('reminders')
+			return Response.send(
+				res,
+				data.status,
+				data.data,
+				data.statusText,
+				data.status === 200
+			)
+		} catch (err) {
+			return next(err)
 		}
-	},
-	getAll: async (req, res) => {
-		const data = await db.findAll('Reminders')
-		return Response.send(
-			res,
-			data.status,
-			data.data,
-			data.statusText,
-			data.status === 200
-		)
 	},
 
 	/**
@@ -134,7 +123,11 @@ const reminderController = {
 		}
 	},
 
-	deleteReminder: async (req, res) => {
+	deleteReminder: async (req, res, next) => {
+		const {
+			params: { id },
+		} = req
+
 		try {
 			if (!req.params.id) {
 				return Response.send(
@@ -144,14 +137,18 @@ const reminderController = {
 					'No id provided'
 				)
 			}
-			const deleteReminder = await db.deleteOne(req.params.id)
-			return res.status(200).send(deleteReminder)
+
+			const deleteReminder = await db.deleteOne('reminders', id)
+
+			return Response.send(
+				res,
+				deleteReminder.status,
+				deleteReminder.data,
+				deleteReminder.statusText,
+				deleteReminder.status === 201
+			)
 		} catch (error) {
-			return res.json({
-				status: 400,
-				data: null,
-				message: error.message,
-			})
+			return next(error)
 		}
 	},
 }
