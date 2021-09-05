@@ -6,6 +6,8 @@ import React from 'react'
 // import { ModalContext } from './context/ModalContext.jsx'
 import ReminderToggle from './components/newDeadline/components/reminder-toggle'
 
+import './scroll.css'
+
 const App = () => {
 	// const { modalData } = useContext(ModalContext || {})
 

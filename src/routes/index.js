@@ -19,6 +19,7 @@ router.route('/reminders/:id').delete(reminderController.deleteReminder)
 router.post('/reminders', reminderValidation, reminderController.create)
 router.route('/getReminders').get(reminderController.getAll)
 router.get('/reminders', reminderController.getAll)
+router.get('/all-reminders', reminderController.getAll)
 router.get('/upcoming', reminderController.getUpcomingReminders)
 
 router.get('/conflictError', errorController)
