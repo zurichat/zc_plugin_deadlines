@@ -7,7 +7,6 @@ export function validateBodyRequest(req, next, schema) {
 		allowUnknown: true,
 		stripUnknown: true,
 	}
-
 	const { error, value } = schema.validate(req.body, options)
 	if (error?.message) {
 		const err = new InvalidPropertyError(error.message)
