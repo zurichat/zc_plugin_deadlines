@@ -1,39 +1,31 @@
 // TODO - Click outside modal catches all pointer events including those meant for the modal. Probably a z-index issue. Disabled until fixed
 
-import React, { useState } from 'react'
+import React, { useContext, useRef } from 'react'
+
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { XIcon } from '@heroicons/react/solid'
-// import Button from '../../layout/nav/button'
+import { ModalContext } from '../../context/ModalContext'
 
 const Modal = ({ title, children, ...props }) => {
 	// Clunky and should be updated to use local state
 
-	const [isOpen, setIsOpen] = useState(false)
+	const { modalData, setModalData } = useContext(ModalContext)
+	const closeModal = () => setModalData({ ...modalData, modalShow: false })
 
-	const closeModal = () => setIsOpen(true)
-
-	const openModal = () => setIsOpen(true)
+	const elementRef = useRef()
 
 	return (
 		<>
-			{/* <Button type="button" onClick={openModal} /> */}
-			<button
-				type="button"
-				onClick={openModal}
-				className="w-30 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded"
-			>
-				Set Deadline
-			</button>
-			<Transition appear show={isOpen} as={Fragment}>
+			<Transition appear show={modalData.modalShow} as={Fragment}>
 				<Dialog
 					as="div"
-					// initialFocus={elementRef}
+					initialFocus={elementRef}
 					className="fixed inset-0 z-10 overflow-y-auto backdrop-filter backdrop-blur backdrop-brightness-50 cursor-default"
 					onClose={closeModal}
 					{...props}
 				>
-					<div className="min-h-screen min-w-screen text-center ">
+					<div className="min-h-screen min-w-screen text-center onClick={()=>closeModal()} ">
 						<Transition.Child
 							as={'div'}
 							enter="ease-out duration-300"
@@ -69,7 +61,9 @@ const Modal = ({ title, children, ...props }) => {
 									as="h3"
 									className="w-full font-medium leading-6 bg-brand-primary p-5 flex items-center justify-between rounded-t-lg"
 								>
-									<p className="text-white text-xl">{title}</p>
+									<p className="text-white text-xl" ref={elementRef}>
+										{title}
+									</p>
 									<button
 										className="m-0 w-10 h-10 rounded-full bg-white text-brand-primary hover:text-brand-error text-center"
 										onClick={closeModal}
