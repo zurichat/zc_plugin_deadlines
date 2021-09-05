@@ -14,12 +14,6 @@ import makeDb from '../db'
 const { GET_ALL_REMINDERS } = MESSAGE
 const { OK } = StatusCodes
 
-const { getDevBaseUrl, ORG_ID, PLUGIN_ID } = env
-
-const BASE_URL = `${getDevBaseUrl()}/data`
-const readBaseUrl = `${BASE_URL}/read`
-const writeBaseUrl = `${BASE_URL}/write`
-
 const db = makeDb()
 
 const reminderController = {
@@ -90,7 +84,6 @@ const reminderController = {
 		}
 
 		try {
-			// const search = await axios.get(`${readBaseUrl}/zc_reminder/reminders/darwin_organisation`)
 			const search = await axios.get(
 				'https://reminders.zuri.chat/api/v1/reminders'
 			)
