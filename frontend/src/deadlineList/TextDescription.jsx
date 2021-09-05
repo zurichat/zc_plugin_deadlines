@@ -1,19 +1,19 @@
 import React from 'react'
 
-const TextDescription = () => {
+const TextDescription = ({ description }) => {
+	const truncateString = (string, limit) => {
+		if (string.length > limit && description) {
+			return `${string.substring(0, limit)}...`
+		} else {
+			return string
+		}
+	}
+
 	return (
 		<>
-			<div>This task will be a sprint, we are to use the design</div>
+			<div className="text-sm">{truncateString(description, 52)}</div>
 		</>
 	)
 }
-function truncateString(string, limit) {
-	if (string.length > limit) {
-		return string.substring(0, limit) + "..."
-	} else {
-		return string
-	}
-}
-truncateString("This task will be a sprint, we are to use the design", 52)
 
 export default TextDescription
