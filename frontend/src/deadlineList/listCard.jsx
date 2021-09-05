@@ -9,16 +9,16 @@ import { ModalContext } from '../context/ModalContext'
 const ListCard = () => {
 	const { modalData, setModalData } = useContext(ModalContext)
 	return (
-		<div className="flex mb-3 mx-3">
+		<div className="flex flex-col md:flex-row mb-3 mx-3">
 			<div
-				className="w-3/7"
+				className="md:w-3/7 mb-3"
 				onClick={() => {
 					setModalData({ ...modalData, modalShow: true })
 				}}
 			>
 				<DeadlineTitle title="Designing Zuri's Dashboard" />
 			</div>
-			<div className="w-4/7 flex justify-between">
+			<div className="md:w-4/7 flex justify-between">
 				<StartDate />
 				<div id="divider" className="h-full border-l-1/2" />
 				<DueDate />
