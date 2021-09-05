@@ -1,16 +1,16 @@
 import React from 'react'
 
-import UserIcon from './png/users.png'
-import DateIcon from './png/date.png'
-import TimeIcon from './png/time.png'
+import UserIcon from '../../assets/img/png/users.png'
+import DateIcon from '../../assets/img/png/date.png'
+import TimeIcon from '../../assets/img/png/time.png'
 
-const OverdueCard = () => {
+const CompletedCard = () => {
 	return (
 		<div>
-			<div id="body" className="rounded-lg shadow-sm">
+			<div id="body">
 				<div className="flex gap-8 my-6">
 					<div>
-						<h2 className="font-bold text-xl text-left">
+						<h2 className="font-bold text-xl text-left text-brand-primary">
 							Designing Zuri&#39;s Dashboard
 						</h2>
 						<p className="text-sm">
@@ -37,7 +37,7 @@ const OverdueCard = () => {
 						<p className="text-sm text-left -mt-2">
 							Due Date:
 							<br></br>
-							<b className="text-sm text-red-600">31st Aug, 2021</b>
+							<b className="">31st Aug, 2021</b>
 						</p>
 					</div>
 					<div className="flex gap-4">
@@ -45,7 +45,7 @@ const OverdueCard = () => {
 						<p className="text-sm text-left -mt-2">
 							Time:
 							<br></br>
-							<b className="text-sm text-red-600">5:00pm</b>
+							<b className="">5:00pm</b>
 						</p>
 					</div>
 				</div>
@@ -54,4 +54,4 @@ const OverdueCard = () => {
 	)
 }
 
-export default OverdueCard
+export default CompletedCard

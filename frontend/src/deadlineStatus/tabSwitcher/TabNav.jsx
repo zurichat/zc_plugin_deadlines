@@ -4,7 +4,7 @@ const TabNav = ({ tabs, setSelected, selected, children }) => {
 	return (
 		<div>
 			<div className="content-center ">
-				<ul className="flex items-center mt-15 mb-10 font-bold cursor-pointer text-lg">
+				<ul className="flex items-center mb-3 font-bold cursor-pointer text-lg">
 					{tabs &&
 						tabs.map((tab) => {
 							const active =
