@@ -74,6 +74,10 @@ module.exports = {
 				lg: '24%',
 				xl: '48%',
 			},
+			zIndex: {
+				'-10': '-10',
+				'-20': '20',
+			},
 		},
 	},
 	variants: {
