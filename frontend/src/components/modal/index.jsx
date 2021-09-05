@@ -22,7 +22,7 @@ const Modal = ({ title, children, ...props }) => {
 					as="div"
 					initialFocus={elementRef}
 					className="fixed inset-0 z-10 overflow-y-auto backdrop-filter backdrop-blur backdrop-brightness-50 cursor-default"
-					onClose={closeModal}
+					onClick={closeModal}
 					{...props}
 				>
 					<div className="min-h-screen min-w-screen text-center ">
