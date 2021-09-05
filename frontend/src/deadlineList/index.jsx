@@ -3,16 +3,22 @@ import ListCard from './listCard'
 
 const DeadlineContainer = ({ reminderArray }) => {
 	//Logic to render card multiple times
-
 	return (
 		<div>
-			{reminderArray
-				? reminderArray.map((value, index) => (
+			{Array.isArray(reminderArray) &&
+				reminderArray.map((value, index) => {
+					const { title, description, expiryDate, startDate } = value.payload
+					return (
 						<div className="w-full border-b-1/2 mt-5" key={index}>
-							<ListCard />
+							<ListCard
+								title={title}
+								description={description}
+								expiryDate={expiryDate}
+								startDate={startDate}
+							/>
 						</div>
-				  ))
-				: null}
+					)
+				})}
 		</div>
 	)
 }

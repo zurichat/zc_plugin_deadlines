@@ -8,9 +8,13 @@ import { useAllReminders } from '@api/reminders'
 const Layout = () => {
 	const res = useAllReminders()
 
-	console.log(res)
+	let reminders = null
+	if (res.data) {
+		const { data } = res.data
+		const { result } = data
+		reminders = result
+	}
 
-	console.log(res)
 	return (
 		<div
 			id="layout-root"
@@ -19,7 +23,7 @@ const Layout = () => {
 			<Nav />
 			<div className="flex flex-col md:grid md:grid-cols-3 ">
 				<div className="md:col-span-2 h-screen/1.5 md:h-screen overflow-y-scroll border-r-2 border-opacity-40 p-6">
-					<DeadlineList />
+					<DeadlineList reminderArray={reminders ? reminders : null} />
 				</div>
 				<div className="md:col-span-1 p-6 md:h-screen m-4">
 					<DeadlineStatus />
