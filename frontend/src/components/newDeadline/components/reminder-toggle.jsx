@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { Switch } from '@headlessui/react'
 
-function ReminderToggle() {
+const ReminderToggle = ({ ...props }) => {
 	const [enabled, setEnabled] = useState(false)
 
 	return (
@@ -12,6 +12,7 @@ function ReminderToggle() {
 			className={`${
 				enabled ? 'bg-green-200' : 'bg-gray-200'
 			} relative inline-flex items-center h-6 rounded-full w-11`}
+			{...props}
 		>
 			<span className="sr-only">Enable notifications</span>
 			<span
@@ -22,4 +23,5 @@ function ReminderToggle() {
 		</Switch>
 	)
 }
+
 export default ReminderToggle
