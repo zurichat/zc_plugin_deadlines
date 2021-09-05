@@ -3,33 +3,15 @@ import Nav from './nav'
 import DeadlineList from '../deadlineList'
 import DeadlineStatus from '../deadlineStatus'
 
-// Temporary placeholder element for DeadlineList function
-const Title = () => {
-	return <div>Zuri Project</div>
-}
-
-// Temporary placeholder array for DeadlineList function
-const list = [
-	{
-		title: <Title />,
-	},
-	{
-		title: <Title />,
-	},
-	{
-		title: <Title />,
-	},
-]
-
 const Layout = () => {
 	return (
-		<div className="flex flex-col w-full h-screen gap-4 p-1">
+		<div className="bg-white w-full h-screen gap-4 p-1">
 			<Nav />
-			<div className="grid grid-cols-3">
-				<div className="col-span-2 p-6 m-8">
-					<DeadlineList list={list} />
+			<div className="flex flex-col md:grid md:grid-cols-3 ">
+				<div className="md:col-span-2 h-screen/1.5 md:h-screen overflow-y-scroll border-r-2 border-opacity-40 p-6">
+					<DeadlineList />
 				</div>
-				<div className="col-span-1 p-6 h-5/6 mr-4 my-8">
+				<div className="md:col-span-1 p-6 md:h-screen m-4">
 					<DeadlineStatus />
 				</div>
 			</div>

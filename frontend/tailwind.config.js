@@ -15,6 +15,7 @@ module.exports = {
 						leftNav: '#999999',
 						time: '#DADADA',
 						lightIcon: '#BEBEBE',
+						backdrop: '#808080',
 						listTitle: '#000000',
 					},
 					error: '#F40101',
@@ -60,6 +61,20 @@ module.exports = {
 				'4/7': '57.1428571%',
 				'5/7': '71.4285714%',
 				'6/7': '85.7142857%',
+			},
+			height: {
+				'screen/1.5': '75vh',
+				'screen/2': '50vh',
+				'screen/3': 'calc(100vh / 3)',
+				'screen/4': 'calc(100vh / 4)',
+				'screen/5': 'calc(100vh / 5)',
+			},
+			borderWidth: {
+				'1/2': '0.5px',
+			},
+			zIndex: {
+				'-10': '-10',
+				'-20': '20',
 			},
 		},
 	},
