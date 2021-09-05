@@ -63,16 +63,11 @@ const reminderController = {
     @param {expiryDate} expiry date of the reminder to be searched
     @returns {result} reminder fetched from the database 
 */
+	// Get search reminder using query
+	searchReminder: async (req, res, next) => {
+		const { priority, expiryDate } = req.query
 
-	// Get reminder based on the parameter Comurule created
-	getReminder: async (req, res) => {
-		const { taskName, priority, expiryDate } = req.query
-
-		if (
-			typeof taskName !== 'string' &&
-			typeof priority !== 'string' &&
-			typeof expiryDate !== 'string'
-		)
+		if (typeof priority !== 'string' || typeof expiryDate !== 'string')
 			throw new Error('Invalid data format. Expected a string.')
 
 		try {
@@ -84,9 +79,8 @@ const reminderController = {
 			)
 			const result = search.data.result.filter((item) => {
 				if (
-					item.collection_name === taskName ||
-					item.payload.priority === priority ||
-					item.payload.expiryDate === expiryDate
+					item.payload.priority === query.priority ||
+					item.payload.expiryDate === query.expiryDate
 				)
 					return true
 				return false
@@ -101,19 +95,19 @@ const reminderController = {
 
 			const result = await searchFunction(search, req.query)
 
-			const data = {
-				message: 'Reminder fetched successfully',
-				...result,
-			}
-
-			return res.status(201).json(data)
+			// const data = {
+			// 	message: 'Reminder fetched successfully',
+			// 	...result,
+			// }
+			return Response.send(
+				res,
+				201,
+				result,
+				'Reminder fetched successfully',
+				search.status === 200
+			)
 		} catch (error) {
-			const errorResult = {
-				message: 'Reminder not fetched',
-				error,
-			}
-
-			return res.status(400).json(errorResult)
+			return next(err)
 		}
 	},
 	getUpcomingReminders: async (req, res, next) => {
