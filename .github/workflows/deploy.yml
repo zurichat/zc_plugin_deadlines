@@ -26,7 +26,7 @@ jobs:
             cd /var/www/zc_plugin_reminder/
             git stash
             git fetch --all 
-            git reset --hard origin/develop
+            git reset --hard origin/dev
             git checkout dev
             git pull origin dev
             yarn run holoInstall
