@@ -8,7 +8,7 @@ import DeadlineTitle from './components/DeadlineTitle'
 import TextDescription from './TextDescription'
 import UserIcon from '../assets/img/png/users.png'
 
-const ListCard = () => {
+const ListCard = ({ title, description, expiryDate, startDate }) => {
 	const { modalData, setModalData } = useContext(ModalContext)
 	return (
 		<div className="flex flex-col md:flex-row mb-3 mx-3 cursor-default">
@@ -22,10 +22,10 @@ const ListCard = () => {
 					})
 				}}
 			>
-				<DeadlineTitle title="Designing Zuri's Dashboard" />
+				<DeadlineTitle title={title} />
 				<div className="flex mt-2">
 					<div className="h-full w-4/6">
-						<TextDescription description="This task will be a sprint, we are to use the design lorem ipsum" />
+						<TextDescription description={description} />
 					</div>
 					<div className="full w-2/6">
 						<div className="flex md:ml-2">
@@ -37,9 +37,9 @@ const ListCard = () => {
 			</div>
 			<div className="md:w-1/7" />
 			<div className="md:w-4/7 flex justify-between">
-				<StartDate />
+				<StartDate startDate={startDate} />
 				<div id="divider" className="h-full border-l-1/2" />
-				<DueDate />
+				<DueDate endDate={expiryDate} />
 				<div id="divider" className="h-full border-l-1/2" />
 				<RemainingTime />
 			</div>
