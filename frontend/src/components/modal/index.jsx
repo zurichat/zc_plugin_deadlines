@@ -25,7 +25,7 @@ const Modal = ({ title, children, ...props }) => {
 					onClose={closeModal}
 					{...props}
 				>
-					<div className="min-h-screen min-w-screen text-center ">
+					<div className="min-h-screen min-w-screen text-center onClick={()=>closeModal()} ">
 						<Transition.Child
 							as={'div'}
 							enter="ease-out duration-300"
