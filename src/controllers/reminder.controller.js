@@ -1,21 +1,20 @@
 /**
     Copyright 2021, Zuri plugin reminder.
     All rights reserved.
-    Written By: King Etiosasere 30th August 2021, ed_knowah 2nd Spetember 2021.
+    Written By: King Etiosasere 30th August 2021, ed_knowah 2nd Spetember 2021, Adedeji Yusuf 2nd Spetember 2021.
 * */
 
 import Response from '@utils/response.handler'
 import { StatusCodes } from 'http-status-codes'
 import { MESSAGE } from '@utils/constant'
 import makeFakeReminder from '@utils/fake.reminder'
+import axios from 'axios'
 import makeDb from '../db'
 
 const { GET_ALL_REMINDERS } = MESSAGE
 const { OK } = StatusCodes
 
 const db = makeDb()
-
-const zuriCoreDBApi = `mock`
 
 const reminderController = {
 	create: async (req, res, next) => {
@@ -58,10 +57,9 @@ const reminderController = {
     @param {expiryDate} expiry date of the reminder to be searched
     @returns {result} reminder fetched from the database 
 */
-
-	// Get reminder based on the parameter @Comurule created
+	// Get reminder using query
 	getReminder: async (req, res) => {
-		const { taskName, priority, expiryDate } = req.param
+		const { taskName, priority, expiryDate } = req.query
 
 		if (
 			typeof taskName !== 'string' &&
@@ -70,31 +68,34 @@ const reminderController = {
 		)
 			throw new Error('Invalid data format. Expected a string.')
 
-		try {
-			// if there is any endpoint in the zc_core to provide us the search through our reminder database to fetch each reminder, then we use this search and the API will be `${zcDBApi}`
-			const search = await axios.post(zuriCoreDBApi, {
-				reminderName: taskName,
-				priority,
-				expiryDate,
+		// Search Function
+		const searchFunction = (data, query) => {
+			const result = data.data.result.filter((item) => {
+				if (
+					item.collection_name === query.taskName &&
+					item.payload.priority === query.priority &&
+					item.payload.expiryDate === query.expiryDate
+				)
+					return true
+				return false
 			})
 
-			const result = {
+			return result
+		}
+
+		try {
+			const search = await axios.get(
+				'https://reminders.zuri.chat/api/v1/reminders'
+			)
+
+			const result = await searchFunction(search, req.query)
+
+			const data = {
 				message: 'Reminder fetched successfully',
-				...search,
+				...result,
 			}
 
-			return res.status(201).json(result)
-
-			// if there is no endpoint to do the above then we use the below code to search the reminder plugin database
-			// const search2 = await db.find({ reminderName: taskName, priority: priority})
-			// const result2 =  {
-			//   message: "Reminder fetched successfully",
-			//   ...search2
-			// }
-
-			// Object.freeze(result2)
-
-			// return res.status(201).json(result2)
+			return res.status(201).json(data)
 		} catch (error) {
 			const errorResult = {
 				message: 'Reminder not fetched',

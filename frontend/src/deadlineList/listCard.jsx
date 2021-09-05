@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
+import { ModalContext } from '../context/ModalContext'
 
 import DueDate from './components/date/DueDate'
 import RemainingTime from './components/date/RemainingTime'
 import StartDate from './components/date/StartDate'
 import DeadlineTitle from './components/DeadlineTitle'
-import { ModalContext } from '../context/ModalContext'
 import TextDescription from './TextDescription'
 import UserIcon from '../assets/img/png/users.png'
 
@@ -15,7 +15,11 @@ const ListCard = () => {
 			<div
 				className="md:w-2/7 mb-3"
 				onClick={() => {
-					setModalData({ ...modalData, modalShow: true })
+					setModalData({
+						...modalData,
+						modalShow: true,
+						modalType: 'viewDeadline',
+					})
 				}}
 			>
 				<DeadlineTitle title="Designing Zuri's Dashboard" />
