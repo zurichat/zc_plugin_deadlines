@@ -1,15 +1,23 @@
 import React, { useContext } from 'react'
+import './scroll.css'
 
 import Layout from './layout'
-import ViewDeadline from './components/viewDeadline'
 import { ModalContext } from './context/ModalContext.jsx'
 
+import ViewDeadline from './components/viewDeadline'
+import NewDeadline from './components/newDeadline'
+
 const App = () => {
-	const { modalData } = useContext(ModalContext || {})
+	const { modalData } = useContext(ModalContext)
 
 	return (
 		<>
-			{modalData.modalShow ? <ViewDeadline modalData={modalData} /> : null}
+			{modalData.modalShow && modalData.modalType === 'viewDeadline' ? (
+				<ViewDeadline modalData={modalData} />
+			) : null}
+			{modalData.modalShow && modalData.modalType === 'newDeadline' ? (
+				<NewDeadline modalData={modalData} />
+			) : null}
 			<Layout />
 		</>
 	)

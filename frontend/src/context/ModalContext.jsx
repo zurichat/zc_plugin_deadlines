@@ -16,7 +16,6 @@ export const ModalContextProvider = ({ children }) => {
 			time: '5:00 PM',
 		},
 	})
-
 	return (
 		<ModalContext.Provider
 			value={{

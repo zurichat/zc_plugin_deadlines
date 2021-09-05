@@ -22,12 +22,12 @@ const Searchbar = ({ ...props }) => {
 
 	return (
 		<div
-			className="appearance-none border rounded w-full py-2 px-5 inline-flex justify-between items-center"
+			className="border rounded w-full py-2 px-5 inline-flex justify-between items-center focus-within:shadow-lg focus-within:ring-1 focus-within:ring-brand-primary"
 			{...props}
 		>
 			<label htmlFor="task search" role="search">
 				<input
-					className="text-gray-400 leading-tight focus:outline-none focus:shadow-outline text-sm"
+					className="text-gray-400 leading-tight text-sm focus:text-black focus:outline-none"
 					placeholder="Search"
 					type="text"
 					value={input}
