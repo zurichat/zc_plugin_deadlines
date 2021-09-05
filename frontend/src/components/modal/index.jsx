@@ -1,6 +1,6 @@
 // TODO - Click outside modal catches all pointer events including those meant for the modal. Probably a z-index issue. Disabled until fixed
 
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
@@ -11,16 +11,17 @@ const Modal = ({ title, children, ...props }) => {
 	// Clunky and should be updated to use local state
 
 	const { modalData, setModalData } = useContext(ModalContext)
-
 	const closeModal = () => setModalData({ ...modalData, modalShow: false })
+
+	const elementRef = useRef()
 
 	return (
 		<>
 			<Transition appear show={modalData.modalShow} as={Fragment}>
 				<Dialog
 					as="div"
-					initialFocus={null}
-					className="fixed inset-0 z-10 overflow-y-auto backdrop-filter backdrop-blur backdrop-brightness-50 "
+					initialFocus={elementRef}
+					className="fixed inset-0 z-10 overflow-y-auto backdrop-filter backdrop-blur backdrop-brightness-50 cursor-default"
 					onClose={closeModal}
 					{...props}
 				>
@@ -40,7 +41,6 @@ const Modal = ({ title, children, ...props }) => {
 							/> */}
 						</Transition.Child>
 
-						{/* This element is to trick the browser into centering the modal contents. */}
 						<span
 							className="inline-block h-screen align-middle"
 							aria-hidden="true"
@@ -56,12 +56,14 @@ const Modal = ({ title, children, ...props }) => {
 							leaveFrom="opacity-100 scale-100"
 							leaveTo="opacity-0 scale-95"
 						>
-							<div className="inline-block w-3/5 max-w-5xl align-middle transition-all bg-white shadow-xl rounded-lg">
+							<div className="inline-block w-5/6 md:w-3/5 max-w-5xl align-middle transition-all bg-white shadow-xl rounded-lg">
 								<Dialog.Title
 									as="h3"
 									className="w-full font-medium leading-6 bg-brand-primary p-5 flex items-center justify-between rounded-t-lg"
 								>
-									<p className="text-white text-xl">{title}</p>
+									<p className="text-white text-xl" ref={elementRef}>
+										{title}
+									</p>
 									<button
 										className="m-0 w-10 h-10 rounded-full bg-white text-brand-primary hover:text-brand-error text-center"
 										onClick={closeModal}

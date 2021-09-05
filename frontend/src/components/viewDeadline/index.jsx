@@ -14,7 +14,7 @@ const ViewDeadline = ({
 }) => {
 	return (
 		<Modal title={'View Deadline'}>
-			<div className="flex flex-row">
+			<div className="flex flex-col md:flex-row">
 				<div className="text-left">
 					<ViewTitle title={title || 'Designing Zuri Dashboard'} />
 					<ViewDescription
@@ -24,7 +24,7 @@ const ViewDeadline = ({
 						}
 					/>
 				</div>
-				<div id="divider" className="border-l mx-5" />
+				<div id="divider" className="border-t md:border-l my-5 md:mx-5" />
 				<div>
 					<ViewDueDate dueDate={date || new Date()} />
 					<ViewTime time={time || '3:00 PM'} />
