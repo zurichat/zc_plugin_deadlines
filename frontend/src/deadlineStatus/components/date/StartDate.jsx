@@ -3,7 +3,7 @@ import Date from './Date'
 
 import CalenderIcon from '../../../assets/img/svg/calender.svg'
 
-const StartDate = () => {
+const StartDate = ({}) => {
 	const props = {
 		dateTopic: 'Start Date:',
 		date: '31st Aug, 2021',

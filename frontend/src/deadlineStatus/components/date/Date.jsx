@@ -1,6 +1,14 @@
 import React from 'react'
 
-const Date = ({ icon, iconColor, dateTopic, date, rightBorder, ...props }) => {
+const Date = ({
+	icon,
+	iconColor,
+	dateTopic,
+	date,
+	rightBorder,
+	actionColor,
+	...props
+}) => {
 	return (
 		<div
 			className={`inline-flex items-center justify-center ${
@@ -10,15 +18,15 @@ const Date = ({ icon, iconColor, dateTopic, date, rightBorder, ...props }) => {
 		>
 			<div className="flex items-start">
 				<div
-					className={`h-7 rounded-full leading-none flex ${iconColor} item-center justify-center  mr-2`}
+					className={`h-6 p-1 mr-2 md:h-8 md:p-2 rounded-full leading-none flex ${iconColor} item-center justify-center`}
 				>
 					{icon}
 				</div>
 				<div className="flex flex-col text-left">
-					<div className="text-sm text-brand-text-listTitle leading-none mb-1 ">
+					<div className="text-sm text-brand-text-listTitle leading-none mb-1 md:text-sm">
 						{dateTopic}
 					</div>
-					<div className="text-sm md:text-base font-bold text-black">
+					<div className={`text-sm font-bold md:text-sm text-${actionColor}`}>
 						{date}
 					</div>
 				</div>

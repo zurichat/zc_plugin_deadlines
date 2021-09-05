@@ -25,7 +25,7 @@ const OverdueCard = () => {
 				<hr className="border-gray-200 border-1" />
 				<div className="flex gap-8 justify-center my-6">
 					<div className="flex gap-4 pr-4 border-r-2">
-						<img src={DateIcon} alt="date" className="w-4 h-4" />
+						<img src={DateIcon} alt="date" className="h-full" />
 						<p className="text-sm text-left -mt-2">
 							Start Date:
 							<br></br>
