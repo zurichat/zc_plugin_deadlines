@@ -31,4 +31,5 @@ jobs:
             git pull origin dev
             yarn run holoInstall
             yarn run build
+            pm2 list
             pm2 restart reminders_plugin
