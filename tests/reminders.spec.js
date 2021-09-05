@@ -25,6 +25,12 @@ describe('Reminder controllers', () => {
 	it('successfully get all reminders', () => {
 		request(app).get('/api/v1/reminders').expect(200)
 	})
+	it('successfully search for reminder', () => {
+		// taskname, priority, expiryDate
+		request(app)
+			.get('/api/v1/search?priority=2?expiryDate=2021-09-03T13:06:29.840Z')
+			.expect(201)
+	})
 
 	it('reminder successfully deleted', async () => {
 		// create Db

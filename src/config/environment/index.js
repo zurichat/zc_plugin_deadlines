@@ -29,13 +29,13 @@ const env = {
 	ORG_ID: 'darwin_organization',
 	getDevBaseUrl() {
 		const self = env
-		if (
-			self.ENVIRONMENT.development ||
-			self.ENVIRONMENT.test ||
-			self.ENVIRONMENT.production
-		) {
-			self.BASE_URL = 'https://mock-dbapi.herokuapp.com/api'
-		}
+		// if (
+		// 	self.ENVIRONMENT.development ||
+		// 	self.ENVIRONMENT.test ||
+		// 	self.ENVIRONMENT.production
+		// ) {
+		self.BASE_URL = 'https://mock-dbapi.herokuapp.com/api'
+		// }
 		return self.BASE_URL
 	},
 }

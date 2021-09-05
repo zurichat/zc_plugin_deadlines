@@ -57,52 +57,43 @@ const reminderController = {
     @param {expiryDate} expiry date of the reminder to be searched
     @returns {result} reminder fetched from the database 
 */
-	// Get reminder using query
-	getReminder: async (req, res) => {
-		const { taskName, priority, expiryDate } = req.query
+	// Get search reminder using query
+	searchReminder: async (req, res, next) => {
+		const { priority, expiryDate } = req.query
 
-		if (
-			typeof taskName !== 'string' &&
-			typeof priority !== 'string' &&
-			typeof expiryDate !== 'string'
-		)
+		if (typeof priority !== 'string' || typeof expiryDate !== 'string')
 			throw new Error('Invalid data format. Expected a string.')
 
-		// Search Function
 		const searchFunction = (data, query) => {
 			const result = data.data.result.filter((item) => {
 				if (
-					item.collection_name === query.taskName &&
-					item.payload.priority === query.priority &&
+					item.payload.priority === query.priority ||
 					item.payload.expiryDate === query.expiryDate
 				)
 					return true
 				return false
 			})
-
 			return result
 		}
 
 		try {
+			// if there is any endpoint in the zc_core to provide us the search through our reminder database to fetch each reminder, then we use this search and the API will be `${zcDBApi}`
+
 			const search = await axios.get(
 				'https://reminders.zuri.chat/api/v1/reminders'
 			)
 
 			const result = await searchFunction(search, req.query)
 
-			const data = {
-				message: 'Reminder fetched successfully',
-				...result,
-			}
-
-			return res.status(201).json(data)
+			return Response.send(
+				res,
+				201,
+				result,
+				'Reminder fetched successfully',
+				search.status === 200
+			)
 		} catch (error) {
-			const errorResult = {
-				message: 'Reminder not fetched',
-				error,
-			}
-
-			return res.status(400).json(errorResult)
+			return next(err)
 		}
 	},
 	getUpcomingReminders: async (req, res, next) => {
