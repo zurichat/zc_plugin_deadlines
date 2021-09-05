@@ -5,7 +5,7 @@ import DeadlineList from '../deadlineList'
 import DeadlineStatus from '../deadlineStatus'
 import { Spinner } from 'react-activity'
 
-import { useAllReminders } from '@api/reminders'
+import { useAllReminders } from '../api/reminders'
 
 const Layout = () => {
 	const res = useAllReminders()
