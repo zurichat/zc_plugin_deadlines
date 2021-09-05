@@ -15,7 +15,6 @@ module.exports = {
 						leftNav: '#999999',
 						time: '#DADADA',
 						lightIcon: '#BEBEBE',
-						backdrop: '#808080',
 						listTitle: '#000000',
 					},
 					error: '#F40101',
@@ -69,8 +68,11 @@ module.exports = {
 				'screen/4': 'calc(100vh / 4)',
 				'screen/5': 'calc(100vh / 5)',
 			},
-			borderWidth: {
-				'1/2': '0.5px',
+			space: {
+				sm: '8%',
+				md: '16%',
+				lg: '24%',
+				xl: '48%',
 			},
 		},
 	},
