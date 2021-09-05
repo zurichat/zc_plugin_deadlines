@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { ModalContext } from '../../context/ModalContext'
 const Button = () => {
 	const { modalData, setModalData } = useContext(ModalContext)
