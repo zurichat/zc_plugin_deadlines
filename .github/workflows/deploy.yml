@@ -24,6 +24,9 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd /var/www/zc_plugin_reminder/
+            git stash
+            git fetch --all 
+            git reset --hard origin/develop
             git checkout dev
             git pull origin dev
             yarn run holoInstall
