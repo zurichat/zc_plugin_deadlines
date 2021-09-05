@@ -30,12 +30,27 @@ const TabSwitcher = () => {
 					<div className="mb-14">
 						<StatusListCard tab={'overdue'} />
 					</div>
+					<div className="mb-14">
+						<StatusListCard tab={'overdue'} />
+					</div>
+					<div className="mb-14">
+						<StatusListCard tab={'overdue'} />
+					</div>
+					<div className="mb-14">
+						<StatusListCard tab={'overdue'} />
+					</div>
 				</Tab>
 
 				<Tab
 					isSelected={prevState.selected === 'Completed'}
 					className="font-bold text-lg"
 				>
+					<div className="mb-14">
+						<StatusListCard tab={'completed'} />
+					</div>
+					<div className="mb-14">
+						<StatusListCard tab={'completed'} />
+					</div>
 					<div className="mb-14">
 						<StatusListCard tab={'completed'} />
 					</div>
