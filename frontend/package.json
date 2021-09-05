@@ -60,5 +60,5 @@
 		"prettier": "2.3.2",
 		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.9"
 	},
-	"proxy": "http://localhost:9002"
+	"proxy": "http://localhost:9007"
 }
