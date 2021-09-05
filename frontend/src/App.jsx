@@ -4,8 +4,6 @@ import Layout from './layout'
 import ViewDeadline from './components/viewDeadline'
 import { ModalContext } from './context/ModalContext.jsx'
 
-import './scroll.css'
-
 const App = () => {
 	const { modalData } = useContext(ModalContext || {})
 
