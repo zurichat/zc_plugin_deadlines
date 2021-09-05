@@ -4450,6 +4450,11 @@ rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-activity@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-activity/-/react-activity-2.1.1.tgz#39cfdf5138edec3a9e86780771a3c83571ff68d4"
+  integrity sha512-QzArf8ED9Q2s8z30IB5VOMqbBsjZrc/Tj6Yc0TxN4UrjZ8hIr8wfAcTS+0IoAR0BiqaQ36wdhnrSFDLg+nxfuQ==
+
 read-pkg-up@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-3.0.0.tgz#3ed496685dba0f8fe118d0691dc51f4a1ff96f07"
