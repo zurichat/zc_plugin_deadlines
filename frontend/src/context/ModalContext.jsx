@@ -16,12 +16,15 @@ export const ModalContextProvider = ({ children }) => {
 			time: '5:00 PM',
 		},
 	})
-
+       const [showModal, setShowModal]=useState (false)
 	return (
 		<ModalContext.Provider
 			value={{
 				modalData,
 				setModalData,
+		showModal,  
+		setShowModal 
+		
 			}}
 		>
 			{children}
