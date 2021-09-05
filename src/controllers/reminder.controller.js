@@ -106,6 +106,7 @@ const reminderController = {
 			// }
 
 			// Object.freeze(result2)
+			// return freezed object
 
 			// return res.status(201).json(result2)
 		} catch (error) {
