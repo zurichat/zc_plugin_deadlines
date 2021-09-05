@@ -1,18 +1,28 @@
 import React from 'react'
-import Date from './Date'
+import DateFn from './Date'
 
 import Remaining from '../../../assets/img/svg/remaining.svg'
 
-const RemainingTime = ({ tab }) => {
+const RemainingTime = ({ dueDate, tab }) => {
+	const propDate = new Date(Date.parse(dueDate)).toLocaleTimeString(
+		{},
+		{
+			timeZone: 'UTC',
+			hour12: true,
+			hour: 'numeric',
+			minute: 'numeric',
+		}
+	)
+
 	const props = {
 		dateTopic: 'Time:',
-		date: '05:00 pm',
-		icon: <img src={Remaining} className="-p-3" alt="time-icon" />,
+		date: propDate,
+		icon: <img src={Remaining} className="h-full" alt="time-icon" />,
 		iconColor: 'bg-brand-avatar-green bg-opacity-25',
-		actionColor: tab === 'overdue' ? 'brand-accent' : null,
+		tab,
 	}
 
-	return <Date {...props} />
+	return <DateFn {...props} />
 }
 
 export default RemainingTime
