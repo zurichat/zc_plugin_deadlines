@@ -1,8 +1,6 @@
 import React from 'react'
 import ListCard from './listCard'
 
-// import DeadlineReminderCard from './components/DeadlineReminder/DeadlineReminderCard'
-
 const DeadlineContainer = ({}) => {
 	const n = 7
 

@@ -7,15 +7,14 @@
 import React from 'react'
 import ListCard from '../../listCard'
 import UserIcon from './png/users.png'
+import DeadlineTitle from './../DeadlineTitle'
 
 const DeadlineReminderCard = () => {
 	return (
 		<div className="md:flex">
 			<div className="md:flex p-4 mr-8">
 				<div>
-					<h2 className="font-bold text-xl text-left">
-						Designing Zuri&#39;s Dashboard
-					</h2>
+					<DeadlineTitle title="Designing Zuri's Dashboard" />
 					<p className="text-sm">
 						This task will be a sprint, we are to use the design...
 					</p>
