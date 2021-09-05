@@ -1,10 +1,10 @@
 import React from 'react'
 import Modal from '../modal'
-import ModalForm from './modal-form'
+import ModalForm from './modalForm'
 
 const NewDeadline = () => {
 	return (
-		<Modal>
+		<Modal title={'Create a New Deadline'}>
 			<ModalForm />
 		</Modal>
 	)
