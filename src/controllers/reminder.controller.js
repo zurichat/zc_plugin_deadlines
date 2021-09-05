@@ -159,11 +159,12 @@ const reminderController = {
 
 			const { id } = req.params
 
-			const updateReminder = await db.findByIdAndupdate(id, reminderData)
-
 			if (!id) {
 				throw new Error('id is required')
 			}
+
+			const updateReminder = await db.findByIdAndupdate(id, reminderData)
+
 			res.status(200).send('reminder updated successfully ')
 		} catch (error) {
 			console.log(error)
