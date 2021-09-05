@@ -65,7 +65,7 @@ const reminderController = {
 */
 	// Get reminder using query
 	getReminder: async (req, res) => {
-		const { taskName, priority, expiryDate } = req.param
+		const { taskName, priority, expiryDate } = req.query
 
 		if (
 			typeof taskName !== 'string' &&
@@ -74,41 +74,35 @@ const reminderController = {
 		)
 			throw new Error('Invalid data format. Expected a string.')
 
-		try {
-			// if there is any endpoint in the zc_core to provide us the search through our reminder database to fetch each reminder, then we use this search and the API will be `${zcDBApi}`
-
-			// const search = await axios.get(`${readBaseUrl}/zc_reminder/reminders/darwin_organisation`)
-			const search = await axios.get(
-				'https://reminders.zuri.chat/api/v1/reminders'
-			)
-			const result = search.data.result.filter((item) => {
+		// Search Function
+		const searchFunction = (data, query) => {
+			const result = data.data.result.filter((item) => {
 				if (
-					item.collection_name === taskName &&
-					item.payload.priority === priority &&
-					item.payload.expiryDate === expiryDate
+					item.collection_name === query.taskName &&
+					item.payload.priority === query.priority &&
+					item.payload.expiryDate === query.expiryDate
 				)
 					return true
 				return false
 			})
 
+			return result
+		}
+
+		try {
+			// const search = await axios.get(`${readBaseUrl}/zc_reminder/reminders/darwin_organisation`)
+			const search = await axios.get(
+				'https://reminders.zuri.chat/api/v1/reminders'
+			)
+
+			const result = await searchFunction(search, req.query)
+
 			const data = {
 				message: 'Reminder fetched successfully',
 				...result,
 			}
-			Object.freeze(data)
+
 			return res.status(201).json(data)
-
-			// if there is no endpoint to do the above then we use the below code to search the reminder plugin database
-			// const search2 = await db.find({ reminderName: taskName, priority: priority})
-			// const result2 =  {
-			//   message: "Reminder fetched successfully",
-			//   ...search2
-			// }
-
-			// Object.freeze(result2)
-			// return freezed object
-
-			// return res.status(201).json(result2)
 		} catch (error) {
 			const errorResult = {
 				message: 'Reminder not fetched',
