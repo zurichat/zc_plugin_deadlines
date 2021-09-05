@@ -5,9 +5,9 @@
  */
 
 import React from 'react'
-import ListCard from '../../listCard'
+import ListCard from '../listCard'
 import UserIcon from './png/users.png'
-import DeadlineTitle from './../DeadlineTitle'
+import DeadlineTitle from '../components/DeadlineTitle'
 
 const DeadlineReminderCard = () => {
 	return (
