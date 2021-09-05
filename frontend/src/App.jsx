@@ -1,14 +1,9 @@
 import React from 'react'
-//import Layout from './layout'
-import DeadlineTitle from './components/newDeadline/deadlineTitle'
+import Layout from './layout'
+
 const App = () => {
-	return (
-		<>
-			{' '}
-			<DeadlineTitle />{' '}
-		</>
-	)
-	// <Layout />
+	return
+	;<Layout />
 }
 
 export default App
