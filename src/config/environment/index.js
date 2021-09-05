@@ -25,8 +25,8 @@ const env = {
 	MAIL: {
 		email: process.env.SSN_FOR_ORGS_MAIL,
 	},
-	PLUGIN_ID: process.env.PLUGIN_ID,
-	ORG_ID: process.env.ORG_ID,
+	PLUGIN_ID: 'zc_reminder',
+	ORG_ID: 'darwin_organization',
 	getDevBaseUrl() {
 		const self = env
 		// if (
