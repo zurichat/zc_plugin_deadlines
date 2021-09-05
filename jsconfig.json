@@ -12,7 +12,8 @@
 			"@controllers/*": ["controllers/*"],
 			"@models/*": ["models/*"],
 			"@routes/*": ["routes/*"],
-			"@types/*": ["types/*"]
+			"@types/*": ["types/*"],
+			"@sockets/*": ["sockets/*"]
 		}
 	}
 }

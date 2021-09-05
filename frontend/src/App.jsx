@@ -1,11 +1,17 @@
-import React from 'react'
-import TextDescription from './deadlineList/TextDescription'
+import React, { useContext } from 'react'
+
+import Layout from './layout'
+import ViewDeadline from './components/viewDeadline'
+import { ModalContext } from './context/ModalContext.jsx'
 
 const App = () => {
+	const { modalData } = useContext(ModalContext || {})
+
 	return (
-		<div className="flex flex-col items-center justify-center h-screen text-center text-gray-300 leading-3 font-sans">
-			<TextDescription></TextDescription>
-		</div>
+		<>
+			{modalData.modalShow ? <ViewDeadline modalData={modalData} /> : null}
+			<Layout />
+		</>
 	)
 }
 

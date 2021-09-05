@@ -1,21 +1,29 @@
 Arguments: 
-  C:\Program Files (x86)\nodejs\node.exe C:\Users\FAITH OLADELE\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add eslint-config-prettier eslint-plugin-prettier prettier --dev
+  C:\Program Files\nodejs\node.exe C:\Users\JUMOKE\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
 
 PATH: 
-  C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files (x86)\nodejs\;C:\Program Files\Git\cmd;C:\Users\FAITH OLADELE\AppData\Local\Microsoft\WindowsApps;;C:\Users\FAITH OLADELE\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\FAITH OLADELE\AppData\Roaming\npm
+  C:\Python39\Scripts\;C:\Python39\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;;C:\Users\JUMOKE\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\JUMOKE\AppData\Roaming\npm;C:\Program Files\heroku\bin
 
 Yarn version: 
-  1.22.11
+  1.22.10
 
 Node version: 
-  14.17.5
+  14.16.1
 
 Platform: 
   win32 ia32
 
 Trace: 
-  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
-      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:69:26)
+  Error: https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.7.tgz: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (C:\Users\JUMOKE\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141289:19)
+      at Object.onceWrapper (events.js:421:28)
+      at ClientRequest.emit (events.js:315:20)
+      at TLSSocket.emitRequestTimeout (_http_client.js:784:9)
+      at Object.onceWrapper (events.js:421:28)
+      at TLSSocket.emit (events.js:327:22)
+      at TLSSocket.Socket._onTimeout (net.js:483:8)
+      at listOnTimeout (internal/timers.js:554:17)
+      at processTimers (internal/timers.js:497:7)
 
 npm manifest: 
   {
