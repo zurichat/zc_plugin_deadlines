@@ -1,7 +1,7 @@
 import React from 'react'
 import Sortbar from './sortbar'
 import Searchbar from './searchbar'
-import Button from './button'
+import Modal from '../../components/modal'
 
 const Nav = () => {
 	return (
@@ -17,9 +17,8 @@ const Nav = () => {
 					</div>
 				</div>
 			</div>
-
 			<div className="flex justify-end md:absolute md:right-6 md:top-6 xl:right-5">
-				<Button />
+				<Modal />
 			</div>
 		</nav>
 	)
