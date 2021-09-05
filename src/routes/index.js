@@ -6,6 +6,7 @@
 
 import { Router } from 'express'
 import reminderController from '@controllers/reminder.controller'
+import errorController from '@controllers/conflictError.controller'
 import reminderValidation from '@validations/reminder.validation'
 
 const router = Router()
@@ -19,5 +20,7 @@ router.post('/reminders', reminderValidation, reminderController.create)
 router.route('/getReminders').get(reminderController.findAll)
 router.get('/reminders', reminderController.getAll)
 router.get('/upcoming', reminderController.getUpcomingReminders)
+
+router.get('/conflictError', errorController)
 
 export default router
