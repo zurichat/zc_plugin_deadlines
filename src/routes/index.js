@@ -18,11 +18,11 @@ router.get('/ping', (req, res) =>
 router.route('/reminders/:id').delete(reminderController.deleteReminder)
 router.post('/reminders', reminderValidation, reminderController.create)
 router.route('/getReminders').get(reminderController.getAll)
-router.get('/reminders', reminderController.getAll)
 router.get('/all-reminders', reminderController.getAll)
+router.get('/reminders', reminderController.getAll)
+router.get('/search', reminderController.searchReminder)
 router.get('/upcoming', reminderController.getUpcomingReminders)
-router.post('/deadlines', reminderController.setDeadline)
-
 router.get('/conflictError', errorController)
+router.post('/deadlines', reminderController.setDeadline)
 
 export default router

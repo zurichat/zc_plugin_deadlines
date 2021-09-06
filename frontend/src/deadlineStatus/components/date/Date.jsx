@@ -6,7 +6,7 @@ const Date = ({
 	dateTopic,
 	date,
 	rightBorder,
-	actionColor,
+	tab,
 	...props
 }) => {
 	return (
@@ -26,7 +26,11 @@ const Date = ({
 					<div className="text-sm text-brand-text-listTitle leading-none mb-1 md:text-sm">
 						{dateTopic}
 					</div>
-					<div className={`text-sm font-bold md:text-sm text-${actionColor}`}>
+					<div
+						className={`text-sm font-bold md:text-sm text-${
+							tab === 'overdue' ? 'brand-accent' : null
+						}`}
+					>
 						{date}
 					</div>
 				</div>
