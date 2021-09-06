@@ -23,5 +23,6 @@ router.get('/reminders', reminderController.getAll)
 router.get('/search', reminderController.searchReminder)
 router.get('/upcoming', reminderController.getUpcomingReminders)
 router.get('/conflictError', errorController)
+router.post('/deadlines', reminderController.setDeadline)
 
 export default router

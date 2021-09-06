@@ -5,6 +5,7 @@
 * */
 
 import Response from '@utils/response.handler'
+// eslint-disable-next-line import/no-unresolved
 import { StatusCodes } from 'http-status-codes'
 import { MESSAGE } from '@utils/constant'
 import makeFakeReminder from '@utils/fake.reminder'
@@ -134,6 +135,36 @@ const reminderController = {
 				deleteReminder.statusText,
 				deleteReminder.status === 201
 			)
+		} catch (error) {
+			return next(error)
+		}
+	},
+	setDeadline: async (req, res, next) => {
+		// eslint-disable-next-line consistent-return
+		const {
+			teamsAssigned,
+			membersAssigned,
+			title,
+			description,
+			startDates,
+			dueDates,
+		} = req.body
+		// post data to be sent
+		try {
+			const deadlineData = {
+				teamsAssigned,
+				membersAssigned,
+				title,
+				description,
+				startDates,
+				dueDates,
+			}
+			const deadline = await db.create('deadlines', deadlineData)
+			return res.status(201).json({
+				status: 'success',
+				message: 'Deadline successfully set',
+				result: deadline,
+			})
 		} catch (error) {
 			return next(error)
 		}

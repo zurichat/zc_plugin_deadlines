@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import faker from 'faker'
 
 export default function makeFakeReminder(overrides) {

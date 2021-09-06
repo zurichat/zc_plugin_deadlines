@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 const faker = require('faker')
 const axios = require('axios').default
 // const environment = require('./src/config/environment/index')
@@ -9,6 +10,7 @@ const axios = require('axios').default
 // const writeBaseUrl = `${BASE_URL}/write`
 
 async function populateDB() {
+	// eslint-disable-next-line no-plusplus
 	for (let i = 0; i < 200; i++) {
 		const obj = {
 			plugin_id: 'zc_reminder',
@@ -25,6 +27,7 @@ async function populateDB() {
 			},
 		}
 
+		// eslint-disable-next-line no-await-in-loop
 		const res = await axios({
 			url: 'https://mock-dbapi.herokuapp.com/api/data/write',
 			method: 'post',
