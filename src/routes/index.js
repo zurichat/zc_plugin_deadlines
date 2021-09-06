@@ -25,6 +25,6 @@ router.get('/upcoming', reminderController.getUpcomingReminders)
 router.put('/reminders/:id', reminderController.updateById)
 router.get('/conflictError', errorController)
 router.post('/deadlines', reminderController.setDeadline)
-
+router.get('/oneHourToGo', reminderController.getOneHourToGoReminder)
 
 export default router
