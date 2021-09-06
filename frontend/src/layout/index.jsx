@@ -33,11 +33,11 @@ const Layout = () => {
 							<Spinner color="#00B87C" size={32} speed={1} animating={true} />
 						</div>
 					) : (
-						<div className="flex flex-col md:grid md:grid-cols-3">
+						<div className="flex flex-col w-full md:grid md:grid-cols-3">
 							<div className="md:col-span-2 h-screen/1.5 md:h-screen overflow-y-scroll border-r-2 border-opacity-40 py-6">
 								<DeadlineList reminderArray={fetchedData.data.data.result} />
 							</div>
-							<div className="md:col-span-1 p-6 h-screen md:h-screen m-4 overflow-y-scroll">
+							<div className="md:col-span-1 h-screen md:h-screen px-3 overflow-y-scroll">
 								<DeadlineStatus reminderArray={fetchedData.data.data.result} />
 							</div>
 						</div>
