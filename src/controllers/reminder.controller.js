@@ -43,6 +43,7 @@ const reminderController = {
 	getAll: async (req, res, next) => {
 		try {
 			const data = await db.findAll('reminders')
+			console.log('data', data)
 			return Response.send(
 				res,
 				data.status,
@@ -66,7 +67,11 @@ const reminderController = {
 	searchReminder: async (req, res, next) => {
 		const { title, creator, dueDate } = req.query
 
-		if (typeof title !== 'string' || typeof creator !== 'string' || typeof dueDate !== 'string')
+		if (
+			typeof title !== 'string' ||
+			typeof creator !== 'string' ||
+			typeof dueDate !== 'string'
+		)
 			throw new Error('Invalid data format. Expected a string.')
 
 		const searchFunction = (data, query) => {

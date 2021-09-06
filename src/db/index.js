@@ -54,12 +54,12 @@ export default function makeDb() {
 		 * PLUGIN_ID zc_reminder
 		 * ORG_ID darwin_organization
 		 */
-
 		try {
 			const res = await axios.get(
-				`${readBaseUrl}/zc_reminder/reminders/darwin_organisation`
+				`${readBaseUrl}/zc_reminder/reminders/darwin_organization`
 			)
-			return res
+			console.log('res', res.data)
+			return res.data
 		} catch (err) {
 			if (!err.response) {
 				throw new Error(
