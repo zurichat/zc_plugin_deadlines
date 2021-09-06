@@ -7,25 +7,38 @@ const axiosInstance = axios.create({
 })
 
 export const useAllReminders = () => {
-	const { isLoading, data, error } = useQuery('allReminders', async () => {
-		try {
-			await axiosInstance({
-				method: 'GET',
-				url: '/getReminders',
-			})
-		} catch (error) {
-			console.error(error)
-			throw error
+	const { isLoading, data, error, isPlaceholderData, isError } = useQuery(
+		'allReminders',
+		async () => {
+			try {
+				const res = await axiosInstance({
+					method: 'GET',
+					url: '/getReminders',
+				})
+				console.log(res)
+				return {
+					data: {
+						result: [],
+					},
+				}
+				// return res
+			} catch (error) {
+				console.error(error)
+				throw error
+			}
+		},
+		{
+			placeholderData: () => {
+				return {
+					data: {
+						result: [],
+					},
+				}
+			},
 		}
-	})
+	)
 
-	if (isLoading) return 'loading'
-
-	if (!error) {
-		return data
-	} else {
-		return error
-	}
+	return { isLoading, data, error, isPlaceholderData, isError }
 }
 
 // export const useCreateReminder = (payload) => {
