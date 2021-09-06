@@ -1,6 +1,6 @@
 import React from 'react'
-import Avatar1 from '@assets/img/png/avatar1.png'
-import Avatar2 from '@assets/img/png/avatar2.png'
+import Avatar1 from '../../assets/img/png/avatar1.png'
+import Avatar2 from '../../assets/img/png/avatar1.png'
 // import Avatar3 from '@assets/img/png/avatar3.png'
 
 const UserAvatar = ({ ...props }) => {
