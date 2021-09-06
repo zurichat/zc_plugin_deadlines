@@ -79,6 +79,9 @@ module.exports = {
 			borderRadius: {
 				'1/2': '50%',
 			},
+			translate: {
+				'-3/2': '-150%',
+			},
 		},
 	},
 	variants: {
