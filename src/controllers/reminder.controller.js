@@ -66,7 +66,11 @@ const reminderController = {
 	searchReminder: async (req, res, next) => {
 		const { title, creator, dueDate } = req.query
 
-		if (typeof title !== 'string' || typeof creator !== 'string' || typeof dueDate !== 'string')
+		if (
+			typeof title !== 'string' ||
+			typeof creator !== 'string' ||
+			typeof dueDate !== 'string'
+		)
 			throw new Error('Invalid data format. Expected a string.')
 
 		const searchFunction = (data, query) => {
