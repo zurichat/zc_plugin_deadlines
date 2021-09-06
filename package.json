@@ -68,6 +68,7 @@
 	"dependencies": {
 		"@babel/runtime-corejs3": "^7.15.3",
 		"@craco/craco": "^6.2.0",
+		"agenda": "^4.2.1",
 		"amqplib": "^0.8.0",
 		"axios": "^0.21.1",
 		"centrifuge": "^2.8.0",
