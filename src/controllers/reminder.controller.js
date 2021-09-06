@@ -52,9 +52,9 @@ const reminderController = {
 
 	/**
     Search reminder from the database using query
-    @param {taskName} reminder name to be searched 
-    @param {priority} priority of the reminder to be searched
-    @param {expiryDate} expiry date of the reminder to be searched
+    @param {title} reminder name to be searched 
+    @param {creator} creator of the reminder to be searched
+    @param {dueDate} Due date of the reminder to be searched
     @returns {result} reminder fetched from the database 
 */
 	// Get search reminder using query of {title, creator, dueDate}
