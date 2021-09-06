@@ -15,15 +15,8 @@ export const useAllReminders = () => {
 					method: 'GET',
 					url: '/getReminders',
 				})
-				console.log(res)
-				return {
-					data: {
-						result: [],
-					},
-				}
-				// return res
+				return { ...res, length: res.data.data.result.length }
 			} catch (error) {
-				console.error(error)
 				throw error
 			}
 		},
@@ -38,7 +31,7 @@ export const useAllReminders = () => {
 		}
 	)
 
-	return { isLoading, data, error, isPlaceholderData, isError }
+	return { isLoading, fetchedData: data, error, isPlaceholderData, isError }
 }
 
 // export const useCreateReminder = (payload) => {

@@ -10,7 +10,7 @@ import NoDataMessage from '../components/reusableScreens/noData'
 import ReloadOnError from '../components/reusableScreens/reloadOnError'
 
 const Layout = () => {
-	const { isLoading, data, isPlaceholderData, error } = useAllReminders()
+	const { isLoading, fetchedData, isPlaceholderData, error } = useAllReminders()
 
 	return (
 		<div
@@ -18,13 +18,13 @@ const Layout = () => {
 			className="bg-white w-full h-screen gap-4 pb-5 overflow-y-scroll flex flex-col px-5"
 		>
 			<Nav />
-			{data.data.result.length === 0 && !isPlaceholderData ? (
-				<div className="flex flex-grow items-center justify-center">
-					<NoDataMessage className="text-center" />
-				</div>
-			) : error ? (
+			{error ? (
 				<div className="flex flex-col flex-grow items-center justify-center">
 					<ReloadOnError className="text-center" />
+				</div>
+			) : fetchedData.length === 0 && !isPlaceholderData ? (
+				<div className="flex flex-grow items-center justify-center">
+					<NoDataMessage className="text-center" />
 				</div>
 			) : (
 				<div className="flex flex-grow">
@@ -35,10 +35,10 @@ const Layout = () => {
 					) : (
 						<div className="flex flex-col md:grid md:grid-cols-3">
 							<div className="md:col-span-2 h-screen/1.5 md:h-screen overflow-y-scroll border-r-2 border-opacity-40 py-6">
-								<DeadlineList reminderArray={data.data.result} />
+								<DeadlineList reminderArray={fetchedData.data.data.result} />
 							</div>
 							<div className="md:col-span-1 p-6 h-screen md:h-screen m-4 overflow-y-scroll">
-								<DeadlineStatus reminderArray={data.data.result} />
+								<DeadlineStatus reminderArray={fetchedData.data.data.result} />
 							</div>
 						</div>
 					)}
