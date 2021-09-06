@@ -11,7 +11,7 @@ import UserIcon from '../../assets/img/png/users.png'
 const ListCard = ({ title, description, dueDate, startDate }) => {
 	const { modalData, setModalData } = useContext(ModalContext)
 	return (
-		<div className="flex flex-col md:flex-row mb-3 mx-3 cursor-default">
+		<div className="flex flex-col md:flex-row mb-3 mx-3 cursor-pointer">
 			<div
 				className="md:w-2/7 mb-3"
 				onClick={() => {
