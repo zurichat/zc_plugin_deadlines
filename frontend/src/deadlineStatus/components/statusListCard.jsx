@@ -7,7 +7,7 @@ import TitleAvatar from '../__compat__/TitleAvatar'
 
 const StatusListCard = ({ tab, title, description, dueDate, startDate }) => {
 	return (
-		<div className="flex flex-col mb-3 cursor-pointer">
+		<div className="flex flex-col mb-3">
 			<TitleAvatar title={title} description={description} />
 			<div id="divider" className="h-full md:border-t-1/2 md:mb-5" />
 			<div className="flex justify-between">

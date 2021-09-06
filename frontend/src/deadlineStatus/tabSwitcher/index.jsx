@@ -14,7 +14,7 @@ const TabSwitcher = ({ reminderArray }) => {
 	}
 
 	return (
-		<div className="flex justify-center items-center">
+		<div className="flex justify-center items-center overflow-y-scroll">
 			<TabNav
 				tabs={['Overdue', 'Completed']}
 				selected={prevState.selected}
@@ -26,7 +26,7 @@ const TabSwitcher = ({ reminderArray }) => {
 				>
 					{/* Sliced to map just n times */}
 					{Array.isArray(reminderArray) &&
-						reminderArray.slice(0, 50).map((value, index) => {
+						reminderArray.slice(0, 3).map((value, index) => {
 							const { title, description, dueDate, startDate } = value.payload
 							return (
 								<div className="mb-14" key={index}>
@@ -48,7 +48,7 @@ const TabSwitcher = ({ reminderArray }) => {
 				>
 					{/* Sliced to map just n times */}
 					{Array.isArray(reminderArray) &&
-						reminderArray.slice(0, 5).map((value, index) => {
+						reminderArray.slice(0, 3).map((value, index) => {
 							const { title, description, dueDate, startDate } = value.payload
 							return (
 								<div className="mb-14" key={index}>
