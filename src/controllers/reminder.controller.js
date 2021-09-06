@@ -1,13 +1,14 @@
 /**
     Copyright 2021, Zuri plugin reminder.
     All rights reserved.
-    Written By: King Etiosasere 30th August 2021, ed_knowah 2nd Spetember 2021.
+    Written By: King Etiosasere 30th August 2021, ed_knowah 2nd Spetember 2021, Adedeji Yusuf 2nd Spetember 2021.
 * */
 
 import Response from '@utils/response.handler'
 import { StatusCodes } from 'http-status-codes'
 import { MESSAGE } from '@utils/constant'
 import makeFakeReminder from '@utils/fake.reminder'
+import axios from 'axios'
 import makeDb from '../db'
 
 const { GET_ALL_REMINDERS } = MESSAGE
@@ -15,51 +16,38 @@ const { OK } = StatusCodes
 
 const db = makeDb()
 
-const zuriCoreDBApi = `mock`
-
 const reminderController = {
 	create: async (req, res, next) => {
 		const { priority, expiryDate, description, shouldRemind } = req.body
 		try {
 			const reminderData = { priority, expiryDate, description, shouldRemind }
 
-			const savedRecord = await db.create('Reminders', reminderData)
+			const savedRecord = await db.create('reminders', reminderData)
 
-			return res.status(201).json({
-				status: true,
-				message: 'Reminder document created successfully',
-				data: savedRecord,
-			})
+			return Response.send(
+				res,
+				201,
+				savedRecord,
+				'Reminder created successfully',
+				true
+			)
 		} catch (error) {
 			return next(error)
 		}
 	},
-
-	findAll: async (req, res) => {
-		// eslint-disable-next-line consistent-return
+	getAll: async (req, res, next) => {
 		try {
-			const reminders = await db.getAllReminders()
-			res.json({
-				allReminders: reminders,
-			})
-		} catch (error) {
-			console.log(error)
-			res.json({
-				status: 400,
-				data: null,
-				message: error.message,
-			})
+			const data = await db.findAll('reminders')
+			return Response.send(
+				res,
+				data.status,
+				data.data,
+				data.statusText,
+				data.status === 200
+			)
+		} catch (err) {
+			return next(err)
 		}
-	},
-	getAll: async (req, res) => {
-		const data = await db.findAll('Reminders')
-		return Response.send(
-			res,
-			data.status,
-			data.data,
-			data.statusText,
-			data.status === 200
-		)
 	},
 
 	/**
@@ -69,50 +57,43 @@ const reminderController = {
     @param {expiryDate} expiry date of the reminder to be searched
     @returns {result} reminder fetched from the database 
 */
+	// Get search reminder using query
+	searchReminder: async (req, res, next) => {
+		const { priority, expiryDate } = req.query
 
-	// Get reminder based on the parameter @Comurule created
-	getReminder: async (req, res) => {
-		const { taskName, priority, expiryDate } = req.param
-
-		if (
-			typeof taskName !== 'string' &&
-			typeof priority !== 'string' &&
-			typeof expiryDate !== 'string'
-		)
+		if (typeof priority !== 'string' || typeof expiryDate !== 'string')
 			throw new Error('Invalid data format. Expected a string.')
+
+		const searchFunction = (data, query) => {
+			const result = data.data.result.filter((item) => {
+				if (
+					item.payload.priority === query.priority ||
+					item.payload.expiryDate === query.expiryDate
+				)
+					return true
+				return false
+			})
+			return result
+		}
 
 		try {
 			// if there is any endpoint in the zc_core to provide us the search through our reminder database to fetch each reminder, then we use this search and the API will be `${zcDBApi}`
-			const search = await axios.post(zuriCoreDBApi, {
-				reminderName: taskName,
-				priority,
-				expiryDate,
-			})
 
-			const result = {
-				message: 'Reminder fetched successfully',
-				...search,
-			}
+			const search = await axios.get(
+				'https://reminders.zuri.chat/api/v1/reminders'
+			)
 
-			return res.status(201).json(result)
+			const result = await searchFunction(search, req.query)
 
-			// if there is no endpoint to do the above then we use the below code to search the reminder plugin database
-			// const search2 = await db.find({ reminderName: taskName, priority: priority})
-			// const result2 =  {
-			//   message: "Reminder fetched successfully",
-			//   ...search2
-			// }
-
-			// Object.freeze(result2)
-
-			// return res.status(201).json(result2)
+			return Response.send(
+				res,
+				201,
+				result,
+				'Reminder fetched successfully',
+				search.status === 200
+			)
 		} catch (error) {
-			const errorResult = {
-				message: 'Reminder not fetched',
-				error,
-			}
-
-			return res.status(400).json(errorResult)
+			return next(err)
 		}
 	},
 	getUpcomingReminders: async (req, res, next) => {
@@ -134,20 +115,27 @@ const reminderController = {
 		}
 	},
 
-	deleteReminder: async (req, res) => {
+	deleteReminder: async (req, res, next) => {
+		const {
+			params: { id },
+		} = req
+
 		try {
 			if (!id) {
 				throw new Error('id is required')
 			}
-			const deleteReminder = await db.findByIdAndDelete(req.params.id)
-			res.status(200).send(deleteReminder)
+
+			const deleteReminder = await db.deleteOne('reminders', id)
+
+			return Response.send(
+				res,
+				deleteReminder.status,
+				deleteReminder.data,
+				deleteReminder.statusText,
+				deleteReminder.status === 201
+			)
 		} catch (error) {
-			console.log(error)
-			res.json({
-				status: 400,
-				data: null,
-				message: error.message,
-			})
+			return next(error)
 		}
 	},
 }
