@@ -7,7 +7,7 @@ import TitleAvatar from './__compat__/TitleAvatar'
 
 const StatusListCard = ({ tab }) => {
 	return (
-		<div className="flex flex-col mb-3 cursor-default">
+		<div className="flex flex-col mb-3 cursor-pointer">
 			<TitleAvatar
 				title="Designing Zuri's Dashboard"
 				description="This task will be a sprint, we are to use the design..."
