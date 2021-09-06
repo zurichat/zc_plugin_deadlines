@@ -3,7 +3,7 @@ import UserIcon from '../../assets/img/png/users.png'
 
 const TitleAvatar = ({ title, description }) => {
 	return (
-		<div className="flex flex-col md:flex-row my-6 md:my-3">
+		<div className="flex flex-col md:flex-row my-6 md:my-3 cursor-pointer">
 			<div>
 				<h2 className="font-bold text-xl text-left mb-1">{title}</h2>
 				<p className="text-sm mb-2 text-brand-text-leftNav">{description}</p>
