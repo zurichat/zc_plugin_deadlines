@@ -57,23 +57,24 @@ const reminderController = {
 
 	/**
     Search reminder from the database using query
-    @param {taskName} reminder name to be searched 
-    @param {priority} priority of the reminder to be searched
-    @param {expiryDate} expiry date of the reminder to be searched
+    @param {title} reminder name to be searched 
+    @param {creator} creator of the reminder to be searched
+    @param {dueDate} Due date of the reminder to be searched
     @returns {result} reminder fetched from the database 
 */
-	// Get search reminder using query
+	// Get search reminder using query of {title, creator, dueDate}
 	searchReminder: async (req, res, next) => {
-		const { priority, expiryDate } = req.query
+		const { title, creator, dueDate } = req.query
 
-		if (typeof priority !== 'string' || typeof expiryDate !== 'string')
+		if (typeof title !== 'string' || typeof creator !== 'string' || typeof dueDate !== 'string')
 			throw new Error('Invalid data format. Expected a string.')
 
 		const searchFunction = (data, query) => {
 			const result = data.data.result.filter((item) => {
 				if (
-					item.payload.priority === query.priority ||
-					item.payload.expiryDate === query.expiryDate
+					item.payload.title === query.title ||
+					item.payload.creator === query.creator ||
+					item.payload.dueDate === query.dueDate
 				)
 					return true
 				return false
