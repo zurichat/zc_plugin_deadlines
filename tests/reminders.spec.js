@@ -29,7 +29,7 @@ describe('Reminder controllers', () => {
 	it('successfully search for reminder', () => {
 		// taskname, priority, expiryDate
 		request(app)
-			.get('/api/v1/search?priority=2?expiryDate=2021-09-03T13:06:29.840Z')
+			.get('/api/v1/search?title=online?creator=ms. dale Nienow?dueDate=2021-09-06T01:17:47.687Z')
 			.expect(201)
 	})
 
