@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
-import { ModalContext } from '../context/ModalContext'
+import { ModalContext } from '../../context/ModalContext'
 
-import DueDate from './components/date/DueDate'
-import RemainingTime from './components/date/RemainingTime'
-import StartDate from './components/date/StartDate'
-import DeadlineTitle from './components/DeadlineTitle'
+import DueDate from './date/DueDate'
+import RemainingTime from './date/RemainingTime'
+import StartDate from './date/StartDate'
+import DeadlineTitle from './DeadlineTitle'
 import TextDescription from './TextDescription'
-import UserIcon from '../assets/img/png/users.png'
+import UserIcon from '../../assets/img/png/users.png'
 
-const ListCard = ({ title, description, expiryDate, startDate }) => {
+const ListCard = ({ title, description, dueDate, startDate }) => {
 	const { modalData, setModalData } = useContext(ModalContext)
 	return (
 		<div className="flex flex-col md:flex-row mb-3 mx-3 cursor-default">
@@ -39,9 +39,9 @@ const ListCard = ({ title, description, expiryDate, startDate }) => {
 			<div className="md:w-4/7 flex justify-between">
 				<StartDate startDate={startDate} />
 				<div id="divider" className="h-full border-l-1/2" />
-				<DueDate endDate={expiryDate} />
+				<DueDate dueDate={dueDate} />
 				<div id="divider" className="h-full border-l-1/2" />
-				<RemainingTime />
+				<RemainingTime dueDate={dueDate} />
 			</div>
 		</div>
 	)

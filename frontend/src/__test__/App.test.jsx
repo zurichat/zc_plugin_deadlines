@@ -3,8 +3,12 @@ import App from '../App'
 import { render } from '@testing-library/react'
 import { ModalContextProvider } from '../context/ModalContext'
 
+import { QueryClient, QueryClientProvider } from 'react-query'
+
 test('<App /> renders without crashing', () => {
 	// Mock hook calls
+
+	const queryClient = new QueryClient()
 
 	const MockComponent = () => {
 		const [modalData, setModalData] = useState({
@@ -20,9 +24,11 @@ test('<App /> renders without crashing', () => {
 		})
 
 		return (
-			<ModalContextProvider value={{ modalData, setModalData }}>
-				<App />
-			</ModalContextProvider>
+			<QueryClientProvider client={queryClient}>
+				<ModalContextProvider value={{ modalData, setModalData }}>
+					<App />
+				</ModalContextProvider>
+			</QueryClientProvider>
 		)
 	}
 

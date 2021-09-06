@@ -5,7 +5,7 @@ import Button from './button'
 
 const Nav = () => {
 	return (
-		<nav className="px-5 space-y-1 md:space-y-0">
+		<nav className="space-y-1 md:space-y-0">
 			<div className="flex justify-between py-5 md:w-4/6 items-center">
 				<p className="font-bold text-2xl">Deadlines</p>
 				<div className="hidden xl:relative xl:left-48 lg:left-40 md:flex md:left-0 flex-col space-y-2 sm:space-y-0 sm:flex-row">

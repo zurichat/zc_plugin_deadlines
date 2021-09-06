@@ -1,5 +1,7 @@
 import React, { useContext } from 'react'
+
 import './scroll.css'
+import 'react-activity/dist/Spinner.css'
 
 import Layout from './layout'
 import { ModalContext } from './context/ModalContext.jsx'
