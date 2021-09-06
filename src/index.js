@@ -11,7 +11,7 @@ import connection from '@shared/connection'
 const start = async () => {
 	try {
 		if (process.env.NODE_ENV === 'development') {
-			await connection.start()
+			// await connection.start()
 		}
 
 		app.listen(env.PORT, () =>

@@ -11,7 +11,9 @@ const TextDescription = ({ description }) => {
 
 	return (
 		<>
-			<div className="text-sm">{truncateString(description, 52)}</div>
+			<div className="text-sm">
+				{description && truncateString(description, 52)}
+			</div>
 		</>
 	)
 }

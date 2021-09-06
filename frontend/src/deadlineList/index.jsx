@@ -1,17 +1,25 @@
 import React from 'react'
-import ListCard from './listCard'
+import ListCard from './components/listCard'
 
-const DeadlineContainer = ({}) => {
-	const n = 7
+// Prop drilling, should be improved.
 
-	//Logic to render card multiple times
+const DeadlineContainer = ({ reminderArray }) => {
 	return (
 		<div>
-			{[...Array(n)].map((value, index) => (
-				<div className="w-full border-b-1/2 mt-5" key={index}>
-					<ListCard />
-				</div>
-			))}
+			{Array.isArray(reminderArray) &&
+				reminderArray.map((value, index) => {
+					const { title, description, dueDate, startDate } = value.payload
+					return (
+						<div className="w-full border-b-1/2 mt-5" key={index}>
+							<ListCard
+								title={title}
+								description={description}
+								dueDate={dueDate}
+								startDate={startDate}
+							/>
+						</div>
+					)
+				})}
 		</div>
 	)
 }

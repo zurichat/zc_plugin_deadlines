@@ -1,12 +1,8 @@
 import React from 'react'
 import TabSwitcher from './tabSwitcher'
 
-const DeadlineStatus = () => {
-	return (
-		<>
-			<TabSwitcher />
-		</>
-	)
+const DeadlineStatus = ({ reminderArray }) => {
+	return <TabSwitcher reminderArray={reminderArray} />
 }
 
 export default DeadlineStatus

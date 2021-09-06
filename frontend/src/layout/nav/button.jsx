@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { ModalContext } from '../../context/ModalContext'
 
-const Button = () => {
+const NewDeadlineButton = () => {
 	const { modalData, setModalData } = useContext(ModalContext)
 	return (
 		<>
@@ -21,4 +21,4 @@ const Button = () => {
 	)
 }
 
-export default Button
+export default NewDeadlineButton

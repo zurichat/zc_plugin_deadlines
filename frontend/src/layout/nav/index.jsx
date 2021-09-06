@@ -1,14 +1,14 @@
 import React from 'react'
 import Sortbar from './sortbar'
 import Searchbar from './searchbar'
-import Button from './button'
+import SetDeadlineButton from './button'
 
 const Nav = () => {
 	return (
-		<nav className="px-5 space-y-1 md:space-y-0">
-			<div className="flex justify-between py-5 md:w-4/6 items-center">
+		<nav className="space-y-1 md:space-y-0">
+			<div className="flex justify-between py-5 items-center">
 				<p className="font-bold text-2xl">Deadlines</p>
-				<div className="hidden md:flex flex-col space-y-2 sm:space-y-0 sm:flex-row">
+				<div className="hidden md:flex md:left-0 flex-col space-y-2 sm:space-y-0 sm:flex-row">
 					<div className="sm:mx-1 lg:block">
 						<Searchbar />
 					</div>
@@ -16,8 +16,8 @@ const Nav = () => {
 						<Sortbar />
 					</div>
 				</div>
-				<div className="flex justify-end md:absolute md:right-6 md:top-5 xl:right-5">
-					<Button />
+				<div className="">
+					<SetDeadlineButton />
 				</div>
 			</div>
 			<div className="md:hidden flex flex-col space-y-2 sm:space-y-0 sm:flex-row">
