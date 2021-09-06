@@ -1,24 +1,24 @@
 import React from 'react'
-import Avatar1 from '@assets/img/png/avatar1.png'
-import Avatar2 from '@assets/img/png/avatar2.png'
-import Avatar3 from '@assets/img/png/avatar3.png'
 
-const UserAvatar = ({ ...props }) => {
+const UserAvatar = ({ src, ...props }) => {
+	const Avatar = src.slice(0, 4).map((item, index) => {
+		const translateX = index === 0 ? '' : `transform -translate-x-${index}/4`
+		return (
+			<div
+				key={index}
+				className={`object-cover ${translateX} rounded-1/2 object-center h-full w-1/4 overflow-hidden border-4 border-brand-avatar-green`}
+			>
+				<img src={item} className="h-full w-full" alt="Avatar 1" />
+			</div>
+		)
+	})
 	return (
 		<>
-			<div className="flex flex-row -space-x-10" {...props}>
-				<div className="h-full  m-1 mr-2 -ml-3 rounded-full ">
-					<img src={Avatar1} className="rounded-full" alt="Avatar 1" />
-				</div>
-				<div className="bg-brand-avatar-yellow h-full  m-1 mr-2 -ml-3 rounded-full border border-brand-avatar-green">
-					<img src={Avatar2} className="rounded-full" alt="Avatar 2" />
-				</div>
-				<div className="bg-brand-avatar-pink h-full  m-1 mr-2 -ml-3 rounded-full border border-brand-avatar-green">
-					<img src={Avatar3} className="rounded-full" alt="Avatar 3" />
-				</div>
-				<div className="bg-brand-avatar-yellow h-full  m-1 mr-2 -ml-3 rounded-full border border-brand-avatar-green">
-					<img src={Avatar1} className="rounded-full" alt="Avatar 4" />
-				</div>
+			<div
+				className="flex justify-items-stretch items-stretch w-full h-full"
+				{...props}
+			>
+				{Avatar}
 			</div>
 		</>
 	)
