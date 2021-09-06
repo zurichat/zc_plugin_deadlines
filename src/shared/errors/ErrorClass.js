@@ -12,6 +12,27 @@ export class InvalidPropertyError extends Error {
 	}
 }
 
+export class UniqueConstraintError extends Error {
+	/**
+	 *
+	 * @param {*} statusCode
+	 * @param {*} msg
+	 * @param {*} isOperational
+	 * @param {*} stack
+	 */
+	constructor(message, statusCode = 409, isOperational = true, stack = '') {
+		super(message)
+		this.name = 'UniqueConstraintError'
+		this.statusCode = statusCode
+		this.isOperational = isOperational
+		if (stack) {
+			this.stack = stack
+		} else {
+			Error.captureStackTrace(this, this.constructor)
+		}
+	}
+}
+
 export class RequiredPropertyError extends Error {
 	constructor(msg, statusCode = 400) {
 		super(msg)

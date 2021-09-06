@@ -1,10 +1,12 @@
 import React from 'react'
+import Modal from '../modal'
+import ModalForm from './modalForm'
 
 const NewDeadline = () => {
 	return (
-		<>
-			<div>New Deadline Modal</div>
-		</>
+		<Modal title={'Create a New Deadline'}>
+			<ModalForm />
+		</Modal>
 	)
 }
 

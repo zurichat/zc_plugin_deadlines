@@ -4,6 +4,7 @@
     Written By: King Etiosasere, 30th August 2021
 * */
 
+// eslint-disable-next-line import/no-unresolved
 import Centrifuge from 'centrifuge'
 
 const centrifuge = new Centrifuge('ws://realtime.zuri.chat:16800/')
