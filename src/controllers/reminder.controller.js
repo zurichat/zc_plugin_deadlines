@@ -43,7 +43,6 @@ const reminderController = {
 	getAll: async (req, res, next) => {
 		try {
 			const data = await db.findAll('reminders')
-			console.log('data', data)
 			return Response.send(
 				res,
 				data.status,

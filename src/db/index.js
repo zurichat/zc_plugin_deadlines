@@ -58,8 +58,7 @@ export default function makeDb() {
 			const res = await axios.get(
 				`${readBaseUrl}/zc_reminder/reminders/darwin_organization`
 			)
-			console.log('res', res.data)
-			return res.data
+			return res
 		} catch (err) {
 			if (!err.response) {
 				throw new Error(
