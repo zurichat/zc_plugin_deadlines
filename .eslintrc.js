@@ -24,6 +24,7 @@ module.exports = {
 		'quote-props': ['error', 'as-needed'],
 		'prefer-object-spread': ['error'],
 		'array-callback-return': ['error'],
+		'import/no-named-as-default': 0,
 		'prefer-destructuring': [
 			'error',
 			{

@@ -4,6 +4,7 @@
     Written By: King Etiosasere, 30th August 2021 
 */
 import app from '@shared/http/server'
+// eslint-disable-next-line import/no-unresolved
 import request from 'supertest'
 import makeDb from '../src/db/index'
 

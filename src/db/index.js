@@ -137,5 +137,26 @@ export default function makeDb() {
 		}
 	}
 
-	return Object.freeze({ create, findAll, update, findById, deleteOne })
+	async function updateById({ id, ...params }) {
+		try {
+			const res = await axios({
+				method: 'put',
+				url: `${getDevBaseUrl()}/data/write`,
+				data: {
+					plugin_id: PLUGIN_ID,
+					organisation_id: ORG_ID,
+					collection_name: REMINDER_COLLECTION,
+					filter: {
+						object_id: id,
+					},
+					payload: { ...params },
+				},
+			})
+			return res.data.data.modified_document > 0
+		} catch (err) {
+			return err.response.data
+		}
+	}
+
+	return Object.freeze({ create, findAll, updateById, findById, deleteOne })
 }
