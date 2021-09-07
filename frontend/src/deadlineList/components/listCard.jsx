@@ -8,7 +8,7 @@ import DeadlineTitle from './DeadlineTitle'
 import TextDescription from './TextDescription'
 import UserIcon from '../../assets/img/png/users.png'
 
-import CompletedButton from './CompletedButton'
+import DeadlineCompleteToggle from './CompletedButton'
 
 const ListCard = ({ title, description, dueDate, startDate }) => {
 	const { modalData, setModalData } = useContext(ModalContext)
@@ -26,7 +26,7 @@ const ListCard = ({ title, description, dueDate, startDate }) => {
 			>
 				<div className="flex my-3">
 					<DeadlineTitle title={title} className="font-bold w-4/6" />
-					<CompletedButton className="w-3/6" />
+					<DeadlineCompleteToggle className="w-3/6" />
 				</div>
 				<div className="flex my-3 ">
 					<div className="h-full w-4/6">
