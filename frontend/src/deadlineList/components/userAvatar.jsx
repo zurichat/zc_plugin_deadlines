@@ -1,43 +1,44 @@
 import React from 'react'
-import Avatar1 from '../../assets/img/png/avatar1.png'
-import Avatar2 from '../../assets/img/png/avatar2.png'
-// import Avatar3 from '@assets/img/png/avatar3.png'
 
-const UserAvatar = ({ ...props }) => {
+const UserAvatar = ({ width, src, ...props }) => {
+	const Avatar = src.slice(0, 4).map((item, index) => {
+		let translateX = ''
+		switch (index) {
+			case 1:
+				translateX = 'transform -translate-x-1/2'
+				break
+			case 2:
+				translateX = 'transform -translate-x-full'
+				break
+			case 3:
+				translateX = 'transform -translate-x-3/2'
+		}
+		let border = 0
+		if (width <= 300) {
+			border = 2
+		} else if (width <= 400) {
+			border = 4
+		} else {
+			border = 8
+		}
+
+		return (
+			<div
+				key={index}
+				className={`object-cover ${translateX} bg-white rounded-full border-green-600 m-0 object-center overflow-hidden h-full w-full border-${border}`}
+			>
+				<img src={item} className="h-full w-full p-6 pb-0" alt="Avatar 1" />
+			</div>
+		)
+	})
 	return (
 		<>
 			<div
-				className="flex flex-row -space-x-20 justify-center overflow-hidden"
+				className="inline-flex justify-stretch items-center w-full h-full"
 				{...props}
+				style={{ height: width / 4, width: `${width}px` }}
 			>
-				<div className="h-full m-1 mr-2 -ml-3 rounded-full inline-block p-0">
-					<img
-						src={Avatar2}
-						className="bg-white overflow-hidden z-10 rounded-full border-8 border-green-500 p-5 pb-0 ring-1 ring-green-600"
-						alt="Avatar 1"
-					/>
-				</div>
-				<div className="h-full  m-1 mr-2 -ml-3 rounded-full inline-block">
-					<img
-						src={Avatar1}
-						className="bg-white overflow-hidden z-10 rounded-full border-8 border-green-500 p-5 pb-0 ring-1 ring-green-600"
-						alt="Avatar 1"
-					/>
-				</div>
-				<div className="h-full  m-1 mr-2 -ml-3 rounded-full inline-block">
-					<img
-						src={Avatar2}
-						className="bg-white overflow-hidden z-10 rounded-full border-8 border-green-500 p-5 pb-0 ring-1 ring-green-600"
-						alt="Avatar 1"
-					/>
-				</div>
-				<div className="h-full  m-1 mr-2 -ml-3 rounded-full inline-block">
-					<img
-						src={Avatar1}
-						className="bg-white overflow-hidden z-10 rounded-full border-8 border-green-500 p-5 pb-0 ring-1 ring-green-600"
-						alt="Avatar 1"
-					/>
-				</div>
+				{Avatar}
 			</div>
 		</>
 	)
