@@ -1,9 +1,10 @@
 import React from 'react'
 import Nav from './nav'
 
-import DeadlineList from '../deadlineList'
+import DeadlineContainer from '../deadlineList'
 import DeadlineStatus from '../deadlineStatus'
 import { Spinner } from 'react-activity'
+import deadlineListContext from '../deadlineList/components/deadlineListContext'
 
 import { useAllReminders } from '../api/reminders'
 
@@ -35,7 +36,9 @@ const Layout = () => {
 			) : (
 				<div className="flex flex-col md:grid md:grid-cols-3">
 					<div className="md:col-span-2 h-screen/1.5 md:h-screen overflow-y-scroll border-r-2 border-opacity-40 py-6">
-						<DeadlineList reminderArray={reminders ? reminders : null} />
+						<deadlineListContext.Provider value={reminders ? reminders : null}>
+							<DeadlineContainer />
+						</deadlineListContext.Provider>
 					</div>
 					<div className="md:col-span-1 p-6 h-screen md:h-screen m-4 overflow-y-scroll">
 						<DeadlineStatus reminderArray={reminders ? reminders : null} />
