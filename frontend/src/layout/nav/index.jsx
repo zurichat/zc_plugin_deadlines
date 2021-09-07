@@ -2,6 +2,7 @@ import React from 'react'
 import Sortbar from './sortbar'
 import Searchbar from './searchbar'
 import SetDeadlineButton from './button'
+import { searchFunction } from './searchFunc.js'
 
 const Nav = () => {
 	return (
@@ -10,7 +11,7 @@ const Nav = () => {
 				<p className="font-bold text-2xl">Deadlines</p>
 				<div className="hidden md:flex md:left-0 flex-col space-y-2 sm:space-y-0 sm:flex-row">
 					<div className="sm:mx-1 lg:block">
-						<Searchbar />
+						<Searchbar searchFunction={searchFunction} />
 					</div>
 					<div className="md:mx-5 md:flex-grow-0">
 						<Sortbar />

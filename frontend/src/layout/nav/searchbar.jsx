@@ -1,8 +1,7 @@
 import { React, useState } from 'react'
-
 import { SearchIcon } from '@heroicons/react/solid'
 
-const Searchbar = ({ ...props }) => {
+const Searchbar = (props) => {
 	const [input, setInput] = useState('')
 
 	const handleInput = (e) => {
@@ -19,6 +18,8 @@ const Searchbar = ({ ...props }) => {
 		e.preventDefault()
 		setInput('')
 	}
+
+	console.log(props)
 
 	return (
 		<div
