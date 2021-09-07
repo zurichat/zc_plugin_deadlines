@@ -27,7 +27,11 @@ const UserAvatar = ({ width, src, ...props }) => {
 				key={index}
 				className={`object-cover ${translateX} bg-white rounded-full border-green-600 m-0 object-center overflow-hidden h-full w-full border-${border}`}
 			>
-				<img src={item} className="h-full w-full p-6 pb-0" alt="Avatar 1" />
+				<img
+					src={item}
+					className="h-full w-full bg-white overflow-hidden z-10 rounded-full border-8 border-green-500 p-5 pb-0 ring-1 ring-green-600"
+					alt={item}
+				/>
 			</div>
 		)
 	})
