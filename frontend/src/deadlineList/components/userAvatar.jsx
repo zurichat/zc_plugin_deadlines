@@ -1,35 +1,35 @@
 import React from 'react'
-import Avatar1 from '../../assets/img/png/avatar1.png'
-import Avatar2 from '../../assets/img/png/avatar1.png'
-// import Avatar3 from '@assets/img/png/avatar3.png'
 
-const UserAvatar = ({ ...props }) => {
+const UserAvatar = ({ width, src, ...props }) => {
+	const Avatar = src.slice(0, 4).map((item, index) => {
+		let translateX = ''
+		switch (index) {
+			case 1:
+				translateX = 'transform -translate-x-1/2'
+				break
+			case 2:
+				translateX = 'transform -translate-x-full'
+				break
+			case 3:
+				translateX = 'transform -translate-x-3/2'
+		}
+		return (
+			<div
+				key={index}
+				className={`object-cover ${translateX} bg-white rounded-1/2 m-0 object-center overflow-hidden h-full w-full border-4 border-brand-avatar-green`}
+			>
+				<img
+          src={item}
+          className="h-full w-full bg-white overflow-hidden z-10 rounded-full border-8 border-green-500 p-5 pb-0 ring-1 ring-green-600"
+          alt={item}
+          />
+			</div>
+		)
+	})
 	return (
 		<>
 			<div
-				className="flex flex-row -space-x-20 justify-center overflow-hidden"
-				{...props}
-			>
-				<img
-					src={Avatar2}
-					className="bg-white overflow-hidden z-10 h-48 w-48 inline-block rounded-full border-8 border-green-500 p-5 pb-0 ring-1 ring-green-600"
-					alt="Avatar 1"
-				/>
-				<img
-					src={Avatar1}
-					className="bg-white z-20 h-48 w-48 inline-block rounded-full border-8 border-green-500 p-5 pb-0 ring-1 ring-green-600"
-					alt="Avatar 2"
-				/>
-				<img
-					src={Avatar2}
-					className="bg-white z-30 h-48 w-48 inline-block rounded-full border-8 border-green-500 p-5 pb-0 ring-1 ring-green-600"
-					alt="Avatar 3"
-				/>
-				<img
-					src={Avatar1}
-					className="bg-white z-40 h-48 w-48 inline-block rounded-full border-8 border-green-500 p-5 pb-0 ring-1 ring-green-600"
-					alt="Avatar 4"
-				/>
+
 			</div>
 		</>
 	)
