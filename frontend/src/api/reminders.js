@@ -2,9 +2,6 @@ import axios from 'axios'
 import { useMutation, useQuery } from 'react-query'
 import { validateCreateReminderData } from '../utils/validation'
 
-// Errors to handle
-// {500, 503}, 404, 204, 400, 403,
-
 const axiosInstance = axios.create({
 	baseURL: '/api/v1',
 })
@@ -20,7 +17,45 @@ export const useAllReminders = () => {
 				})
 				return { ...res, length: res.data.data.result.length }
 			} catch (error) {
-				throw error
+				if (error.response.status === 204) {
+					throw new Error({
+						message: 'No data found',
+						statusCode: 204,
+						headers: error.response.headers,
+					})
+				} else if (error.resonse.status === 400) {
+					throw new Error({
+						message: 'Bad request due to invalid syntax',
+						statusCode: 400,
+						headers: error.response.headers,
+					})
+				} else if (error.resonse.status === 403) {
+					throw new Error({
+						message: 'Client does not have access rights to content ',
+						statusCode: 403,
+						headers: error.response.headers,
+					})
+				} else if (error.resonse.status === 404) {
+					throw new Error({
+						message: 'Server cannot find requested resource',
+						statusCode: 404,
+						headers: error.response.headers,
+					})
+				} else if (error.resonse.status === 500) {
+					throw new Error({
+						message: 'Internal server error',
+						statusCode: 500,
+						headers: error.response.headers,
+					})
+				} else if (error.resonse.status === 503) {
+					throw new Error({
+						message: 'Service Unavailable',
+						statusCode: 503,
+						headers: error.response.headers,
+					})
+				} else {
+					throw new Error('Fetching data failed')
+				}
 			}
 		},
 		{
@@ -57,8 +92,37 @@ export const useCreateReminder = (payload) => {
 							statusCode: 204,
 							headers: error.response.headers,
 						})
+					} else if (error.resonse.status === 400) {
+						throw new Error({
+							message: 'Bad request due to invalid syntax',
+							statusCode: 400,
+							headers: error.response.headers,
+						})
+					} else if (error.resonse.status === 403) {
+						throw new Error({
+							message: 'Client does not have access rights to content ',
+							statusCode: 403,
+							headers: error.response.headers,
+						})
+					} else if (error.resonse.status === 404) {
+						throw new Error({
+							message: 'Server cannot find requested resource',
+							statusCode: 404,
+							headers: error.response.headers,
+						})
+					} else if (error.resonse.status === 500) {
+						throw new Error({
+							message: 'Internal server error',
+							statusCode: 500,
+							headers: error.response.headers,
+						})
+					} else if (error.resonse.status === 503) {
+						throw new Error({
+							message: 'Service Unavailable',
+							statusCode: 503,
+							headers: error.response.headers,
+						})
 					}
-					throw error
 				}
 			} else {
 				throw new Error('Payload validation failed')
@@ -69,43 +133,3 @@ export const useCreateReminder = (payload) => {
 	return { responseBody: data, error, isLoading, isSuccess }
 }
 
-// export const useDeleteReminder = (id) => {
-// 	new Promise((resolve, reject) => {
-// 		try {
-// 			if (!id) throw new Error('Invalid id')
-
-// 			const axiosQuery = async () => {
-// 				const res = await axiosInstance({
-// 					url: `/reminders/${id}`,
-// 					method: 'DELETE',
-// 				})
-// 				return res
-// 			}
-// 			const { data, error } = useMutation('deleteReminder', axiosQuery)
-// 			if (error) {
-// 				reject(error)
-// 			} else {
-// 				resolve(data)
-// 			}
-// 		} catch (error) {
-// 			reject(error)
-// 		}
-// 	})
-// }
-
-// export const useUpcomingReminders = new Promise((resolve, reject) => {
-// 	try {
-// 		const axiosQuery = async () => {
-// 			const res = await axiosInstance({
-// 				method: 'GET',
-// 				url: '/upcoming',
-// 			})
-// 			return res
-// 		}
-// 		const { data } = useQuery('upcomingReminders', axiosQuery)
-
-// 		resolve(data)
-// 	} catch (error) {
-// 		reject(error)
-// 	}
-// })
