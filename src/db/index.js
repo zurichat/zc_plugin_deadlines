@@ -2,9 +2,10 @@ import axios from 'axios'
 import env from '@config/environment'
 import { get } from 'mongoose'
 
+
 const { getDevBaseUrl, ORG_ID, PLUGIN_ID } = env
 
-const BASE_URL = `${getDevBaseUrl()}/data`
+const BASE_URL = `${getDevBaseUrl().mockApiUrl}/data`
 const readBaseUrl = `${BASE_URL}/read`
 const writeBaseUrl = `${BASE_URL}/write`
 
@@ -49,14 +50,19 @@ export default function makeDb() {
 		}
 	}
 	async function findAll(modelName) {
-		/**
-		 * sample of details used
-		 * PLUGIN_ID zc_reminder
-		 * ORG_ID darwin_organization
-		 */
+		let res
 		try {
-			const res = await axios.get(
-				`${readBaseUrl}/zc_reminder/reminders/darwin_organization`
+			if (
+				process.env.NODE_ENV === 'development' ||
+				process.env.NODE_ENV === 'test'
+			) {
+				res = await axios({
+					url: `${readBaseUrl}/zc_reminder/reminders/darwin_organization`,
+					method: 'get',
+				})
+			}
+			res = await axios.get(
+				`${readBaseUrl}/${PLUGIN_ID}/${modelName}/${ORG_ID}`
 			)
 			return res
 		} catch (err) {
@@ -68,9 +74,20 @@ export default function makeDb() {
 			return err.response
 		}
 	}
+	const search = (data, query) => {
+		const result = data.data.filter((item) => {
+			if (
+				item.title === query.title ||
+				item.description === query.description ||
+				item.assignee === query.assignee
+			)
+				return true
+			return false
+		})
+		return result
+	}
 
 	async function findById(collectionName, id) {
-		// findById function that interacts with the database endpoint
 		try {
 			const res = await axios({
 				url: `${readBaseUrl}/${PLUGIN_ID}/${collectionName}/${ORG_ID}?object_id=${id}`,
@@ -88,7 +105,6 @@ export default function makeDb() {
 	}
 
 	async function deleteOne(collectionName, id) {
-		// Delete a document by
 		try {
 			const res = await axios.delete(writeBaseUrl, {
 				data: {
@@ -99,6 +115,7 @@ export default function makeDb() {
 					object_id: id,
 				},
 			})
+			console.log('res', res)
 			return res
 		} catch (error) {
 			if (!error.response) {
@@ -107,32 +124,6 @@ export default function makeDb() {
 				)
 			}
 			return error.response
-		}
-	}
-
-	async function update(collectionName, id, payload) {
-		try {
-			const res = await axios({
-				method: 'put',
-				url: `${writeBaseUrl}`,
-				data: {
-					plugin_id: PLUGIN_ID,
-					organization_id: ORG_ID,
-					collection_name: collectionName,
-					object_id: id,
-					payload,
-				},
-			})
-			return res.data.success
-		} catch (err) {
-			if (!err.response) {
-				throw new Error(
-					'Server Internal error, we will figure it out, try again later'
-				)
-			}
-			console.log(res.data, 'bad ')
-
-			return false
 		}
 	}
 
@@ -157,5 +148,12 @@ export default function makeDb() {
 		}
 	}
 
-	return Object.freeze({ create, findAll, updateById, findById, deleteOne })
+	return Object.freeze({
+		search,
+		create,
+		findAll,
+		updateById,
+		findById,
+		deleteOne,
+	})
 }

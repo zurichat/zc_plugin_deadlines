@@ -23,12 +23,8 @@ const { MONGODB } = env
 
 const reminderController = {
 	create: async (req, res, next) => {
-		const { priority, expiryDate, description, shouldRemind } = req.body
 		try {
-			const reminderData = { priority, expiryDate, description, shouldRemind }
-
-			const savedRecord = await db.create('reminders', reminderData)
-
+			const savedRecord = await db.create('reminders', { ...req.body })
 			return Response.send(
 				res,
 				201,
@@ -43,6 +39,7 @@ const reminderController = {
 	getAll: async (req, res, next) => {
 		try {
 			const data = await db.findAll('reminders')
+			console.log(data.status)
 			return Response.send(
 				res,
 				data.status,
@@ -64,64 +61,18 @@ const reminderController = {
 */
 	// Get search reminder using query of {title, creator, dueDate}
 	searchReminder: async (req, res, next) => {
-		const { title, creator, dueDate } = req.query
-
-		if (
-			typeof title !== 'string' ||
-			typeof creator !== 'string' ||
-			typeof dueDate !== 'string'
-		)
-			throw new Error('Invalid data format. Expected a string.')
-
-		const searchFunction = (data, query) => {
-			const result = data.data.result.filter((item) => {
-				if (
-					item.payload.title === query.title ||
-					item.payload.creator === query.creator ||
-					item.payload.dueDate === query.dueDate
-				)
-					return true
-				return false
-			})
-			return result
-		}
-
 		try {
-			// if there is any endpoint in the zc_core to provide us the search through our reminder database to fetch each reminder, then we use this search and the API will be `${zcDBApi}`
-
-			const search = await axios.get(
-				'https://reminders.zuri.chat/api/v1/reminders'
-			)
-
-			const result = await searchFunction(search, req.query)
-
+			const result = await db.findAll('reminders')
+			const data = db.search(result, { ...req.body })
 			return Response.send(
 				res,
-				201,
-				result,
-				'Reminder fetched successfully',
-				search.status === 200
+				200,
+				data,
+				'Deadlines fetched successfully',
+				data.status === 200
 			)
 		} catch (error) {
-			return next(err)
-		}
-	},
-	getUpcomingReminders: async (req, res, next) => {
-		try {
-			const reminder = [
-				makeFakeReminder({ shouldRemind: 'Every 2 days' }),
-				makeFakeReminder({ shouldRemind: 'Every 1 hour' }),
-				makeFakeReminder({ shouldRemind: 'Every day' }),
-				makeFakeReminder({ shouldRemind: 'Every 30 minutes' }),
-			]
-			Response.send(res, StatusCodes.OK, reminder, 'Upcoming reminders')
-		} catch (error) {
-			Response.send(
-				res,
-				StatusCodes.BAD_REQUEST,
-				null,
-				'An error occured getting upcoming reminders'
-			)
+			return next(error)
 		}
 	},
 	getOneHourToGoReminder: async (req, res) => {
@@ -177,9 +128,8 @@ const reminderController = {
 		}
 	},
 	deleteReminder: async (req, res, next) => {
-		const {
-			params: { id },
-		} = req
+		console.log(req.params.id)
+		const { id } = req.params
 
 		try {
 			if (!id) {
@@ -193,43 +143,12 @@ const reminderController = {
 				deleteReminder.status,
 				deleteReminder.data,
 				deleteReminder.statusText,
-				deleteReminder.status === 201
+				deleteReminder.status === 200
 			)
 		} catch (error) {
 			return next(error)
 		}
 	},
-	setDeadline: async (req, res, next) => {
-		// eslint-disable-next-line consistent-return
-		const {
-			teamsAssigned,
-			membersAssigned,
-			title,
-			description,
-			startDates,
-			dueDates,
-		} = req.body
-		// post data to be sent
-		try {
-			const deadlineData = {
-				teamsAssigned,
-				membersAssigned,
-				title,
-				description,
-				startDates,
-				dueDates,
-			}
-			const deadline = await db.create('deadlines', deadlineData)
-			return res.status(201).json({
-				status: 'success',
-				message: 'Deadline successfully set',
-				result: deadline,
-			})
-		} catch (error) {
-			return next(error)
-		}
-	},
-
 	updateById: async (req, res) => {
 		const { priority, expiryDate, description, shouldRemind } = req.body
 

@@ -10,6 +10,7 @@ dotenv.config()
 const env = {
 	PORT: process.env.PORT,
 	BASE_URL: process.env.BASE_URL,
+	API_URL: process.env.API_URL,
 	ENVIRONMENT: {
 		development: process.env.NODE_ENV === 'development',
 		test: process.env.NODE_ENV === 'test',
@@ -29,14 +30,14 @@ const env = {
 	ORG_ID: 'darwin_organization',
 	getDevBaseUrl() {
 		const self = env
-		// if (
-		// 	self.ENVIRONMENT.development ||
-		// 	self.ENVIRONMENT.test ||
-		// 	self.ENVIRONMENT.production
-		// ) {
 		self.BASE_URL = 'https://mock-dbapi.herokuapp.com/api'
-		// }
-		return self.BASE_URL
+		if (
+			process.env.NODE_ENV === 'development' ||
+			process.env.NODE_ENV === 'test'
+		) {
+			self.API_URL = `http://localhost:${self.PORT}/api/v1`
+		}
+		return { apiUrl: self.API_URL, mockApiUrl: self.BASE_URL }
 	},
 }
 
