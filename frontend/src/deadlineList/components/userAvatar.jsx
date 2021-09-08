@@ -23,17 +23,12 @@ const UserAvatar = ({ width, src, ...props }) => {
 		} else {
 			border = 8
 		}
-
 		return (
 			<div
 				key={index}
-				className={`object-cover ${translateX} bg-white rounded-full border-green-600 m-0 object-center overflow-hidden h-full w-full border-${border}`}
+				className={`object-cover ${translateX} bg-white rounded-1/2 m-0 object-center overflow-hidden h-full w-full border-${border} border-brand-avatar-green`}
 			>
-				<img
-					src={item}
-					className="h-full w-full bg-white overflow-hidden z-10 rounded-full border-8 border-green-500 p-5 pb-0 ring-1 ring-green-600"
-					alt={item}
-				/>
+				<img src={item} className="h-full w-full" alt="Avatar 1" />
 			</div>
 		)
 	})
@@ -49,5 +44,4 @@ const UserAvatar = ({ width, src, ...props }) => {
 		</>
 	)
 }
-
 export default UserAvatar
