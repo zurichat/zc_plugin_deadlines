@@ -2,10 +2,11 @@ import React from 'react'
 import Sortbar from './sortbar'
 import Searchbar from './searchbar'
 import SetDeadlineButton from './button'
+import './nav.css'
 
 const Nav = () => {
 	return (
-		<nav className="space-y-1 md:space-y-0">
+		<nav className="space-y-1 md:space-y-0 nav-fixed">
 			<div className="flex justify-between py-5 items-center">
 				<p className="font-bold text-2xl">Deadlines</p>
 				<div className="hidden md:flex md:left-0 flex-col space-y-2 sm:space-y-0 sm:flex-row">

@@ -8,6 +8,7 @@ import { Spinner } from 'react-activity'
 import { useAllReminders } from '../api/reminders'
 import NoDataMessage from '../components/reusableScreens/noData'
 import ReloadOnError from '../components/reusableScreens/reloadOnError'
+import './nav/nav.css'
 
 const Layout = () => {
 	const { isLoading, fetchedData, isPlaceholderData, error } = useAllReminders()
@@ -15,7 +16,7 @@ const Layout = () => {
 	return (
 		<div
 			id="layout-root"
-			className="bg-white w-full h-screen gap-4 pb-5 overflow-y-scroll flex flex-col px-5"
+			className="bg-white w-full h-screen gap-4 pb-5 overflow-y-scroll flex flex-col px-5 relative"
 		>
 			<Nav />
 			{error ? (
@@ -27,7 +28,7 @@ const Layout = () => {
 					<NoDataMessage className="text-center" />
 				</div>
 			) : (
-				<div className="flex flex-grow">
+				<div className="flex flex-grow deadline">
 					{isLoading || isPlaceholderData ? (
 						<div className="flex flex-grow justify-center items-center">
 							<Spinner color="#00B87C" size={32} speed={1} animating={true} />

@@ -1,0 +1,16 @@
+.nav-fixed {
+	position: fixed;
+	height: auto;
+	background-color: white;
+	width: 90%;
+	z-index: 100000;
+}
+.deadline {
+	margin-top: 6rem;
+}
+
+@media (max-width: 768px) {
+	.deadline {
+		margin-top: 10rem;
+	}
+}
