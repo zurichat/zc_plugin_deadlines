@@ -1,7 +1,7 @@
-import { React, useState } from 'react'
+import React, { useState } from 'react'
 import { SearchIcon } from '@heroicons/react/solid'
 
-const Searchbar = (props) => {
+const Searchbar = ({ searchfunction }) => {
 	const [input, setInput] = useState('')
 
 	const handleInput = (e) => {
@@ -19,12 +19,13 @@ const Searchbar = (props) => {
 		setInput('')
 	}
 
-	console.log(props)
+	searchfunction(input)
+	console.log(searchfunction)
 
 	return (
 		<div
 			className="border rounded w-full py-2 px-5 inline-flex justify-between items-center focus-within:shadow-lg focus-within:ring-1 focus-within:ring-brand-primary"
-			{...props}
+			// {...props}
 		>
 			<label htmlFor="task search" role="search">
 				<input
