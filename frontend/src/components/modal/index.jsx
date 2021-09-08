@@ -5,7 +5,7 @@ import React, { useContext, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { XIcon } from '@heroicons/react/solid'
-import { ModalContext } from '../../context/ModalContext'
+import { ModalContext } from '../../context/UIContext'
 
 const Modal = ({ title, children, ...props }) => {
 	// Clunky and should be updated to use local state

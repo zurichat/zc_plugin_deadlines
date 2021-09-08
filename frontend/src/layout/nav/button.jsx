@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ModalContext } from '../../context/ModalContext'
+import { ModalContext } from '../../context/UIContext'
 
 const NewDeadlineButton = () => {
 	const { modalData, setModalData } = useContext(ModalContext)

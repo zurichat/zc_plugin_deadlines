@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { render } from '@testing-library/react'
 
-import { ModalContextProvider } from '../../../context/ModalContext'
+import { ModalContextProvider } from '../../../context/UIContext'
 import ViewDeadline from '../'
 
 test('<ViewDeadline /> renders without crashing', () => {
