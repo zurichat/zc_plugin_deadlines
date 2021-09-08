@@ -1,4 +1,4 @@
-export default errorHandler = (error) => {
+const errorHandler = (error) => {
 	switch (error) {
 		case error.response.status === 204:
 			return new Error({
@@ -40,3 +40,5 @@ export default errorHandler = (error) => {
 			return new Error('Fetching data failed')
 	}
 }
+
+export default errorHandler

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useMutation, useQuery } from 'react-query'
 import errorHandler from './utils/errorHandler'
-import { validateCreateReminderData } from './utils/validation'
+import validateCreateReminderData from './utils/validation'
 
 const axiosInstance = axios.create({
 	baseURL: '/api/v1',
