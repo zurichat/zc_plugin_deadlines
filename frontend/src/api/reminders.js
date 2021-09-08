@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useMutation, useQuery } from 'react-query'
-import { validateCreateReminderData } from '../utils/validation'
+import errorHandler from './utils/errorHandler'
+import { validateCreateReminderData } from './utils/validation'
 
 const axiosInstance = axios.create({
 	baseURL: '/api/v1',
@@ -17,45 +18,7 @@ export const useAllReminders = () => {
 				})
 				return { ...res, length: res.data.data.result.length }
 			} catch (error) {
-				if (error.response.status === 204) {
-					throw new Error({
-						message: 'No data found',
-						statusCode: 204,
-						headers: error.response.headers,
-					})
-				} else if (error.resonse.status === 400) {
-					throw new Error({
-						message: 'Bad request due to invalid syntax',
-						statusCode: 400,
-						headers: error.response.headers,
-					})
-				} else if (error.resonse.status === 403) {
-					throw new Error({
-						message: 'Client does not have access rights to content ',
-						statusCode: 403,
-						headers: error.response.headers,
-					})
-				} else if (error.resonse.status === 404) {
-					throw new Error({
-						message: 'Server cannot find requested resource',
-						statusCode: 404,
-						headers: error.response.headers,
-					})
-				} else if (error.resonse.status === 500) {
-					throw new Error({
-						message: 'Internal server error',
-						statusCode: 500,
-						headers: error.response.headers,
-					})
-				} else if (error.resonse.status === 503) {
-					throw new Error({
-						message: 'Service Unavailable',
-						statusCode: 503,
-						headers: error.response.headers,
-					})
-				} else {
-					throw new Error('Fetching data failed')
-				}
+				throw errorHandler(error)
 			}
 		},
 		{
@@ -69,7 +32,11 @@ export const useAllReminders = () => {
 		}
 	)
 
-	return { isLoading, fetchedData: data, error, isPlaceholderData, isError }
+	// fetchedData is the response returned from the get query, error only exists if there's an error
+	// isLoading and isPlaceholderData are Booleans representing loading and palceholder data states respectively
+	// isPlaceholder exists primarily to deal with react calling methods on undefined when mounting components
+
+	return { fetchedData: data, isLoading, error, isPlaceholderData, isError }
 }
 
 export const useCreateReminder = (payload) => {
@@ -86,49 +53,14 @@ export const useCreateReminder = (payload) => {
 
 					return res
 				} catch (error) {
-					if (error.response.status === 204) {
-						throw new Error({
-							message: 'No data found',
-							statusCode: 204,
-							headers: error.response.headers,
-						})
-					} else if (error.resonse.status === 400) {
-						throw new Error({
-							message: 'Bad request due to invalid syntax',
-							statusCode: 400,
-							headers: error.response.headers,
-						})
-					} else if (error.resonse.status === 403) {
-						throw new Error({
-							message: 'Client does not have access rights to content ',
-							statusCode: 403,
-							headers: error.response.headers,
-						})
-					} else if (error.resonse.status === 404) {
-						throw new Error({
-							message: 'Server cannot find requested resource',
-							statusCode: 404,
-							headers: error.response.headers,
-						})
-					} else if (error.resonse.status === 500) {
-						throw new Error({
-							message: 'Internal server error',
-							statusCode: 500,
-							headers: error.response.headers,
-						})
-					} else if (error.resonse.status === 503) {
-						throw new Error({
-							message: 'Service Unavailable',
-							statusCode: 503,
-							headers: error.response.headers,
-						})
-					}
+					throw errorHandler(error)
 				}
-			} else {
-				throw new Error('Payload validation failed')
 			}
 		}
 	)
 
+	// Data is the response returned from the post, error only exists if there's an error
+	// isLoading and isSuccess are Booleans representing loading and success states respectively
+	// You can use isLoading to show loading spinners and isSuccess to tell when the request completed successfully and inform the user
 	return { responseBody: data, error, isLoading, isSuccess }
 }
