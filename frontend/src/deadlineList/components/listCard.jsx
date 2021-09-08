@@ -22,10 +22,8 @@ const ListCard = ({ title, description, dueDate, startDate }) => {
 					})
 				}}
 			>
-				<div className="flex my-3">
-					<DeadlineTitle title={title} className="font-bold w-4/6" />
-				</div>
-				<div className="flex my-3 ">
+				<DeadlineTitle title={title} />
+				<div className="flex mt-2">
 					<div className="h-full w-4/6">
 						<TextDescription description={description} />
 					</div>
