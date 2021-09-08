@@ -9,7 +9,7 @@ import request from 'supertest'
 import makeDb from '../src/db/index'
 
 const db = makeDb()
-describe('Reminder controllers', () => {
+describe.skip('Reminder controllers', () => {
 	const collectionName = 'deadlines'
 	it('successfully create new deadline', () => {
 		request(app)

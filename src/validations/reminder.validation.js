@@ -1,17 +1,51 @@
 import Joi from 'joi'
-import PriorityType from '@types/priority.type'
-import { validateBodyRequest } from './common'
+import { validateBodyRequest, validateParamRequest } from './common'
 
 const reminderSchema = async (req, res, next) => {
 	const schema = Joi.object({
-		priority: Joi.string()
-			.valid(...Object.values(PriorityType))
-			.label('Priority Type'),
-		expiryDate: Joi.date().required().label('Start date'),
+		title: Joi.string().trim().required().label('Title'),
 		description: Joi.string().trim().required().label('Description'),
-		shouldRemind: Joi.boolean().label('Recurring'),
+		assignee: Joi.string().trim().required().label('Assignee'),
+		creator: Joi.string().trim().required().label('Creator'),
+		startDate: Joi.date().required().label('Start date'),
+		dueDate: Joi.date().required().label('Due date'),
+		time: Joi.string()
+			.trim()
+			.regex(/^([0-9]{2})\:([0-9]{2})$/)
+			.required()
+			.label('Time'),
 	})
 	return validateBodyRequest(req, next, schema)
 }
 
-export default reminderSchema
+const searchSchema = async (req, res, next) => {
+	const schema = Joi.object({
+		text: Joi.string().trim().required().label('Search term'),
+	})
+	return validateBodyRequest(req, next, schema)
+}
+
+const updateSchema = async (req, res, next) => {
+	const schema = Joi.object({
+		title: Joi.string().trim().label('Title'),
+		description: Joi.string().trim().label('Description'),
+		assignee: Joi.string().trim().label('Assignee'),
+		creator: Joi.string().trim().label('Creator'),
+		startDate: Joi.date().label('Start date'),
+		dueDate: Joi.date().label('Due date'),
+		time: Joi.string()
+			.trim()
+			.regex(/^([0-9]{2})\:([0-9]{2})$/)
+			.required()
+			.label('Time'),
+	})
+	return validateBodyRequest(req, next, schema)
+}
+
+const idParams = async (req, res, next) => {
+	const schema = Joi.object({
+		id: Joi.string().trim().required().label('ID'),
+	})
+	validateParamRequest(req, next, schema)
+}
+export { searchSchema, reminderSchema, updateSchema, idParams}
