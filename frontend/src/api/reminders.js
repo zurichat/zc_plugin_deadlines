@@ -16,7 +16,8 @@ export const useAllReminders = () => {
 					method: 'GET',
 					url: '/getReminders',
 				})
-				return { ...res, length: res.data.data.result.length }
+				console.log(res)
+				return { ...res, length: res.data.data.length }
 			} catch (error) {
 				throw errorHandler(error)
 			}

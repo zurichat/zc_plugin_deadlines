@@ -35,10 +35,10 @@ const Layout = () => {
 					) : (
 						<div className="flex flex-col w-full md:grid md:grid-cols-3">
 							<div className="md:col-span-2 h-screen/1.5 md:h-screen overflow-y-scroll border-r-2 border-opacity-40 py-6">
-								<DeadlineList reminderArray={fetchedData.data.data.result} />
+								<DeadlineList reminderArray={fetchedData.data.data} />
 							</div>
 							<div className="md:col-span-1 h-screen md:h-screen px-3 overflow-y-scroll">
-								<DeadlineStatus reminderArray={fetchedData.data.data.result} />
+								<DeadlineStatus reminderArray={fetchedData.data.data} />
 							</div>
 						</div>
 					)}
