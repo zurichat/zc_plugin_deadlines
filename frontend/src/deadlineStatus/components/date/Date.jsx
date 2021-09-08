@@ -11,7 +11,7 @@ const Date = ({
 }) => {
 	return (
 		<div
-			className={`inline-flex items-center justify-center ${
+			className={`inline-flex mx-1 items-center justify-center ${
 				rightBorder ? `border-r` : null
 			}`}
 			{...props}

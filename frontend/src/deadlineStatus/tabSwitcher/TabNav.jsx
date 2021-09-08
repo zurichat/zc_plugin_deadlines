@@ -1,10 +1,11 @@
 import React from 'react'
+import './tabSwitch.css'
 
 const TabNav = ({ tabs, setSelected, selected, children }) => {
 	return (
 		<div>
-			<div className="content-center ">
-				<ul className="flex items-center mb-3 font-bold cursor-pointer text-lg">
+			<div className="content-center relative ">
+				<ul className="flex items-center mb-3 font-bold cursor-pointer text-lg sticky">
 					{tabs &&
 						tabs.map((tab) => {
 							const active =

@@ -7,6 +7,11 @@ const Sortbar = () => {
 	const sort_tags = ['Newest', 'Oldest', 'Most urgent', 'Least urgent']
 	const [value, setValue] = useState(null)
 
+	const handleSorting = (i) => {
+		setValue(i)
+		console.log(i)
+	}
+
 	return (
 		<Menu as="div" className="w-full">
 			<div>
@@ -20,12 +25,11 @@ const Sortbar = () => {
 			</div>
 			<Menu.Items className="absolute mt-2 divide-y rounded-md bg-white ring-1 ring-black ring-opacity-5 inline-flex flex-col">
 				{sort_tags.map((i, index) => (
-					<Menu.Item key={index} onClick={() => setValue(i)}>
+					<Menu.Item key={index} onClick={() => handleSorting(i)}>
 						{({ active }) => (
 							<div
-								className={`${
-									active && 'bg-gray-400 bg-opacity-10'
-								} px-14 py-2 text-sm text-gray-400 text-center  flex-shrink-0`}
+								className={`${active && 'bg-gray-400 bg-opacity-10'}
+								 px-14 py-2 text-sm text-gray-400 text-center  flex-shrink-0`}
 							>
 								{i}
 							</div>

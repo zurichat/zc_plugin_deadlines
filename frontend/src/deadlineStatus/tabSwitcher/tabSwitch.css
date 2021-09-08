@@ -1,0 +1,11 @@
+.relative {
+	position: relative;
+	height: 600px;
+	overflow: scroll;
+}
+.sticky {
+	position: sticky;
+	top: 0px;
+	z-index: 7000;
+	background-color: white;
+}
