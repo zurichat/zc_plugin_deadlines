@@ -81,6 +81,7 @@
 		"joi": "^17.4.2",
 		"mongoose": "^6.0.3",
 		"react-activity": "^2.1.1",
+		"react-responsive": "^9.0.0-beta.4",
 		"supertest": "^6.1.6"
 	}
 }
