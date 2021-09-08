@@ -14,7 +14,9 @@ const UserAvatar = ({ width, src, ...props }) => {
 				translateX = 'transform -translate-x-3/2'
 		}
 		let border = 0
-		if (width <= 300) {
+		if (width <= 250) {
+			border = 0
+		} else if (width <= 300) {
 			border = 2
 		} else if (width <= 400) {
 			border = 4
