@@ -4,7 +4,7 @@ import './scroll.css'
 import 'react-activity/dist/Spinner.css'
 
 import Layout from './layout'
-import { ModalContext } from './context/ModalContext.jsx'
+import { ModalContext } from '../src/context/UIContext'
 
 import ViewDeadline from './components/viewDeadline'
 import NewDeadline from './components/newDeadline'
