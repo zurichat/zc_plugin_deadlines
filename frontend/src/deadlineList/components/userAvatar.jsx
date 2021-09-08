@@ -13,20 +13,20 @@ const UserAvatar = ({ width, src, ...props }) => {
 			case 3:
 				translateX = 'transform -translate-x-3/2'
 		}
-		let border = 0
+		let border = 'border'
 		if (width <= 250) {
-			border = 0
-		} else if (width <= 300) {
-			border = 2
+			border = 'border'
+		} else if (width <= 300 && width >= 250) {
+			border = 'border-2'
 		} else if (width <= 400) {
-			border = 4
+			border = 'border-4'
 		} else {
-			border = 8
+			border = 'border-8'
 		}
 		return (
 			<div
 				key={index}
-				className={`object-cover ${translateX} bg-white rounded-1/2 m-0 object-center overflow-hidden h-full w-full border-${border} border-brand-avatar-green`}
+				className={`object-cover ${translateX} bg-white rounded-1/2 m-0 object-center overflow-hidden h-full w-full ${border} border-brand-avatar-green`}
 			>
 				<img src={item} className="h-full w-full" alt="Avatar 1" />
 			</div>
