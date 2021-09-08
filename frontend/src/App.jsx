@@ -15,9 +15,11 @@ const App = () => {
 	return (
 		<>
 			{modalData.modalShow && modalData.modalType === 'viewDeadline' ? (
+				// This modalData object passed down is always undefined for some reason. Should be fixed
 				<ViewDeadline modalData={modalData} />
 			) : null}
 			{modalData.modalShow && modalData.modalType === 'newDeadline' ? (
+				// This modalData object passed down is always undefined for some reason. Should be fixed
 				<NewDeadline modalData={modalData} />
 			) : null}
 			<Layout />
