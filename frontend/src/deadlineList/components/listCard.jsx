@@ -29,8 +29,18 @@ const ListCard = ({ title, description, dueDate, startDate }) => {
 					</div>
 					<div className="full w-2/6">
 						<div className="flex md:ml-2">
-							<img src={UserIcon} alt="users" className="w-16 h-8" />
-							<img src={UserIcon} alt="users" className="w-16 h-8 -ml-8" />
+							<img
+								src={UserIcon}
+								alt="users"
+								className="w-16 h-8 transition duration-500 ease-in-out transform hover:scale-125 hover:relative z-0 hover:z-10"
+								title="users"
+							/>
+							<img
+								src={UserIcon}
+								alt="users"
+								className="w-16 h-8 -ml-8 transition duration-500 ease-in-out transform hover:scale-125 hover:relative z-0 hover:z-10"
+								title="users"
+							/>
 						</div>
 					</div>
 				</div>
