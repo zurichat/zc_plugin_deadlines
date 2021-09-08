@@ -37,7 +37,7 @@ const Layout = () => {
 							<div className="md:col-span-2 h-screen/1.5 md:h-screen overflow-y-scroll border-r-2 border-opacity-40 py-6">
 								<DeadlineList reminderArray={fetchedData.data.data.result} />
 							</div>
-							<div className="md:col-span-1 h-screen md:h-screen px-3 overflow-y-scroll">
+							<div className="md:col-span-1 h-screen md:h-screen px-3  relative">
 								<DeadlineStatus reminderArray={fetchedData.data.data.result} />
 							</div>
 						</div>

@@ -14,7 +14,7 @@ const TabSwitcher = ({ reminderArray }) => {
 	}
 
 	return (
-		<div className="flex justify-center items-center overflow-y-scroll">
+		<div className="flex justify-center items-center">
 			<TabNav
 				tabs={['Overdue', 'Completed']}
 				selected={prevState.selected}
