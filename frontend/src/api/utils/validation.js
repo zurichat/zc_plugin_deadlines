@@ -1,4 +1,4 @@
-export const validateCreateReminderData = (payload) => {
+const validateCreateReminderData = (payload) => {
 	if (!payload) throw new Error('Invalid Payload')
 
 	const { title, description, assignees, creator, startDate, dueDate, time } =
@@ -25,3 +25,5 @@ export const validateCreateReminderData = (payload) => {
 		return false
 	}
 }
+
+export default validateCreateReminderData
