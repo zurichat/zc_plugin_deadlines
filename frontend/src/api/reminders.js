@@ -64,3 +64,25 @@ export const useCreateReminder = (payload) => {
 	// You can use isLoading to show loading spinners and isSuccess to tell when the request completed successfully and inform the user
 	return { responseBody: data, error, isLoading, isSuccess }
 }
+
+export const useDeleteReminder = () => {
+	const { mutate, data, error, isLoading, isSuccess } = useMutation(
+		async (id) => {
+			try {
+				const res = await axiosInstance({
+					url: `/reminders/${id}`,
+				})
+				return res.data
+			} catch (error) {
+				throw error
+			}
+		}
+	)
+	return {
+		deleteReminder: mutate,
+		responseData: data,
+		error,
+		isLoading,
+		isSuccess,
+	}
+}
