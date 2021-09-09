@@ -61,14 +61,17 @@ const Modal = ({ title, children, ...props }) => {
 									as="h3"
 									className="w-full font-medium leading-6 bg-brand-primary p-5 flex items-center justify-between rounded-t-lg"
 								>
-									<p className="text-white text-xl" ref={elementRef}>
+									<p
+										className="text-brand-bg-white text-base sm:text-xl"
+										ref={elementRef}
+									>
 										{title}
 									</p>
 									<button
-										className="m-0 w-10 h-10 rounded-full bg-white text-brand-primary hover:text-brand-error text-center"
+										className="m-0 w-7 sm:w-10 h-7 sm:h-10 rounded-full bg-white text-brand-primary hover:text-brand-error text-center"
 										onClick={closeModal}
 									>
-										<XIcon className="h-5 w-5 m-auto" />
+										<XIcon className="h-4 sm:h-5 w-4 sm:w-5 m-auto" />
 									</button>
 								</Dialog.Title>
 								<div className="mt-2 w-full h-full p-5">{children}</div>
