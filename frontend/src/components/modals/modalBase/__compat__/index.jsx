@@ -9,7 +9,6 @@ import { ModalContext } from '../../context/ModalContext'
 
 const Modal = ({ title, children, ...props }) => {
 	// Clunky and should be updated to use local state
-
 	const { modalData, setModalData } = useContext(ModalContext)
 	const closeModal = () => setModalData({ ...modalData, modalShow: false })
 

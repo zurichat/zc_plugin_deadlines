@@ -1,8 +1,8 @@
 import React from 'react'
 
-import DueDate from '../components/date/DueDate'
-import RemainingTime from '../components/date/RemainingTime'
-import StartDate from '../components/date/StartDate'
+import DueDate from './date/DueDate'
+import RemainingTime from './date/RemainingTime'
+import StartDate from './date/StartDate'
 import TitleAvatar from '../__compat__/TitleAvatar'
 
 const StatusListCard = ({ tab, title, description, dueDate, startDate }) => {

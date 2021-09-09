@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ModalContext } from '../../context/ModalContext'
+import { ModalContext } from '../../../../context/ModalContext'
 
 import DueDate from './date/DueDate'
 import RemainingTime from './date/RemainingTime'

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import App from '../App'
+import App from '../App__'
 import { render } from '@testing-library/react'
-import { ModalContextProvider } from '../context/ModalContext'
+import { ModalContextProvider } from '../../context/ModalContext'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
 
