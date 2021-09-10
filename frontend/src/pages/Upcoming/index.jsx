@@ -1,7 +1,10 @@
 import React from 'react'
+import { useAllReminders } from '../../api/reminders'
 
 const UpcomingPage = () => {
-	// const {data, isLoading, isPlaceholderData} = useAllReminders()
+	const { fetchedData, isLoading, isPlaceholderData } = useAllReminders()
+
+	console.log(fetchedData)
 
 	// Pass through sort hook
 	// const sortedDeadlineStore = useSort(deadlineStore)

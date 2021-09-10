@@ -14,21 +14,16 @@ export const useAllReminders = () => {
 			try {
 				const res = await axiosInstance({
 					method: 'GET',
-					url: '/getReminders',
+					url: '/reminders',
 				})
-				return { ...res, length: res.data.data.result.length }
+				return res.data.data
 			} catch (error) {
-				console.log(error)
 				throw errorHandler(error)
 			}
 		},
 		{
 			placeholderData: () => {
-				return {
-					data: {
-						result: [],
-					},
-				}
+				return []
 			},
 		}
 	)
