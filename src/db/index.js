@@ -58,7 +58,8 @@ export default class DatabaseOps {
 				url: `${readBaseUrl}/${pluginId}/${modelName}/${orgId}?_id=${id}`,
 				method: 'get',
 			})
-			return res.data.data
+			// console.log(res.data.data[0])
+			return res.data.data[0]
 		} catch (error) {
 			if (!error.response) {
 				throw new Error(

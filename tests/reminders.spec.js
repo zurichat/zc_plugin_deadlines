@@ -38,6 +38,24 @@ describe('Reminder controllers', () => {
 		expect(res.body.data).to.be.an('array')
 	})
 
+	it('successfully get a reminder by id', async () => {
+		const ID = '613af7b059842c7444fb02a1'
+		const res = await api.get(`/reminders/${ID}`)
+		expect(res.body.data).to.be.an('object')
+	})
+	
+	it('successfully delete a reminder by id', async () => {
+		const ID = '613af7b059842c7444fb02a1'
+		const res = await api.get(`/reminders/${ID}`)
+		expect(res.statusCode).to.be.equal(200)
+	})
+	
+	it('successfully update a reminder by id', async () => {
+		const ID = '613af7b059842c7444fb02a1'
+		const res = await api.get(`/reminders/${ID}`)
+		expect(res.statusCode).to.be.equal(200)
+	})
+
 	it('successfully search for reminder', async () => {
 		const res = await api.get('/search').set('Content-type', 'application/json').send({
 			text: 'testing',
