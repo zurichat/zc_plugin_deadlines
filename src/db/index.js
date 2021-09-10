@@ -18,6 +18,7 @@ const writeBaseUrl = `${baseUrl}/data/write`
 
 export default class DatabaseOps {
 	async create({ modelName, ...data }) {
+		console.log('test', data)
 		const res = await axios({
 			url: writeBaseUrl,
 			method: 'post',
@@ -27,7 +28,7 @@ export default class DatabaseOps {
 				collection_name: modelName,
 				bulk_write: Array.isArray(data), // returns true if data is an array
 				payload: data,
-			},
+			}
 		})
 		// Response
 		if (Array.isArray(data)) {
@@ -54,10 +55,11 @@ export default class DatabaseOps {
 	async findById({ modelName, id }) {
 		try {
 			const res = await axios({
-				url: `${readBaseUrl}/${pluginId}/${modelName}/${orgId}?object_id=${id}`,
+				url: `${readBaseUrl}/${pluginId}/${modelName}/${orgId}?_id=${id}`,
 				method: 'get',
 			})
-			return res.data.data
+			// console.log(res.data.data[0])
+			return res.data.data[0]
 		} catch (error) {
 			if (!error.response) {
 				throw new Error(
