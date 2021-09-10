@@ -18,6 +18,7 @@ export const useAllReminders = () => {
 				})
 				return { ...res, length: res.data.data.result.length }
 			} catch (error) {
+				console.log(error)
 				throw errorHandler(error)
 			}
 		},
