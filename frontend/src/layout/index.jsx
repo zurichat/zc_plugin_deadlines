@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Nav from './nav'
 
 import DeadlineList from '../deadlineList'
 import DeadlineStatus from '../deadlineStatus'
 import { Spinner } from 'react-activity'
 
-import { useAllReminders } from '../api/reminders'
+// import { useAllReminders } from '../api/reminders'
 import NoDataMessage from '../components/reusableScreens/noData'
 import ReloadOnError from '../components/reusableScreens/reloadOnError'
+import { RemindersContext } from '../context/RemindersContext'
 
 const Layout = () => {
-	const { isLoading, fetchedData, isPlaceholderData, error } = useAllReminders()
-
+	const { isLoading, currentData, isPlaceholderData, error } =
+		useContext(RemindersContext)
 	return (
 		<div
 			id="layout-root"
@@ -22,7 +23,7 @@ const Layout = () => {
 				<div className="flex flex-col flex-grow items-center justify-center">
 					<ReloadOnError className="text-center" />
 				</div>
-			) : fetchedData.length === 0 && !isPlaceholderData ? (
+			) : currentData?.length === 0 && !isPlaceholderData ? (
 				<div className="flex flex-grow items-center justify-center">
 					<NoDataMessage className="text-center" />
 				</div>
@@ -35,10 +36,10 @@ const Layout = () => {
 					) : (
 						<div className="flex flex-col w-full md:grid md:grid-cols-3">
 							<div className="md:col-span-2 h-screen/1.5 md:h-screen overflow-y-scroll border-r-2 border-opacity-40 py-6">
-								<DeadlineList reminderArray={fetchedData.data.data} />
+								<DeadlineList reminderArray={currentData} />
 							</div>
 							<div className="md:col-span-1 h-screen md:h-screen px-3 overflow-y-scroll">
-								<DeadlineStatus reminderArray={fetchedData.data.data} />
+								<DeadlineStatus reminderArray={currentData} />
 							</div>
 						</div>
 					)}
