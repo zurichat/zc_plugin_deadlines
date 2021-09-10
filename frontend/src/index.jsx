@@ -6,7 +6,6 @@ import './styles/index.css'
 import './styles/scroll.css'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { DeadlineStoreProvider } from './context/DeadlineStore'
 import { ModalContextProvider } from './context/ModalContext'
 import { SortProvider } from './components/sort'
 
@@ -16,11 +15,9 @@ ReactDOM.render(
 	<React.StrictMode>
 		<QueryClientProvider client={queryClient}>
 			<ModalContextProvider>
-				<DeadlineStoreProvider>
-					<SortProvider>
-						<App />
-					</SortProvider>
-				</DeadlineStoreProvider>
+				<SortProvider>
+					<App />
+				</SortProvider>
 			</ModalContextProvider>
 		</QueryClientProvider>
 	</React.StrictMode>,
