@@ -8,15 +8,14 @@ import Response from '@utils/response.handler'
 // eslint-disable-next-line import/no-unresolved
 import { StatusCodes } from 'http-status-codes'
 import { MESSAGE } from '@utils/constant'
-import makeFakeReminder from '@utils/fake.reminder'
-import axios from 'axios'
 import env from '@config/environment'
 import makeDb from '../db'
+import DatabaseOps from '../db'
 
 const { GET_ALL_REMINDERS } = MESSAGE
 const { OK } = StatusCodes
 
-const db = makeDb()
+const db = new DatabaseOps()
 const Agenda = require('agenda')
 
 const { MONGODB } = env
@@ -24,12 +23,15 @@ const { MONGODB } = env
 const reminderController = {
 	create: async (req, res, next) => {
 		try {
-			const savedRecord = await db.create('reminders', { ...req.body })
+			const savedRecord = await db.create({
+				modelName: 'deadlines',
+				...req.body,
+			})
 			return Response.send(
 				res,
 				201,
 				savedRecord,
-				'Reminder created successfully',
+				'Deadline created successfully',
 				true
 			)
 		} catch (error) {
@@ -38,14 +40,12 @@ const reminderController = {
 	},
 	getAll: async (req, res, next) => {
 		try {
-			const data = await db.findAll('reminders')
-			console.log(data.status)
+			const data = await db.findAll('deadlines')
 			return Response.send(
 				res,
-				data.status,
-				data.data,
-				data.statusText,
-				data.status === 200
+				200,
+				data,
+				'Deadlines retrieved successfully'
 			)
 		} catch (err) {
 			return next(err)
@@ -62,19 +62,21 @@ const reminderController = {
 	// Get search reminder using query of {title, creator, dueDate}
 	searchReminder: async (req, res, next) => {
 		try {
-			const result = await db.findAll('reminders')
-			const data = db.search(result, { ...req.body })
+			const {text} = req.body
+			const result = await db.findAll('deadlines')
+			const data = db.search(result, text)
 			return Response.send(
 				res,
 				200,
 				data,
 				'Deadlines fetched successfully',
-				data.status === 200
+				true
 			)
 		} catch (error) {
 			return next(error)
 		}
 	},
+
 	getOneHourToGoReminder: async (req, res) => {
 		try {
 			const agenda = new Agenda({
