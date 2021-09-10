@@ -55,6 +55,16 @@ const reminderController = {
 	getById: async (req, res, next) => {
 		try {
 			const data = await db.findById({modelName:'deadlines', id: req.params.id})
+
+			if (!data) {
+				return Response.send(
+					res,
+					404,
+					data,
+					'Reminder not found',
+					false
+				)
+			}
 			return Response.send(
 				res,
 				200,
@@ -65,6 +75,71 @@ const reminderController = {
 		} catch (err) {
 			return next(err)
 		}
+	},
+	deleteReminder: async (req, res, next) => {
+		try {
+			const data = await db.deleteOne('deadlines', req.params.id)
+			return Response.send(
+				res,
+				200,
+				data,
+				'Reminder deleted successfully',
+				true
+			)
+		} catch (err) {
+			return next(err)
+		}
+	},
+	updateById: async (req, res) => {
+		try {
+			const data = await db.updateById({
+				modelName: 'deadlines',
+				id: req.params.id,
+				...req.body,
+			})
+
+			if (!data) {
+				return Response.send(
+					res,
+					404,
+					data,
+					'Reminder with that ID not found!',
+					false
+				)
+			}
+
+			return Response.send(
+				res,
+				200,
+				data,
+				'Reminder updated successfully',
+				true
+			)
+		} catch (err) {
+			return next(err)
+		}
+		// const { priority, expiryDate, description, shouldRemind } = req.body
+
+		// try {
+		// 	const reminderData = { priority, expiryDate, description, shouldRemind }
+
+		// 	const { id } = req.params
+
+		// 	if (!id) {
+		// 		throw new Error('id is required')
+		// 	}
+
+		// 	const updateReminder = await db.findByIdAndupdate(id, reminderData)
+
+		// 	res.status(200).send('reminder updated successfully ')
+		// } catch (error) {
+		// 	console.log(error)
+		// 	res.json({
+		// 		status: 400,
+		// 		data: null,
+		// 		message: error.message.data,
+		// 	})
+		// }
 	},
 
 	/**
@@ -144,52 +219,7 @@ const reminderController = {
 			})
 		}
 	},
-	deleteReminder: async (req, res, next) => {
-		console.log(req.params.id)
-		const { id } = req.params
-
-		try {
-			if (!id) {
-				throw new Error('id is required')
-			}
-
-			const deleteReminder = await db.deleteOne('reminders', id)
-
-			return Response.send(
-				res,
-				deleteReminder.status,
-				deleteReminder.data,
-				deleteReminder.statusText,
-				deleteReminder.status === 200
-			)
-		} catch (error) {
-			return next(error)
-		}
-	},
-	updateById: async (req, res) => {
-		const { priority, expiryDate, description, shouldRemind } = req.body
-
-		try {
-			const reminderData = { priority, expiryDate, description, shouldRemind }
-
-			const { id } = req.params
-
-			if (!id) {
-				throw new Error('id is required')
-			}
-
-			const updateReminder = await db.findByIdAndupdate(id, reminderData)
-
-			res.status(200).send('reminder updated successfully ')
-		} catch (error) {
-			console.log(error)
-			res.json({
-				status: 400,
-				data: null,
-				message: error.message.data,
-			})
-		}
-	},
+	
 }
 
 export default reminderController
