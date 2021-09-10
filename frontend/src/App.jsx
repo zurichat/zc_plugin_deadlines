@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Nav from './components/nav'
 
-import CompletedPage from './pages/Completed'
+import CompletedPage from './pages/Completed/index'
 import OverduePage from './pages/Overdue'
 import UpcomingPage from './pages/Upcoming'
 
