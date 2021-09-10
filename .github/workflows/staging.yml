@@ -2,9 +2,9 @@ name: Staging Test Suite
 
 on:
   push:
-    branches: [ staging ]
+    branches: [ design-update ]
   pull_request:
-    branches: [ staging ]
+    branches: [ design-update ]
 
 jobs:
   build:
