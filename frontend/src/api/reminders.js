@@ -8,35 +8,44 @@ const axiosInstance = axios.create({
 })
 
 export const useAllReminders = () => {
-	const { isLoading, data, error, isPlaceholderData, isError } = useQuery(
-		'allReminders',
-		async () => {
-			try {
-				const res = await axiosInstance({
-					method: 'GET',
-					url: '/getReminders',
-				})
-				return { ...res, length: res.data.data.result.length }
-			} catch (error) {
-				throw errorHandler(error)
-			}
-		},
-		{
-			placeholderData: () => {
-				return {
-					data: {
-						result: [],
-					},
+	const { isLoading, data, error, isPlaceholderData, isError, refetch } =
+		useQuery(
+			'allReminders',
+			async () => {
+				try {
+					const res = await axiosInstance({
+						method: 'GET',
+						url: '/reminders',
+					})
+					console.log(res.data)
+					return { ...res, length: res.data.data }
+				} catch (error) {
+					throw errorHandler(error)
 				}
 			},
-		}
-	)
+			{
+				placeholderData: () => {
+					return {
+						data: {
+							result: [],
+						},
+					}
+				},
+			}
+		)
 
 	// fetchedData is the response returned from the get query, error only exists if there's an error
 	// isLoading and isPlaceholderData are Booleans representing loading and palceholder data states respectively
 	// isPlaceholder exists primarily to deal with react calling methods on undefined when mounting components
 
-	return { fetchedData: data, isLoading, error, isPlaceholderData, isError }
+	return {
+		fetchedData: data,
+		isLoading,
+		error,
+		isPlaceholderData,
+		isError,
+		refetch,
+	}
 }
 
 export const useCreateReminder = (payload) => {
@@ -71,6 +80,7 @@ export const useDeleteReminder = () => {
 			try {
 				const res = await axiosInstance({
 					url: `/reminders/${id}`,
+					method: 'DELETE',
 				})
 				return res.data
 			} catch (error) {
