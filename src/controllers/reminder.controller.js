@@ -9,7 +9,7 @@ import Response from '@utils/response.handler'
 import { StatusCodes } from 'http-status-codes'
 import { MESSAGE } from '@utils/constant'
 import env from '@config/environment'
-import makeDb from '../db'
+// import makeDb from '../db'
 import DatabaseOps from '../db'
 
 const { GET_ALL_REMINDERS } = MESSAGE
@@ -27,12 +27,12 @@ const reminderController = {
 				modelName: 'deadlines',
 				...req.body,
 			})
+			console.log(savedRecord)
 			return Response.send(
 				res,
 				201,
 				savedRecord,
-				'Deadline created successfully',
-				true
+				'Deadline created successfully'
 			)
 		} catch (error) {
 			return next(error)
@@ -45,7 +45,22 @@ const reminderController = {
 				res,
 				200,
 				data,
-				'Deadlines retrieved successfully'
+				'Deadlines retrieved successfully',
+				true
+			)
+		} catch (err) {
+			return next(err)
+		}
+	},
+	getById: async (req, res, next) => {
+		try {
+			const data = await db.findById({modelName:'deadlines', id: req.params.id})
+			return Response.send(
+				res,
+				200,
+				data,
+				'Deadline retrieved successfully',
+				true
 			)
 		} catch (err) {
 			return next(err)
@@ -62,7 +77,7 @@ const reminderController = {
 	// Get search reminder using query of {title, creator, dueDate}
 	searchReminder: async (req, res, next) => {
 		try {
-			const {text} = req.body
+			const { text } = req.body
 			const result = await db.findAll('deadlines')
 			const data = db.search(result, text)
 			return Response.send(

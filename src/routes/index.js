@@ -21,6 +21,7 @@ router.get('/ping', (req, res) =>
 
 router
 	.route('/reminders/:id')
+	.get(reminderController.getById)
 	.put(idParams, updateSchema, reminderController.updateById)
 router.delete('/reminders/:id', idParams, reminderController.deleteReminder)
 router
