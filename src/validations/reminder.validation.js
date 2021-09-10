@@ -9,11 +9,11 @@ const reminderSchema = async (req, res, next) => {
 		creator: Joi.string().trim().required().label('Creator'),
 		startDate: Joi.date().required().label('Start date'),
 		dueDate: Joi.date().required().label('Due date'),
-		time: Joi.string()
-			.trim()
-			.regex(/^([0-9]{2})\:([0-9]{2})$/)
-			.required()
-			.label('Time'),
+		// time: Joi.string()
+		// 	.trim()
+		// 	.regex(/^([0-9]{2})\:([0-9]{2})$/)
+		// 	.required()
+		// 	.label('Time'),
 	})
 	return validateBodyRequest(req, next, schema)
 }
@@ -33,11 +33,11 @@ const updateSchema = async (req, res, next) => {
 		creator: Joi.string().trim().label('Creator'),
 		startDate: Joi.date().label('Start date'),
 		dueDate: Joi.date().label('Due date'),
-		time: Joi.string()
-			.trim()
-			.regex(/^([0-9]{2})\:([0-9]{2})$/)
-			.required()
-			.label('Time'),
+		// time: Joi.string()
+		// 	.trim()
+		// 	.regex(/^([0-9]{2})\:([0-9]{2})$/)
+		// 	.required()
+		// 	.label('Time'),
 	})
 	return validateBodyRequest(req, next, schema)
 }
