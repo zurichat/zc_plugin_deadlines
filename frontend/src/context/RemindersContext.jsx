@@ -33,7 +33,10 @@ export const RemindersContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		// set the initial state with the newly fetched data
-		dispatch({ type: actionTypes.INIT, payload: fetchedData.data.data })
+		dispatch({
+			type: actionTypes.INIT,
+			payload: { data: fetchedData.data.data },
+		})
 	}, [fetchedData.data.success])
 
 	return (
@@ -52,3 +55,4 @@ export const RemindersContextProvider = ({ children }) => {
 		</RemindersContext.Provider>
 	)
 }
+//
