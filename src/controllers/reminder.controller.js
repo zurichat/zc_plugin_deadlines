@@ -25,11 +25,11 @@ const reminderController = {
 				...req.body,
 			})
 			console.log(savedRecord)
-			const room = await db.addToRoom({
-				userId: '6139364399bd9e223a37d92f',
-				...req.body,
-			})
-			console.log({ room })
+			// const room = await db.addToRoom({
+			// 	userId: '6139364399bd9e223a37d92f',
+			// 	...req.body,
+			// })
+			// console.log({ room })
 			return Response.send(
 				res,
 				201,
