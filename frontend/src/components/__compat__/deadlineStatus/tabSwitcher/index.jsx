@@ -27,7 +27,7 @@ const TabSwitcher = ({ reminderArray }) => {
 					{/* Sliced to map just n times */}
 					{Array.isArray(reminderArray) &&
 						reminderArray.slice(0, 3).map((value, index) => {
-							const { title, description, dueDate, startDate } = value.payload
+							const { title, description, dueDate, startDate } = value
 							return (
 								<div className="mb-14" key={index}>
 									<StatusListCard
@@ -49,7 +49,7 @@ const TabSwitcher = ({ reminderArray }) => {
 					{/* Sliced to map just n times */}
 					{Array.isArray(reminderArray) &&
 						reminderArray.slice(0, 3).map((value, index) => {
-							const { title, description, dueDate, startDate } = value.payload
+							const { title, description, dueDate, startDate } = value
 							return (
 								<div className="mb-14" key={index}>
 									<StatusListCard
