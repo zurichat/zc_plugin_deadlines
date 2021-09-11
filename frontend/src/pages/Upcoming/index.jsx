@@ -5,7 +5,7 @@ import '../../styles/index.css'
 import '../../styles/scroll.css'
 
 const UpcomingPage = () => {
-	const { fetchedData, isLoading, isPlaceholderData } = useAllReminders()
+	const { fetchedData } = useAllReminders()
 
 	// console.log(fetchedData[0])
 

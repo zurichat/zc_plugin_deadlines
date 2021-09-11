@@ -18,6 +18,7 @@ const writeBaseUrl = `${baseUrl}/data/write`
 
 export default class DatabaseOps {
 	async create({ modelName, ...data }) {
+		console.log(typeof modelName)
 		const res = await axios({
 			url: writeBaseUrl,
 			method: 'post',
@@ -51,11 +52,14 @@ export default class DatabaseOps {
 		}
 	}
 	async findById({ modelName, id }) {
+		const urls = `${readBaseUrl}/${pluginId}/${modelName}/${orgId}?_id=${id}`
+		console.log(urls)
 		try {
 			const res = await axios({
 				url: `${readBaseUrl}/${pluginId}/${modelName}/${orgId}?_id=${id}`,
 				method: 'get',
 			})
+			console.log(res.data.data)
 			return res.data.data[0]
 		} catch (error) {
 			if (!error.response) {
@@ -119,6 +123,10 @@ export default class DatabaseOps {
 
 	async addToRoom({ ...params }) {
 		const room = await this.create({ modelName: 'rooms', ...params })
+		const found = await this.findById({
+			modelName: 'rooms',
+			id: room.object_id,
+		})
 		return room
 	}
 
