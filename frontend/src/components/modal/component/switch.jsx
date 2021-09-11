@@ -7,7 +7,7 @@ export default function CustomSwitch({ label, onSwitch }) {
 
 	const whenSwitched = (e) => {
 		setEnabled(e)
-		onSwitch(enabled)
+		onSwitch(e)
 	}
 
 	return (
