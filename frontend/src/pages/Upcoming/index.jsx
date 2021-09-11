@@ -2,7 +2,7 @@ import React from 'react'
 import { useAllReminders } from '../../api/reminders'
 
 const UpcomingPage = () => {
-	const { fetchedData, isLoading, isPlaceholderData } = useAllReminders()
+	const { fetchedData } = useAllReminders()
 
 	console.log(fetchedData)
 
