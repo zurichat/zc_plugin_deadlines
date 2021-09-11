@@ -6,11 +6,13 @@
 
 import { Router } from 'express'
 import reminderController from '@controllers/reminder.controller'
+import sidebarController from '@controllers/sidebar.controller'
 import {
 	idParams,
 	reminderSchema,
 	searchSchema,
 	updateSchema,
+	addRoomSchema,
 } from '@validations/reminder.validation'
 
 const router = Router()
@@ -21,8 +23,12 @@ router.get('/ping', (req, res) =>
 
 router
 	.route('/reminders/:id')
-	.put(idParams, updateSchema, reminderController.updateById)
-router.delete('/reminders/:id', idParams, reminderController.deleteReminder)
+	.get(reminderController.getById)
+	.delete(reminderController.deleteReminder)
+	.put(updateSchema, reminderController.updateById)
+// .put(idParams, updateSchema, reminderController.updateById)
+
+// router.delete('/reminders/:id', idParams, reminderController.deleteReminder)
 router
 	.route('/reminders')
 	.get(reminderController.getAll)
@@ -30,4 +36,10 @@ router
 
 router.get('/search', searchSchema, reminderController.searchReminder)
 
+/**
+ * SIDEBAR AND ROOMS
+ */
+
+router.post('/addRoom', addRoomSchema, sidebarController.addToRoom)
+router.delete('/removeRoom', sidebarController.deleteFromRoom)
 export default router
