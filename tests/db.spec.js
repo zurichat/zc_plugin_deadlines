@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import makeDb from '../src/db/index'
 
-const db = makeDb()
+// const db = makeDb()
 
 describe.skip('Db Function', () => {
 	const collectionName = 'reminders'

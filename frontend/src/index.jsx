@@ -5,20 +5,20 @@ import App from './App'
 import './styles/index.css'
 import './styles/scroll.css'
 
-import { QueryClient, QueryClientProvider } from 'react-query'
 import { ModalContextProvider } from './context/ModalContext'
-import { SortProvider } from './components/sort'
+import { RemindersContextProvider } from './context/RemindersContext'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const queryClient = new QueryClient()
 
 ReactDOM.render(
 	<React.StrictMode>
 		<QueryClientProvider client={queryClient}>
-			<ModalContextProvider>
-				<SortProvider>
+			<RemindersContextProvider>
+				<ModalContextProvider>
 					<App />
-				</SortProvider>
-			</ModalContextProvider>
+				</ModalContextProvider>
+			</RemindersContextProvider>
 		</QueryClientProvider>
 	</React.StrictMode>,
 	document.getElementById('reminder_root')

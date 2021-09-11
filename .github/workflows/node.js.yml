@@ -5,41 +5,39 @@ name: Frontend Test Suite CI
 
 on:
   push:
-    branches: [ dev, master ]
+    branches: [dev, master]
   pull_request:
-    branches: [ dev, master ]
+    branches: [dev, master]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [16.x]
-        
+
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v2
-    
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-        
-    - name: Install monorepo dependencies
-      run: yarn install
-        
-    - name: Install frontend dependencies
-      working-directory: ./frontend
-      run: yarn install
-    
-    - name: Run tests
-      working-directory: ./frontend
-      run: yarn test
-    
-    - name: Build
-      working-directory: ./frontend
-      run: yarn build
-    
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+
+      - name: Install monorepo dependencies
+        run: yarn install
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: yarn install
+
+      - name: Run tests
+        working-directory: ./frontend
+        run: yarn test
+
+      - name: Build
+        working-directory: ./frontend
+        run: yarn build

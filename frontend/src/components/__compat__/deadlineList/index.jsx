@@ -8,7 +8,7 @@ const DeadlineContainer = ({ reminderArray }) => {
 		<div>
 			{Array.isArray(reminderArray) &&
 				reminderArray.map((value, index) => {
-					const { title, description, dueDate, startDate } = value.payload
+					const { title, description, dueDate, startDate } = value
 					return (
 						<div className="w-full border-b-1/2 mt-5" key={index}>
 							<ListCard
