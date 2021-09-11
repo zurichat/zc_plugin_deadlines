@@ -1,13 +1,12 @@
 import axios from 'axios'
 import env from '@config/environment'
-import { get } from 'mongoose'
 
+const { getDevBaseUrl } = env
 
-const { getDevBaseUrl, ORG_ID, PLUGIN_ID } = env
-
-const BASE_URL = `${getDevBaseUrl().mockApiUrl}/data`
-const readBaseUrl = `${BASE_URL}/read`
-const writeBaseUrl = `${BASE_URL}/write`
+const { apiUrl, baseUrl, orgId, pluginId } = getDevBaseUrl()
+console.log({ apiUrl, baseUrl, orgId, pluginId })
+const readBaseUrl = `${baseUrl}/data/read`
+const writeBaseUrl = `${baseUrl}/data/write`
 
 /** *
  * create
@@ -17,83 +16,47 @@ const writeBaseUrl = `${BASE_URL}/write`
  * updateById
  */
 
-export default function makeDb() {
-	// functions go here
-	/**
-	 * Persists data to a db on a thrid party api
-	 * @param {string} modelName
-	 * @param {[object] | object} data
-	 * @returns saved document
-	 */
-	const create = async (modelName, data) => {
-		if (typeof data !== 'object')
-			throw new Error('Invalid data format. Expected an array or object.')
-
-		const dbResponse = await axios.post(writeBaseUrl, {
-			plugin_id: PLUGIN_ID,
-			organization_id: ORG_ID,
-			collection_name: modelName,
-			bulk_write: Array.isArray(data), // returns true if data is an array
-			payload: data,
+export default class DatabaseOps {
+	async create({ modelName, ...data }) {
+		const res = await axios({
+			url: writeBaseUrl,
+			method: 'post',
+			data: {
+				plugin_id: pluginId,
+				organisation_id: orgId,
+				collection_name: modelName,
+				bulk_write: Array.isArray(data), // returns true if data is an array
+				payload: data,
+			},
 		})
-
 		// Response
 		if (Array.isArray(data)) {
-			return dbResponse.data.result.map((row) => ({
+			return res.data.data.map((row) => ({
 				id: row.document.object_id,
 				...row.document.payload,
 			}))
 		}
-		return {
-			id: dbResponse.data.object_id,
-			...dbResponse.data.payload,
-		}
-	}
-	async function findAll(modelName) {
-		let res
-		try {
-			if (
-				process.env.NODE_ENV === 'development' ||
-				process.env.NODE_ENV === 'test'
-			) {
-				res = await axios({
-					url: `${readBaseUrl}/zc_reminder/reminders/darwin_organization`,
-					method: 'get',
-				})
-			}
-			res = await axios.get(
-				`${readBaseUrl}/${PLUGIN_ID}/${modelName}/${ORG_ID}`
-			)
-			return res
-		} catch (err) {
-			if (!err.response) {
-				throw new Error(
-					'Server Internal error, we will figure it out, try again later'
-				)
-			}
-			return err.response
-		}
-	}
-	const search = (data, query) => {
-		const result = data.data.filter((item) => {
-			if (
-				item.title === query.title ||
-				item.description === query.description ||
-				item.assignee === query.assignee
-			)
-				return true
-			return false
-		})
-		return result
+		return res.data.data
 	}
 
-	async function findById(collectionName, id) {
+	async findAll({ modelName }) {
 		try {
 			const res = await axios({
-				url: `${readBaseUrl}/${PLUGIN_ID}/${collectionName}/${ORG_ID}?object_id=${id}`,
-				method: get,
+				url: `${readBaseUrl}/${pluginId}/${modelName}/${orgId}`,
+				method: 'get',
 			})
-			return res
+			return res.data.data
+		} catch (error) {
+			return error.response
+		}
+	}
+	async findById({ modelName, id }) {
+		try {
+			const res = await axios({
+				url: `${readBaseUrl}/${pluginId}/${modelName}/${orgId}?_id=${id}`,
+				method: 'get',
+			})
+			return res.data.data[0]
 		} catch (error) {
 			if (!error.response) {
 				throw new Error(
@@ -104,19 +67,18 @@ export default function makeDb() {
 		}
 	}
 
-	async function deleteOne(collectionName, id) {
+	async deleteOne(collectionName, id) {
 		try {
 			const res = await axios.delete(writeBaseUrl, {
 				data: {
-					plugin_id: PLUGIN_ID,
-					organization_id: ORG_ID,
+					plugin_id: pluginId,
+					organization_id: orgId,
 					collection_name: collectionName,
 					bulk_write: false,
 					object_id: id,
 				},
 			})
-			console.log('res', res)
-			return res
+			return res.data.data
 		} catch (error) {
 			if (!error.response) {
 				throw new Error(
@@ -127,15 +89,15 @@ export default function makeDb() {
 		}
 	}
 
-	async function updateById({ id, ...params }) {
+	async updateById({ modelName, id, ...params }) {
 		try {
 			const res = await axios({
 				method: 'put',
-				url: `${getDevBaseUrl()}/data/write`,
+				url: writeBaseUrl,
 				data: {
-					plugin_id: PLUGIN_ID,
-					organisation_id: ORG_ID,
-					collection_name: REMINDER_COLLECTION,
+					plugin_id: pluginId,
+					organisation_id: orgId,
+					collection_name: modelName,
 					filter: {
 						object_id: id,
 					},
@@ -148,12 +110,25 @@ export default function makeDb() {
 		}
 	}
 
-	return Object.freeze({
-		search,
-		create,
-		findAll,
-		updateById,
-		findById,
-		deleteOne,
-	})
+	async search(data, query) {
+		console.log('INCOMING', data, query)
+		const result = data.filter((item) => item.title === query)
+		console.log('RESULT GOTTEN', result)
+		return result
+	}
+
+	async addToRoom({ ...params }) {
+		const room = await this.create({ modelName: 'rooms', ...params })
+		return room
+	}
+
+	async removeFromRoom({ userId }) {
+		const deleted = await this.deleteOne('rooms', userId)
+		console.log({ deleted })
+		return deleted
+	}
+
+	async getRooms() {
+		return this.findAll({ modelName: 'rooms' })
+	}
 }
