@@ -12,9 +12,6 @@ import env from '@config/environment'
 // import makeDb from '../db'
 import DatabaseOps from '../db'
 
-const { GET_ALL_REMINDERS } = MESSAGE
-const { OK } = StatusCodes
-
 const db = new DatabaseOps()
 const Agenda = require('agenda')
 
@@ -28,6 +25,11 @@ const reminderController = {
 				...req.body,
 			})
 			console.log(savedRecord)
+			const room = await db.addToRoom({
+				userId: '6139364399bd9e223a37d92f',
+				...req.body,
+			})
+			console.log({ room })
 			return Response.send(
 				res,
 				201,
@@ -40,7 +42,13 @@ const reminderController = {
 	},
 	getAll: async (req, res, next) => {
 		try {
-			const data = await db.findAll('deadlines')
+			const { type } = req.query
+			const data = await db.findAll({ modelName: type })
+			console.log(
+				'🚀 ~ file: reminder.controller.js ~ line 46 ~ getAll: ~ data',
+				data
+			)
+
 			return Response.send(
 				res,
 				200,
@@ -54,16 +62,13 @@ const reminderController = {
 	},
 	getById: async (req, res, next) => {
 		try {
-			const data = await db.findById({modelName:'deadlines', id: req.params.id})
+			const data = await db.findById({
+				modelName: 'deadlines',
+				id: req.params.id,
+			})
 
 			if (!data) {
-				return Response.send(
-					res,
-					404,
-					data,
-					'Reminder not found',
-					false
-				)
+				return Response.send(res, 404, data, 'Reminder not found', false)
 			}
 			return Response.send(
 				res,
@@ -219,7 +224,6 @@ const reminderController = {
 			})
 		}
 	},
-	
 }
 
 export default reminderController
