@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import App from './App'
 
-import './index.css'
+import './styles/index.css'
+import './styles/scroll.css'
 
-import App from './App.jsx'
 import { ModalContextProvider } from './context/ModalContext'
 import { RemindersContextProvider } from './context/RemindersContext'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -20,5 +21,5 @@ ReactDOM.render(
 			</RemindersContextProvider>
 		</QueryClientProvider>
 	</React.StrictMode>,
-	document.getElementById('root')
+	document.getElementById('reminder_root')
 )

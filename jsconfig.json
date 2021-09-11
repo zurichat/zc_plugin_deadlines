@@ -15,5 +15,6 @@
 			"@types/*": ["types/*"],
 			"@sockets/*": ["sockets/*"]
 		}
-	}
+	},
+	"exclude": ["node_modules", "build"]
 }
