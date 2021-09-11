@@ -15,7 +15,7 @@ export const useAllReminders = () => {
 				try {
 					const res = await axiosInstance({
 						method: 'GET',
-						url: '/reminders',
+						url: '/reminders?type=deadlines',
 					})
 					return { ...res, length: res.data.data.length }
 				} catch (error) {
