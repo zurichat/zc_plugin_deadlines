@@ -18,7 +18,6 @@ const writeBaseUrl = `${baseUrl}/data/write`
 
 export default class DatabaseOps {
 	async create({ modelName, ...data }) {
-		console.log('test', data)
 		const res = await axios({
 			url: writeBaseUrl,
 			method: 'post',
@@ -28,7 +27,7 @@ export default class DatabaseOps {
 				collection_name: modelName,
 				bulk_write: Array.isArray(data), // returns true if data is an array
 				payload: data,
-			}
+			},
 		})
 		// Response
 		if (Array.isArray(data)) {
@@ -40,10 +39,10 @@ export default class DatabaseOps {
 		return res.data.data
 	}
 
-	async findAll() {
+	async findAll({ modelName }) {
 		try {
 			const res = await axios({
-				url: `${readBaseUrl}/${pluginId}/deadlines/${orgId}`,
+				url: `${readBaseUrl}/${pluginId}/${modelName}/${orgId}`,
 				method: 'get',
 			})
 			return res.data.data
@@ -51,14 +50,12 @@ export default class DatabaseOps {
 			return error.response
 		}
 	}
-
 	async findById({ modelName, id }) {
 		try {
 			const res = await axios({
 				url: `${readBaseUrl}/${pluginId}/${modelName}/${orgId}?_id=${id}`,
 				method: 'get',
 			})
-			// console.log(res.data.data[0])
 			return res.data.data[0]
 		} catch (error) {
 			if (!error.response) {
@@ -116,14 +113,22 @@ export default class DatabaseOps {
 	async search(data, query) {
 		console.log('INCOMING', data, query)
 		const result = data.filter((item) => item.title === query)
-		// const result = data.filter((item) => {
-		// 	return {
-		// 		title: item.title === query.title,
-		// 		description: item.description === query.description,
-		// 		assignee: item.assignee === query.assignee,
-		// 	}
-		// })
 		console.log('RESULT GOTTEN', result)
 		return result
+	}
+
+	async addToRoom({ ...params }) {
+		const room = await this.create({ modelName: 'rooms', ...params })
+		return room
+	}
+
+	async removeFromRoom({ userId }) {
+		const deleted = await this.deleteOne('rooms', userId)
+		console.log({ deleted })
+		return deleted
+	}
+
+	async getRooms() {
+		return this.findAll({ modelName: 'rooms' })
 	}
 }
