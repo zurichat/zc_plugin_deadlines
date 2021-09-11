@@ -1,5 +1,9 @@
 import Joi from 'joi'
-import { validateBodyRequest, validateParamRequest } from './common'
+import {
+	validateBodyRequest,
+	validateParamRequest,
+	validateQueryRequest,
+} from './common'
 
 const reminderSchema = async (req, res, next) => {
 	const schema = Joi.object({
@@ -48,4 +52,14 @@ const idParams = async (req, res, next) => {
 	})
 	validateParamRequest(req, next, schema)
 }
-export { searchSchema, reminderSchema, updateSchema, idParams}
+
+const addRoomSchema = async (req, res, next) => {
+	const schema = Joi.object({
+		orgId: Joi.string().trim().required().label('Organization Id'),
+		userId: Joi.string().trim().required().label('User Id'),
+		title: Joi.string().trim().required().label('Title'),
+	})
+	validateQueryRequest(req, next, schema)
+}
+
+export { searchSchema, reminderSchema, updateSchema, addRoomSchema, idParams }
