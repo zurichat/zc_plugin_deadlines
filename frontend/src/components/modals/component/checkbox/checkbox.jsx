@@ -3,8 +3,7 @@ import style from './checkbox.module.css'
 
 const Checkbox = ({ id, label, check, onChange }) => {
 	const change = ({ target: { checked } }) => {
-		const check = checked
-		onChange(check)
+		onChange(checked)
 	}
 	return (
 		<div className="flex justify-start gap-x-2">
@@ -21,7 +20,7 @@ const Checkbox = ({ id, label, check, onChange }) => {
 					type="checkbox"
 					id={id}
 					className={`${style.checkbox} hidden`}
-					onChange={onChange}
+					onChange={change}
 				/>
 			)}
 			<div className="inline-block h-5 w-5 border-solid border border-black p-px">
