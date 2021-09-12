@@ -20,6 +20,24 @@ const remindersReducer = (state, action) => {
 		case actionTypes.SORT:
 			return { data: action.payload.data }
 
+		case actionTypes.SEARCH_REMINDERS: {
+			return {
+				reminders: {
+					...state.data,
+					loading: false,
+					isSearchActive: !!payload.length > 0 || false,
+					foundReminders: state.data.filter((item) => {
+						return (
+							item.title.toLowerCase().search(payload.toLowerCase()) !== -1 ||
+							item.description.toLowerCase().search(payload.toLowerCase()) !==
+								-1
+						)
+					}),
+					data: action.payload.data,
+				},
+			}
+		}
+
 		default:
 			return { data: state.data }
 	}
