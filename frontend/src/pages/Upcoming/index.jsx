@@ -5,33 +5,31 @@ import '../../styles/index.css'
 import '../../styles/scroll.css'
 
 const UpcomingPage = () => {
-	const { fetchedData } = useAllReminders()
+	const { fetchedData, isPlaceholderData } = useAllReminders()
 
-	// console.log(fetchedData[0])
+	const Result = ({ fetchedData }) => {
+		const arr = fetchedData.data.data
 
-	const result = fetchedData.map((item) => {
-		console.log(item.payload)
-		return (
-			<>
-				<p>{item.payload.title}</p>
+		return arr.map((item, index) => (
+			<div key={index}>
+				<p>{item.title}</p>
 				<p>
-					Assigned by {item.payload.creator} to {item.payload.assignees}
+					Assigned by {item.creator} to {item.assignee}
 				</p>
-				<p>{item.payload.description}</p>
-				<p>Start Date: {item.payload.startDate}</p>
-				<p>Due Date: {item.payload.dueDate}</p>
-			</>
-		)
-	})
+				<p>{item.description}</p>
+				<p>Start Date: {item.startDate}</p>
+				<p>Due Date: {item.dueDate}</p>
+			</div>
+		))
+	}
 
-	// Pass through sort hook
-	// const sortedDeadlineStore = useSort(deadlineStore)
-
-	// Can be passed through search hook
-
-	// Then use this data to render
-
-	return <>{result}</>
+	return !isPlaceholderData ? (
+		<div>
+			<Result fetchedData={fetchedData} />
+		</div>
+	) : (
+		<div>loading</div>
+	)
 }
 
 export default UpcomingPage
