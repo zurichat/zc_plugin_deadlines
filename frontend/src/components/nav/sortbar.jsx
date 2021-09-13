@@ -26,9 +26,13 @@ const Sortbar = () => {
 				case 'Piority':
 					return
 				case 'Newest':
-					return
+					return array.sort(
+						(a, b) => getDate(b.startDate) - getDate(a.startDate)
+					)
 				case 'Oldest':
-					return
+					return array.sort(
+						(a, b) => getDate(a.startDate) - getDate(b.startDate)
+					)
 				case 'Most urgent':
 					return array.sort((a, b) => getDate(a.dueDate) - getDate(b.dueDate))
 				case 'Least urgent':
