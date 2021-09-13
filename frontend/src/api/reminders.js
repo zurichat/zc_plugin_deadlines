@@ -72,3 +72,52 @@ export const useCreateReminder = (payload) => {
 	// You can use isLoading to show loading spinners and isSuccess to tell when the request completed successfully and inform the user
 	return { responseBody: data, error, isLoading, isSuccess }
 }
+
+export const useUpdateReminders = () => {
+	const {
+		isLoading,
+		data,
+		error,
+		isPlaceholderData,
+		isError,
+		isSuccess,
+		status,
+	} = useMutation(
+		'updateReminders',
+		async () => {
+			try {
+				const res = await axiosInstance({
+					data: payload,
+					method: 'PUT',
+					url: '/reminders/:id',
+				})
+				return { ...res, length: res.data.data.length }
+			} catch (error) {
+				throw errorHandler(error)
+			}
+		},
+		{
+			placeholderData: () => {
+				return {
+					data: {
+						result: [],
+					},
+				}
+			},
+		}
+	)
+
+	return {
+		responseBody: data,
+		error,
+		isSuccess,
+		isLoading,
+		isPlaceholderData,
+		isError,
+		status,
+	}
+}
+
+// Data is the response returned from the put, error only exists if there's an error
+// isLoading and isSuccess are Booleans representing loading and success states respectively
+// You can use isLoading to show loading spinners and isSuccess to tell when the request completed successfully and inform the user
