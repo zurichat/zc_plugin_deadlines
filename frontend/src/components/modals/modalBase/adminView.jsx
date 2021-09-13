@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import ColTitleDes from '../component/columnTitleDes'
 import RowTitleDes from '../component/rowTitleDes'
 import Avatar from '../component/avatar'
+import StatusChanger from '../component/taskStatus'
 
 const AdminView = ({
 	description,
@@ -13,9 +14,11 @@ const AdminView = ({
 	src,
 	alt,
 }) => {
+	const [taskStatus, setTaskStatus] = useState({ status: false }) //should receive initial task status from props
+	const toggler = useRef()
 	return (
-		<div className=" w-6/7 flex-col">
-			<div className="h-12 bg-brand-primary flex items-center">
+		<div className=" w-6/7 flex-col md:w-3/7 md:ml-96">
+			<div className="h-12 bg-brand-primary flex items-center md:rounded-t-lg">
 				<h2 className=" h-1/3 text-xs font-craFont font-bold mx-4">
 					Deadline-Title
 				</h2>
@@ -23,7 +26,7 @@ const AdminView = ({
 					Priority level
 				</h2>
 			</div>
-			<div className="flex-col p-4">
+			<div className="flex-col border-black border-2 p-4 md:rounded-b-lg">
 				<ColTitleDes title="Description" writeUp={description} />
 				<div className="flex ">
 					<div className="flex gap-6">
@@ -46,19 +49,11 @@ const AdminView = ({
 					}
 				/>
 				<div className="flex ">
-					<div className="h-6 w-6 border-black border-2 rounded"></div>
-					<label className="h-6 w-12 mx-3">
-						<input
-							className=" absolute -ml-20"
-							type="checkbox"
-							onChange={(event) => {
-								console.log(event.target.checked)
-							}}
-						/>
-						<div className="flex w-9 h-4 mt-1 rounded-full bg-brand-primary relative">
-							<div className="flex w-4 h-4 rounded-full bg-brand-secondary relative"></div>
-						</div>
-					</label>
+					<StatusChanger
+						currentStatus={taskStatus.status}
+						toggler={toggler}
+						setStatus={setTaskStatus}
+					/>
 				</div>
 				<div className="flex justify-end">
 					<button className="w-16 h-7  text-sm text-brand-primary font-semibold">
