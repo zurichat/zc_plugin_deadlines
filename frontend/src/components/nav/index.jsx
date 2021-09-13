@@ -1,4 +1,5 @@
 import React from 'react'
+import Sortbar from './sortbar'
 
 const Nav = ({ ...props }) => {
 	// Use this set sort function in the sort selector to change sort order in component
@@ -6,7 +7,7 @@ const Nav = ({ ...props }) => {
 
 	return (
 		<nav {...props}>
-			<p>Nav</p>
+			<Sortbar />
 		</nav>
 	)
 }
