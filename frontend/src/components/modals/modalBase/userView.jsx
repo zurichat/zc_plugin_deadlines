@@ -3,6 +3,7 @@ import ColTitleDes from '../component/columnTitleDes'
 import RowTitleDes from '../component/rowTitleDes'
 import Avatar from '../component/avatar'
 import RemindMeCheckBox from '../component/remindMeCheckBox'
+import ModalTest from '../component/modal2'
 export default function UserViewDeadline({
 	description,
 	startDate,
@@ -12,6 +13,7 @@ export default function UserViewDeadline({
 	assignee,
 	src,
 	alt,
+	deadlineTitle,
 }) {
 	let checkBoxObj = {
 		everyDay: false,
@@ -50,30 +52,32 @@ export default function UserViewDeadline({
 	]
 
 	return (
-		<div className="flex flex-col gap-7">
-			<ColTitleDes title="Description" writeUp={description} />
-			<div className="flex gap-6">
-				<ColTitleDes title="Start Date" writeUp={startDate} />
-				<ColTitleDes title="Due Date" writeUp={dueDate} />
+		<ModalTest title={deadlineTitle}>
+			<div className="flex flex-col gap-7">
+				<ColTitleDes title="Description" writeUp={description} />
+				<div className="flex gap-6">
+					<ColTitleDes title="Start Date" writeUp={startDate} />
+					<ColTitleDes title="Due Date" writeUp={dueDate} />
+					<ColTitleDes
+						title="Due In"
+						writeUp={<span className="text-brand-error">{dueIn} </span>}
+					/>
+				</div>
+				<ColTitleDes title="Assigned To" writeUp={assignedTo} />
 				<ColTitleDes
-					title="Due In"
-					writeUp={<span className="text-brand-error">{dueIn} </span>}
+					title="Assignee"
+					writeUp={
+						<RowTitleDes
+							title={<Avatar src={src} alt={alt} />}
+							writeUp={assignee}
+						/>
+					}
+				/>
+				<ColTitleDes
+					title="Remind me:"
+					writeUp={<RemindMeCheckBox labels={labels} change={onchange} />}
 				/>
 			</div>
-			<ColTitleDes title="Assigned To" writeUp={assignedTo} />
-			<ColTitleDes
-				title="Assignee"
-				writeUp={
-					<RowTitleDes
-						title={<Avatar src={src} alt={alt} />}
-						writeUp={assignee}
-					/>
-				}
-			/>
-			<ColTitleDes
-				title="Remind me:"
-				writeUp={<RemindMeCheckBox labels={labels} change={onchange} />}
-			/>
-		</div>
+		</ModalTest>
 	)
 }
