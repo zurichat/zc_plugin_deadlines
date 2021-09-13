@@ -8,33 +8,33 @@ import Response from '@utils/response.handler'
 // eslint-disable-next-line import/no-unresolved
 import { StatusCodes } from 'http-status-codes'
 import { MESSAGE } from '@utils/constant'
-import makeFakeReminder from '@utils/fake.reminder'
-import axios from 'axios'
 import env from '@config/environment'
-import makeDb from '../db'
+// import makeDb from '../db'
+import DatabaseOps from '../db'
 
-const { GET_ALL_REMINDERS } = MESSAGE
-const { OK } = StatusCodes
-
-const db = makeDb()
+const db = new DatabaseOps()
 const Agenda = require('agenda')
 
 const { MONGODB } = env
 
 const reminderController = {
 	create: async (req, res, next) => {
-		const { priority, expiryDate, description, shouldRemind } = req.body
 		try {
-			const reminderData = { priority, expiryDate, description, shouldRemind }
-
-			const savedRecord = await db.create('reminders', reminderData)
-
+			const savedRecord = await db.create({
+				modelName: 'deadlines',
+				...req.body,
+			})
+			console.log(savedRecord)
+			// const room = await db.addToRoom({
+			// 	userId: '6139364399bd9e223a37d92f',
+			// 	...req.body,
+			// })
+			// console.log({ room })
 			return Response.send(
 				res,
 				201,
 				savedRecord,
-				'Reminder created successfully',
-				true
+				'Deadline created successfully'
 			)
 		} catch (error) {
 			return next(error)
@@ -42,17 +42,109 @@ const reminderController = {
 	},
 	getAll: async (req, res, next) => {
 		try {
-			const data = await db.findAll('reminders')
+			const { type } = req.query
+			const data = await db.findAll({ modelName: type })
+			console.log(
+				'🚀 ~ file: reminder.controller.js ~ line 46 ~ getAll: ~ data',
+				data
+			)
+
 			return Response.send(
 				res,
-				data.status,
-				data.data,
-				data.statusText,
-				data.status === 200
+				200,
+				data,
+				'Deadlines retrieved successfully',
+				true
 			)
 		} catch (err) {
 			return next(err)
 		}
+	},
+	getById: async (req, res, next) => {
+		try {
+			const data = await db.findById({
+				modelName: 'deadlines',
+				id: req.params.id,
+			})
+
+			if (!data) {
+				return Response.send(res, 404, data, 'Reminder not found', false)
+			}
+			return Response.send(
+				res,
+				200,
+				data,
+				'Deadline retrieved successfully',
+				true
+			)
+		} catch (err) {
+			return next(err)
+		}
+	},
+	deleteReminder: async (req, res, next) => {
+		try {
+			const data = await db.deleteOne('deadlines', req.params.id)
+			return Response.send(
+				res,
+				200,
+				data,
+				'Reminder deleted successfully',
+				true
+			)
+		} catch (err) {
+			return next(err)
+		}
+	},
+	updateById: async (req, res) => {
+		try {
+			const data = await db.updateById({
+				modelName: 'deadlines',
+				id: req.params.id,
+				...req.body,
+			})
+
+			if (!data) {
+				return Response.send(
+					res,
+					404,
+					data,
+					'Reminder with that ID not found!',
+					false
+				)
+			}
+
+			return Response.send(
+				res,
+				200,
+				data,
+				'Reminder updated successfully',
+				true
+			)
+		} catch (err) {
+			return next(err)
+		}
+		// const { priority, expiryDate, description, shouldRemind } = req.body
+
+		// try {
+		// 	const reminderData = { priority, expiryDate, description, shouldRemind }
+
+		// 	const { id } = req.params
+
+		// 	if (!id) {
+		// 		throw new Error('id is required')
+		// 	}
+
+		// 	const updateReminder = await db.findByIdAndupdate(id, reminderData)
+
+		// 	res.status(200).send('reminder updated successfully ')
+		// } catch (error) {
+		// 	console.log(error)
+		// 	res.json({
+		// 		status: 400,
+		// 		data: null,
+		// 		message: error.message.data,
+		// 	})
+		// }
 	},
 
 	/**
@@ -64,66 +156,22 @@ const reminderController = {
 */
 	// Get search reminder using query of {title, creator, dueDate}
 	searchReminder: async (req, res, next) => {
-		const { title, creator, dueDate } = req.query
-
-		if (
-			typeof title !== 'string' ||
-			typeof creator !== 'string' ||
-			typeof dueDate !== 'string'
-		)
-			throw new Error('Invalid data format. Expected a string.')
-
-		const searchFunction = (data, query) => {
-			const result = data.data.result.filter((item) => {
-				if (
-					item.payload.title === query.title ||
-					item.payload.creator === query.creator ||
-					item.payload.dueDate === query.dueDate
-				)
-					return true
-				return false
-			})
-			return result
-		}
-
 		try {
-			// if there is any endpoint in the zc_core to provide us the search through our reminder database to fetch each reminder, then we use this search and the API will be `${zcDBApi}`
-
-			const search = await axios.get(
-				'https://reminders.zuri.chat/api/v1/reminders'
-			)
-
-			const result = await searchFunction(search, req.query)
-
+			const { text } = req.body
+			const result = await db.findAll('deadlines')
+			const data = db.search(result, text)
 			return Response.send(
 				res,
-				201,
-				result,
-				'Reminder fetched successfully',
-				search.status === 200
+				200,
+				data,
+				'Deadlines fetched successfully',
+				true
 			)
 		} catch (error) {
-			return next(err)
+			return next(error)
 		}
 	},
-	getUpcomingReminders: async (req, res, next) => {
-		try {
-			const reminder = [
-				makeFakeReminder({ shouldRemind: 'Every 2 days' }),
-				makeFakeReminder({ shouldRemind: 'Every 1 hour' }),
-				makeFakeReminder({ shouldRemind: 'Every day' }),
-				makeFakeReminder({ shouldRemind: 'Every 30 minutes' }),
-			]
-			Response.send(res, StatusCodes.OK, reminder, 'Upcoming reminders')
-		} catch (error) {
-			Response.send(
-				res,
-				StatusCodes.BAD_REQUEST,
-				null,
-				'An error occured getting upcoming reminders'
-			)
-		}
-	},
+
 	getOneHourToGoReminder: async (req, res) => {
 		try {
 			const agenda = new Agenda({
@@ -173,84 +221,6 @@ const reminderController = {
 				status: 400,
 				data: null,
 				message: error.message,
-			})
-		}
-	},
-	deleteReminder: async (req, res, next) => {
-		const {
-			params: { id },
-		} = req
-
-		try {
-			if (!id) {
-				throw new Error('id is required')
-			}
-
-			const deleteReminder = await db.deleteOne('reminders', id)
-
-			return Response.send(
-				res,
-				deleteReminder.status,
-				deleteReminder.data,
-				deleteReminder.statusText,
-				deleteReminder.status === 201
-			)
-		} catch (error) {
-			return next(error)
-		}
-	},
-	setDeadline: async (req, res, next) => {
-		// eslint-disable-next-line consistent-return
-		const {
-			teamsAssigned,
-			membersAssigned,
-			title,
-			description,
-			startDates,
-			dueDates,
-		} = req.body
-		// post data to be sent
-		try {
-			const deadlineData = {
-				teamsAssigned,
-				membersAssigned,
-				title,
-				description,
-				startDates,
-				dueDates,
-			}
-			const deadline = await db.create('deadlines', deadlineData)
-			return res.status(201).json({
-				status: 'success',
-				message: 'Deadline successfully set',
-				result: deadline,
-			})
-		} catch (error) {
-			return next(error)
-		}
-	},
-
-	updateById: async (req, res) => {
-		const { priority, expiryDate, description, shouldRemind } = req.body
-
-		try {
-			const reminderData = { priority, expiryDate, description, shouldRemind }
-
-			const { id } = req.params
-
-			if (!id) {
-				throw new Error('id is required')
-			}
-
-			const updateReminder = await db.findByIdAndupdate(id, reminderData)
-
-			res.status(200).send('reminder updated successfully ')
-		} catch (error) {
-			console.log(error)
-			res.json({
-				status: 400,
-				data: null,
-				message: error.message.data,
 			})
 		}
 	},

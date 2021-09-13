@@ -1,107 +1,74 @@
 import axios from 'axios'
-import { useQuery } from 'react-query'
-// import { validateCreateReminderData } from '../utils/validation'
+import { useMutation, useQuery } from 'react-query'
+import errorHandler from './utils/errorHandler'
+import validateCreateReminderData from './utils/validation'
 
 const axiosInstance = axios.create({
 	baseURL: '/api/v1',
 })
 
 export const useAllReminders = () => {
-	const { isLoading, data, error, isPlaceholderData, isError } = useQuery(
-		'allReminders',
-		async () => {
-			try {
-				const res = await axiosInstance({
-					method: 'GET',
-					url: '/getReminders',
-				})
-				return { ...res, length: res.data.data.result.length }
-			} catch (error) {
-				throw error
-			}
-		},
-		{
-			placeholderData: () => {
-				return {
-					data: {
-						result: [],
-					},
+	const { isLoading, data, error, isPlaceholderData, isError, status } =
+		useQuery(
+			'allReminders',
+			async () => {
+				try {
+					const res = await axiosInstance({
+						method: 'GET',
+						url: '/reminders?type=deadlines',
+					})
+					return { ...res, length: res.data.data.length }
+				} catch (error) {
+					throw errorHandler(error)
 				}
 			},
+			{
+				placeholderData: () => {
+					return {
+						data: {
+							result: [],
+						},
+					}
+				},
+			}
+		)
+
+	// fetchedData is the response returned from the get query, error only exists if there's an error
+	// isLoading and isPlaceholderData are Booleans representing loading and palceholder data states respectively
+	// isPlaceholder exists primarily to deal with react calling methods on undefined when mounting components
+
+	return {
+		fetchedData: data,
+		isLoading,
+		error,
+		isPlaceholderData,
+		isError,
+		status,
+	}
+}
+
+export const useCreateReminder = (payload) => {
+	const { data, error, isLoading, isSuccess } = useMutation(
+		'createReminder',
+		async () => {
+			if (validateCreateReminderData(payload)) {
+				try {
+					const res = await axiosInstance({
+						data: payload,
+						method: 'POST',
+						url: '/reminders',
+					})
+
+					return res
+				} catch (error) {
+					throw errorHandler(error)
+				}
+			}
 		}
 	)
 
-	return { isLoading, fetchedData: data, error, isPlaceholderData, isError }
+	// Data is the response returned from the post, error only exists if there's an error
+	// isLoading and isSuccess are Booleans representing loading and success states respectively
+	// You can use isLoading to show loading spinners and isSuccess to tell when the request completed successfully and inform the user
+	return { responseBody: data, error, isLoading, isSuccess }
 }
-
-// export const useCreateReminder = (payload) => {
-// 	const isDataValid = validateCreateReminderData(payload)
-// 	if (!isDataValid) {
-// 		throw new Error('Invalid Payload')
-// 	} else {
-// 		new Promise((resolve, reject) => {
-// 			try {
-// 				const axiosQuery = async () => {
-// 					const res = await axiosInstance(
-// 						{
-// 							method: 'POST',
-// 							url: '/reminders',
-// 						},
-// 						{ data: payload }
-// 					)
-// 					return res
-// 				}
-// 				const { data, error } = useMutation('createReminder', axiosQuery)
-
-// 				if (error) {
-// 					reject(error)
-// 				} else {
-// 					resolve(data)
-// 				}
-// 			} catch (error) {
-// 				reject(error)
-// 			}
-// 		})
-// 	}
-// }
-
-// export const useDeleteReminder = (id) => {
-// 	new Promise((resolve, reject) => {
-// 		try {
-// 			if (!id) throw new Error('Invalid id')
-
-// 			const axiosQuery = async () => {
-// 				const res = await axiosInstance({
-// 					url: `/reminders/${id}`,
-// 					method: 'DELETE',
-// 				})
-// 				return res
-// 			}
-// 			const { data, error } = useMutation('deleteReminder', axiosQuery)
-// 			if (error) {
-// 				reject(error)
-// 			} else {
-// 				resolve(data)
-// 			}
-// 		} catch (error) {
-// 			reject(error)
-// 		}
-// 	})
-// }
-
-// export const useUpcomingReminders = new Promise((resolve, reject) => {
-// 	try {
-// 		const axiosQuery = async () => {
-// 			const res = await axiosInstance({
-// 				method: 'GET',
-// 				url: '/upcoming',
-// 			})
-// 			return res
-// 		}
-// 		const { data } = useQuery('upcomingReminders', axiosQuery)
-
-// 		resolve(data)
-// 	} catch (error) {
-// 		reject(error)
-// 	}
-// })

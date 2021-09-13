@@ -3,45 +3,76 @@
     All rights reserved.
     Written By: King Etiosasere, 30th August 2021 
 */
-import app from '@shared/http/server'
+
+import env from '@config/environment'
 // eslint-disable-next-line import/no-unresolved
 import request from 'supertest'
-import makeDb from '../src/db/index'
+// import makeDb from '../src/db/index'
+import { expect } from 'chai'
+import faker from 'faker'
 
-const db = makeDb()
+const { getDevBaseUrl } = env
+const api = request(`${getDevBaseUrl().apiUrl}`)
+// const db = makeDb()
+
+
 describe('Reminder controllers', () => {
 	const collectionName = 'reminders'
-	it('successfully create new reminder', () => {
-		request(app)
-			.post('/api/v1/reminders')
-			.send({
-				priority: 2,
-				expiryDate: '01-01-2021',
-				description: 'Obi is a boy',
-				shouldRemind: true,
-			})
-			.expect(201)
-	})
 
-	it('successfully get all reminders', () => {
-		request(app).get('/api/v1/reminders').expect(200)
-	})
-	it('successfully search for reminder', () => {
-		// taskname, priority, expiryDate
-		request(app)
-			.get('/api/v1/search?title=online?creator=ms. dale Nienow?dueDate=2021-09-06T01:17:47.687Z')
-			.expect(201)
-	})
-
-	it('reminder successfully deleted', async () => {
-		// create Db
-		const creatDoc = await db.create(collectionName, {
-			priority: 2,
-			plugin_id: 'zc_reminder',
-			organization_id: 'darwin_organization',
-			collection_name: collectionName,
+	it('successfully create new reminder', async () => {
+		const res = await api.post('/reminders').send({
+			title: faker.random.word(),
+			description: faker.random.words(),
+			assignee: faker.name.firstName(),
+			creator: faker.name.findName(),
+			startDate: faker.date.recent(),
+			dueDate: faker.date.soon(),
+			time: '12:45',
 		})
-
-		request(app).delete(`/api/v1/reminders/${creatDoc.id}`).expect(201)
+		expect(res.body.data.object_id).to.be.a('string')
+		expect(res.body.success).to.be.true
 	})
+
+	it('successfully get all reminders', async () => {
+		const res = await api.get('/reminders')
+		expect(res.body.data).to.be.an('array')
+	})
+
+	it('successfully get a reminder by id', async () => {
+		const ID = '613af7b059842c7444fb02a1'
+		const res = await api.get(`/reminders/${ID}`)
+		expect(res.body.data).to.be.an('object')
+	})
+	
+	it('successfully delete a reminder by id', async () => {
+		const ID = '613af7b059842c7444fb02a1'
+		const res = await api.get(`/reminders/${ID}`)
+		expect(res.statusCode).to.be.equal(200)
+	})
+	
+	it('successfully update a reminder by id', async () => {
+		const ID = '613af7b059842c7444fb02a1'
+		const res = await api.get(`/reminders/${ID}`)
+		expect(res.statusCode).to.be.equal(200)
+	})
+
+	it('successfully search for reminder', async () => {
+		const res = await api.get('/search').set('Content-type', 'application/json').send({
+			text: 'testing',
+		})
+		console.log('resss', res.body)
+		console.log('errorrrr', res.error)
+		expect(res.body.data).to.be.an('array')
+	})
+
+	// it('reminder successfully deleted', async () => {
+	// 	const creatDoc = await db.create(collectionName, {
+	// 		priority: 2,
+	// 		plugin_id: 'zc_reminder',
+	// 		organization_id: 'darwin_organization',
+	// 		collection_name: collectionName,
+	// 	})
+	// 	const res = await api.delete('/reminders')
+	// 	// request(app).delete(`/api/v1/reminders/${creatDoc.id}`).expect(201)
+	// })
 })

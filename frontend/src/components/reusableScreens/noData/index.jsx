@@ -1,5 +1,5 @@
 import React from 'react'
-import NewDeadlineButton from '../../../layout/nav/button'
+import NewDeadlineButton from '../../nav/__compat__/button'
 
 const NoDataMessage = ({ ...props }) => {
 	return (

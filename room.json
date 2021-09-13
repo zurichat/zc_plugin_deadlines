@@ -1,0 +1,41 @@
+{
+    "name" : "Todo Plugin",
+    "description" : "Shows todo items",
+    "plugin_id" : "DGGF-DSDFFDDF-EDFDFDF",
+    "organisation_id" : "Ffddffd",
+    "user_id" : "232",
+    "group_name" : "Todo",
+    "show_group" : false,
+    
+    "joined_rooms": [
+      {
+        "title": "submit hr work",
+        "id": "DFGHH-EDDDDS-DFDDF",
+        "unread": 2,
+        "members": 23, 
+        "icon" : "shovel",
+        "action" : "open"
+      },
+      {
+        "title": "announcements",
+        "id": "DFGfH-EDDDDS-DFDDF",
+        "unread": 0,
+        "badge_type": "info",
+        "members": 132,
+        "parent_id": "DFGHH-EDDDDS-DFDDF",
+        "icon" : "spear",
+        "action" : "open"
+      }
+    ],
+    "public_rooms": [
+      {
+        "title": "jokes",
+        "id": "DFGfH-EDDDDS-DFDDF",
+        "unread": 342,
+        "members": 32,
+        "icon" : "cdn.cloudflare.com/445345453345/hello.jpeg",
+        "action" : "open",
+        "auto-join" : true
+      }
+    ]
+  }
