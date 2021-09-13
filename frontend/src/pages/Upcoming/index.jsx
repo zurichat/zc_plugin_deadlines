@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAllReminders } from '../../api/reminders'
 import { ModalContextProvider } from '../../context/ModalContext'
-import AdminView from '../../components/modals/modalBase/adminView'
+import AdminView from '../../components/modals/modalBase/adminView.jsx'
 
 const UpcomingPage = () => {
 	const { fetchedData } = useAllReminders()
