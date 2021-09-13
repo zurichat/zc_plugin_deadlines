@@ -1,9 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { Menu } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import { RemindersContext } from '../../context/RemindersContext'
-import { SortContext } from '../sort'
 
 const Sortbar = () => {
 	const sort_tags = [
@@ -14,16 +13,16 @@ const Sortbar = () => {
 		'Least urgent',
 	]
 	const { dispatch, actionTypes, initialData } = useContext(RemindersContext)
-	const { sort, setSort } = useContext(SortContext)
+	const [value, setValue] = useState('')
 
 	const handleSort = (i) => {
-		setSort(i)
+		setValue(i)
 		const getDate = (a) => {
 			return new Date(a).getTime()
 		}
 
-		const sortData = (array, sort) => {
-			switch (sort) {
+		const sortData = (array, value) => {
+			switch (value) {
 				case 'Piority':
 					return
 				case 'Newest':
@@ -37,26 +36,20 @@ const Sortbar = () => {
 			}
 		}
 
-		const sortResults = sortData(initialData, sort)
+		const sortResults = sortData(initialData, value)
 		console.log(sortResults)
 
 		dispatch({
 			type: actionTypes.SORT,
 			payload: { sortResults },
 		})
-		console.log(
-			dispatch({
-				type: actionTypes.SORT,
-				payload: { sortResults },
-			})
-		)
 	}
 
 	return (
 		<Menu as="div" className="w-full">
 			<div>
 				<Menu.Button className="border rounded w-full py-2 px-5 inline-flex items-center ">
-					<p className="text-gray-400">{sort || 'Sort by: Date, time'}</p>
+					<p className="text-gray-400">{value || 'Sort by: Date, time'}</p>
 					<ChevronDownIcon
 						className="w-5 h-5 ml-2 -mr-1  text-gray-400"
 						aria-hidden="true"
