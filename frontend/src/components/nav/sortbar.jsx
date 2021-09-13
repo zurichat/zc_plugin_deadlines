@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 
 import { Menu } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
@@ -16,7 +16,8 @@ const Sortbar = () => {
 	const { dispatch, actionTypes, initialData } = useContext(RemindersContext)
 	const { sort, setSort } = useContext(SortContext)
 
-	useEffect(() => {
+	const handleSort = (i) => {
+		setSort(i)
 		const getDate = (a) => {
 			return new Date(a).getTime()
 		}
@@ -37,15 +38,18 @@ const Sortbar = () => {
 		}
 
 		const sortResults = sortData(initialData, sort)
+		console.log(sortResults)
 
 		dispatch({
 			type: actionTypes.SORT,
 			payload: { sortResults },
 		})
-	}, [sort])
-
-	const handleSort = (i) => {
-		setSort(i)
+		console.log(
+			dispatch({
+				type: actionTypes.SORT,
+				payload: { sortResults },
+			})
+		)
 	}
 
 	return (
