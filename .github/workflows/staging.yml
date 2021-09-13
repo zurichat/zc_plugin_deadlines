@@ -27,9 +27,6 @@ jobs:
       - name: Install monorepo dependencies
         run: yarn holoInstall
 
-      - name: Run BE tests
-        run: yarn test
-
       - name: Run FE tests
         working-directory: ./frontend
         run: yarn test
