@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { ModalContext } from '../../../context/ModalContext'
 
-const CreateNewDeadlineButton = () => {
+const NewDeadlineButton = () => {
 	const { modalData, setModalData } = useContext(ModalContext)
 	return (
 		<>
@@ -15,10 +15,10 @@ const CreateNewDeadlineButton = () => {
 					})
 				}
 			>
-				+Create New Deadline
+				Set Deadline
 			</button>
 		</>
 	)
 }
 
-export default CreateNewDeadlineButton
+export default NewDeadlineButton
