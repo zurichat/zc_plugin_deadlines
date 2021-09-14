@@ -23,20 +23,24 @@ const DeadlineCard = ({
 			? 'bg-brand-priority-high'
 			: 'bg-gray'
 
-	const startDateStr = DateTime.fromSeconds(startDate, {
+	const startDateStr = DateTime.fromISO(startDate, {
 		zone: 'UTC',
 	}).toLocaleString(DateTime.DATE_MED)
 
-	const dueDateStr = DateTime.fromSeconds(dueDate, {
+	const dueDateStr = DateTime.fromISO(dueDate, {
 		zone: 'UTC',
 	}).toLocaleString(DateTime.DATE_MED)
 
-	const remaining = DateTime.fromSeconds(dueDate)
-		.diffNow(['days', 'hours', 'minutes', 'seconds'])
+	const remaining = DateTime.fromISO(dueDate)
+		.diffNow(['days', 'hours', 'minutes', 'seconds', 'months'])
 		.toObject()
 
 	const remainingStr =
-		remaining['days'] > 0
+		remaining['months'] > 0
+			? `${remaining['months']} ${
+					remaining['months'] === 1 ? 'month' : 'months'
+			  }`
+			: remaining['days'] > 0
 			? `${remaining['days']} ${remaining['days'] === 1 ? 'day' : 'days'}`
 			: remaining['hours'] > 0
 			? `${remaining['hours']} ${remaining['hours'] === 1 ? 'hour' : 'hours'}`
