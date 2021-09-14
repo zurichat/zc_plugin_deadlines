@@ -5,7 +5,7 @@ import {
 	validateQueryRequest,
 } from './common'
 
-const reminderSchema = async (req, res, next) => {
+const createSchema = async (req, res, next) => {
 	const schema = Joi.object({
 		title: Joi.string().trim().required().label('Title'),
 		description: Joi.string().trim().required().label('Description'),
@@ -13,12 +13,19 @@ const reminderSchema = async (req, res, next) => {
 		creator: Joi.string().trim().required().label('Creator'),
 		startDate: Joi.date().required().label('Start date'),
 		dueDate: Joi.date().required().label('Due date'),
-		// time: Joi.string()
-		// 	.trim()
-		// 	.regex(/^([0-9]{2})\:([0-9]{2})$/)
-		// 	.required()
-		// 	.label('Time'),
+		priority: Joi.string()
+			.trim()
+			.required()
+			.valid('low', 'medium', 'high')
+			.label('Priority'),
+		shouldRemind: Joi.boolean().required().label('shouldRemind'),
+		reminders: Joi.array().required().label('Reminders'),
+		status: Joi.string()
+			.trim()
+			.valid('completed', 'uncompleted')
+			.label('Status'),
 	})
+
 	return validateBodyRequest(req, next, schema)
 }
 
@@ -37,11 +44,16 @@ const updateSchema = async (req, res, next) => {
 		creator: Joi.string().trim().label('Creator'),
 		startDate: Joi.date().label('Start date'),
 		dueDate: Joi.date().label('Due date'),
-		// time: Joi.string()
-		// 	.trim()
-		// 	.regex(/^([0-9]{2})\:([0-9]{2})$/)
-		// 	.required()
-		// 	.label('Time'),
+		shouldRemind: Joi.boolean().label('shouldRemind'),
+		reminders: Joi.array().label('Reminders'),
+		priority: Joi.string()
+			.trim()
+			.valid('low', 'medium', 'high')
+			.label('Priority'),
+		status: Joi.string()
+			.trim()
+			.valid('completed', 'uncompleted')
+			.label('Status'),
 	})
 	return validateBodyRequest(req, next, schema)
 }
@@ -62,4 +74,4 @@ const addRoomSchema = async (req, res, next) => {
 	validateQueryRequest(req, next, schema)
 }
 
-export { searchSchema, reminderSchema, updateSchema, addRoomSchema, idParams }
+export { searchSchema, createSchema, updateSchema, addRoomSchema, idParams }
