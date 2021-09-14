@@ -7,6 +7,7 @@ import OverduePage from './pages/Overdue'
 import UpcomingPage from './pages/Upcoming'
 import { ModalContext } from './context/ModalContext'
 import NewDeadline from './components/__compat__/newDeadline'
+import AdminViewStatus from '../src/components/modals/admin/viewDeadline/index'
 
 const App = () => {
 	const { modalData } = useContext(ModalContext)
@@ -15,6 +16,9 @@ const App = () => {
 		<BrowserRouter>
 			{modalData.modalShow && modalData.modalType === 'adminCreate' && (
 				<NewDeadline />
+			)}
+			{modalData.modalShow && modalData.modalType === 'adminView' && (
+				<AdminViewStatus />
 			)}
 			<nav className="p-5 ">
 				<Nav />
