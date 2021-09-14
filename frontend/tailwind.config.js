@@ -42,6 +42,10 @@ module.exports = {
 						medium: '#FF9800',
 						high: '#F44336',
 					},
+					svg: {
+						blue: '#EAF2FD',
+						green: '#0499491A',
+					},
 				},
 			},
 			textColor: {
