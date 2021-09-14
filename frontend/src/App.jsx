@@ -16,18 +16,22 @@ const App = () => {
 			{modalData.modalShow && modalData.modalType === 'adminCreate' && (
 				<NewDeadline />
 			)}
-			<Nav />
-			<Switch>
-				<Route path="/" exact>
-					<UpcomingPage />
-				</Route>
-				<Route path="/completed">
-					<CompletedPage />
-				</Route>
-				<Route path="/overdue">
-					<OverduePage />
-				</Route>
-			</Switch>
+			<nav className="p-5 ">
+				<Nav />
+			</nav>
+			<main className="p-5 ">
+				<Switch>
+					<Route path="/" exact>
+						<UpcomingPage />
+					</Route>
+					<Route path="/completed">
+						<CompletedPage />
+					</Route>
+					<Route path="/overdue">
+						<OverduePage />
+					</Route>
+				</Switch>
+			</main>
 		</BrowserRouter>
 	)
 }
