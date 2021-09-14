@@ -108,7 +108,7 @@ const DeadlineCard = ({
 						<p className="text-brand-text-body text-opacity-60">Due In:</p>
 						<p
 							className={
-								remaining['hours'] < 3
+								DateTime.fromISO(dueDate).diffNow().as('hours') < 3
 									? 'text-brand-text-overdue'
 									: 'text-brand-text-body'
 							}
