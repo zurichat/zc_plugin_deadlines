@@ -7,6 +7,7 @@ import OverduePage from './pages/Overdue'
 import UpcomingPage from './pages/Upcoming'
 import { ModalContext } from './context/ModalContext'
 import NewDeadline from './components/__compat__/newDeadline'
+import AdminViewStatus from './components/modals/admin/viewDeadline'
 
 const App = () => {
 	const { modalData } = useContext(ModalContext)
@@ -28,6 +29,9 @@ const App = () => {
 					<OverduePage />
 				</Route>
 			</Switch>
+			{modalData.modalShow && modalData.modalType === 'adminView' && (
+				<AdminViewStatus />
+			)}
 		</BrowserRouter>
 	)
 }
