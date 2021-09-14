@@ -4,6 +4,7 @@ import App from './App'
 
 import './styles/index.css'
 import './styles/scroll.css'
+import './styles/datePicker.css'
 
 import { ModalContextProvider } from './context/ModalContext'
 import { RemindersContextProvider } from './context/RemindersContext'
