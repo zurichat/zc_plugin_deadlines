@@ -29,9 +29,9 @@ const Navbar = () => {
 				<p className="font-bold text-2xl">Company Deadlines</p>
 			</div>
 
-			<div className="flex justify-between">
+			<div className="relative flex justify-between">
 				{/* the onclick events with blue line */}
-				<div>
+				<div className="md:flex md:justify-between">
 					<Link to="/">
 						<NavItem navText="Upcoming" />
 					</Link>
@@ -43,7 +43,7 @@ const Navbar = () => {
 					</Link>
 				</div>
 
-				<div className="absolute top-20 ">
+				<div className="absolute -bottom-2">
 					<SetDeadlineButton />
 				</div>
 
