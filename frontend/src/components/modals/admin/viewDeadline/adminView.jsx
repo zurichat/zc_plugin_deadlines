@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react'
-import ColTitleDes from '../component/columnTitleDes'
-import RowTitleDes from '../component/rowTitleDes'
-import Avatar from '../component/avatar'
-import StatusChanger from '../component/taskStatus'
+import ColTitleDes from '../../component/columnTitleDes'
+import RowTitleDes from '../../component/rowTitleDes'
+import Avatar from '../../component/avatar'
+import StatusChanger from '../../component/taskStatus'
 
 const AdminView = ({
 	description,

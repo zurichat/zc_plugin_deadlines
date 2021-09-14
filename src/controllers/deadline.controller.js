@@ -1,9 +1,3 @@
-/**
-    Copyright 2021, Zuri plugin reminder.
-    All rights reserved.
-    Written By: King Etiosasere 30th August 2021, ed_knowah 2nd Spetember 2021, Adedeji Yusuf 2nd Spetember 2021.
-* */
-
 import Response from '@utils/response.handler'
 // eslint-disable-next-line import/no-unresolved
 import { StatusCodes } from 'http-status-codes'
@@ -12,24 +6,37 @@ import env from '@config/environment'
 // import makeDb from '../db'
 import DatabaseOps from '../db'
 
-const db = new DatabaseOps()
+const DeadLine = new DatabaseOps('deadlines')
 const Agenda = require('agenda')
 
-const { MONGODB } = env
-
-const reminderController = {
+const deadlineController = {
 	create: async (req, res, next) => {
+		const {
+			title,
+			description,
+			startDate,
+			dueDate,
+			assignee,
+			creator,
+			priority,
+			shouldRemind,
+			reminders,
+		} = req.body
+		const status = req.body.status || 'uncompleted' // adding a default for status field
+
 		try {
-			const savedRecord = await db.create({
-				modelName: 'deadlines',
-				...req.body,
+			const savedRecord = await DeadLine.create({
+				title,
+				description,
+				startDate,
+				dueDate,
+				assignee,
+				creator,
+				priority,
+				shouldRemind,
+				reminders,
+				status,
 			})
-			console.log(savedRecord)
-			// const room = await db.addToRoom({
-			// 	userId: '6139364399bd9e223a37d92f',
-			// 	...req.body,
-			// })
-			// console.log({ room })
 			return Response.send(
 				res,
 				201,
@@ -42,12 +49,7 @@ const reminderController = {
 	},
 	getAll: async (req, res, next) => {
 		try {
-			const { type } = req.query
-			const data = await db.findAll({ modelName: type })
-			console.log(
-				'🚀 ~ file: reminder.controller.js ~ line 46 ~ getAll: ~ data',
-				data
-			)
+			const data = await DeadLine.findAll()
 
 			return Response.send(
 				res,
@@ -62,14 +64,12 @@ const reminderController = {
 	},
 	getById: async (req, res, next) => {
 		try {
-			const data = await db.findById({
-				modelName: 'deadlines',
-				id: req.params.id,
-			})
+			const data = await DeadLine.findById(req.params.id)
 
 			if (!data) {
-				return Response.send(res, 404, data, 'Reminder not found', false)
+				return Response.send(res, 404, data, 'Deadline not found', false)
 			}
+
 			return Response.send(
 				res,
 				200,
@@ -81,26 +81,43 @@ const reminderController = {
 			return next(err)
 		}
 	},
-	deleteReminder: async (req, res, next) => {
+	deleteById: async (req, res, next) => {
 		try {
-			const data = await db.deleteOne('deadlines', req.params.id)
+			const data = await DeadLine.deleteOne(req.params.id)
 			return Response.send(
 				res,
 				200,
 				data,
-				'Reminder deleted successfully',
+				'Deadline deleted successfully',
 				true
 			)
 		} catch (err) {
 			return next(err)
 		}
 	},
-	updateById: async (req, res) => {
+	updateById: async (req, res, next) => {
+		const {
+			title,
+			description,
+			startDate,
+			dueDate,
+			assignee,
+			priority,
+			shouldRemind,
+			reminders,
+			status,
+		} = req.body
 		try {
-			const data = await db.updateById({
-				modelName: 'deadlines',
-				id: req.params.id,
-				...req.body,
+			const data = await DeadLine.updateById(req.params.id, {
+				title,
+				description,
+				startDate,
+				dueDate,
+				assignee,
+				priority,
+				shouldRemind,
+				reminders,
+				status,
 			})
 
 			if (!data) {
@@ -108,7 +125,7 @@ const reminderController = {
 					res,
 					404,
 					data,
-					'Reminder with that ID not found!',
+					'Deadline with that ID not found!',
 					false
 				)
 			}
@@ -117,42 +134,20 @@ const reminderController = {
 				res,
 				200,
 				data,
-				'Reminder updated successfully',
+				'Deadline updated successfully',
 				true
 			)
 		} catch (err) {
 			return next(err)
 		}
-		// const { priority, expiryDate, description, shouldRemind } = req.body
-
-		// try {
-		// 	const reminderData = { priority, expiryDate, description, shouldRemind }
-
-		// 	const { id } = req.params
-
-		// 	if (!id) {
-		// 		throw new Error('id is required')
-		// 	}
-
-		// 	const updateReminder = await db.findByIdAndupdate(id, reminderData)
-
-		// 	res.status(200).send('reminder updated successfully ')
-		// } catch (error) {
-		// 	console.log(error)
-		// 	res.json({
-		// 		status: 400,
-		// 		data: null,
-		// 		message: error.message.data,
-		// 	})
-		// }
 	},
 
 	/**
-    Search reminder from the database using query
-    @param {title} reminder name to be searched 
-    @param {creator} creator of the reminder to be searched
-    @param {dueDate} Due date of the reminder to be searched
-    @returns {result} reminder fetched from the database 
+		Search reminder from the database using query
+		@param {title} reminder name to be searched 
+		@param {creator} creator of the reminder to be searched
+		@param {dueDate} Due date of the reminder to be searched
+		@returns {result} reminder fetched from the database 
 */
 	// Get search reminder using query of {title, creator, dueDate}
 	searchReminder: async (req, res, next) => {
@@ -226,4 +221,4 @@ const reminderController = {
 	},
 }
 
-export default reminderController
+export default deadlineController

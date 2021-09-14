@@ -1,8 +1,8 @@
 import React from 'react'
-import ColTitleDes from '../component/columnTitleDes'
-import RowTitleDes from '../component/rowTitleDes'
-import Avatar from '../component/avatar'
-import RemindMeCheckBox from '../component/remindMeCheckBox'
+import ColTitleDes from '../../component/columnTitleDes'
+import RowTitleDes from '../../component/rowTitleDes'
+import Avatar from '../../component/avatar'
+import RemindMeCheckBox from '../../component/remindMeCheckBox'
 export default function UserViewDeadline({
 	description,
 	startDate,
