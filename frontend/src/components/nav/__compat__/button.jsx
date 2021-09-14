@@ -11,7 +11,7 @@ const CreateNewDeadlineButton = () => {
 					setModalData({
 						...modalData,
 						modalShow: true,
-						modalType: 'newDeadline',
+						modalType: 'adminCreate',
 					})
 				}
 			>
