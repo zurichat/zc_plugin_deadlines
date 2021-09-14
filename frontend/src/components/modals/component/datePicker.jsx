@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-const datePicker = ({ initialValue, uniqueId }) => {
+const DatePicker = ({ initialValue, uniqueId }) => {
 	const [date, setDate] = useState(initialValue)
 	let realDate = initialValue
 	const onSelect = (e) => {
@@ -27,4 +27,4 @@ const datePicker = ({ initialValue, uniqueId }) => {
 	)
 }
 
-export default datePicker
+export default DatePicker

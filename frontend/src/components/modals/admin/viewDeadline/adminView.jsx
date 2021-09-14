@@ -1,27 +1,21 @@
 import React, { useState, useRef } from 'react'
-import ColTitleDes from '../component/columnTitleDes'
-import RowTitleDes from '../component/rowTitleDes'
-import Avatar from '../component/avatar'
-import StatusChanger from '../component/taskStatus'
+import ColTitleDes from '../../component/columnTitleDes'
+import RowTitleDes from '../../component/rowTitleDes'
+import Avatar from '../../component/avatar'
+import StatusChanger from '../../component/taskStatus'
 
-const AdminView = ({
-	description,
-	startDate,
-	dueDate,
-	dueIn,
-	assignedTo,
-	assignee,
-	src,
-	alt,
-}) => {
+const AdminView = (
+	{ description, startDate, dueDate, dueIn, assignedTo, assignee, src, alt },
+	props
+) => {
+	const { title } = props
 	const [taskStatus, setTaskStatus] = useState({ status: false }) //should receive initial task status from props
 	const toggler = useRef()
+	// const radioSelector = useRef()
 	return (
 		<div className=" w-6/7 flex-col md:w-3/7 md:ml-96">
 			<div className="h-12 bg-brand-primary flex items-center md:rounded-t-lg">
-				<h2 className=" h-1/3 text-xs font-craFont font-bold mx-4">
-					Deadline-Title
-				</h2>
+				<h2 className=" h-1/3 text-xs font-craFont font-bold mx-4">{title}</h2>
 				<h2 className=" h-1/3 text-xs font-craFont font-bold mx-1">
 					Priority level
 				</h2>

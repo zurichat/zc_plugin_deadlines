@@ -1,9 +1,10 @@
 import React from 'react'
-import ColTitleDes from '../component/columnTitleDes'
-import RowTitleDes from '../component/rowTitleDes'
-import Avatar from '../component/avatar'
-import RemindMeCheckBox from '../component/remindMeCheckBox'
-import ModalTest from '../component/modal2'
+
+import ColTitleDes from '../../component/columnTitleDes'
+import RowTitleDes from '../../component/rowTitleDes'
+import Avatar from '../../component/avatar'
+import RemindMeCheckBox from '../../component/remindMeCheckBox'
+import ModalBase from '../../modalBase/index'
 
 export default function UserViewDeadline({
 	description,
@@ -55,7 +56,7 @@ export default function UserViewDeadline({
 	}
 
 	return (
-		<ModalTest title={deadlineTitle}>
+		<ModalBase title={deadlineTitle}>
 			<div className="flex flex-col gap-7">
 				<ColTitleDes title="Description" writeUp={description} />
 				<div className="flex gap-6">
@@ -83,6 +84,6 @@ export default function UserViewDeadline({
 					}
 				/>
 			</div>
-		</ModalTest>
+		</ModalBase>
 	)
 }
