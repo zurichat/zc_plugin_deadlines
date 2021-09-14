@@ -24,36 +24,39 @@ const Navbar = () => {
 		)
 	}
 	return (
-		<nav className="space-y-1 md:space-y-0">
+		<nav className="space-y-1 md:space-y-0 mb-4">
 			<div className="flex justify-between py-5 items-center">
 				<p className="font-bold text-2xl">Company Deadlines</p>
 			</div>
 
-			<div className="">
+			<div className="flex justify-between">
 				{/* the onclick events with blue line */}
 				<div>
 					<Link to="/">
 						<NavItem navText="Upcoming" />
 					</Link>
+					<Link to="/overdue" className="hidden text-blue-500 mx-5">
+						<NavItem navText="Overdue" />
+					</Link>
+					<Link to="/completed" className="hidden text-blue-500 mx-5">
+						<NavItem navText="Completed" />
+					</Link>
 				</div>
-				<Link to="/overdue" className="text-blue-500 mx-5">
-					<NavItem navText="Overdue" />
-				</Link>
-				<Link to="/completed" className="text-blue-500 mx-5">
-					<NavItem navText="Completed" />
-				</Link>
-				<div className="">
-					<div className="">
-						<SetDeadlineButton />
-					</div>
 
-					<SearchIcon className="md:hidden text-gray-400 w-3.5" />
+				<div className="absolute top-20 ">
+					<SetDeadlineButton />
+				</div>
+
+				<div className=" flex ">
+					<SearchIcon className="md:hidden text-gray-400 w-3.5 mr-3" />
+
 					<FilterIcon className=" md:hidden text-gray-400 w-3.5" />
 
-					<div className="lg:block">
+					<div className="hidden lg:block">
 						<Searchbar />
 					</div>
-					<div className="md:flex-grow-0">
+
+					<div className="hidden md:flex-grow-0">
 						<Sortbar />
 					</div>
 				</div>

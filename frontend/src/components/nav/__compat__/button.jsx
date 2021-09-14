@@ -15,7 +15,7 @@ const CreateNewDeadlineButton = () => {
 					})
 				}
 			>
-				+Create New Deadline
+				+ Create New Deadline
 			</button>
 		</>
 	)
