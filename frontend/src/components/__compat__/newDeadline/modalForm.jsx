@@ -1,7 +1,7 @@
 import React from 'react'
-import CalenderIcon from '../../assets/img/svg/calender.svg'
-import Remaining from '../../assets/img/svg/remaining.svg'
-import UserIcon from '../../assets/img/png/users.png'
+import CalenderIcon from '../../../assets/svg/calender.svg'
+import Remaining from '../../../assets/svg/remaining.svg'
+import UserIcon from '../../../assets/png/users.png'
 import Dropdown from './Dropdown'
 
 const ModalForm = () => {
