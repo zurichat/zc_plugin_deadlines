@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Nav from './components/nav'
 
 import CompletedPage from './pages/Completed/index'
 import OverduePage from './pages/Overdue'
@@ -10,11 +9,11 @@ import Tabs from './components/nav/__compat__/nav_index.jsx'
 const App = () => {
 	return (
 		<BrowserRouter>
-			<Nav />
+			<Tabs />
+
 			<Switch>
 				<Route path="/" exact>
 					<UpcomingPage />
-					<Tabs />
 				</Route>
 				<Route path="/completed">
 					<CompletedPage />
