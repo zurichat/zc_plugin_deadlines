@@ -16,6 +16,7 @@ const AdminView = ({
 }) => {
 	const [taskStatus, setTaskStatus] = useState({ status: false }) //should receive initial task status from props
 	const toggler = useRef()
+	// const radioSelector = useRef()
 	return (
 		<div className=" w-6/7 flex-col md:w-3/7 md:ml-96">
 			<div className="h-12 bg-brand-primary flex items-center md:rounded-t-lg">

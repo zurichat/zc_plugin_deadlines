@@ -1,10 +1,10 @@
 import React from 'react'
 import { useAllReminders } from '../../api/reminders'
 import { ModalContextProvider } from '../../context/ModalContext'
+import AdminView from '../../components/modals/modalBase/adminView'
 
 const UpcomingPage = () => {
 	const { fetchedData } = useAllReminders()
-
 	console.log(fetchedData)
 
 	// Pass through sort hook
@@ -17,7 +17,9 @@ const UpcomingPage = () => {
 	return (
 		<div>
 			<div>Upcoming</div>
-			<ModalContextProvider></ModalContextProvider>
+			<ModalContextProvider>
+				<AdminView />
+			</ModalContextProvider>
 		</div>
 	)
 }
