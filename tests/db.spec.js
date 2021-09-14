@@ -1,9 +1,9 @@
 import { expect } from 'chai'
 import makeDb from '../src/db/index'
 
-const db = makeDb()
+// const db = makeDb()
 
-describe('Db Function', () => {
+describe.skip('Db Function', () => {
 	const collectionName = 'reminders'
 	it('create new document', async () => {
 		// create Db
