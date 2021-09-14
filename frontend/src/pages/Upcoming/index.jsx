@@ -1,23 +1,41 @@
 import React from 'react'
 import { useAllReminders } from '../../api/reminders'
-import { ModalContextProvider } from '../../context/ModalContext'
+import DeadlineCard from '../../components/deadlineCard'
+
+import '../../styles/index.css'
+import '../../styles/scroll.css'
 
 const UpcomingPage = () => {
-	const { fetchedData } = useAllReminders()
-	console.log(fetchedData)
+	const { fetchedData, isPlaceholderData } = useAllReminders()
 
-	// Pass through sort hook
-	// const sortedDeadlineStore = useSort(deadlineStore)
+	const Result = ({ fetchedData }) => {
+		const arr = fetchedData.data.data
 
-	// Can be passed through search hook
+		return arr.map((item, index) => (
+			<DeadlineCard
+				key={index}
+				title={item.title}
+				description={item.description}
+			/>
 
-	// Then use this data to render
+			// <div key={index}>
+			// 	<p>{item.title}</p>
+			// 	<p>
+			// 		Assigned by {item.creator} to {item.assignee}
+			// 	</p>
+			// 	<p>{item.description}</p>
+			// 	<p>Start Date: {item.startDate}</p>
+			// 	<p>Due Date: {item.dueDate}</p>
+			// </div>
+		))
+	}
 
-	return (
+	return !isPlaceholderData ? (
 		<div>
-			<div>Upcoming</div>
-			<ModalContextProvider></ModalContextProvider>
+			<Result fetchedData={fetchedData} />
 		</div>
+	) : (
+		<div>loading</div>
 	)
 }
 
