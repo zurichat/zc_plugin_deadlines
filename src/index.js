@@ -10,10 +10,6 @@ import connection from '@shared/connection'
 
 const start = async () => {
 	try {
-		if (process.env.NODE_ENV === 'development') {
-			// await connection.start()
-		}
-
 		app.listen(env.PORT, () =>
 			console.log(`Server is up and running at ${env.PORT}`)
 		)

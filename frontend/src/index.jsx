@@ -4,6 +4,7 @@ import App from './App'
 
 import './styles/index.css'
 import './styles/scroll.css'
+import 'react-activity/dist/Spinner.css'
 
 import { ModalContextProvider } from './context/ModalContext'
 import { RemindersContextProvider } from './context/RemindersContext'
@@ -21,5 +22,5 @@ ReactDOM.render(
 			</RemindersContextProvider>
 		</QueryClientProvider>
 	</React.StrictMode>,
-	document.getElementById('reminder_root')
+	document.getElementById('deadline_root')
 )
