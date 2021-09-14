@@ -31,7 +31,7 @@ const DeadlineCard = ({
 		zone: 'UTC',
 	}).toLocaleString(DateTime.DATE_MED)
 
-	const remaining = DateTime.fromSeconds(1632745940)
+	const remaining = DateTime.fromSeconds(dueDate)
 		.diffNow(['days', 'hours', 'minutes', 'seconds'])
 		.toObject()
 
@@ -102,7 +102,15 @@ const DeadlineCard = ({
 					</div>
 					<div>
 						<p className="text-brand-text-body text-opacity-60">Due In:</p>
-						<p className="text-brand-text-body">{remainingStr}</p>
+						<p
+							className={
+								remaining['hours'] < 3
+									? 'text-brand-text-overdue'
+									: 'text-brand-text-body'
+							}
+						>
+							{remainingStr}
+						</p>
 					</div>
 				</div>
 			</div>

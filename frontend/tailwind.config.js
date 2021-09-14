@@ -23,6 +23,7 @@ module.exports = {
 						lightIcon: '#BEBEBE',
 						backdrop: '#808080',
 						listTitle: '#000000',
+						overdue: '#AB0655',
 					},
 					error: '#F40101',
 					bg: {
