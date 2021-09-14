@@ -22,5 +22,5 @@ ReactDOM.render(
 			</RemindersContextProvider>
 		</QueryClientProvider>
 	</React.StrictMode>,
-	document.getElementById('reminder_root')
+	document.getElementById('deadline_root')
 )
