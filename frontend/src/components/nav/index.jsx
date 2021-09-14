@@ -1,13 +1,20 @@
 import React from 'react'
-import Sortbar from './sortbar'
+import { Link } from 'react-router-dom'
+
 
 const Nav = ({ ...props }) => {
-	// Use this set sort function in the sort selector to change sort order in component
-	// const { sort, setSort } = useContext(SortContext)
-
 	return (
 		<nav {...props}>
-			<Sortbar />
+			<p>Nav</p>
+			<Link to="/" className="text-blue-500 mr-5">
+				Upcoming
+			</Link>
+			<Link to="/overdue" className="text-blue-500 mx-5">
+				Overdue
+			</Link>
+			<Link to="/completed" className="text-blue-500 mx-5">
+				Completed
+			</Link>
 		</nav>
 	)
 }
