@@ -4,11 +4,11 @@ import Remaining from '../../../assets/svg/remaining.svg'
 import UserIcon from '../../../assets/png/users.png'
 import Dropdown from './Dropdown'
 
-const ModalForm = () => {
+const ModalForm = ({ closeModal }) => {
 	return (
 		<div className="grid grid-cols-5">
 			<div className="col-span-5 sm:col-span-3 border-r border-brand-text-time text-left sm:rounded-bl-lg">
-				<div className="px-6">
+				<div className="">
 					<div className="w-full mt-2">
 						<label className="block text-lg font-semibold">Title</label>
 						<input
@@ -37,7 +37,10 @@ const ModalForm = () => {
 					</div>
 
 					<div className="hidden sm:flex items-baseline mt-8 mb-6 text-base">
-						<button className=" bg-brand-primary text-brand-bg-white p-2 sm:py-2 sm:px-6 rounded">
+						<button
+							className=" bg-brand-primary text-brand-bg-white p-2 sm:py-2 sm:px-6 rounded"
+							onClick={closeModal}
+						>
 							Set Deadline
 						</button>
 					</div>
