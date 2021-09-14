@@ -5,20 +5,17 @@ import {
 	validateQueryRequest,
 } from './common'
 
-const reminderSchema = async (req, res, next) => {
+const createSchema = async (req, res, next) => {
 	const schema = Joi.object({
 		title: Joi.string().trim().required().label('Title'),
 		description: Joi.string().trim().required().label('Description'),
-		assignee: Joi.string().trim().required().label('Assignee'),
-		creator: Joi.string().trim().required().label('Creator'),
-		startDate: Joi.date().required().label('Start date'),
-		dueDate: Joi.date().required().label('Due date'),
-		// time: Joi.string()
-		// 	.trim()
-		// 	.regex(/^([0-9]{2})\:([0-9]{2})$/)
-		// 	.required()
-		// 	.label('Time'),
+		iconUrl: Joi.string().trim().required().uri().label('Icon Url'),
+		members: Joi.array().required().label('Members'),
+		ownerId: Joi.string().required().label('Owner ID'),
+		isArchived: Joi.boolean().label('isArchived'),
+		isPrivate: Joi.boolean().label('isPrivate'),
 	})
+
 	return validateBodyRequest(req, next, schema)
 }
 
@@ -33,15 +30,11 @@ const updateSchema = async (req, res, next) => {
 	const schema = Joi.object({
 		title: Joi.string().trim().label('Title'),
 		description: Joi.string().trim().label('Description'),
-		assignee: Joi.string().trim().label('Assignee'),
-		creator: Joi.string().trim().label('Creator'),
-		startDate: Joi.date().label('Start date'),
-		dueDate: Joi.date().label('Due date'),
-		// time: Joi.string()
-		// 	.trim()
-		// 	.regex(/^([0-9]{2})\:([0-9]{2})$/)
-		// 	.required()
-		// 	.label('Time'),
+		iconUrl: Joi.string().trim().uri().label('Icon Url'),
+		members: Joi.array().trim().label('Members'),
+		ownerId: Joi.string().trim().label('Owner ID'),
+		isArchived: Joi.boolean().label('isArchived'),
+		isPrivate: Joi.boolean().label('isPrivate'),
 	})
 	return validateBodyRequest(req, next, schema)
 }
@@ -62,4 +55,4 @@ const addRoomSchema = async (req, res, next) => {
 	validateQueryRequest(req, next, schema)
 }
 
-export { searchSchema, reminderSchema, updateSchema, addRoomSchema, idParams }
+export { searchSchema, createSchema, updateSchema, addRoomSchema, idParams }
