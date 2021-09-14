@@ -8,6 +8,7 @@ import UpcomingPage from './pages/Upcoming'
 import { ModalContext } from './context/ModalContext'
 import NewDeadline from './components/__compat__/newDeadline'
 import AdminViewStatus from './components/modals/admin/viewDeadline'
+import AdminViewOther from './components/modals/modalBase/adminViewOther'
 
 const App = () => {
 	const { modalData } = useContext(ModalContext)
@@ -16,6 +17,9 @@ const App = () => {
 		<BrowserRouter>
 			{modalData.modalShow && modalData.modalType === 'adminCreate' && (
 				<NewDeadline />
+			)}
+			{modalData.modalShow && modalData.modalType === 'adminViewOther' && (
+				<AdminViewOther />
 			)}
 			<Nav />
 			<Switch>

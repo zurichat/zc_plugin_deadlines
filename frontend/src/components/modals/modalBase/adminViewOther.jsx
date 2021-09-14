@@ -1,4 +1,5 @@
 import React from 'react'
+import ModalBase from './index'
 // import AvatarIcon from '../../../assets/svg/Assigner.svg'
 
 // const deadline = {
@@ -13,7 +14,7 @@ import React from 'react'
 // 	assignedBy: 'John Doe',
 // 	assignerAvatar: AvatarIcon,
 // }
-const OtherAdminModal = ({
+const AdminViewOther = ({
 	title,
 	priorityLevel,
 	description,
@@ -25,43 +26,38 @@ const OtherAdminModal = ({
 	assignerAvatar,
 }) => {
 	return (
-		<>
-			<div className="border-2 m-3 rounded-lg">
-				<div className="text-white font-bold rounded-t-md text-left bg-green-600 p-3 px-5">
-					{title} | Priority Level - {priorityLevel}
+		<ModalBase title="Q4-Marketing Deadline">
+			<div>
+				<h2 className="text-gray-900 mb-2 font-bold">Description</h2>
+				<p className="text-gray-800">{description}</p>
+				<div className="mt-6 flex justify-start align-middle">
+					<div className="pr-6">
+						<h3 className="font-bold">Start Date</h3>
+						<p className="text-gray-600">{startDate}</p>
+					</div>
+					<div className="pr-6">
+						<h3 className="font-bold">Due Date</h3>
+						<p className="text-gray-600">{dueDate}</p>
+					</div>
+					<div className="pr-6">
+						<h3 className="font-bold">Due In</h3>
+						<p className="text-red-600">{dueIn}</p>
+					</div>
 				</div>
-				<div className="p-6">
-					<h2 className="text-gray-900 mb-2 font-bold">Description</h2>
-					<p className="text-gray-800">{description}</p>
-					<div className="mt-6 flex justify-start align-middle">
-						<div className="pr-6">
-							<h3 className="font-bold">Start Date</h3>
-							<p className="text-gray-600">{startDate}</p>
-						</div>
-						<div className="pr-6">
-							<h3 className="font-bold">Due Date</h3>
-							<p className="text-gray-600">{dueDate}</p>
-						</div>
-						<div className="pr-6">
-							<h3 className="font-bold">Due In</h3>
-							<p className="text-red-600">{dueIn}</p>
-						</div>
-					</div>
-					<div className="start mt-6">
-						<h3 className="font-bold">Asssigned To</h3>
-						<p className="text-gray-600">{assignedTo}</p>
-					</div>
-					<div className="start mt-6">
-						<h3 className="font-bold">Asssigned By</h3>
-						<div className="flex mt-2">
-							<img src={assignerAvatar} alt="assigner-avatar" />
-							<p className="text-gray-600 pl-5">{assignedBy}</p>
-						</div>
+				<div className="start mt-6">
+					<h3 className="font-bold">Asssigned To</h3>
+					<p className="text-gray-600">{assignedTo}</p>
+				</div>
+				<div className="start mt-6">
+					<h3 className="font-bold">Asssigned By</h3>
+					<div className="flex mt-2">
+						<img src={assignerAvatar} alt="assigner-avatar" />
+						<p className="text-gray-600 pl-5">{assignedBy}</p>
 					</div>
 				</div>
 			</div>
-		</>
+		</ModalBase>
 	)
 }
 
-export default OtherAdminModal
+export default AdminViewOther
