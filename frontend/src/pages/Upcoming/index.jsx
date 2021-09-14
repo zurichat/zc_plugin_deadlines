@@ -1,6 +1,6 @@
 import React from 'react'
 // import { useAllReminders } from '../../api/reminders'
-// import DeadlineCard from '../../components/deadlineCard'
+import DeadlineCard from '../../components/deadlineCard'
 
 import '../../styles/index.css'
 import '../../styles/scroll.css'
@@ -38,7 +38,23 @@ const UpcomingPage = () => {
 	// 	<div>loading</div>
 	// )
 
-	return <div>Upcoming</div>
+	return (
+		<div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+			<div>
+				<DeadlineCard
+					title={'Accounting-Deadline'}
+					description={
+						'Create new sales spreadsheet for Creative juices entreprise.'
+					}
+					assigner={'Joan'}
+					assignees={'Accounting'}
+					startDate={1629547474}
+					dueDate={1632225874}
+					priority={'low'}
+				/>
+			</div>
+		</div>
+	)
 }
 
 export default UpcomingPage
