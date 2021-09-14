@@ -4,6 +4,7 @@ import RowTitleDes from '../component/rowTitleDes'
 import Avatar from '../component/avatar'
 import RemindMeCheckBox from '../component/remindMeCheckBox'
 import ModalTest from '../component/modal2'
+
 export default function UserViewDeadline({
 	description,
 	startDate,
@@ -15,41 +16,43 @@ export default function UserViewDeadline({
 	alt,
 	deadlineTitle,
 }) {
-	let checkBoxObj = {
-		everyDay: false,
-		week: false,
-		hours24: false,
-		hours12: false,
-		hours2: false,
+	let labels = {
+		everyday: { label: 'Everyday', checked: false },
+		week: { label: 'A week to deadline', checked: true },
+		hours24: { label: '24 hours to deadline', checked: false },
+		hours12: { label: '12 hours to deadline', checked: true },
+		hours2: { label: '2 hours to deadline', checked: false },
 	}
 	onchange = (labe, isChecked) => {
+		console.log(isChecked)
 		switch (labe) {
 			case 'Everyday':
-				checkBoxObj = { ...checkBoxObj, everyDay: isChecked }
+				labels = {
+					...labels,
+					everyday: { ...labels.everyday, checked: isChecked },
+				}
 				break
 			case 'A week to deadline':
-				checkBoxObj = { ...checkBoxObj, week: isChecked }
+				labels = { ...labels, week: { ...labels.week, checked: isChecked } }
 				break
 			case '24 hours to deadline':
-				checkBoxObj = { ...checkBoxObj, hours24: isChecked }
+				labels = {
+					...labels,
+					hours24: { ...labels.hours24, checked: isChecked },
+				}
 				break
 			case '12 hours to deadline':
-				checkBoxObj = { ...checkBoxObj, hours12: isChecked }
+				labels = {
+					...labels,
+					hours12: { ...labels.hours12, checked: isChecked },
+				}
 				break
 			case '2 hours to deadline':
-				checkBoxObj = { ...checkBoxObj, hours2: isChecked }
+				labels = { ...labels, hours2: { ...labels.hours2, checked: isChecked } }
 				break
 		}
-		console.log(checkBoxObj)
+		console.log(labels)
 	}
-
-	const labels = [
-		'Everyday',
-		'A week to deadline',
-		'24 hours to deadline',
-		'12 hours to deadline',
-		'2 hours to deadline',
-	]
 
 	return (
 		<ModalTest title={deadlineTitle}>
@@ -75,7 +78,9 @@ export default function UserViewDeadline({
 				/>
 				<ColTitleDes
 					title="Remind me:"
-					writeUp={<RemindMeCheckBox labels={labels} change={onchange} />}
+					writeUp={
+						<RemindMeCheckBox checkBoxObj labels={labels} change={onchange} />
+					}
 				/>
 			</div>
 		</ModalTest>

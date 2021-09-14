@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAllReminders } from '../../api/reminders'
 import { ModalContextProvider } from '../../context/ModalContext'
-
+import UserViewDeadline from '../../components/modals/modalBase/userView'
 const UpcomingPage = () => {
 	const { fetchedData } = useAllReminders()
 
@@ -17,7 +17,9 @@ const UpcomingPage = () => {
 	return (
 		<div>
 			<div>Upcoming</div>
-			<ModalContextProvider></ModalContextProvider>
+			<ModalContextProvider>
+				<UserViewDeadline />
+			</ModalContextProvider>
 		</div>
 	)
 }
