@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 
-import { SearchIcon, FilterIcon } from '@heroicons/react/outline'
+import {
+	SearchIcon,
+	FilterIcon,
+	ChevronDownIcon,
+} from '@heroicons/react/outline'
+
 import Sortbar from './sortbar'
 import Searchbar from './searchbar'
 import SetDeadlineButton from './button'
@@ -15,8 +20,10 @@ const Navbar = () => {
 		return (
 			<div onClick={() => handleSetActive(navText)}>
 				<p
-					className={`${active === navText && 'underline pb-2 text-blue-500'}
-					 text-gray-400`}
+					className={`${
+						active === navText && 'lg:border-b-2 border-blue-500 pb-2 '
+					}
+					 md:text-gray-400 text-gray-800 font-bold`}
 				>
 					{navText}
 				</p>
@@ -24,17 +31,21 @@ const Navbar = () => {
 		)
 	}
 	return (
-		<nav className="space-y-1 md:space-y-0 mb-4">
+		<nav className="space-y-1 md:space-y-0 mb-6">
 			<div className="flex justify-between py-5 items-center">
 				<p className="font-bold text-2xl">Company Deadlines</p>
 			</div>
 
 			<div className="relative flex justify-between items-center">
 				{/* the onclick events with blue line */}
-				<div className="md:flex md:justify-between">
+				<div className="flex md:justify-between">
 					<Link to="/">
 						<NavItem navText="Upcoming" />
 					</Link>
+					<ChevronDownIcon
+						className="lg:hidden w-4 h-4 ml-2 mr-2 mt-1 text-gray-800"
+						aria-hidden="true"
+					/>
 					<Link to="/completed" className="hidden lg:block text-blue-500 mx-5">
 						<NavItem navText="Completed" />
 					</Link>
