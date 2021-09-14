@@ -79,10 +79,10 @@
 		"faker": "^5.5.3",
 		"http-status-codes": "^2.1.4",
 		"joi": "^17.4.2",
+		"luxon": "^2.0.2",
 		"mongoose": "^6.0.3",
 		"react-activity": "^2.1.1",
-		"supertest": "^6.1.6",
-		"swagger-jsdoc": "^6.1.0",
-		"swagger-ui-express": "^4.1.6"
+		"react-icons": "^4.2.0",
+		"supertest": "^6.1.6"
 	}
 }

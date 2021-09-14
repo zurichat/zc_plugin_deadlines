@@ -7,6 +7,9 @@ const { apiUrl, baseUrl, orgId, pluginId } = getDevBaseUrl()
 console.log({ apiUrl, baseUrl, orgId, pluginId })
 const readBaseUrl = `${baseUrl}/data/read`
 const writeBaseUrl = `${baseUrl}/data/write`
+const deleteBaseUrl = `${baseUrl}/data/delete`
+// eslint-disable no-underscore-dangle
+// eslint-disable class-methods-use-this
 
 /** *
  * create
@@ -17,132 +20,121 @@ const writeBaseUrl = `${baseUrl}/data/write`
  */
 
 export default class DatabaseOps {
-	async create({ modelName, ...data }) {
-		console.log(typeof modelName)
-		const res = await axios({
-			url: writeBaseUrl,
-			method: 'post',
-			data: {
-				plugin_id: pluginId,
-				organisation_id: orgId,
-				collection_name: modelName,
-				bulk_write: Array.isArray(data), // returns true if data is an array
-				payload: data,
-			},
-		})
-		// Response
-		if (Array.isArray(data)) {
-			return res.data.data.map((row) => ({
-				id: row.document.object_id,
-				...row.document.payload,
-			}))
-		}
-		return res.data.data
+	constructor(modelName) {
+		this.modelName = modelName
 	}
 
-	async findAll({ modelName }) {
+	async create(data) {
 		try {
 			const res = await axios({
-				url: `${readBaseUrl}/${pluginId}/${modelName}/${orgId}`,
-				method: 'get',
-			})
-			return res.data.data
-		} catch (error) {
-			return error.response
-		}
-	}
-	async findById({ modelName, id }) {
-		const urls = `${readBaseUrl}/${pluginId}/${modelName}/${orgId}?_id=${id}`
-		console.log(urls)
-		try {
-			const res = await axios({
-				url: `${readBaseUrl}/${pluginId}/${modelName}/${orgId}?_id=${id}`,
-				method: 'get',
-			})
-			console.log(res.data.data)
-			return res.data.data[0]
-		} catch (error) {
-			if (!error.response) {
-				throw new Error(
-					'Server Internal error, we will figure it out, try again later'
-				)
-			}
-			return error.response
-		}
-	}
-
-	async deleteOne(collectionName, id) {
-		try {
-			const res = await axios.delete(writeBaseUrl, {
+				url: writeBaseUrl,
+				method: 'post',
 				data: {
 					plugin_id: pluginId,
 					organization_id: orgId,
-					collection_name: collectionName,
+					collection_name: this.modelName,
+					bulk_write: Array.isArray(data), // returns true if data is an array
+					payload: data,
+				},
+			})
+			// Response
+			return res.data.data
+		} catch (error) {
+			throw new Error(
+				'Server Internal error, we will figure it out, try again later'
+			)
+		}
+	}
+
+	async findAll() {
+		const url = `${readBaseUrl}/${pluginId}/${this.modelName}/${orgId}`
+		try {
+			const res = await axios({
+				url,
+				method: 'get',
+			})
+			return res.data.data.map((row) => this.render(row))
+		} catch (error) {
+			throw new Error(
+				'Server Internal error, we will figure it out, try again later'
+			)
+		}
+	}
+
+	async findById(id) {
+		const url = `${readBaseUrl}/${pluginId}/${this.modelName}/${orgId}?_id=${id}`
+		try {
+			const res = await axios({
+				url,
+				method: 'get',
+			})
+
+			return res.data.data ? this.render(res.data.data) : null
+		} catch (error) {
+			throw new Error(
+				'Server Internal error, we will figure it out, try again later'
+			)
+		}
+	}
+
+	async deleteOne(id) {
+		try {
+			const res = await axios({
+				url: deleteBaseUrl,
+				method: 'post',
+				data: {
+					plugin_id: pluginId,
+					organization_id: orgId,
+					collection_name: this.modelName,
 					bulk_write: false,
 					object_id: id,
 				},
 			})
 			return res.data.data
 		} catch (error) {
-			if (!error.response) {
-				throw new Error(
-					'Server Internal error, we will figure it out, try again later'
-				)
-			}
-			return error.response
+			console.log(error.message)
+			throw new Error(
+				'Server Internal error, we will figure it out, try again later'
+			)
 		}
 	}
 
-	async updateById({ modelName, id, ...params }) {
+	async updateById(id, data) {
 		try {
 			const res = await axios({
 				method: 'put',
 				url: writeBaseUrl,
 				data: {
 					plugin_id: pluginId,
-					organisation_id: orgId,
-					collection_name: modelName,
-					filter: {
-						object_id: id,
-					},
-					payload: { ...params },
+					organization_id: orgId,
+					collection_name: this.modelName,
+					object_id: id,
+					payload: data,
 				},
 			})
 			return res.data.data.modified_document > 0
-		} catch (err) {
-			return err.response.data
+		} catch (error) {
+			throw new Error(
+				'Server Internal error, we will figure it out, try again later'
+			)
 		}
 	}
 
+	/* eslint class-methods-use-this: 0 */
 	async search(data, query) {
 		console.log('INCOMING', data, query)
-		let formattedQuery = query.toLowerCase()
-		const result = data.filter((item) => {
-		return item.title.toLowerCase() === formattedQuery || 
-			  item.creator.toLowerCase() === formattedQuery ||
-			  // item.priority.toLowerCase() === formattedQuery || 
-			  item.description.toLowerCase() === formattedQuery
-		})
+		const result = data.filter((item) => item.title === query)
 		console.log('RESULT GOTTEN', result)
 		return result
 	}
 
-	async addToRoom({ ...params }) {
-		const room = await this.create({ modelName: 'rooms', ...params })
-		const found = await this.findById({
-			modelName: 'rooms',
-			id: room.object_id,
-		})
-		return room
-	}
+	// Helper
+	render(data) {
+		// Change the `_id` field to `object_id` for uniformity
+		/* eslint no-underscore-dangle:0 */
+		data.object_id = data._id
+		delete data._id
 
-	async removeFromRoom({ userId }) {
-		const deleted = await this.deleteOne('rooms', userId)
-		console.log({ deleted })
-		return deleted
-	}
-
-	async getRooms() {
-		return this.findAll({ modelName: 'rooms' })
+		return data
 	}
 }

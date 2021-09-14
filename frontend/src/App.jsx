@@ -1,29 +1,38 @@
 import React, { useContext } from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Nav from './components/nav'
 
-import './scroll.css'
-import 'react-activity/dist/Spinner.css'
-
-import Layout from './layout'
-import { ModalContext } from './context/ModalContext.jsx'
-
-import ViewDeadline from './components/viewDeadline'
-import NewDeadline from './components/newDeadline'
+import CompletedPage from './pages/Completed/index'
+import OverduePage from './pages/Overdue'
+import UpcomingPage from './pages/Upcoming'
+import { ModalContext } from './context/ModalContext'
+import NewDeadline from './components/__compat__/newDeadline'
 
 const App = () => {
 	const { modalData } = useContext(ModalContext)
 
 	return (
-		<>
-			{modalData.modalShow && modalData.modalType === 'viewDeadline' ? (
-				// This modalData object passed down is always undefined for some reason. Should be fixed
-				<ViewDeadline modalData={modalData} />
-			) : null}
-			{modalData.modalShow && modalData.modalType === 'newDeadline' ? (
-				// This modalData object passed down is always undefined for some reason. Should be fixed
-				<NewDeadline modalData={modalData} />
-			) : null}
-			<Layout />
-		</>
+		<BrowserRouter>
+			{modalData.modalShow && modalData.modalType === 'adminCreate' && (
+				<NewDeadline />
+			)}
+			<nav className="p-5 ">
+				<Nav />
+			</nav>
+			<main className="p-5 ">
+				<Switch>
+					<Route path="/" exact>
+						<UpcomingPage />
+					</Route>
+					<Route path="/completed">
+						<CompletedPage />
+					</Route>
+					<Route path="/overdue">
+						<OverduePage />
+					</Route>
+				</Switch>
+			</main>
+		</BrowserRouter>
 	)
 }
 
