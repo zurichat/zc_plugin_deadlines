@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Navbar from './__compat__/nav_index'
 
 const Nav = ({ ...props }) => {
 	return (
 		<nav {...props}>
-			<p>Nav</p>
+			<Navbar />
 			<Link to="/" className="text-blue-500 mr-5">
 				Upcoming
 			</Link>

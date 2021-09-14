@@ -3,7 +3,7 @@ import Sortbar from './sortbar'
 import Searchbar from './searchbar'
 import SetDeadlineButton from './button'
 
-const Nav = () => {
+const Navbar = () => {
 	const [active, setActive] = useState('Upcoming')
 	const handleSetActive = (value) => {
 		setActive(value)
@@ -52,4 +52,4 @@ const Nav = () => {
 	)
 }
 
-export default Nav
+export default Navbar
