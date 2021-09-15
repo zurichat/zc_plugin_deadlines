@@ -1,4 +1,5 @@
 import React from 'react'
+import FlipMove from 'react-flip-move'
 import { useAllReminders } from '../../api/reminders'
 import DeadlineCard from '../../components/deadlineCard'
 import Skeleton from '../../components/skeleton/skeleton'
@@ -13,7 +14,10 @@ const UpcomingPage = () => {
 				An unexpected error occured &#128542;
 			</div>
 		) : (
-			<div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+			<FlipMove
+				appearAnimation="elevator"
+				className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden"
+			>
 				{Array.isArray(fetchedData) &&
 					fetchedData.length > 0 &&
 					fetchedData.map((val) => (
@@ -29,7 +33,7 @@ const UpcomingPage = () => {
 							/>
 						</div>
 					))}
-			</div>
+			</FlipMove>
 		)
 	) : (
 		<div className="flex h-screen justify-center items-center">
