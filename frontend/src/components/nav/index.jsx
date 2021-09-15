@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 
-import {
-	SearchIcon,
-	FilterIcon,
-	ChevronDownIcon,
-} from '@heroicons/react/outline'
+import { SearchIcon, FilterIcon } from '@heroicons/react/outline'
 
 import Sortbar from './components/sort'
 import Searchbar from './components/searchbar'
@@ -32,27 +28,15 @@ const Nav = () => {
 	}
 	return (
 		<nav className="space-y-1 md:space-y-0 mb-6">
-			<div className="flex justify-between py-5 items-center">
-				<p className="font-bold text-2xl">Company Deadlines</p>
-			</div>
-
-			<div className="relative flex justify-between items-center">
+			<div className="flex justify-between items-center">
 				{/* the onclick events with blue line */}
-				<div className="flex md:justify-between">
+				<div className="">
 					<Link to="/">
 						<NavItem navText="Upcoming" />
 					</Link>
-					<ChevronDownIcon
-						className="lg:hidden w-4 h-4 ml-2 mr-2 mt-1 text-gray-800"
-						aria-hidden="true"
-					/>
-					<Link to="/completed" className="hidden lg:block text-blue-500 mx-5">
-						<NavItem navText="Completed" />
-					</Link>
-				</div>
-
-				<div className="absolute -bottom-10 lg:static ">
-					<CreateNewDeadlineButton />
+					<div className="">
+						<CreateNewDeadlineButton />
+					</div>
 				</div>
 
 				<div className="flex justify-between ">
