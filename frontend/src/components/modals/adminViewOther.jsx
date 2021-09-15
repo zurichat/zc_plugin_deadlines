@@ -1,51 +1,48 @@
 import React from 'react'
 import ModalBase from './modalBase/index'
-import AvatarIcon from '../../../assets/svg/Assigner.svg'
+import Avatar from '../../components/modals/component/avatar'
+import Priority from './component/priority'
 
-// usage: cd to src\context\ModalContext.jsx and change modalShow, modalData.title to true and adminViewOther respectively.
-// call in App.jsx
-// {modalData.modalShow && modalData.modalType === 'adminViewOther' && (
-// <AdminViewOther title="titel" ...otherProps/>
-// )}
-const AdminViewOther = ({
-	title,
-	priorityLevel,
-	description,
-	startDate,
-	dueDate,
-	dueIn,
-	assignedTo,
-	assignedBy,
-	assignerAvatar,
-}) => {
+const AdminViewOther = ({ details }) => {
+	const DeadlineTitle = (
+		<div className="flex gap-4">
+			{details.title} <Priority status={details.priority} forTitle />
+		</div>
+	)
+
 	return (
-		<ModalBase title="Q4-Marketing Deadline">
+		<ModalBase title={DeadlineTitle}>
 			<div>
 				<h2 className="text-gray-900 mb-2 font-bold">Description</h2>
-				<p className="text-gray-800">{description}</p>
+				<p className="text-gray-800">{details.description}</p>
 				<div className="mt-6 flex justify-start align-middle">
 					<div className="pr-6">
 						<h3 className="font-bold">Start Date</h3>
-						<p className="text-gray-600">{startDate}</p>
+						<p className="text-gray-600">{details.startDate}</p>
 					</div>
 					<div className="pr-6">
 						<h3 className="font-bold">Due Date</h3>
-						<p className="text-gray-600">{dueDate}</p>
+						<p className="text-gray-600">{details.dueDate}</p>
 					</div>
 					<div className="pr-6">
 						<h3 className="font-bold">Due In</h3>
-						<p className="text-red-600">{dueIn}</p>
+						<p className="text-red-600">{details.dueIn}</p>
 					</div>
 				</div>
 				<div className="start mt-6">
 					<h3 className="font-bold">Asssigned To</h3>
-					<p className="text-gray-600">{assignedTo}</p>
+					<p className="text-gray-600">{details.assignedTo}</p>
 				</div>
 				<div className="start mt-6">
 					<h3 className="font-bold">Asssigned By</h3>
 					<div className="flex mt-2">
-						<img src={AvatarIcon} alt="assigner-avatar" className="w-6 h-6" />
-						<p className="text-gray-600 pl-5">{assignedBy}</p>
+						<Avatar
+							src={details.src}
+							alt={details.src}
+							className="w-6 h-6"
+							isOnline={details.assigneeOnline}
+						/>
+						<p className="text-gray-600 pl-5">{details.assignee}</p>
 					</div>
 				</div>
 			</div>

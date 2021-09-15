@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { DateTime } from 'luxon'
 
 import { BsThreeDots } from 'react-icons/bs'
 import { ReactComponent as Date } from '../../assets/svg/date.svg'
 import { ReactComponent as Clock } from '../../assets/svg/clock-group.svg'
-
+import { ModalContext } from '../../context/ModalContext'
+import avatar from '../../assets/png/avatar1.png'
 const DeadlineCard = ({
 	title,
 	description,
@@ -54,12 +55,49 @@ const DeadlineCard = ({
 			  }`
 			: `Expired`
 
+	const props = {
+		priority,
+		title,
+		description,
+		startDate: startDateStr,
+		dueDate: dueDateStr,
+		assignedTo: assignees,
+		assignee: assigner,
+		alt: 'pic',
+		src: avatar,
+		dueIn: remainingStr,
+		assigneeOnline: true,
+	}
+	const { modalData, setModalData } = useContext(ModalContext)
+	const UserViewDeadline = () => {
+		setModalData({
+			modalShow: true,
+			modalType: 'userView',
+			modalData: {
+				...props,
+			},
+		})
+		console.log(modalData.modalType)
+		console.log(modalData.modalShow)
+	}
+	const AdminViewOther = () => {
+		setModalData({
+			modalShow: true,
+			modalType: 'adminViewOther',
+			modalData: {
+				...props,
+			},
+		})
+	}
 	return (
 		<div className="ring-1 ring-brand-border ring-opacity-50 flex flex-col p-4 rounded-xl">
 			<div id="header-text" className="mb-4">
 				<div className="flex justify-between">
 					<div className="flex">
-						<p className="font-semibold text-lg text-brand-text-header">
+						<p
+							className="font-semibold text-lg text-brand-text-header"
+							onClick={UserViewDeadline}
+						>
 							{title}
 						</p>
 						<div
@@ -71,7 +109,9 @@ const DeadlineCard = ({
 				</div>
 				<p className="text-brand-text-body text-opacity-50">{`Assigned by ${assigner} to #${assignees}`}</p>
 			</div>
-			<p className="text-brand-text-body">{description}</p>
+			<p className="text-brand-text-body" onClick={AdminViewOther}>
+				{description}
+			</p>
 			<div id="y-divider" className="border-1/2 border-opacity-50 mt-3 mb-4" />
 			<div className="flex">
 				<div id="startDate" className="flex">
