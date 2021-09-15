@@ -1,28 +1,24 @@
-import React, { useState } from 'react'
-import './overdue.css'
-import { useAllReminders } from '../../api/reminders'
-// import ReminderCards from './ReminderCards'
-const OverduePage = () => {
-	const [reminders, setReminders] = useState([])
-	const { fetchedData } = useAllReminders()
-	const array = fetchedData.data.data
+import React from 'react'
+import { Link } from 'react-router-dom'
+import greenNavBar from './greenNavBar'
 
-	setReminders(array)
-	console.log(array)
+const Nav = ({ ...props }) => {
 	return (
-		<div>
-			<div>Overdue </div>
-
-			<div>
-				{reminders.map((reminders) => {
-					return (
-						// eslint-disable-next-line react/jsx-key
-						<p>{reminders['data']['assignee']['creator']['description']}</p>
-					)
-				})}
-			</div>
-		</div>
+		<>
+			<Nav {...props}>
+				<greenNavBar />
+				<Link to="/" className="text-blue-500 mr-5">
+					Upcoming
+				</Link>
+				<Link to="/overdue" className="text-blue-500 mx-5">
+					Overdue
+				</Link>
+				<Link to="/completed" className="text-blue-500 mx-5">
+					Completed
+				</Link>
+			</Nav>
+		</>
 	)
 }
 
-export default OverduePage
+export default Nav
