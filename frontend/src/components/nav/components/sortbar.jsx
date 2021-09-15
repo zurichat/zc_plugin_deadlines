@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 
 import { Menu } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
-import { RemindersContext } from '../../context/RemindersContext'
+import { RemindersContext } from '../../../context/RemindersContext'
 
 const Sortbar = () => {
 	const sort_tags = [
