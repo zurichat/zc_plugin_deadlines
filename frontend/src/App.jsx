@@ -7,7 +7,6 @@ import OverduePage from './pages/Overdue'
 import UpcomingPage from './pages/Upcoming'
 import { ModalContext } from './context/ModalContext'
 import NewDeadline from './components/__compat__/newDeadline'
-import AdminViewStatus from './components/modals/admin/viewDeadline'
 import UserViewDeadline from './components/modals/user/userViewDeadline/userView'
 import EditDeadline from './components/modals/modalBase/editDeadline'
 const App = () => {
@@ -24,21 +23,22 @@ const App = () => {
 			{modalData.modalShow && modalData.modalType === 'adminEdit' && (
 				<EditDeadline {...modalData.modalData} />
 			)}
-			<Nav />
-			<Switch>
-				<Route path="/" exact>
-					<UpcomingPage />
-				</Route>
-				<Route path="/completed">
-					<CompletedPage />
-				</Route>
-				<Route path="/overdue">
-					<OverduePage />
-				</Route>
-			</Switch>
-			{modalData.modalShow && modalData.modalType === 'adminView' && (
-				<AdminViewStatus />
-			)}
+			<nav className="p-5 ">
+				<Nav />
+			</nav>
+			<main className="p-5 ">
+				<Switch>
+					<Route path="/" exact>
+						<UpcomingPage />
+					</Route>
+					<Route path="/completed">
+						<CompletedPage />
+					</Route>
+					<Route path="/overdue">
+						<OverduePage />
+					</Route>
+				</Switch>
+			</main>
 		</BrowserRouter>
 	)
 }
