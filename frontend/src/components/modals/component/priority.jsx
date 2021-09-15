@@ -16,7 +16,7 @@ const Priority = ({ status, forTitle }) => {
 	}
 
 	const bg_color = `bg-brand-priority-${color}`
-	const title = forTitle ? '| ' : ''
+	const title = forTitle ? '| Priority Level - ' : ''
 
 	return (
 		<div className="inline-flex gap-2 justify-start items-center">

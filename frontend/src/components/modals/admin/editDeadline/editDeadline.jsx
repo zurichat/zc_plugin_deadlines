@@ -12,6 +12,7 @@ import ModalBase from '../../modalBase/index'
 // 	start: '2021-11-03',
 // 	due: '2021-11-09',
 // 	radio: 'high',
+//  assignTo: "#marketing"
 // }
 const EditDeadline = ({ details }) => {
 	let data = {
@@ -19,6 +20,7 @@ const EditDeadline = ({ details }) => {
 		title: details.title,
 		start: details.start,
 		due: details.due,
+		assignTo: details.assignTo,
 		radio: details.radio,
 	} //should receive initial task status from props
 
@@ -26,7 +28,7 @@ const EditDeadline = ({ details }) => {
 
 	return (
 		<ModalBase title="Edit Deadline">
-			<div className="flex flex-col gap-y-10">
+			<div className="flex flex-col gap-y-6">
 				<ColTitleDes
 					title="Title"
 					writeUp={
@@ -87,8 +89,22 @@ const EditDeadline = ({ details }) => {
 						alignStretch
 					/>
 				</div>
-
-				<div className="flex flex-col gap-y-2">
+				<ColTitleDes
+					title="Assign to"
+					writeUp={
+						<TextField
+							placeholder="E.g. #channelName"
+							value={data.assignTo}
+							onChange={(value) => {
+								data = { ...data, assignTo: value }
+								console.log(data)
+							}}
+						/>
+					}
+					alignStretch
+				/>
+				<div className="flex flex-col gap-y-3">
+					<p className="text-sm leading-none">select priority</p>
 					<RadioButton
 						id="low"
 						selected={radio}

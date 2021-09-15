@@ -18,6 +18,7 @@ import Priority from '../../component/priority'
 // 	assignee: 'john Doe',
 // 	alt: 'pic',
 //  dueIn: '1hour',
+//  assigneeOnline:true
 // checkbox: [
 // 	{ label: 'Everyday', checked: true },
 // 	{ label: 'A week to deadline', checked: false },
@@ -38,6 +39,7 @@ export default function UserViewDeadline({
 	title,
 	priority,
 	checkbox,
+	assigneeOnline,
 }) {
 	const DeadlineTitle = (
 		<div className="flex gap-4">
@@ -77,7 +79,7 @@ export default function UserViewDeadline({
 					title="Assignee"
 					writeUp={
 						<RowTitleDes
-							title={<Avatar src={src} alt={alt} />}
+							title={<Avatar src={src} alt={alt} isOnline={assigneeOnline} />}
 							writeUp={assignee}
 						/>
 					}
