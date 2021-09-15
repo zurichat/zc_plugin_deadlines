@@ -13,14 +13,14 @@ const AdminView = (
 	const toggler = useRef()
 	// const radioSelector = useRef()
 	return (
-		<div className=" w-6/7 flex-col md:w-3/7 md:ml-96">
-			<div className="h-12 bg-brand-primary flex items-center md:rounded-t-lg">
+		<div className=" flex-col">
+			{/* <div className="h-12 bg-brand-primary flex items-center md:rounded-t-lg">
 				<h2 className=" h-1/3 text-xs font-craFont font-bold mx-4">{title}</h2>
 				<h2 className=" h-1/3 text-xs font-craFont font-bold mx-1">
 					Priority level
 				</h2>
-			</div>
-			<div className="flex-col border-black border-2 p-4 md:rounded-b-lg">
+			</div> */}
+			<div className="flex-col">
 				<ColTitleDes title="Description" writeUp={description} />
 				<div className="flex ">
 					<div className="flex gap-6">
