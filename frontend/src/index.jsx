@@ -5,9 +5,11 @@ import App from './App'
 import './styles/index.css'
 import './styles/scroll.css'
 import './styles/datePicker.css'
+import 'react-activity/dist/Spinner.css'
 
 import { ModalContextProvider } from './context/ModalContext'
 import { RemindersContextProvider } from './context/RemindersContext'
+import { SortProvider } from './components/sort'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 const queryClient = new QueryClient()
@@ -17,7 +19,9 @@ ReactDOM.render(
 		<QueryClientProvider client={queryClient}>
 			<RemindersContextProvider>
 				<ModalContextProvider>
-					<App />
+					<SortProvider>
+						<App />
+					</SortProvider>
 				</ModalContextProvider>
 			</RemindersContextProvider>
 		</QueryClientProvider>
