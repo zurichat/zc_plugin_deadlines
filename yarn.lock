@@ -4531,6 +4531,11 @@ react-activity@^2.1.1:
   resolved "https://registry.yarnpkg.com/react-activity/-/react-activity-2.1.1.tgz#39cfdf5138edec3a9e86780771a3c83571ff68d4"
   integrity sha512-QzArf8ED9Q2s8z30IB5VOMqbBsjZrc/Tj6Yc0TxN4UrjZ8hIr8wfAcTS+0IoAR0BiqaQ36wdhnrSFDLg+nxfuQ==
 
+react-flip-move@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-flip-move/-/react-flip-move-3.0.4.tgz#261f66101fbc305f9b7b28959c5cf8236413ca74"
+  integrity sha512-HyUVv9g3t/BS7Yz9HgrtYSWyRNdR2F81nkj+C5iRY675AwlqCLB5JU9mnZWg0cdVz7IM4iquoyZx70vzZv3Z8Q==
+
 react-icons@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.2.0.tgz#6dda80c8a8f338ff96a1851424d63083282630d0"

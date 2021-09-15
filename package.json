@@ -82,6 +82,7 @@
 		"luxon": "^2.0.2",
 		"mongoose": "^6.0.3",
 		"react-activity": "^2.1.1",
+		"react-flip-move": "^3.0.4",
 		"react-icons": "^4.2.0",
 		"supertest": "^6.1.6"
 	}
