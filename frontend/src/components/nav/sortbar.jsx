@@ -7,10 +7,10 @@ import { RemindersContext } from '../../context/RemindersContext'
 const Sortbar = () => {
 	const sort_tags = [
 		'Piority',
-		'Newest',
-		'Oldest',
-		'Most urgent',
-		'Least urgent',
+		'Newest to Oldest',
+		'Oldest to Newest',
+		'Due Date (Ascending)',
+		'Due Date (Descending)',
 	]
 	const { dispatch, actionTypes, initialData } = useContext(RemindersContext)
 	const [value, setValue] = useState('')
@@ -25,23 +25,22 @@ const Sortbar = () => {
 			switch (value) {
 				case 'Piority':
 					return array.sort((a, b) => b.piority - a.piority)
-				case 'Newest':
+				case 'Newest to Oldest':
 					return array.sort(
 						(a, b) => getDate(b.startDate) - getDate(a.startDate)
 					)
-				case 'Oldest':
+				case 'Oldest to Newest':
 					return array.sort(
 						(a, b) => getDate(a.startDate) - getDate(b.startDate)
 					)
-				case 'Most urgent':
+				case 'Due Date (Ascending)':
 					return array.sort((a, b) => getDate(a.dueDate) - getDate(b.dueDate))
-				case 'Least urgent':
+				case 'Due Date (Descending)':
 					return array.sort((a, b) => getDate(b.dueDate) - getDate(b.dueDate))
 			}
 		}
 
 		const sortResults = sortData(initialData, value)
-		console.log(sortResults)
 
 		dispatch({
 			type: actionTypes.SORT,
@@ -50,24 +49,26 @@ const Sortbar = () => {
 	}
 
 	return (
-		<Menu as="div" className="w-full">
+		<Menu as="div" className="text-sm">
 			<div>
-				<Menu.Button className="border rounded w-full py-2 px-5 inline-flex items-center ">
-					<p className="text-gray-400">{value || 'Sort by: Date, time'}</p>
+				<Menu.Button className="border rounded py-1.5 px-3 inline-flex items-center">
+					<p className="text-gray-400">{`Sort by : ${
+						value || 'Date, Piority'
+					}`}</p>
 					<ChevronDownIcon
-						className="w-5 h-5 ml-2 -mr-1  text-gray-400"
+						className="w-5 h-5 ml-2 text-gray-400"
 						aria-hidden="true"
 					/>
 				</Menu.Button>
 			</div>
-			<Menu.Items className="absolute mt-2 divide-y rounded-md bg-white ring-1 ring-black ring-opacity-5 inline-flex flex-col">
+			<Menu.Items className="absolute mt-2 divide-y rounded-lg bg-white ring-1 ring-black ring-opacity-5 inline-flex flex-col shadow-lg">
 				{sort_tags.map((i, index) => (
 					<Menu.Item key={index} onClick={() => handleSort(i)}>
 						{({ active }) => (
 							<div
 								className={`${
 									active && 'bg-gray-400 bg-opacity-10'
-								} px-14 py-2 text-sm text-gray-400 text-center  flex-shrink-0`}
+								} px-5 py-1.5 text-sm text-gray-400 text-center flex-shrink-0`}
 							>
 								{i}
 							</div>

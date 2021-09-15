@@ -15,8 +15,8 @@ const ModalBase = ({ children, title }) => {
 				onClick={closeModal}
 				className="absolute h-screen w-full -z-10"
 			/>
-			<div className="bg-white w-6/7 md:w-3/5 m-auto rounded-4xl">
-				<div className="font-medium leading-6 bg-brand-primary py-6 px-7  flex items-center justify-between text-white rounded-t-4xl">
+			<div className="bg-white w-6/7 md:w-3/5 m-auto">
+				<div className="font-medium leading-6 py-6 px-7 flex items-center justify-between">
 					<h3>{title}</h3>
 				</div>
 				<div id="modal-child" className="px-7 py-8">

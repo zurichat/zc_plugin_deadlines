@@ -9,7 +9,6 @@ const StatusChanger = ({ currentStatus, setStatus, toggler }) => {
 					className=" absolute -ml-20 opacity-0"
 					type="checkbox"
 					onChange={(event) => {
-						console.log(event.target.checked)
 						setStatus({ status: event.target.checked })
 						currentStatus
 							? toggler.current.classList.add('ml-5')
