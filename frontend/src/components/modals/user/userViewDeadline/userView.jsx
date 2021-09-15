@@ -57,9 +57,7 @@ export default function UserViewDeadline({
 				{ label: '2 hours to deadline', checked: false },
 		  ]
 	const onchange = (index, isChecked) => {
-		console.log(isChecked)
 		labels[index] = { ...labels[index], checked: isChecked }
-		console.log(labels)
 	}
 
 	return (
