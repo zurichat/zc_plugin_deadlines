@@ -4,11 +4,16 @@ import RowTitleDes from '../../component/rowTitleDes'
 import Avatar from '../../component/avatar'
 import StatusChanger from '../../component/taskStatus'
 
-const AdminView = (
-	{ description, startDate, dueDate, dueIn, assignedTo, assignee, src, alt },
-	props
-) => {
-	const { title } = props
+const AdminView = ({
+	description,
+	startDate,
+	dueDate,
+	dueIn,
+	assignedTo,
+	assignee,
+	src,
+	alt,
+}) => {
 	const [taskStatus, setTaskStatus] = useState({ status: false }) //should receive initial task status from props
 	const toggler = useRef()
 	// const radioSelector = useRef()
