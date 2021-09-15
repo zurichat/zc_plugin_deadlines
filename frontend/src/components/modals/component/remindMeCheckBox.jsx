@@ -3,13 +3,24 @@ import Checkbox from './checkbox/checkbox'
 
 const RemindMeCheckBox = ({ labels, change }) => {
 	const generatedBoxes = labels.map((item, index) => {
-		return (
+		return item.checked ? (
 			<li key={index} className="list-none">
 				<Checkbox
 					id={index}
-					label={item}
+					label={item.label}
 					onChange={(isChecked) => {
-						change(item, isChecked)
+						change(index, isChecked)
+					}}
+					check
+				/>
+			</li>
+		) : (
+			<li key={index} className="list-none">
+				<Checkbox
+					id={index}
+					label={item.label}
+					onChange={(isChecked) => {
+						change(index, isChecked)
 					}}
 				/>
 			</li>
