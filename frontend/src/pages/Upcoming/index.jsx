@@ -1,9 +1,12 @@
 import React from 'react'
-import { useAllReminders } from '../../api/reminders'
+// import { useAllReminders } from '../../api/reminders'
 import DeadlineCard from '../../components/deadlineCard'
+import { Spinner } from 'react-activity'
 
 const UpcomingPage = () => {
-	const { fetchedData, isPlaceholderData, isError } = useAllReminders()
+	// const { fetchedData, isPlaceholderData, isLoading } = useAllReminders()
+	const isPlaceholderData = false
+	const isLoading = false
 
 	const mockArray = [
 		{
@@ -65,32 +68,7 @@ const UpcomingPage = () => {
 		},
 	]
 
-	const Result = ({ fetchedData }) => {
-		const arr = fetchedData.data.data
-
-		return arr.map((item, index) => (
-			<div
-				key={index}
-				className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-			>
-				<DeadlineCard
-					title={item.title}
-					description={item.description}
-					assigner={item.creator}
-					assignees={item.assignee}
-					startDate={item.startDate}
-					dueDate={item.dueDate}
-					priority={item.priority}
-				/>
-			</div>
-		))
-	}
-
-	return !isPlaceholderData && !isError ? (
-		<div>
-			<Result fetchedData={fetchedData} />
-		</div>
-	) : (
+	return !isPlaceholderData && !isLoading ? (
 		<div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 			{mockArray.map((val) => (
 				<div key={val.object_id}>
@@ -105,6 +83,10 @@ const UpcomingPage = () => {
 					/>
 				</div>
 			))}
+		</div>
+	) : (
+		<div className="flex h-screen justify-center items-center">
+			<Spinner color="#00B87C" size={32} speed={1} animating={true} />
 		</div>
 	)
 }

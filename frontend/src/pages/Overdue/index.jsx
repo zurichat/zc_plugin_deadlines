@@ -5,7 +5,7 @@ import React from 'react'
 import '../../styles/index.css'
 import '../../styles/scroll.css'
 
-const CompletedPage = () => {
+const OverduePage = () => {
 	// const { fetchedData, isPlaceholderData } = useAllReminders()
 
 	// const Result = ({ fetchedData }) => {
@@ -28,7 +28,7 @@ const CompletedPage = () => {
 	// 	<div>loading</div>
 	// )
 
-	return <div>Completed</div>
+	return <div>Overdue</div>
 }
 
-export default CompletedPage
+export default OverduePage
