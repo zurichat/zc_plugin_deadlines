@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { DateTime } from 'luxon'
 
 import { BsThreeDots } from 'react-icons/bs'
 import { ReactComponent as Date } from '../../assets/svg/date.svg'
 import { ReactComponent as Clock } from '../../assets/svg/clock-group.svg'
-
+import { ModalContext } from '../../context/ModalContext'
+import avatar from '../../assets/png/avatar1.png'
 const DeadlineCard = ({
 	title,
 	description,
@@ -54,8 +55,36 @@ const DeadlineCard = ({
 			  }`
 			: `Expired`
 
+	const props = {
+		priority,
+		title,
+		description,
+		startDate: startDateStr,
+		dueDate: dueDateStr,
+		assignedTo: assignees,
+		assignee: assigner,
+		alt: 'pic',
+		src: avatar,
+		dueIn: remainingStr,
+		assigneeOnline: true,
+	}
+	const { modalData, setModalData } = useContext(ModalContext)
+	const UserViewDeadline = () => {
+		setModalData({
+			modalShow: true,
+			modalType: 'userView',
+			modalData: {
+				...props,
+			},
+		})
+		console.log(modalData.modalType)
+		console.log(modalData.modalShow)
+	}
 	return (
-		<div className="ring-1 ring-brand-border ring-opacity-50 flex flex-col p-4 rounded-xl">
+		<div
+			className="ring-1 ring-brand-border ring-opacity-50 flex flex-col p-4 rounded-xl"
+			onClick={UserViewDeadline}
+		>
 			<div id="header-text" className="mb-4">
 				<div className="flex justify-between">
 					<div className="flex">
@@ -108,7 +137,7 @@ const DeadlineCard = ({
 						<p className="text-brand-text-body text-opacity-60">Due In:</p>
 						<p
 							className={
-								remaining['hours'] < 3
+								DateTime.fromISO(dueDate).diffNow().as('hours') < 3
 									? 'text-brand-text-overdue'
 									: 'text-brand-text-body'
 							}
