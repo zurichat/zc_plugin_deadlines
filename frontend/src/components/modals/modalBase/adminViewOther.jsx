@@ -2,6 +2,11 @@ import React from 'react'
 import ModalBase from './index'
 import AvatarIcon from '../../../assets/svg/Assigner.svg'
 
+// usage: cd to src\context\ModalContext.jsx and change modalShow, modalData.title to true and adminViewOther respectively.
+// call in App.jsx
+// {modalData.modalShow && modalData.modalType === 'adminViewOther' && (
+// <AdminViewOther title="titel" ...otherProps/>
+// )}
 const AdminViewOther = ({
 	title,
 	priorityLevel,
