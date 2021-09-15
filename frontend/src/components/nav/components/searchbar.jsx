@@ -27,7 +27,7 @@ const Searchbar = ({ ...props }) => {
 		>
 			<label htmlFor="task search" role="search">
 				<input
-					className="text-gray-400 leading-tight text-sm focus:text-black focus:outline-none"
+					className="text-gray-400 leading-tight text-sm focus:text-black focus:outline-none mr-5"
 					placeholder="Search"
 					type="text"
 					value={input}
