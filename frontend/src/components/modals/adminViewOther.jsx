@@ -1,5 +1,5 @@
 import React from 'react'
-import ModalBase from './index'
+import ModalBase from './modalBase/index'
 import AvatarIcon from '../../../assets/svg/Assigner.svg'
 
 // usage: cd to src\context\ModalContext.jsx and change modalShow, modalData.title to true and adminViewOther respectively.
@@ -44,7 +44,7 @@ const AdminViewOther = ({
 				<div className="start mt-6">
 					<h3 className="font-bold">Asssigned By</h3>
 					<div className="flex mt-2">
-						<img src={AvatarIcon} alt="assigner-avatar" />
+						<img src={AvatarIcon} alt="assigner-avatar" className="w-6 h-6" />
 						<p className="text-gray-600 pl-5">{assignedBy}</p>
 					</div>
 				</div>
