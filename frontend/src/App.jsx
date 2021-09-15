@@ -21,7 +21,7 @@ const App = () => {
 				<UserViewDeadline {...modalData.modalData} />
 			)}
 			{modalData.modalShow && modalData.modalType === 'adminEdit' && (
-				<EditDeadline {...modalData.modalData} />
+				<EditDeadline details={{ ...modalData.modalData }} />
 			)}
 			<nav className="p-5 ">
 				<Nav />

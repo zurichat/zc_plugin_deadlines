@@ -22,7 +22,7 @@ const EditDeadline = ({ details }) => {
 		due: details.due,
 		assignTo: details.assignTo,
 		radio: details.radio,
-	} //should receive initial task status from props
+	} //should receive initial data from props
 
 	const [radio, setRadio] = useState(data.radio)
 
