@@ -8,7 +8,8 @@ import UpcomingPage from './pages/Upcoming'
 import { ModalContext } from './context/ModalContext'
 import NewDeadline from './components/__compat__/newDeadline'
 import AdminViewStatus from './components/modals/admin/viewDeadline'
-
+import UserViewDeadline from './components/modals/user/userViewDeadline/userView'
+import EditDeadline from './components/modals/modalBase/editDeadline'
 const App = () => {
 	const { modalData } = useContext(ModalContext)
 
@@ -16,6 +17,12 @@ const App = () => {
 		<BrowserRouter>
 			{modalData.modalShow && modalData.modalType === 'adminCreate' && (
 				<NewDeadline />
+			)}
+			{modalData.modalShow && modalData.modalType === 'userView' && (
+				<UserViewDeadline {...modalData.modalData} />
+			)}
+			{modalData.modalShow && modalData.modalType === 'adminEdit' && (
+				<EditDeadline {...modalData.modalData} />
 			)}
 			<Nav />
 			<Switch>

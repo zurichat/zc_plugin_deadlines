@@ -5,7 +5,27 @@ import RowTitleDes from '../../component/rowTitleDes'
 import Avatar from '../../component/avatar'
 import RemindMeCheckBox from '../../component/remindMeCheckBox'
 import ModalBase from '../../modalBase/index'
+import Priority from '../../component/priority'
 
+// const props = {
+// 	priority: 'high',
+// 	title: 'Deadline Title',
+// 	description:
+// 		'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum possimus accusamus cupiditate maxime. Quod eum quaerat voluptatum, unde tempore dolores esse molestias velit, voluptatem animi ipsa saepe soluta minus! Ab!',
+// 	startDate: '19 sept,2021',
+// 	dueDate: '29 sept,2021',
+// 	assignedTo: '#channelName',
+// 	assignee: 'john Doe',
+// 	alt: 'pic',
+//  dueIn: '1hour',
+// checkbox: [
+// 	{ label: 'Everyday', checked: true },
+// 	{ label: 'A week to deadline', checked: false },
+// 	{ label: '24 hours to deadline', checked: false },
+// 	{ label: '12 hours to deadline', checked: true },
+// 	{ label: '2 hours to deadline', checked: false },
+// ],
+// }
 export default function UserViewDeadline({
 	description,
 	startDate,
@@ -15,48 +35,33 @@ export default function UserViewDeadline({
 	assignee,
 	src,
 	alt,
-	deadlineTitle,
+	title,
+	priority,
+	checkbox,
 }) {
-	let labels = {
-		everyday: { label: 'Everyday', checked: false },
-		week: { label: 'A week to deadline', checked: true },
-		hours24: { label: '24 hours to deadline', checked: false },
-		hours12: { label: '12 hours to deadline', checked: true },
-		hours2: { label: '2 hours to deadline', checked: false },
-	}
-	onchange = (labe, isChecked) => {
+	const DeadlineTitle = (
+		<div className="flex gap-4">
+			{title} <Priority status={priority} forTitle />
+		</div>
+	)
+
+	const labels = checkbox
+		? checkbox
+		: [
+				{ label: 'Everyday', checked: false },
+				{ label: 'A week to deadline', checked: false },
+				{ label: '24 hours to deadline', checked: false },
+				{ label: '12 hours to deadline', checked: false },
+				{ label: '2 hours to deadline', checked: false },
+		  ]
+	const onchange = (index, isChecked) => {
 		console.log(isChecked)
-		switch (labe) {
-			case 'Everyday':
-				labels = {
-					...labels,
-					everyday: { ...labels.everyday, checked: isChecked },
-				}
-				break
-			case 'A week to deadline':
-				labels = { ...labels, week: { ...labels.week, checked: isChecked } }
-				break
-			case '24 hours to deadline':
-				labels = {
-					...labels,
-					hours24: { ...labels.hours24, checked: isChecked },
-				}
-				break
-			case '12 hours to deadline':
-				labels = {
-					...labels,
-					hours12: { ...labels.hours12, checked: isChecked },
-				}
-				break
-			case '2 hours to deadline':
-				labels = { ...labels, hours2: { ...labels.hours2, checked: isChecked } }
-				break
-		}
+		labels[index] = { ...labels[index], checked: isChecked }
 		console.log(labels)
 	}
 
 	return (
-		<ModalBase title={deadlineTitle}>
+		<ModalBase title={DeadlineTitle}>
 			<div className="flex flex-col gap-7">
 				<ColTitleDes title="Description" writeUp={description} />
 				<div className="flex gap-6">

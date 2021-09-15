@@ -1,97 +1,124 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import ColTitleDes from '../component/columnTitleDes'
 import TextField from '../component/textField'
-import DatePicker from '../component/datePicker'
+import DatePicker from '../component/datePicker2'
+import RadioButton from '../component/radioButton/radioButton'
+import Priority from '../component/priority'
+import ModalBase from './index'
 
-const EditDeadline = ({ description }) => {
-	const [radio, setRadio] = useState({ status: 'Low' }) //should receive initial task status from props
-	const radioTogglerOne = useRef()
-	const radioTogglerTwo = useRef()
-	const radioTogglerThree = useRef()
+// prop value format= {
+// 	title: 'fuck',
+// 	description: 'locuebcif efifhbvsfdi srivfbskbvdib  ivab',
+// 	start: '2021-11-03',
+// 	due: '2021-11-09',
+// 	radio: 'high',
+// }
+const EditDeadline = ({ details }) => {
+	let data = {
+		description: details.description,
+		title: details.title,
+		start: details.start,
+		due: details.due,
+		radio: details.radio,
+	} //should receive initial task status from props
+
+	const [radio, setRadio] = useState(data.radio)
+
 	return (
-		<div className=" w-6/7 flex-col md:w-3/7 md:ml-96">
-			<div className="h-12 bg-brand-primary flex items-center md:rounded-t-lg">
-				<h2 className=" h-1/3 text-xs font-craFont font-bold mx-4">
-					Edit Deadline
-				</h2>
-			</div>
-			<div className="flex-col border-black border-2 p-4 md:rounded-b-lg">
-				<ColTitleDes title="Title" />
-				<TextField placeholder="Deadline Title" />
-				<ColTitleDes title="Description" />
-				<TextField placeholder="Deadline Description" />
-				<DatePicker />
+		<ModalBase title="Edit Deadline">
+			<div className="flex flex-col gap-y-10">
+				<ColTitleDes
+					title="Title"
+					writeUp={
+						<TextField
+							placeholder="Deadline Title"
+							value={data.title}
+							onChange={(value) => {
+								data = { ...data, title: value }
+								console.log(data)
+							}}
+						/>
+					}
+					alignStretch
+				/>
 
-				<div className="w-1/2 flex-col">
-					<label className="h-6 w-1/2 flex">
-						<input
-							type="radio"
-							name="oneradio"
-							value="Low"
-							className="mt-1 hidden"
-							onChange={(event) => {
-								setRadio({ state: event.target.value })
+				<ColTitleDes
+					title="Description"
+					writeUp={
+						<TextField
+							placeholder="Deadline Description"
+							value={data.description}
+							onChange={(value) => {
+								data = { ...data, description: value }
+								console.log(data)
 							}}
 						/>
-						<div className="flex justify-center self-center w-4 h-4 border-2 border-black rounded-full relative">
-							<div
-								id="1"
-								ref={radioTogglerOne}
-								className={
-									radio.state === 'Low'
-										? 'flex-row self-center w-2 h-2 duration-300 rounded-full bg-brand-primary relative'
-										: 'flex-row self-center w-2 h-2 duration-300 rounded-full relative'
-								}
-							></div>
-						</div>
-						<h2 className="h-4 ml-2 content-center">Low</h2>
-					</label>
-					<label className="h-6 w-1/2 flex">
-						<input
-							type="radio"
-							name="oneradio"
-							value="Medium"
-							className="mt-1 hidden"
-							onChange={(event) => {
-								setRadio({ state: event.target.value })
-							}}
-						/>
-						<div className="flex justify-center self-center w-4 h-4 border-2 border-black rounded-full relative">
-							<div
-								id="2"
-								ref={radioTogglerTwo}
-								className={
-									radio.state === 'Medium'
-										? 'flex-row self-center w-2 h-2 duration-300 rounded-full bg-brand-primary relative'
-										: 'flex-row self-center w-3 duration-300 h-3 rounded-full relative'
-								}
-							></div>
-						</div>
-						<h2 className="h-4 ml-2 content-center">Medium</h2>
-					</label>
-					<label className="h-6 w-1/2 flex">
-						<input
-							type="radio"
-							name="oneradio"
-							value="High"
-							className="mt-1 hidden"
-							onChange={(event) => {
-								setRadio({ state: event.target.value })
-							}}
-						/>
-						<div className="flex justify-center self-center w-4 h-4 border-2 border-black rounded-full relative">
-							<div
-								id="2"
-								ref={radioTogglerThree}
-								className={
-									radio.state === 'High'
-										? 'flex-row self-center w-2 h-2 duration-300 rounded-full bg-brand-primary relative'
-										: 'flex-row self-center w-3 duration-300 h-3 rounded-full relative'
-								}
-							></div>
-						</div>
-						<h2 className="h-4 ml-2 content-center">High</h2>
-					</label>
+					}
+					alignStretch
+				/>
+
+				<div className="flex gap-x-12 w-full">
+					<ColTitleDes
+						space
+						title="Start date"
+						writeUp={
+							<DatePicker
+								value={data.start}
+								onChange={(value) => {
+									data = { ...data, start: value }
+									console.log(data)
+								}}
+							/>
+						}
+						alignStretch
+					/>
+					<ColTitleDes
+						space
+						title="Due date:"
+						writeUp={
+							<DatePicker
+								value={data.due}
+								onChange={(value) => {
+									data = { ...data, due: value }
+									console.log(data)
+								}}
+							/>
+						}
+						alignStretch
+					/>
+				</div>
+
+				<div className="flex flex-col gap-y-2">
+					<RadioButton
+						id="low"
+						selected={radio}
+						label={<Priority status="low" />}
+						onChange={() => {
+							data.radio = 'low'
+							setRadio('low')
+							console.log(data)
+						}}
+					/>
+					<RadioButton
+						id="medium"
+						selected={radio}
+						label={<Priority status="medium" />}
+						onChange={() => {
+							data.radio = 'medium'
+							setRadio('medium')
+							console.log(data)
+						}}
+					/>
+					<RadioButton
+						id="high"
+						selected={radio}
+						label={<Priority status="high" />}
+						onChange={() => {
+							data.radio = 'high'
+							setRadio('high')
+							console.log(data)
+						}}
+					/>
 				</div>
 				<div className="flex justify-end">
 					<button className="w-16 h-7  text-sm text-brand-primary font-semibold">
@@ -102,7 +129,7 @@ const EditDeadline = ({ description }) => {
 					</button>
 				</div>
 			</div>
-		</div>
+		</ModalBase>
 	)
 }
 

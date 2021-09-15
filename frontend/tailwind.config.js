@@ -31,6 +31,12 @@ module.exports = {
 						green: '#ACFFE6',
 						blue: '#E3EEFF',
 					},
+
+					priority: {
+						low: '#FFEB3B',
+						medium: '#FF9800',
+						high: '#F44336',
+					},
 				},
 			},
 			textColor: {
