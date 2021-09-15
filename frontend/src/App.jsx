@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-// import Skeleton from './skeleton/skeleton'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Nav from './components/nav'
 
@@ -13,7 +12,6 @@ const App = () => {
 	const { modalData } = useContext(ModalContext)
 
 	return (
-		// <Skeleton />
 		<BrowserRouter>
 			{modalData.modalShow && modalData.modalType === 'adminCreate' && (
 				<NewDeadline />

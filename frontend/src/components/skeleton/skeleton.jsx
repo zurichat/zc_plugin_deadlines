@@ -62,8 +62,8 @@ const Skeleton = ({ type, counter }) => {
 		)
 
 	return (
-		<div className="w-full p-5  min-h-screen">
-			<TopMenuSkeleton />
+		<div className="w-full h-full">
+			{/* <TopMenuSkeleton /> */}
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 				{Array(COUNTER).fill(<CardSkeleton />)}
 			</div>
