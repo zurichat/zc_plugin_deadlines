@@ -1,0 +1,13 @@
+::-webkit-inner-spin-button {
+	display: none;
+}
+::-webkit-calendar-picker-indicator {
+	background-color: white;
+}
+
+::-webkit-calendar-picker-indicator {
+	background-image: url('../assets/svg/datePicker.svg');
+	background-position: center;
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+}
