@@ -16,9 +16,7 @@ const Nav = () => {
 		return (
 			<div onClick={() => handleSetActive(navText)}>
 				<p
-					className={`${
-						active === navText && 'lg:border-b-2 border-blue-500 pb-2 '
-					}
+					className={`${active === navText && 'pb-2 '}
 					 md:text-gray-400 text-gray-800 font-bold`}
 				>
 					{navText}
