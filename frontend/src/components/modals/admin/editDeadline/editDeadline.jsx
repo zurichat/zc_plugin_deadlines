@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import ColTitleDes from '../component/columnTitleDes'
-import TextField from '../component/textField'
-import DatePicker from '../component/datePicker2'
-import RadioButton from '../component/radioButton/radioButton'
-import Priority from '../component/priority'
-import ModalBase from './index'
+import ColTitleDes from '../../component/columnTitleDes'
+import TextField from '../../component/textField'
+import DatePicker from '../../component/datePicker2'
+import RadioButton from '../../component/radioButton/radioButton'
+import Priority from '../../component/priority'
+import ModalBase from '../../modalBase/index'
 
 // prop value format= {
 // 	title: 'fuck',

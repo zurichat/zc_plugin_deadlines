@@ -8,7 +8,7 @@ import UpcomingPage from './pages/Upcoming'
 import { ModalContext } from './context/ModalContext'
 import NewDeadline from './components/__compat__/newDeadline'
 import UserViewDeadline from './components/modals/user/userViewDeadline/userView'
-import EditDeadline from './components/modals/modalBase/editDeadline'
+import EditDeadline from './components/modals/admin/editDeadline/editDeadline'
 const App = () => {
 	const { modalData } = useContext(ModalContext)
 
