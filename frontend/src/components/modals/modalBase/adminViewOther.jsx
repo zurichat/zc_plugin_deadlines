@@ -1,30 +1,29 @@
 import React from 'react'
-import AvatarIcon from '../../../assets/svg/Assigner.svg'
+// import AvatarIcon from '../../../assets/svg/Assigner.svg'
 
-const deadline = {
-	title: 'Design Reminder Modals',
-	priorityLevel: 'Low',
-	description:
-		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris',
-	startDate: '31st August, 2021',
-	dueDate: '1st Sept, 2021',
-	dueIn: '24 hours',
-	assignedTo: '#channelname',
-	assignedBy: 'John Doe',
-	assignerAvatar: AvatarIcon,
-}
-const OtherAdminModal = () => {
-	const {
-		title,
-		priorityLevel,
-		description,
-		startDate,
-		dueDate,
-		dueIn,
-		assignedTo,
-		assignedBy,
-		assignerAvatar,
-	} = deadline
+// const deadline = {
+// 	title: 'Design Reminder Modals',
+// 	priorityLevel: 'Low',
+// 	description:
+// 		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris',
+// 	startDate: '31st August, 2021',
+// 	dueDate: '1st Sept, 2021',
+// 	dueIn: '24 hours',
+// 	assignedTo: '#channelname',
+// 	assignedBy: 'John Doe',
+// 	assignerAvatar: AvatarIcon,
+// }
+const OtherAdminModal = ({
+	title,
+	priorityLevel,
+	description,
+	startDate,
+	dueDate,
+	dueIn,
+	assignedTo,
+	assignedBy,
+	assignerAvatar,
+}) => {
 	return (
 		<>
 			<div className="border-2 m-3 rounded-lg">
