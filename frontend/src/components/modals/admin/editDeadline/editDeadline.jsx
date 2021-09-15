@@ -37,7 +37,6 @@ const EditDeadline = ({ details }) => {
 							value={data.title}
 							onChange={(value) => {
 								data = { ...data, title: value }
-								console.log(data)
 							}}
 						/>
 					}
@@ -52,7 +51,6 @@ const EditDeadline = ({ details }) => {
 							value={data.description}
 							onChange={(value) => {
 								data = { ...data, description: value }
-								console.log(data)
 							}}
 						/>
 					}
@@ -68,7 +66,6 @@ const EditDeadline = ({ details }) => {
 								value={data.start}
 								onChange={(value) => {
 									data = { ...data, start: value }
-									console.log(data)
 								}}
 							/>
 						}
@@ -82,7 +79,6 @@ const EditDeadline = ({ details }) => {
 								value={data.due}
 								onChange={(value) => {
 									data = { ...data, due: value }
-									console.log(data)
 								}}
 							/>
 						}
@@ -97,7 +93,6 @@ const EditDeadline = ({ details }) => {
 							value={data.assignTo}
 							onChange={(value) => {
 								data = { ...data, assignTo: value }
-								console.log(data)
 							}}
 						/>
 					}
@@ -112,7 +107,6 @@ const EditDeadline = ({ details }) => {
 						onChange={() => {
 							data.radio = 'low'
 							setRadio('low')
-							console.log(data)
 						}}
 					/>
 					<RadioButton
@@ -122,7 +116,6 @@ const EditDeadline = ({ details }) => {
 						onChange={() => {
 							data.radio = 'medium'
 							setRadio('medium')
-							console.log(data)
 						}}
 					/>
 					<RadioButton
@@ -132,7 +125,6 @@ const EditDeadline = ({ details }) => {
 						onChange={() => {
 							data.radio = 'high'
 							setRadio('high')
-							console.log(data)
 						}}
 					/>
 				</div>

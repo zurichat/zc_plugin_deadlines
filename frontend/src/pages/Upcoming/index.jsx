@@ -13,8 +13,8 @@ const UpcomingPage = () => {
 					<DeadlineCard
 						title={val.title}
 						description={val.description}
-						assigner={val.creator}
-						assignees={val.assignee}
+						assigner={val.creator.userName}
+						assignees={val.assignee.channelName}
 						startDate={val.startDate}
 						dueDate={val.dueDate}
 						priority={val.priority}

@@ -77,8 +77,6 @@ const DeadlineCard = ({
 				...props,
 			},
 		})
-		console.log(modalData.modalType)
-		console.log(modalData.modalShow)
 	}
 	return (
 		<div

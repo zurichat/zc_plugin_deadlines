@@ -41,7 +41,6 @@ const Sortbar = () => {
 		}
 
 		const sortResults = sortData(initialData, value)
-		console.log(sortResults)
 
 		dispatch({
 			type: actionTypes.SORT,
