@@ -22,6 +22,27 @@ app.use(express.static(build))
 app.use('/public', express.static(publicPath))
 app.use('/api/v1', routes)
 
+
+// swagger setup
+const swaggerUi = require('swagger-ui-express')
+const swaggerJSDoc = require('swagger-jsdoc')
+
+const swaggerOptions = {
+	definition: {
+		openapi: '3.0.0',
+		info: {
+			title: 'Reminder Plugin API',
+			version: '1.0.0',
+			description: 'Reminder plugin API for Zuri.chat documentation',
+			servers: ['https://reminder.zuri.chat/api/v1'],
+		},
+	},
+	apis: ['./src/routes/*.js'],
+}
+const swaggerDocs = swaggerJSDoc(swaggerOptions)
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+
+
 app.use((req, res, next) => {
 	res.sendFile(path.join(build, 'index.html'))
 })

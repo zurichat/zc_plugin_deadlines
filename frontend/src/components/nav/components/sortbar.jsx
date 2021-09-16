@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 
 import { Menu } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
-import { RemindersContext } from '../../context/RemindersContext'
+import { RemindersContext } from '../../../context/RemindersContext'
 
 const Sortbar = () => {
 	const sort_tags = [
@@ -51,9 +51,9 @@ const Sortbar = () => {
 	return (
 		<Menu as="div" className="text-sm">
 			<div>
-				<Menu.Button className="border rounded py-1.5 px-3 inline-flex items-center">
-					<p className="text-gray-400">{`Sort by : ${
-						value || 'Date, Piority'
+				<Menu.Button className="border rounded py-2.5 px-5 inline-flex items-center">
+					<p className="text-gray-400 pr-3">{`Sort by: ${
+						value || 'Newest to Oldest'
 					}`}</p>
 					<ChevronDownIcon
 						className="w-5 h-5 ml-2 text-gray-400"
