@@ -68,7 +68,7 @@ const DeadlineCard = ({
 		dueIn: remainingStr,
 		assigneeOnline: true,
 	}
-	const { modalData, setModalData } = useContext(ModalContext)
+	const { setModalData } = useContext(ModalContext)
 	const UserViewDeadline = () => {
 		setModalData({
 			modalShow: true,
@@ -77,8 +77,6 @@ const DeadlineCard = ({
 				...props,
 			},
 		})
-		console.log(modalData.modalType)
-		console.log(modalData.modalShow)
 	}
 	const AdminViewOther = () => {
 		setModalData({

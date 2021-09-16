@@ -123,7 +123,16 @@ export default class DatabaseOps {
 	/* eslint class-methods-use-this: 0 */
 	async search(data, query) {
 		console.log('INCOMING', data, query)
-		const result = data.filter((item) => item.title === query)
+		// const result = data.filter((item) => item.title === query)
+		const formattedQuery = query.toLowerCase()
+		const result = data.filter((item) => {
+			return (
+				item.title.toLowerCase() === formattedQuery ||
+				item.creator.toLowerCase() === formattedQuery ||
+				// item.priority.toLowerCase() === formattedQuery ||
+				item.description.toLowerCase() === formattedQuery
+			)
+		})
 		console.log('RESULT GOTTEN', result)
 		return result
 	}

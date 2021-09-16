@@ -8,7 +8,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const env = {
-	PORT: process.env.PORT,
+	PORT: process.env.PORT || 3008,
 	BASE_URL: '',
 	API_URL: '',
 	ENVIRONMENT: {
