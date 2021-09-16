@@ -11,14 +11,16 @@ const Sortbar = () => {
 		<Menu as="div" className="w-full">
 			<div>
 				<Menu.Button className="border rounded w-full py-2 px-5 inline-flex items-center ">
-					<p className="text-gray-400">{value || 'Sort by: Date, time'}</p>
+					<p className="text-gray-400 mr-4">
+						{value || 'Sort by: Newest to Oldest'}
+					</p>
 					<ChevronDownIcon
-						className="w-5 h-5 ml-2 -mr-1  text-gray-400"
+						className="w-5 h-5 ml-2 mr-2  text-gray-400"
 						aria-hidden="true"
 					/>
 				</Menu.Button>
 			</div>
-			<Menu.Items className="absolute mt-2 divide-y rounded-md bg-white ring-1 ring-black ring-opacity-5 inline-flex flex-col">
+			<Menu.Items className="absolute w-1/7 mt-2 divide-y rounded-md bg-white ring-1 ring-black ring-opacity-5 inline-flex flex-col">
 				{sort_tags.map((i, index) => (
 					<Menu.Item key={index} onClick={() => setValue(i)}>
 						{({ active }) => (
