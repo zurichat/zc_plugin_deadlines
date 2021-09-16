@@ -127,8 +127,8 @@ export default class DatabaseOps {
 		let formattedQuery = query.toLowerCase()
 		const result = data.filter((item) => {
 		return item.title.toLowerCase() === formattedQuery || 
-			  item.creator.toLowerCase() === formattedQuery ||
-			  // item.priority.toLowerCase() === formattedQuery || 
+			  item.creator.userId.toLowerCase() === formattedQuery ||
+			  item.priority.toLowerCase() === formattedQuery || 
 			  item.description.toLowerCase() === formattedQuery
 		})
 		console.log('RESULT GOTTEN', result)
