@@ -9,6 +9,7 @@ import { ModalContext } from './context/ModalContext'
 import NewDeadline from './components/__compat__/newDeadline'
 import UserViewDeadline from './components/modals/user/userViewDeadline/userView'
 import EditDeadline from './components/modals/admin/editDeadline/editDeadline'
+import AdminView from './components/modals/admin/viewDeadline/adminView'
 const App = () => {
 	const { modalData } = useContext(ModalContext)
 
@@ -19,6 +20,9 @@ const App = () => {
 			)}
 			{modalData.modalShow && modalData.modalType === 'userView' && (
 				<UserViewDeadline {...modalData.modalData} />
+			)}
+			{modalData.modalShow && modalData.modalType === 'adminView' && (
+				<AdminView {...modalData.modalData} />
 			)}
 			{modalData.modalShow && modalData.modalType === 'adminEdit' && (
 				<EditDeadline details={{ ...modalData.modalData }} />
