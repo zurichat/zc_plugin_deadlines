@@ -4,7 +4,6 @@ import App from './App'
 
 import './styles/index.css'
 import './styles/scroll.css'
-import './styles/datePicker.css'
 import 'react-activity/dist/Spinner.css'
 
 import { ModalContextProvider } from './context/ModalContext'

@@ -1,9 +1,32 @@
 import React from 'react'
+
 import ColTitleDes from '../../component/columnTitleDes'
 import RowTitleDes from '../../component/rowTitleDes'
 import Avatar from '../../component/avatar'
 import RemindMeCheckBox from '../../component/remindMeCheckBox'
-import ModalTest from '../../component/modal2'
+import ModalBase from '../../modalBase/index'
+import Priority from '../../component/priority'
+
+// const props = {
+// 	priority: 'high',
+// 	title: 'Deadline Title',
+// 	description:
+// 		'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum possimus accusamus cupiditate maxime. Quod eum quaerat voluptatum, unde tempore dolores esse molestias velit, voluptatem animi ipsa saepe soluta minus! Ab!',
+// 	startDate: '19 sept,2021',
+// 	dueDate: '29 sept,2021',
+// 	assignedTo: '#channelName',
+// 	assignee: 'john Doe',
+// 	alt: 'pic',
+//  dueIn: '1hour',
+//  assigneeOnline:true
+// checkbox: [
+// 	{ label: 'Everyday', checked: true },
+// 	{ label: 'A week to deadline', checked: false },
+// 	{ label: '24 hours to deadline', checked: false },
+// 	{ label: '12 hours to deadline', checked: true },
+// 	{ label: '2 hours to deadline', checked: false },
+// ],
+// }
 export default function UserViewDeadline({
 	description,
 	startDate,
@@ -13,46 +36,34 @@ export default function UserViewDeadline({
 	assignee,
 	src,
 	alt,
-	deadlineTitle,
+	title,
+	priority,
+	checkbox,
+	assigneeOnline,
 }) {
-	let checkBoxObj = {
-		everyDay: false,
-		week: false,
-		hours24: false,
-		hours12: false,
-		hours2: false,
-	}
-	onchange = (labe, isChecked) => {
-		switch (labe) {
-			case 'Everyday':
-				checkBoxObj = { ...checkBoxObj, everyDay: isChecked }
-				break
-			case 'A week to deadline':
-				checkBoxObj = { ...checkBoxObj, week: isChecked }
-				break
-			case '24 hours to deadline':
-				checkBoxObj = { ...checkBoxObj, hours24: isChecked }
-				break
-			case '12 hours to deadline':
-				checkBoxObj = { ...checkBoxObj, hours12: isChecked }
-				break
-			case '2 hours to deadline':
-				checkBoxObj = { ...checkBoxObj, hours2: isChecked }
-				break
-		}
-		console.log(checkBoxObj)
-	}
+	const DeadlineTitle = (
+		<div className="flex gap-4">
+			{title} <Priority status={priority} forTitle />
+		</div>
+	)
 
-	const labels = [
-		'Everyday',
-		'A week to deadline',
-		'24 hours to deadline',
-		'12 hours to deadline',
-		'2 hours to deadline',
-	]
+	const labels = checkbox
+		? checkbox
+		: [
+				{ label: 'Everyday', checked: false },
+				{ label: 'A week to deadline', checked: false },
+				{ label: '24 hours to deadline', checked: false },
+				{ label: '12 hours to deadline', checked: false },
+				{ label: '2 hours to deadline', checked: false },
+		  ]
+	const onchange = (index, isChecked) => {
+		console.log(isChecked)
+		labels[index] = { ...labels[index], checked: isChecked }
+		console.log(labels)
+	}
 
 	return (
-		<ModalTest title={deadlineTitle}>
+		<ModalBase title={DeadlineTitle}>
 			<div className="flex flex-col gap-7">
 				<ColTitleDes title="Description" writeUp={description} />
 				<div className="flex gap-6">
@@ -68,16 +79,18 @@ export default function UserViewDeadline({
 					title="Assignee"
 					writeUp={
 						<RowTitleDes
-							title={<Avatar src={src} alt={alt} />}
+							title={<Avatar src={src} alt={alt} isOnline={assigneeOnline} />}
 							writeUp={assignee}
 						/>
 					}
 				/>
 				<ColTitleDes
 					title="Remind me:"
-					writeUp={<RemindMeCheckBox labels={labels} change={onchange} />}
+					writeUp={
+						<RemindMeCheckBox checkBoxObj labels={labels} change={onchange} />
+					}
 				/>
 			</div>
-		</ModalTest>
+		</ModalBase>
 	)
 }
