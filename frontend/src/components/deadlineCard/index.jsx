@@ -69,10 +69,10 @@ const DeadlineCard = ({
 		assigneeOnline: true,
 	}
 	const { setModalData } = useContext(ModalContext)
-	const UserViewDeadline = () => {
+	const viewModal = (modal) => {
 		setModalData({
 			modalShow: true,
-			modalType: 'userView',
+			modalType: modal,
 			modalData: {
 				...props,
 			},
@@ -80,8 +80,10 @@ const DeadlineCard = ({
 	}
 	return (
 		<div
+			onClick={(event) => {
+				event.target.id === '3' ? viewModal('adminView') : viewModal('userView')
+			}}
 			className="ring-1 ring-brand-border ring-opacity-50 flex flex-col p-4 rounded-xl"
-			onClick={UserViewDeadline}
 		>
 			<div id="header-text" className="mb-4">
 				<div className="flex justify-between">
@@ -94,7 +96,13 @@ const DeadlineCard = ({
 							className={`w-2 h-2 rounded-full self-center ml-2 ${priority_bg}`}
 						/>
 					</div>
-					<BsThreeDots className="self-center place-self-end cursor-pointer text-black text-opacity-50" />
+					<BsThreeDots
+						id="3"
+						onClick={() => {
+							viewModal('adminView')
+						}}
+						className="self-center place-self-end cursor-pointer text-black text-opacity-50"
+					/>
 				</div>
 				<p className="text-brand-text-body text-opacity-50">{`Assigned by ${assigner} to #${assignees}`}</p>
 			</div>

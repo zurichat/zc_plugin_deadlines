@@ -1,10 +1,11 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import ColTitleDes from '../../component/columnTitleDes'
 import RowTitleDes from '../../component/rowTitleDes'
 import Avatar from '../../component/avatar'
 import StatusChanger from '../../component/taskStatus'
 import ModalBase from '../../modalBase'
 import Priority from '../../component/priority'
+import { ModalContext } from '../../../../context/ModalContext'
 
 const AdminView = (props) => {
 	const {
@@ -31,6 +32,9 @@ const AdminView = (props) => {
 			{title} <Priority status={priority} forTitle />
 		</div>
 	)
+
+	const { modalData, setModalData } = useContext(ModalContext)
+	const closeModal = () => setModalData({ ...modalData, modalShow: false })
 	return (
 		<ModalBase title={DeadlineTitle}>
 			<div className=" flex flex-col gap-7">
@@ -66,7 +70,10 @@ const AdminView = (props) => {
 					/>
 				</div>
 				<div className="flex justify-end">
-					<button className="w-16 h-7  text-sm text-brand-primary font-semibold">
+					<button
+						onClick={closeModal}
+						className="w-16 h-7  text-sm text-brand-primary font-semibold"
+					>
 						Cancel
 					</button>
 					<button className="w-16 h-7  text-sm bg-brand-primary font-semibold text-brand-bg-white">
