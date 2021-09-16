@@ -1,5 +1,17 @@
 const path = require('path')
+singleSpaApplicationPlugin = require('craco-plugin-single-spa-application')
+
 module.exports = {
+	plugins: [
+		{
+			plugin: singleSpaApplicationPlugin,
+			options: {
+				orgName: 'my-org',
+				projectName: 'my-app',
+				entry: 'src/single-spa-index.jsx',
+			},
+		},
+	],
 	style: {
 		postcss: {
 			plugins: [require('tailwindcss'), require('autoprefixer')],
