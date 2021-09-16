@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAllReminders } from '../../api/reminders'
 import DeadlineCard from '../../components/deadlineCard'
-import Skeleton from '../../components/skeleton/skeleton'
+import Skeleton from '../../components/reusableScreens/skeleton/skeleton'
 
 const UpcomingPage = () => {
 	const { fetchedData, isPlaceholderData, isLoading } = useAllReminders()
