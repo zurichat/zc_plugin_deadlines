@@ -78,15 +78,24 @@ const DeadlineCard = ({
 			},
 		})
 	}
+	const handleClick = () => {
+		setModalData({
+			modalShow: true,
+			modalType: 'adminViewOther',
+			modalData: {
+				...props,
+			},
+		})
+	}
 	return (
-		<div
-			className="ring-1 ring-brand-border ring-opacity-50 flex flex-col p-4 rounded-xl"
-			onClick={UserViewDeadline}
-		>
+		<div className="ring-1 ring-brand-border ring-opacity-50 flex flex-col p-4 rounded-xl">
 			<div id="header-text" className="mb-4">
 				<div className="flex justify-between">
 					<div className="flex">
-						<p className="font-semibold text-lg text-brand-text-header">
+						<p
+							className="font-semibold text-lg text-brand-text-header"
+							onClick={UserViewDeadline}
+						>
 							{title}
 						</p>
 						<div
@@ -98,7 +107,9 @@ const DeadlineCard = ({
 				</div>
 				<p className="text-brand-text-body text-opacity-50">{`Assigned by ${assigner} to #${assignees}`}</p>
 			</div>
-			<p className="text-brand-text-body">{description}</p>
+			<p className="text-brand-text-body" onClick={handleClick}>
+				{description}
+			</p>
 			<div id="y-divider" className="border-1/2 border-opacity-50 mt-3 mb-4" />
 			<div className="flex">
 				<div id="startDate" className="flex">

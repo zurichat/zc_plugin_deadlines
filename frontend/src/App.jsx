@@ -9,6 +9,7 @@ import NewDeadline from './components/modals/admin/newDeadline'
 import UserViewDeadline from './components/modals/user/userViewDeadline/userView'
 import EditDeadline from './components/modals/admin/editDeadline/editDeadline'
 import AdminView from './components/modals/admin/viewDeadline/adminView'
+import AdminViewOther from './components/modals/admin/adminViewOther'
 const App = () => {
 	const { modalData } = useContext(ModalContext)
 
@@ -25,6 +26,9 @@ const App = () => {
 			)}
 			{modalData.modalShow && modalData.modalType === 'adminEdit' && (
 				<EditDeadline details={{ ...modalData.modalData }} />
+			)}
+			{modalData.modalShow && modalData.modalType === 'adminViewOther' && (
+				<AdminViewOther details={{ ...modalData.modalData }} />
 			)}
 			<nav className="p-5 ">
 				<Nav />
