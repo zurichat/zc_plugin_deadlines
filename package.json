@@ -84,6 +84,8 @@
 		"react-activity": "^2.1.1",
 		"react-flip-move": "^3.0.4",
 		"react-icons": "^4.2.0",
-		"supertest": "^6.1.6"
+		"supertest": "^6.1.6",
+		"swagger-jsdoc": "^6.1.0",
+		"swagger-ui-express": "^4.1.6"
 	}
 }
