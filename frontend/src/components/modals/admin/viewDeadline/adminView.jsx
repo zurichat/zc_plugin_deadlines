@@ -3,24 +3,37 @@ import ColTitleDes from '../../component/columnTitleDes'
 import RowTitleDes from '../../component/rowTitleDes'
 import Avatar from '../../component/avatar'
 import StatusChanger from '../../component/taskStatus'
+import ModalBase from '../../modalBase'
+import Priority from '../../component/priority'
 
-const AdminView = (
-	{ description, startDate, dueDate, dueIn, assignedTo, assignee, src, alt },
-	props
-) => {
-	const { title } = props
+const AdminView = (props) => {
+	const {
+		description,
+		startDate,
+		dueDate,
+		dueIn,
+		assignedTo,
+		assignee,
+		src,
+		alt,
+		title,
+		priority,
+		assigneeOnline,
+	} = props
+	// debugger
 	const [taskStatus, setTaskStatus] = useState({ status: false }) //should receive initial task status from props
 	const toggler = useRef()
-	// const radioSelector = useRef()
+	const deadlineStatus = useRef()
+	const radioSelect = useRef()
+
+	const DeadlineTitle = (
+		<div className="flex gap-4">
+			{title} <Priority status={priority} forTitle />
+		</div>
+	)
 	return (
-		<div className=" w-6/7 flex-col md:w-3/7 md:ml-96">
-			<div className="h-12 bg-brand-primary flex items-center md:rounded-t-lg">
-				<h2 className=" h-1/3 text-xs font-craFont font-bold mx-4">{title}</h2>
-				<h2 className=" h-1/3 text-xs font-craFont font-bold mx-1">
-					Priority level
-				</h2>
-			</div>
-			<div className="flex-col border-black border-2 p-4 md:rounded-b-lg">
+		<ModalBase title={DeadlineTitle}>
+			<div className=" flex flex-col gap-7">
 				<ColTitleDes title="Description" writeUp={description} />
 				<div className="flex ">
 					<div className="flex gap-6">
@@ -37,16 +50,19 @@ const AdminView = (
 					title="Assignee"
 					writeUp={
 						<RowTitleDes
-							title={<Avatar src={src} alt={alt} />}
+							title={<Avatar src={src} alt={alt} isOnline={assigneeOnline} />}
 							writeUp={assignee}
 						/>
 					}
 				/>
 				<div className="flex ">
+					<div ref={deadlineStatus} className="h-6 w-20 "></div>
 					<StatusChanger
 						currentStatus={taskStatus.status}
 						toggler={toggler}
 						setStatus={setTaskStatus}
+						deadlineStatus={deadlineStatus}
+						radioSelect={radioSelect}
 					/>
 				</div>
 				<div className="flex justify-end">
@@ -58,7 +74,7 @@ const AdminView = (
 					</button>
 				</div>
 			</div>
-		</div>
+		</ModalBase>
 	)
 }
 

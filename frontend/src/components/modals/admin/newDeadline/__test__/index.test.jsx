@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { render } from '@testing-library/react'
 
-import { ModalContextProvider } from '../../../../context/ModalContext'
-import ViewDeadline from '..'
+import { ModalContextProvider } from '../../../../../context/ModalContext'
+import NewDeadline from '..'
 
-test('<ViewDeadline /> renders without crashing', () => {
+test('<NewDeadline /> renders without crashing', () => {
 	// Mock hook calls
 	const MockComponent = () => {
 		const [modalData, setModalData] = useState({
 			modalShow: false,
-			modalType: 'viewDeadline',
-			viewDeadline: {
+			modalType: 'newDeadline',
+			newDeadline: {
 				title: 'Designing Zuri Dashboard',
 				description:
 					'This task will be a sprint, we are to use the design to implement a responsive dashboard',
@@ -21,7 +21,7 @@ test('<ViewDeadline /> renders without crashing', () => {
 
 		return (
 			<ModalContextProvider value={{ modalData, setModalData }}>
-				<ViewDeadline modalData={modalData} />
+				<NewDeadline modalData={modalData} />
 			</ModalContextProvider>
 		)
 	}

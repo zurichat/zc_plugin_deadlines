@@ -1,5 +1,5 @@
 import React from 'react'
-import ModalBase from '../../../components/modals/modalBase'
+import ModalBase from '../../modalBase'
 import ModalForm from './modalForm'
 
 const NewDeadline = () => {
