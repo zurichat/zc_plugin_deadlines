@@ -1059,6 +1059,16 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
+"@craco/craco@^6.0.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@craco/craco/-/craco-6.3.0.tgz#157ff6387dab526390b47b12e890542c7e7c6437"
+  integrity sha512-SCnfEQxT/6NAbU/3sIWw7gQXtzjjiTp/EZFdJTd8inPURILIy0YajrC2p8qBG2KhFo5cwgOrEDyaGyAFvvuyuA==
+  dependencies:
+    cross-spawn "^7.0.0"
+    lodash "^4.17.15"
+    semver "^7.3.2"
+    webpack-merge "^4.2.2"
+
 "@craco/craco@^6.2.0":
   version "6.2.0"
   resolved "https://registry.npmjs.org/@craco/craco/-/craco-6.2.0.tgz"
@@ -2069,6 +2079,14 @@ cosmiconfig@^7.0.0:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.10.0"
+
+craco-plugin-single-spa-application@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/craco-plugin-single-spa-application/-/craco-plugin-single-spa-application-1.0.8.tgz#3a10451702913a3cf1f9a4b01ef2b258121feddf"
+  integrity sha512-DvfEYRW2nZJegt+HLwUIpuw9332gwz2GrxlUkOG0E4EYqP8KXFicMBynVCHjHN7FeXWMgZAjLFilrySKGq2xCw==
+  dependencies:
+    "@craco/craco" "^6.0.0"
+    systemjs-webpack-interop "^2.3.5"
 
 cron-parser@^3.0.0:
   version "3.5.0"
@@ -5361,6 +5379,11 @@ swagger-ui-express@^4.1.6:
   integrity sha512-Xs2BGGudvDBtL7RXcYtNvHsFtP1DBFPMJFRxHe5ez/VG/rzVOEjazJOOSc/kSCyxreCTKfJrII6MJlL9a6t8vw==
   dependencies:
     swagger-ui-dist "^3.18.1"
+
+systemjs-webpack-interop@^2.3.5:
+  version "2.3.7"
+  resolved "https://registry.yarnpkg.com/systemjs-webpack-interop/-/systemjs-webpack-interop-2.3.7.tgz#b8ed2a81c371bab3160ac4801776ef61cf8c7959"
+  integrity sha512-9wmhkleKWVjcGfHpc1/YvfADnvzpYMdr2/AM2e7FpMczPYEdluwM3AMXxHGzPUNbWfnSaerrmzqP4nDsTDvBxA==
 
 table@^6.0.9:
   version "6.7.1"
