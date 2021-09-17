@@ -20,7 +20,6 @@
 	"scripts": {
 		"start": "craco start",
 		"build": "craco build",
-		"build:production": "craco build --prod",
 		"test": "craco test --testPathIgnorePatterns=__compat__ --passWithNoTests",
 		"eject": "react-scripts eject",
 		"lint": "eslint . --fix"
