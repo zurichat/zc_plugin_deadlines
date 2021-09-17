@@ -10,6 +10,7 @@ module.exports = {
 				projectName: 'plugin-deadlines',
 				entry: 'src/single-spa-index.jsx',
 				externals: ['react', 'react-dom'],
+				minimize: true,
 			},
 		},
 	],
