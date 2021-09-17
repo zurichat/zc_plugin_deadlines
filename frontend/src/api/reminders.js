@@ -73,48 +73,30 @@ export const useCreateReminder = (payload) => {
 	return { responseBody: data, error, isLoading, isSuccess }
 }
 
+//updateReminders
 export const useUpdateReminders = () => {
-	const {
-		isLoading,
-		data,
-		error,
-		isPlaceholderData,
-		isError,
-		isSuccess,
-		status,
-	} = useMutation(
-		'updateReminders',
-		async () => {
+	const { data, error, isLoading, isError, isSuccess, status, mutate } =
+		useMutation('updateReminders', async (id, payload) => {
 			try {
 				const res = await axiosInstance({
 					data: payload,
 					method: 'PUT',
-					url: '/reminders/:id',
+					url: `/reminders/${id}`,
 				})
-				return { ...res, length: res.data.data.length }
+				return { ...res }
 			} catch (error) {
 				throw errorHandler(error)
 			}
-		},
-		{
-			placeholderData: () => {
-				return {
-					data: {
-						result: [],
-					},
-				}
-			},
-		}
-	)
+		})
 
 	return {
 		responseBody: data,
 		error,
 		isSuccess,
 		isLoading,
-		isPlaceholderData,
 		isError,
 		status,
+		updateReminder: mutate,
 	}
 }
 
