@@ -1216,6 +1216,16 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@craco/craco@^6.0.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@craco/craco/-/craco-6.3.0.tgz#157ff6387dab526390b47b12e890542c7e7c6437"
+  integrity sha512-SCnfEQxT/6NAbU/3sIWw7gQXtzjjiTp/EZFdJTd8inPURILIy0YajrC2p8qBG2KhFo5cwgOrEDyaGyAFvvuyuA==
+  dependencies:
+    cross-spawn "^7.0.0"
+    lodash "^4.17.15"
+    semver "^7.3.2"
+    webpack-merge "^4.2.2"
+
 "@craco/craco@^6.2.0":
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/@craco/craco/-/craco-6.2.0.tgz#93847ae20899f5e810359443f2055bcf2b1a584e"
@@ -3761,6 +3771,14 @@ cosmiconfig@^7.0.0, cosmiconfig@^7.0.1:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.10.0"
+
+craco-plugin-single-spa-application@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/craco-plugin-single-spa-application/-/craco-plugin-single-spa-application-1.0.8.tgz#3a10451702913a3cf1f9a4b01ef2b258121feddf"
+  integrity sha512-DvfEYRW2nZJegt+HLwUIpuw9332gwz2GrxlUkOG0E4EYqP8KXFicMBynVCHjHN7FeXWMgZAjLFilrySKGq2xCw==
+  dependencies:
+    "@craco/craco" "^6.0.0"
+    systemjs-webpack-interop "^2.3.5"
 
 create-ecdh@^4.0.0:
   version "4.0.4"
@@ -10403,6 +10421,11 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
+single-spa-react@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/single-spa-react/-/single-spa-react-4.4.0.tgz#c28ccc0531d752745270bc1bb69126ba3d5686c1"
+  integrity sha512-tyvVayCqCWKL7dtv52f2Uzh7Iilu7+GB6upO/F1UMZcqa1+fUziIgkcofwwRE+HMZWCEl1KJW48VgrlK2HvMnQ==
+
 sisteransi@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
@@ -10903,6 +10926,11 @@ symbol-tree@^3.2.4:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
+
+systemjs-webpack-interop@^2.3.5:
+  version "2.3.7"
+  resolved "https://registry.yarnpkg.com/systemjs-webpack-interop/-/systemjs-webpack-interop-2.3.7.tgz#b8ed2a81c371bab3160ac4801776ef61cf8c7959"
+  integrity sha512-9wmhkleKWVjcGfHpc1/YvfADnvzpYMdr2/AM2e7FpMczPYEdluwM3AMXxHGzPUNbWfnSaerrmzqP4nDsTDvBxA==
 
 table@^6.0.9:
   version "6.7.1"
