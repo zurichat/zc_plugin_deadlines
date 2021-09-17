@@ -47,8 +47,8 @@ app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 app.use(errorHandler)
 
-app.get('*', async (req, res) => {
-	res.redirect('/')
+app.get('/', async (req, res) => {
+	res.send('Deadlines Plugin')
 })
 
 export default app
