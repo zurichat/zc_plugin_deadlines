@@ -124,16 +124,18 @@ export default class DatabaseOps {
 	async search(data, query) {
 		console.log('INCOMING', data, query)
 		// const result = data.filter((item) => item.title === query)
-		let formattedQuery = query.toLowerCase()
+		const formattedQuery = query.toLowerCase()
 		const result = data.filter((item) => {
-		return item.title.toLowerCase() === formattedQuery || 
-			  item.creator.toLowerCase() === formattedQuery ||
-			  // item.priority.toLowerCase() === formattedQuery || 
-			  item.description.toLowerCase() === formattedQuery
+			return (
+				item.title.toLowerCase() === formattedQuery ||
+				item.creator.userId.toLowerCase() === formattedQuery ||
+				item.priority.toLowerCase() === formattedQuery ||
+				item.description.toLowerCase() === formattedQuery
+			)
 		})
 		console.log('RESULT GOTTEN', result)
 		return result
-	}	
+	}
 
 	// Helper
 	render(data) {

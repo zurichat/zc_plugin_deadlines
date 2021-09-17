@@ -4,7 +4,7 @@ import errorHandler from './utils/errorHandler'
 import validateCreateReminderData from './utils/validation'
 
 const axiosInstance = axios.create({
-	baseURL: '/api/v1',
+	baseURL: 'https://reminders.zuri.chat/api/v1',
 })
 
 export const useAllReminders = () => {

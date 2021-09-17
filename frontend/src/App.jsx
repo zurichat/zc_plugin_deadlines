@@ -10,6 +10,11 @@ import UserViewDeadline from './components/modals/user/userViewDeadline/userView
 import EditDeadline from './components/modals/admin/editDeadline/editDeadline'
 import AdminView from './components/modals/admin/viewDeadline/adminView'
 import AdminViewOther from './components/modals/admin/adminViewOther'
+
+import './styles/index.css'
+import './styles/scroll.css'
+import 'react-activity/dist/Spinner.css'
+
 const App = () => {
 	const { modalData } = useContext(ModalContext)
 

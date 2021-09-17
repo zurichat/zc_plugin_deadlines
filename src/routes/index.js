@@ -17,7 +17,6 @@ router.get('/ping', (req, res) =>
 	res.json({ message: 'Hello! You have found the zc_plugin_reminder api' })
 )
 
-
 // Swagger Documentation
 
 /**
@@ -134,7 +133,7 @@ router.get('/ping', (req, res) =>
  *      type: string
  *      description: The title of the deadline's room
  *      example: "My first deadline's room"
- * 
+ *
  *   createRoom:
  *    type: object
  *    properties:
@@ -168,7 +167,7 @@ router.get('/ping', (req, res) =>
  *      type: boolean
  *      description: This checks if the room is archived
  *      example: false
- * 
+ *
  *   updateRoom:
  *    type: object
  *    properties:
@@ -242,7 +241,6 @@ router.get('/deadlines/:id', deadlineController.getById)
  */
 router.delete('/deadlines/:id', deadlineController.deleteById)
 
-
 /**
  * @swagger
  * /api/v1/deadlines/:id:
@@ -267,7 +265,11 @@ router.delete('/deadlines/:id', deadlineController.deleteById)
  *    404:
  *      description: Deadline with that ID not found
  */
-router.put('/deadlines/:id', deadlineValidation.updateSchema, deadlineController.updateById)
+router.put(
+	'/deadlines/:id',
+	deadlineValidation.updateSchema,
+	deadlineController.updateById
+)
 // .put(idParams, updateSchema, reminderController.updateById)
 
 // router.delete('/reminders/:id', idParams, reminderController.deleteReminder)
@@ -286,7 +288,6 @@ router.put('/deadlines/:id', deadlineValidation.updateSchema, deadlineController
  *      description: An error occurred
  */
 router.get('/deadlines', deadlineController.getAll)
-
 
 /**
  * @swagger
@@ -307,7 +308,11 @@ router.get('/deadlines', deadlineController.getAll)
  *    500:
  *      description: An error occurred
  */
-router.post('/deadlines', deadlineValidation.createSchema, deadlineController.create)
+router.post(
+	'/deadlines',
+	deadlineValidation.createSchema,
+	deadlineController.create
+)
 
 /**
  * @swagger
@@ -328,7 +333,7 @@ router.post('/deadlines', deadlineValidation.createSchema, deadlineController.cr
  *    500:
  *      description: An error occurred
  */
-router.get(
+router.post(
 	'/search',
 	deadlineValidation.searchSchema,
 	deadlineController.searchDeadline
@@ -404,7 +409,6 @@ router.delete('/rooms/:id', roomController.deleteById)
  */
 router.put('/rooms/:id', roomValidation.updateSchema, roomController.updateById)
 
-
 /**
  * @swagger
  * /api/v1/rooms:
@@ -455,7 +459,7 @@ router.post('/rooms', roomValidation.createSchema, roomController.create)
  *    - in: query
  *      name: userId
  *      required: true
- * 
+ *
  *   responses:
  *    200:
  *      description: A successful message of "User, with id:${userId}, added successfully" and the user info
@@ -480,7 +484,7 @@ router.get('/rooms/:id/add', roomController.addToRoom)
  *    - in: query
  *      name: userId
  *      required: true
- * 
+ *
  *   responses:
  *    200:
  *      description: A successful message of "User, with id:${userId}, removed successfully" and the user info
