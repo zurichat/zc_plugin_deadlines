@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAllReminders } from '../../api/reminders'
 import DeadlineCard from '../../components/deadlineCard'
-import Skeleton from '../../components/reusableScreens/skeleton/skeleton'
+// import Skeleton from '../../components/reusableScreens/skeleton/skeleton'
 
 const UpcomingPage = () => {
 	const { fetchedData, isPlaceholderData, isLoading, isError } =
@@ -33,7 +33,8 @@ const UpcomingPage = () => {
 		)
 	) : (
 		<div className="flex h-screen justify-center items-center">
-			<Skeleton counter={9} />
+			{/* <Skeleton counter={9} /> */}
+			loading...
 		</div>
 	)
 }
