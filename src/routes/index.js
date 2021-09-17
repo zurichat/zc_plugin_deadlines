@@ -328,7 +328,7 @@ router.post('/deadlines', deadlineValidation.createSchema, deadlineController.cr
  *    500:
  *      description: An error occurred
  */
-router.get(
+router.post(
 	'/search',
 	deadlineValidation.searchSchema,
 	deadlineController.searchDeadline
