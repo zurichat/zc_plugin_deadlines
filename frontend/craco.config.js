@@ -6,9 +6,10 @@ module.exports = {
 		{
 			plugin: singleSpaApplicationPlugin,
 			options: {
-				orgName: 'my-org',
-				projectName: 'my-app',
+				orgName: 'zuri',
+				projectName: 'plugin-deadlines',
 				entry: 'src/single-spa-index.jsx',
+				externals: ['react', 'react-dom'],
 			},
 		},
 	],
