@@ -14,6 +14,10 @@ module.exports = {
 			},
 		},
 	],
+	devServer: {
+		port: 8500,
+		https: true,
+	},
 	style: {
 		postcss: {
 			plugins: [require('tailwindcss'), require('autoprefixer')],
