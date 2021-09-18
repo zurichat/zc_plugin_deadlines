@@ -10,7 +10,7 @@ module.exports = {
 			plugin: singleSpaApplicationPlugin,
 			options: {
 				orgName: 'zuri',
-				projectName: 'plugin-deadlines',
+				projectName: 'zuri-plugin-deadlines',
 				entry: 'src/single-spa-index.jsx',
 				externals: ['react', 'react-dom'],
 				minimize: true,
