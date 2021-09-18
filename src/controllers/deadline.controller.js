@@ -153,8 +153,8 @@ const deadlineController = {
 	searchDeadline: async (req, res, next) => {
 		try {
 			const { text } = req.body
-			const result = await db.findAll('deadlines')
-			const data = await db.search(result, text)
+			const result = await DeadLine.findAll('deadlines')
+			const data = await DeadLine.search(result, text)
 			return Response.send(
 				res,
 				200,

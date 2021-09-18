@@ -55,4 +55,19 @@ const addRoomSchema = async (req, res, next) => {
 	validateQueryRequest(req, next, schema)
 }
 
-export { searchSchema, createSchema, updateSchema, addRoomSchema, idParams }
+const sidebarQueries = async (req, res, next) => {
+	const schema = Joi.object({
+		orgId: Joi.string().trim().required().label('Organization Id'),
+		userId: Joi.string().trim().required().label('User Id'),
+	})
+	return validateQueryRequest(req, next, schema)
+}
+
+export {
+	searchSchema,
+	createSchema,
+	updateSchema,
+	addRoomSchema,
+	idParams,
+	sidebarQueries,
+}

@@ -16,10 +16,12 @@ const RadioButton = ({ id, label, selected, onChange }) => {
 			}
 			<label
 				htmlFor={id}
-				className="text-sm leading-none self-center flex items-center gap-x-2"
+				className="text-sm cursor-pointer leading-none self-center flex items-center gap-x-2"
 			>
-				<div className="inline-block h-4 w-4 border-solid border border-black p-px">
-					<div className={`${style.interior} bg-brand-primary h-full`}></div>
+				<div className="inline-block h-4 w-4 rounded-1/2 border-solid border border-black p-px">
+					<div
+						className={`${style.interior} rounded-1/2 bg-brand-primary h-full`}
+					></div>
 				</div>
 
 				{label}
