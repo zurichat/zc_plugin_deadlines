@@ -9,16 +9,15 @@ const value = getDevBaseUrl()
 
 // helper function to sort user's private and public rooms
 const sortRooms = (rooms, userId) => {
-	let privateRooms = []
+	let matchedRooms = []
 	let publicRooms = []
 	if (rooms?.length > 0 && Array.isArray(rooms)) {
-		const matchedRooms = rooms.filter(
+		matchedRooms = rooms.filter(
 			(room) => room.members.includes(userId) ?? room.ownerId === userId
 		)
-		privateRooms = matchedRooms.filter((room) => room.isPrivate === true)
 		publicRooms = rooms.filter((room) => room.isPrivate === false)
 	}
-	return { privateRooms, publicRooms }
+	return { matchedRooms, publicRooms }
 }
 
 const sidebarController = {
@@ -26,7 +25,7 @@ const sidebarController = {
 		try {
 			const { orgId, userId } = req.query
 			const rooms = await Room.findAll()
-			const { privateRooms, publicRooms } = sortRooms(rooms, userId)
+			const { matchedRooms, publicRooms } = sortRooms(rooms, userId)
 			const sidebar = {
 				name: 'Reminders Plugin',
 				description: 'The Reminders plugin',
@@ -35,7 +34,7 @@ const sidebarController = {
 				user_id: userId,
 				group_name: 'Darwin Organisation',
 				show_group: true,
-				joined_rooms: privateRooms,
+				joined_rooms: matchedRooms,
 				public_rooms: publicRooms,
 			}
 
