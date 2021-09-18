@@ -57,7 +57,7 @@ const EditDeadline = ({ details }) => {
 					alignStretch
 				/>
 
-				<div className="flex gap-x-12 w-full">
+				<div className="flex flex-col gap-y-6 w-full md:gap-x-12 md:flex-row">
 					<ColTitleDes
 						space
 						title="Start date"
@@ -128,11 +128,11 @@ const EditDeadline = ({ details }) => {
 						}}
 					/>
 				</div>
-				<div className="flex justify-end">
-					<button className="w-16 h-7  text-sm text-brand-primary font-semibold">
+				<div className="flex justify-end gap-4">
+					<button className="h-11 px-5 text-sm text-brand-primary font-semibold">
 						Cancel
 					</button>
-					<button className="w-16 h-7  text-sm bg-brand-primary font-semibold text-brand-bg-white">
+					<button className="h-11 px-5 text-sm bg-brand-primary font-semibold text-brand-bg-white">
 						Update
 					</button>
 				</div>
