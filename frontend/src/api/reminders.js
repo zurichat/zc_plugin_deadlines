@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useMutation, useQuery } from 'react-query'
 import errorHandler from './utils/errorHandler'
 import validateCreateReminderData from './utils/validation'
+import validateUpdateReminderData from './utils/updateValidation'
 
 const axiosInstance = axios.create({
 	baseURL: '/api/v1',
@@ -77,16 +78,17 @@ export const useCreateReminder = (payload) => {
 export const useUpdateReminders = () => {
 	const { data, error, isLoading, isError, isSuccess, status, mutate } =
 		useMutation('updateReminders', async (id, payload) => {
-			try {
-				const res = await axiosInstance({
-					data: payload,
-					method: 'PUT',
-					url: `/reminders/${id}`,
-				})
-				return { ...res }
-			} catch (error) {
-				throw errorHandler(error)
-			}
+			if (validateUpdateReminderData(payload))
+				try {
+					const res = await axiosInstance({
+						data: payload,
+						method: 'PUT',
+						url: `/reminders/${id}`,
+					})
+					return { ...res }
+				} catch (error) {
+					throw errorHandler(error)
+				}
 		})
 
 	return {
