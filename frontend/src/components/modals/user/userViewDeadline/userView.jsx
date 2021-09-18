@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import ColTitleDes from '../../component/columnTitleDes'
 import RowTitleDes from '../../component/rowTitleDes'
@@ -6,6 +6,8 @@ import Avatar from '../../component/avatar'
 import RemindMeCheckBox from '../../component/remindMeCheckBox'
 import ModalBase from '../../modalBase/index'
 import Priority from '../../component/priority'
+import ModalButton from '../../component/button'
+import { ModalContext } from '../../../../context/ModalContext'
 
 // const props = {
 // 	priority: 'high',
@@ -41,6 +43,9 @@ export default function UserViewDeadline({
 	checkbox,
 	assigneeOnline,
 }) {
+	const { modalData, setModalData } = useContext(ModalContext)
+	const closeModal = () => setModalData({ ...modalData, modalShow: false })
+
 	const DeadlineTitle = (
 		<div className="flex gap-4">
 			{title} <Priority status={priority} forTitle />
@@ -87,6 +92,11 @@ export default function UserViewDeadline({
 					writeUp={
 						<RemindMeCheckBox checkBoxObj labels={labels} change={onchange} />
 					}
+				/>
+				<ModalButton
+					actionName="Save"
+					actionFunc={() => {}}
+					cancelFunc={closeModal}
 				/>
 			</div>
 		</ModalBase>
