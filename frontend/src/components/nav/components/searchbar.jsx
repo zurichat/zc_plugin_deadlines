@@ -1,12 +1,22 @@
 import { React, useState } from 'react'
 
 import { SearchIcon } from '@heroicons/react/solid'
+import axios from 'axios'
+import { RemindersContext } from '../../../context/RemindersContext'
+
+export const axiosInstance = axios.create({
+	baseURL: '/api/v1/search',
+})
+
+const { remindersDispatch: dispatch } = useContext(RemindersContext)
 
 const Searchbar = ({ ...props }) => {
 	const [input, setInput] = useState('')
 
-	const handleInput = (e) => {
-		setInput(e.target.value)
+	const onChange = (e, { value }) => {
+		const searchText = value.trim().replace(/" "/g, '')
+
+		searchReminders(searchText)(dispatch)
 	}
 
 	const handleEnterSubmit = (e) => {
@@ -31,7 +41,7 @@ const Searchbar = ({ ...props }) => {
 					placeholder="Search"
 					type="text"
 					value={input}
-					onChange={handleInput}
+					onChange={onChange}
 					id="task search"
 					onKeyDown={handleEnterSubmit}
 				/>
