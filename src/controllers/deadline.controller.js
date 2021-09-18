@@ -143,18 +143,18 @@ const deadlineController = {
 	},
 
 	/**
-		Search reminder from the database using query
-		@param {title} reminder name to be searched 
-		@param {creator} creator of the reminder to be searched
-		@param {dueDate} Due date of the reminder to be searched
-		@returns {result} reminder fetched from the database 
+		Search deadline from the database using query
+		@param {title} deadline name to be searched 
+		@param {creator} creator of the deadline to be searched
+		@param {dueDate} Due date of the deadline to be searched
+		@returns {result} deadline fetched from the database 
 */
-	// Get search reminder using query of {title, creator, dueDate}
-	searchReminder: async (req, res, next) => {
+	// Get search Deadline using query of {title, creator, dueDate}
+	searchDeadline: async (req, res, next) => {
 		try {
 			const { text } = req.body
-			const result = await db.findAll('deadlines')
-			const data = db.search(result, text)
+			const result = await DeadLine.findAll('deadlines')
+			const data = await DeadLine.search(result, text)
 			return Response.send(
 				res,
 				200,

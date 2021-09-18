@@ -43,6 +43,7 @@
 		"babel-plugin-module-resolver": "^4.1.0",
 		"chai": "^4.3.4",
 		"concurrently": "^6.2.1",
+		"craco-plugin-single-spa-application": "^1.0.8",
 		"cross-env": "^7.0.3",
 		"eslint": "^7.32.0",
 		"eslint-config-airbnb-base": "^14.2.1",
@@ -83,6 +84,8 @@
 		"mongoose": "^6.0.3",
 		"react-activity": "^2.1.1",
 		"react-icons": "^4.2.0",
-		"supertest": "^6.1.6"
+		"supertest": "^6.1.6",
+		"swagger-jsdoc": "^6.1.0",
+		"swagger-ui-express": "^4.1.6"
 	}
 }
