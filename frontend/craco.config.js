@@ -5,12 +5,12 @@ const { when } = require('@craco/craco')
 console.log(process.env.NODE_ENV)
 
 module.exports = {
-	plugins: when(process.env.NODE_ENV !== 'development', () => [
+	plugins: when(process.env.NODE_ENV === 'development', () => [
 		{
 			plugin: singleSpaApplicationPlugin,
 			options: {
 				orgName: 'zuri',
-				projectName: 'plugin-deadlines',
+				projectName: 'zuri-plugin-deadlines',
 				entry: 'src/single-spa-index.jsx',
 				externals: ['react', 'react-dom'],
 				minimize: true,
@@ -20,6 +20,7 @@ module.exports = {
 
 	devServer: {
 		port: 8500,
+		https: true,
 	},
 	style: {
 		postcss: {
