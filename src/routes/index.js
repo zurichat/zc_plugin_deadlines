@@ -37,7 +37,7 @@ router.get(
 )
 
 /**
- * SIDEBAR AND ROOMS
+ * ROOMS, SIDEBAR AND PLUGIN INFO
  */
 router
 	.route('/rooms/:id')
@@ -52,5 +52,13 @@ router
 
 router.get('/rooms/:id/add', roomController.addToRoom)
 router.get('/rooms/:id/remove', roomController.deleteFromRoom)
+
+router.get(
+	'/sidebar',
+	roomValidation.sidebarQueries,
+	sidebarController.getSideBar
+)
+
+router.get('/info', sidebarController.getPluginInfo)
 
 export default router
