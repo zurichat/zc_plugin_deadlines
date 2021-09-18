@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import ColTitleDes from '../../component/columnTitleDes'
 import TextField from '../../component/textField'
 import DatePicker from '../../component/datePicker2'
 import RadioButton from '../../component/radioButton/radioButton'
 import Priority from '../../component/priority'
 import ModalBase from '../../modalBase/index'
+import ModalButton from '../../component/button'
+import { ModalContext } from '../../../../context/ModalContext'
 
 // prop value format= {
 // 	title: 'fuck',
@@ -15,6 +17,9 @@ import ModalBase from '../../modalBase/index'
 //  assignTo: "#marketing"
 // }
 const EditDeadline = ({ details }) => {
+	const { modalData, setModalData } = useContext(ModalContext)
+	const closeModal = () => setModalData({ ...modalData, modalShow: false })
+
 	let data = {
 		description: details.description,
 		title: details.title,
@@ -128,14 +133,11 @@ const EditDeadline = ({ details }) => {
 						}}
 					/>
 				</div>
-				<div className="flex justify-end gap-4">
-					<button className="h-11 px-5 text-sm text-brand-primary font-semibold">
-						Cancel
-					</button>
-					<button className="h-11 px-5 text-sm bg-brand-primary font-semibold text-brand-bg-white">
-						Update
-					</button>
-				</div>
+				<ModalButton
+					actionName="Update"
+					actionFunc={() => {}}
+					cancelFunc={closeModal}
+				/>
 			</div>
 		</ModalBase>
 	)
