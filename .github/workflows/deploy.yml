@@ -57,5 +57,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: 
+            PORT=3008 pm2 start yarn --name "reminders_plugin" --max-memory-restart 670M  -- start
             pm2 list
-            pm2 delete reminders_plugin
