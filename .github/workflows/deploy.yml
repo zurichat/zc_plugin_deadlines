@@ -58,4 +58,4 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: 
             pm2 list
-            pm2 restart reminders_plugin
+            pm2 delete reminders_plugin
