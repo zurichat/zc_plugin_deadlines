@@ -5,16 +5,17 @@ import { SearchIcon, FilterIcon } from '@heroicons/react/outline'
 import Sortbar from './components/sortbar'
 import Searchbar from './components/searchbar'
 import CreateNewDeadlineButton from './components/button'
-import SelectPage from './components/selectPages'
+// import SelectPage from './components/selectPages'
+import SelectPages2 from './components/selectpages2'
 
 const Nav = () => {
 	return (
 		<nav className="space-y-1 md:space-y-0   lg:border-b">
 			<div className="flex flex-col lg:flex-row justify-between items-center">
 				<div className="flex justify-between items-center w-full lg:w-auto">
-					<div className="lg:hidden">
+					{/* <div className="lg:hidden">
 						<SelectPage />
-					</div>
+					</div> */}
 					<div className="flex">
 						<SearchIcon className="lg:hidden text-gray-400 w-3.5 mr-3" />
 						<FilterIcon className=" lg:hidden text-gray-400 w-3.5" />
@@ -39,8 +40,11 @@ const Nav = () => {
 					</div>
 				</div>
 			</div>
-			<div className="hidden lg:block">
+			{/* <div className="hidden lg:block">
 				<SelectPage />
+			</div> */}
+			<div className="hidden lg:block">
+				<SelectPages2 />
 			</div>
 		</nav>
 	)
