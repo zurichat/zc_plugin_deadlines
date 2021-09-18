@@ -15,6 +15,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Use cached node_modules
+        uses: c-hive/gha-yarn-cache@v2
+        with:
+         directory: frontend
+         
+      - name: install Dependencies
+        run: |
+          yarn run holoInstall
+          yarn build
 
       - name: Exec remote commands via SSH
         uses: appleboy/ssh-action@master
@@ -30,7 +40,22 @@ jobs:
             git checkout dev
             git pull origin dev
             yarn run holoInstall
-            yarn run build
-            PORT=3008 pm2 start yarn --name "reminders_plugin" --max-memory-restart 670M  -- start
+            
+      - name: copy build to server
+        uses: Creepios/sftp-action@v1.0.1
+        with:
+          username: ${{ secrets.USERNAME }}
+          host: ${{ secrets.HOSTNAME }}
+          password: ${{ secrets.PASSWORD }}
+          localPath: './frontend/build/'
+          remotePath: '/var/www/zc_plugin_reminder/frontend/build'
+            
+      - name: restart pm2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOSTNAME }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: 
             pm2 list
             pm2 restart reminders_plugin
