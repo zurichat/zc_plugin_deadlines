@@ -55,6 +55,8 @@ export default class DatabaseOps {
 			})
 			return res.data.data.map((row) => this.render(row))
 		} catch (error) {
+			if (error?.response?.status === 404) return []
+
 			throw new Error(
 				'Server Internal error, we will figure it out, try again later'
 			)
@@ -124,16 +126,18 @@ export default class DatabaseOps {
 	async search(data, query) {
 		console.log('INCOMING', data, query)
 		// const result = data.filter((item) => item.title === query)
-		let formattedQuery = query.toLowerCase()
+		const formattedQuery = query.toLowerCase()
 		const result = data.filter((item) => {
-		return item.title.toLowerCase() === formattedQuery || 
-			  item.creator.userId.toLowerCase() === formattedQuery ||
-			  item.priority.toLowerCase() === formattedQuery || 
-			  item.description.toLowerCase() === formattedQuery
+			return (
+				item.title.toLowerCase() === formattedQuery ||
+				item.creator.userId.toLowerCase() === formattedQuery ||
+				item.priority.toLowerCase() === formattedQuery ||
+				item.description.toLowerCase() === formattedQuery
+			)
 		})
 		console.log('RESULT GOTTEN', result)
 		return result
-	}	
+	}
 
 	// Helper
 	render(data) {
