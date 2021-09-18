@@ -340,7 +340,7 @@ router.post(
 )
 
 /**
- * SIDEBAR AND ROOMS
+ * ROOMS, SIDEBAR AND PLUGIN INFO
  */
 
 /**
@@ -494,5 +494,13 @@ router.get('/rooms/:id/add', roomController.addToRoom)
  *      description: An error occurred
  */
 router.get('/rooms/:id/remove', roomController.deleteFromRoom)
+
+router.get(
+	'/sidebar',
+	roomValidation.sidebarQueries,
+	sidebarController.getSideBar
+)
+
+router.get('/info', sidebarController.getPluginInfo)
 
 export default router

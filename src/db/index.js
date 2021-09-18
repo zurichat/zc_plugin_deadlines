@@ -55,6 +55,8 @@ export default class DatabaseOps {
 			})
 			return res.data.data.map((row) => this.render(row))
 		} catch (error) {
+			if (error?.response?.status === 404) return []
+
 			throw new Error(
 				'Server Internal error, we will figure it out, try again later'
 			)
