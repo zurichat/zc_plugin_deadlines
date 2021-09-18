@@ -6,6 +6,7 @@ const StatusChanger = ({
 	toggler,
 	deadlineStatus,
 	radioSelect,
+	toggleHolder,
 }) => {
 	const setDeadlineStatus = () => {
 		return currentStatus ? 'Completed' : 'Pending'
@@ -30,12 +31,19 @@ const StatusChanger = ({
 						setStatus({ status: event.target.checked })
 						currentStatus
 							? (toggler.current.classList.add('ml-5'),
-							  (deadlineStatus.current.innerText = 'Pending'))
+							  (deadlineStatus.current.innerText = 'Deadline Pending'))
 							: (toggler.current.classList.remove('ml-5'),
-							  (deadlineStatus.current.innerText = 'Completed'))
+							  (deadlineStatus.current.innerText = 'Deadline Met'))
 					}}
 				/>
-				<div className="flex w-9 h-4 mt-1 border-2 border-black rounded-full bg-brand-primary relative">
+				<div
+					ref={toggleHolder}
+					className={
+						currentStatus
+							? 'flex w-9 h-4 mt-1 duration-500 border-2 border-black rounded-full bg-brand-success relative'
+							: 'flex w-9 h-4 mt-1 duration-500 border-2 border-black rounded-full bg-brand-bg-white relative'
+					}
+				>
 					<div
 						ref={toggler}
 						className={

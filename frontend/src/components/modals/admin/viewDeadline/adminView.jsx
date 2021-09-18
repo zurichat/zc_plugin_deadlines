@@ -26,6 +26,7 @@ const AdminView = (props) => {
 	const toggler = useRef()
 	const deadlineStatus = useRef()
 	const radioSelect = useRef()
+	const toggleHolder = useRef()
 
 	const DeadlineTitle = (
 		<div className="flex gap-4">
@@ -67,6 +68,7 @@ const AdminView = (props) => {
 						setStatus={setTaskStatus}
 						deadlineStatus={deadlineStatus}
 						radioSelect={radioSelect}
+						toggleHolder={toggleHolder}
 					/>
 				</div>
 				<div className="flex justify-end">
