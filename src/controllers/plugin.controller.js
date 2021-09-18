@@ -16,7 +16,7 @@ const sortRooms = (rooms, userId) => {
 			(room) => room.members.includes(userId) ?? room.ownerId === userId
 		)
 		privateRooms = matchedRooms.filter((room) => room.isPrivate === true)
-		publicRooms = matchedRooms.filter((room) => room.isPrivate === false)
+		publicRooms = rooms.filter((room) => room.isPrivate === false)
 	}
 	return { privateRooms, publicRooms }
 }
