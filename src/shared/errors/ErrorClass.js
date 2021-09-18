@@ -16,7 +16,7 @@ export class UniqueConstraintError extends Error {
 	/**
 	 *
 	 * @param {*} statusCode
-	 * @param {*} msg
+	 * @param {*} message
 	 * @param {*} isOperational
 	 * @param {*} stack
 	 */
