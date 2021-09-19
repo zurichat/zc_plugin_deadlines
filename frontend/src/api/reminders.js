@@ -1,10 +1,14 @@
 import axios from 'axios'
-import { useMutation, useQuery } from 'react-query'
+import toast from 'react-hot-toast'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import errorHandler from './utils/errorHandler'
 import validateCreateReminderData from './utils/validation'
 
 const axiosInstance = axios.create({
-	baseURL: 'https://reminders.zuri.chat/api/v1',
+	baseURL:
+		process.env.NODE_ENV === 'development'
+			? 'http://localhost:5621/api/v1'
+			: 'https://reminders.zuri.chat/api/v1',
 })
 
 export const useAllReminders = () => {
@@ -71,4 +75,22 @@ export const useCreateReminder = (payload) => {
 	// isLoading and isSuccess are Booleans representing loading and success states respectively
 	// You can use isLoading to show loading spinners and isSuccess to tell when the request completed successfully and inform the user
 	return { responseBody: data, error, isLoading, isSuccess }
+}
+
+export const useDeleteDeadline = () => {
+	const queryClient = useQueryClient()
+
+	return useMutation(
+		(object_id) => axiosInstance.delete(`/deadlines/${object_id}`),
+		{
+			onSuccess: () => {
+				queryClient
+					.invalidateQueries('allReminders')
+					.then(() => toast.success(`Deleted successfully`))
+			},
+			onError: () => {
+				toast.error('Failed to delete reminder')
+			},
+		}
+	)
 }

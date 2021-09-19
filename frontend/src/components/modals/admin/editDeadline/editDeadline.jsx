@@ -5,6 +5,8 @@ import DatePicker from '../../component/datePicker2'
 import RadioButton from '../../component/radioButton/radioButton'
 import Priority from '../../component/priority'
 import ModalBase from '../../modalBase/index'
+import { useAllReminders } from '../../../../api/reminders'
+// import ModalButton from '../../component/button'
 
 // prop value format= {
 // 	title: 'fuck',
@@ -14,17 +16,34 @@ import ModalBase from '../../modalBase/index'
 // 	radio: 'high',
 //  assignTo: "#marketing"
 // }
-const EditDeadline = ({ details }) => {
+const EditDeadline = ({ object_id }) => {
+	const { fetchedData } = useAllReminders()
+
+	const [
+		{
+			assignee,
+			description,
+			dueDate,
+			startDate,
+			title,
+			// creator,
+			// priority,
+			// reminders,
+			// shouldRemind,
+			// staus,
+		},
+	] = fetchedData.filter((deadline) => deadline.object_id === object_id)
+
 	let data = {
-		description: details.description,
-		title: details.title,
-		start: details.start,
-		due: details.due,
-		assignTo: details.assignTo,
-		radio: details.radio,
+		description,
+		title,
+		start: startDate,
+		due: dueDate,
+		assignTo: assignee.channelName,
+		// radio: details.radio,
 	} //should receive initial data from props
 
-	const [radio, setRadio] = useState(data.radio)
+	const [radio, setRadio] = useState(null)
 
 	return (
 		<ModalBase title="Edit Deadline">
@@ -57,7 +76,7 @@ const EditDeadline = ({ details }) => {
 					alignStretch
 				/>
 
-				<div className="flex gap-x-12 w-full">
+				<div className="flex flex-col gap-y-6 w-full md:gap-x-12 md:flex-row">
 					<ColTitleDes
 						space
 						title="Start date"
@@ -128,14 +147,11 @@ const EditDeadline = ({ details }) => {
 						}}
 					/>
 				</div>
-				<div className="flex justify-end">
-					<button className="w-16 h-7  text-sm text-brand-primary font-semibold">
-						Cancel
-					</button>
-					<button className="w-16 h-7  text-sm bg-brand-primary font-semibold text-brand-bg-white">
-						Update
-					</button>
-				</div>
+				{/* <ModalButton
+					actionName="Update"
+					actionFunc={() => {}}
+					cancelFunc={closeModal}
+				/> */}
 			</div>
 		</ModalBase>
 	)

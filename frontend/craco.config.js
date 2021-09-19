@@ -1,19 +1,26 @@
 const path = require('path')
 singleSpaApplicationPlugin = require('craco-plugin-single-spa-application')
+const { when } = require('@craco/craco')
+
+console.log(process.env.NODE_ENV)
 
 module.exports = {
-	plugins: [
+	plugins: when(process.env.NODE_ENV !== 'development', () => [
 		{
 			plugin: singleSpaApplicationPlugin,
 			options: {
 				orgName: 'zuri',
-				projectName: 'plugin-deadlines',
+				projectName: 'zuri-plugin-deadlines',
 				entry: 'src/single-spa-index.jsx',
 				externals: ['react', 'react-dom'],
 				minimize: true,
 			},
 		},
-	],
+	]),
+
+	devServer: {
+		port: 8500,
+	},
 	style: {
 		postcss: {
 			plugins: [require('tailwindcss'), require('autoprefixer')],
