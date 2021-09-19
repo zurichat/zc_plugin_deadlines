@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
 
 import Nav from './components/nav'
 import CompletedPage from './pages/Completed/index'
@@ -35,6 +36,7 @@ const App = () => {
 			{modalData.modalShow && modalData.modalType === 'adminViewOther' && (
 				<AdminViewOther {...modalData.modalData} />
 			)}
+			<Toaster />
 			<nav className="p-5 ">
 				<Nav />
 			</nav>
