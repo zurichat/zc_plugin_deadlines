@@ -8,7 +8,20 @@ const SearchModal = () => {
 	// const response = searchResult[0]
 	return (
 		<>
-			<DeadlineCard searchResult={searchResult[0]} />
+			{searchResult.map((result) => (
+				<div key={result.object_id}>
+					<DeadlineCard
+						title={result.title}
+						description={result.description}
+						assigner={result.creator.userName}
+						assignees={result.assignee.channelName}
+						startDate={result.startDate}
+						dueDate={result.dueDate}
+						priority={result.priority}
+						object_id={result.object_id}
+					/>
+				</div>
+			))}
 		</>
 	)
 }
