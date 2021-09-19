@@ -114,7 +114,8 @@ export default class DatabaseOps {
 					payload: data,
 				},
 			})
-			return res.data.data.modified_document > 0
+			console.log(res.data.data)
+			return res.data.data.modified_documents > 0
 		} catch (error) {
 			throw new Error(
 				'Server Internal error, we will figure it out, try again later'
