@@ -6,7 +6,7 @@ import RadioButton from '../../component/radioButton/radioButton'
 import Priority from '../../component/priority'
 import ModalBase from '../../modalBase/index'
 import { useAllReminders } from '../../../../api/reminders'
-import ModalButton from '../../component/button'
+// import ModalButton from '../../component/button'
 
 // prop value format= {
 // 	title: 'fuck',
@@ -147,11 +147,11 @@ const EditDeadline = ({ object_id }) => {
 						}}
 					/>
 				</div>
-				<ModalButton
+				{/* <ModalButton
 					actionName="Update"
 					actionFunc={() => {}}
 					cancelFunc={closeModal}
-				/>
+				/> */}
 			</div>
 		</ModalBase>
 	)

@@ -6,7 +6,7 @@ import Avatar from '../../component/avatar'
 import RemindMeCheckBox from '../../component/remindMeCheckBox'
 import ModalBase from '../../modalBase/index'
 import Priority from '../../component/priority'
-import ModalButton from '../../component/button'
+// import ModalButton from '../../component/button'
 
 // const props = {
 // 	priority: 'high',
@@ -89,11 +89,11 @@ const UserViewDeadline = ({
 						<RemindMeCheckBox checkBoxObj labels={labels} change={onchange} />
 					}
 				/>
-				<ModalButton
+				{/* <ModalButton
 					actionName="Save"
 					actionFunc={() => {}}
 					cancelFunc={closeModal}
-				/>
+				/> */}
 			</div>
 		</ModalBase>
 	)

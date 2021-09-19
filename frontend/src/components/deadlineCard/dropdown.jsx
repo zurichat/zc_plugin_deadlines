@@ -1,10 +1,28 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 
 import { BsThreeDots } from 'react-icons/bs'
 import { BiEditAlt, BiTrashAlt } from 'react-icons/bi'
+import { ModalContext } from '../../context/ModalContext'
 
-const DeadlineCardDropdown = ({ props }) => {
+const DeadlineCardDropdown = ({ object_id }) => {
+	const { setModalData } = useContext(ModalContext)
+
+	const editDeadline = () => {
+		setModalData({
+			modalShow: true,
+			modalType: 'adminEdit',
+			modalData: {
+				object_id,
+			},
+		})
+	}
+
+	const deleteDeadline = () => {
+		// delete workflow
+		console.log('Deleting', object_id)
+	}
+
 	return (
 		<Menu>
 			<Menu.Button className="mb-2 cursor-pointer self-end">
@@ -30,6 +48,7 @@ const DeadlineCardDropdown = ({ props }) => {
 									className={`${
 										active ? 'bg-gray-100 text-gray-900' : 'text-gray-900'
 									} group flex rounded-t-md items-center w-full px-4 py-2 gap-2`}
+									onClick={editDeadline}
 								>
 									<BiEditAlt />
 									Edit
@@ -42,6 +61,7 @@ const DeadlineCardDropdown = ({ props }) => {
 									className={`${
 										active ? 'bg-red-500 text-white' : 'text-gray-900'
 									} group flex rounded-b-md items-center w-full px-4 py-2 gap-2`}
+									onClick={deleteDeadline}
 								>
 									<BiTrashAlt />
 									Delete
