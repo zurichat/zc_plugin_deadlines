@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import ColTitleDes from '../../component/columnTitleDes'
 import RowTitleDes from '../../component/rowTitleDes'
@@ -6,8 +6,7 @@ import Avatar from '../../component/avatar'
 import RemindMeCheckBox from '../../component/remindMeCheckBox'
 import ModalBase from '../../modalBase/index'
 import Priority from '../../component/priority'
-import ModalButton from '../../component/button'
-import { ModalContext } from '../../../../context/ModalContext'
+// import ModalButton from '../../component/button'
 
 // const props = {
 // 	priority: 'high',
@@ -29,7 +28,7 @@ import { ModalContext } from '../../../../context/ModalContext'
 // 	{ label: '2 hours to deadline', checked: false },
 // ],
 // }
-export default function UserViewDeadline({
+const UserViewDeadline = ({
 	description,
 	startDate,
 	dueDate,
@@ -42,10 +41,7 @@ export default function UserViewDeadline({
 	priority,
 	checkbox,
 	assigneeOnline,
-}) {
-	const { modalData, setModalData } = useContext(ModalContext)
-	const closeModal = () => setModalData({ ...modalData, modalShow: false })
-
+}) => {
 	const DeadlineTitle = (
 		<div className="flex gap-4">
 			{title} <Priority status={priority} forTitle />
@@ -93,12 +89,14 @@ export default function UserViewDeadline({
 						<RemindMeCheckBox checkBoxObj labels={labels} change={onchange} />
 					}
 				/>
-				<ModalButton
+				{/* <ModalButton
 					actionName="Save"
 					actionFunc={() => {}}
 					cancelFunc={closeModal}
-				/>
+				/> */}
 			</div>
 		</ModalBase>
 	)
 }
+
+export default UserViewDeadline

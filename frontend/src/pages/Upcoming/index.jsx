@@ -26,6 +26,7 @@ const UpcomingPage = () => {
 								startDate={val.startDate}
 								dueDate={val.dueDate}
 								priority={val.priority}
+								object_id={val.object_id}
 							/>
 						</div>
 					))}
