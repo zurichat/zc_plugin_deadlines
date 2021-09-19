@@ -5,7 +5,7 @@ import DatePicker from '../../component/datePicker2'
 import RadioButton from '../../component/radioButton/radioButton'
 import Priority from '../../component/priority'
 
-const ModalForm = () => {
+const ModalForm = ({ closeModal }) => {
 	const [deadline, setDeadline] = useState({
 		title: '',
 		description: '',
@@ -82,7 +82,7 @@ const ModalForm = () => {
 				alignStretch
 			/>
 			<div className="flex flex-col gap-y-3">
-				<p className="text-sm leading-none">select priority</p>
+				<p className="text-sm leading-none">Select priority</p>
 				<RadioButton
 					id="low"
 					selected={radio}
@@ -112,7 +112,10 @@ const ModalForm = () => {
 				/>
 			</div>
 			<div className="flex justify-end">
-				<button className="w-16 h-10  text-sm text-brand-primary font-semibold">
+				<button
+					className="w-16 h-10  text-sm text-brand-primary font-semibold"
+					onClick={closeModal}
+				>
 					Cancel
 				</button>
 				<button
