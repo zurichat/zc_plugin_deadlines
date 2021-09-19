@@ -6,6 +6,7 @@ import RadioButton from '../../component/radioButton/radioButton'
 import Priority from '../../component/priority'
 import ModalBase from '../../modalBase/index'
 import { useAllReminders } from '../../../../api/reminders'
+import ModalButton from '../../component/button'
 
 // prop value format= {
 // 	title: 'fuck',
@@ -146,14 +147,11 @@ const EditDeadline = ({ object_id }) => {
 						}}
 					/>
 				</div>
-				<div className="flex justify-end gap-4">
-					<button className="h-11 px-5 text-sm text-brand-primary font-semibold">
-						Cancel
-					</button>
-					<button className="h-11 px-5 text-sm bg-brand-primary font-semibold text-brand-bg-white">
-						Update
-					</button>
-				</div>
+				<ModalButton
+					actionName="Update"
+					actionFunc={() => {}}
+					cancelFunc={closeModal}
+				/>
 			</div>
 		</ModalBase>
 	)
