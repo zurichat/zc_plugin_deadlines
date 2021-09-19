@@ -4,11 +4,10 @@ import { SearchContext } from '../../../context/searchContext/searchContext'
 
 const SearchModal = () => {
 	const searchResult = useContext(SearchContext)
-	console.log(searchResult[0], 'searchModal')
-	// const response = searchResult[0]
+	console.log(searchResult[1], 'searchModal')
 	return (
 		<>
-			{searchResult.map((result) => (
+			{searchResult[0].map((result) => (
 				<div key={result.object_id}>
 					<DeadlineCard
 						title={result.title}
