@@ -94,3 +94,31 @@ export const useDeleteDeadline = () => {
 		}
 	)
 }
+
+export const useReminder = (id) => {
+	const { isLoading, data, error, isPlaceholderData, isError, status } =
+		useQuery(
+			'reminder',
+			async () => {
+				try {
+					const res = await axiosInstance({
+						method: 'GET',
+						url: `/deadlines/${id}`,
+					})
+					console.log(res.data.data)
+					return res.data.data
+				} catch (err) {
+					throw errorHandler(error)
+				}
+			},
+			{
+				placeholderData: () => {
+					return {
+						data: {
+							result: [],
+						},
+					}
+				},
+			}
+		)
+}
