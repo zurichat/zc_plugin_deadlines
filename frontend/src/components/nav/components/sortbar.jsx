@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 
 import { Menu } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
-import { RemindersContext } from '../../../context/RemindersContext'
+// import { RemindersContext } from '../../../context/RemindersContext'
 
 const Sortbar = () => {
 	const sort_tags = [
@@ -12,41 +12,41 @@ const Sortbar = () => {
 		'Due Date (Ascending)',
 		'Due Date (Descending)',
 	]
-	const { dispatch, actionTypes, initialData } = useContext(RemindersContext)
-	const [value, setValue] = useState('')
+	// const { dispatch, actionTypes, initialData } = useContext(RemindersContext)
+	const [value] = useState('')
 
-	const handleSort = (i) => {
-		setValue(i)
-		const getDate = (a) => {
-			return new Date(a).getTime()
-		}
+	//  const handleSort = (i) => {
+	// 	setValue(i)
+	// 	const getDate = (a) => {
+	// 		return new Date(a).getTime()
+	// 	}
 
-		const sortData = (array, value) => {
-			switch (value) {
-				case 'Piority':
-					return array.sort((a, b) => b.piority - a.piority)
-				case 'Newest to Oldest':
-					return array.sort(
-						(a, b) => getDate(b.startDate) - getDate(a.startDate)
-					)
-				case 'Oldest to Newest':
-					return array.sort(
-						(a, b) => getDate(a.startDate) - getDate(b.startDate)
-					)
-				case 'Due Date (Ascending)':
-					return array.sort((a, b) => getDate(a.dueDate) - getDate(b.dueDate))
-				case 'Due Date (Descending)':
-					return array.sort((a, b) => getDate(b.dueDate) - getDate(b.dueDate))
-			}
-		}
+	// 	const sortData = (array, value) => {
+	// 		switch (value) {
+	// 			case 'Piority':
+	// 				return array.sort((a, b) => b.piority - a.piority)
+	// 			case 'Newest to Oldest':
+	// 				return array.sort(
+	// 					(a, b) => getDate(b.startDate) - getDate(a.startDate)
+	// 				)
+	// 			case 'Oldest to Newest':
+	// 				return array.sort(
+	// 					(a, b) => getDate(a.startDate) - getDate(b.startDate)
+	// 				)
+	// 			case 'Due Date (Ascending)':
+	// 				return array.sort((a, b) => getDate(a.dueDate) - getDate(b.dueDate))
+	// 			case 'Due Date (Descending)':
+	// 				return array.sort((a, b) => getDate(b.dueDate) - getDate(b.dueDate))
+	// 		}
+	// 	}
 
-		const sortResults = sortData(initialData, value)
+	// 	const sortResults = sortData(initialData, value)
 
-		dispatch({
-			type: actionTypes.SORT,
-			payload: { sortResults },
-		})
-	}
+	// 	dispatch({
+	// 		type: actionTypes.SORT,
+	// 		payload: { sortResults },
+	// 	})
+	// }
 
 	return (
 		<Menu as="div" className="text-sm">

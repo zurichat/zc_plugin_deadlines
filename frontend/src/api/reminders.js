@@ -92,8 +92,10 @@ export const useDeleteDeadline = () => {
 
 //updateReminders
 export const useUpdateReminders = () => {
+	const queryClient = useQueryClient()
+
 	return useMutation(
-		(payload, object_id) =>
+		({ payload, object_id }) =>
 			axiosInstance({
 				data: payload,
 				method: 'PUT',
