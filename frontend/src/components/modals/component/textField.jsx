@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
-const TextField = ({ placeholder, value, onChange }) => {
+const TextField = ({ placeholder, value, onChange, name }) => {
 	let textValue = value
 	const [val, setTextValue] = useState(textValue)
 	const textChange = (e) => {
 		textValue = e.target.value
 		setTextValue(textValue)
-		onChange(textValue)
+		onChange(e)
 	}
 	return (
 		<input
@@ -16,6 +16,7 @@ const TextField = ({ placeholder, value, onChange }) => {
 			placeholder={placeholder}
 			value={val}
 			onChange={textChange}
+			name={name}
 		/>
 	)
 }

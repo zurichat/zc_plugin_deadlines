@@ -94,3 +94,18 @@ export const useDeleteDeadline = () => {
 		}
 	)
 }
+
+export const useCreateDeadline = () => {
+	const queryClient = useQueryClient()
+
+	return useMutation((payload) => axiosInstance.post(`/deadlines/`, payload), {
+		onSuccess: () => {
+			queryClient
+				.invalidateQueries('allReminders')
+				.then(() => toast.success(`Deadline added successfully`))
+		},
+		onError: () => {
+			toast.error('Failed to add deadline')
+		},
+	})
+}

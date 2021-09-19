@@ -63,7 +63,7 @@ const Sortbar = () => {
 			</div>
 			<Menu.Items className="absolute mt-2 divide-y rounded-lg bg-white ring-1 ring-black ring-opacity-5 inline-flex flex-col shadow-lg">
 				{sort_tags.map((i, index) => (
-					<Menu.Item key={index} onClick={() => handleSort(i)}>
+					<Menu.Item key={index} onClick={() => null}>
 						{({ active }) => (
 							<div
 								className={`${
