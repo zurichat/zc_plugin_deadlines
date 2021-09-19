@@ -2,7 +2,6 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import errorHandler from './utils/errorHandler'
-import validateCreateReminderData from './utils/validation'
 
 const axiosInstance = axios.create({
 	baseURL:
@@ -61,30 +60,26 @@ export const useAllReminders = () => {
 	}
 }
 
-export const useCreateReminder = (payload) => {
-	const { data, error, isLoading, isSuccess } = useMutation(
-		'createReminder',
-		async () => {
-			if (validateCreateReminderData(payload)) {
-				try {
-					const res = await axiosInstance({
-						data: payload,
-						method: 'POST',
-						url: '/reminders',
-					})
-
-					return res
-				} catch (error) {
-					throw errorHandler(error)
-				}
-			}
+//createReminders
+export const useCreateReminders = () => {
+	return useMutation(
+		(payload, object_id) =>
+			axiosInstance({
+				data: payload,
+				method: 'POST',
+				url: `/deadlines/${object_id}`,
+			}),
+		{
+			onSuccess: () => {
+				queryClient
+					.invalidateQueries('allReminders')
+					.then(() => toast.success(`Created successfully`))
+			},
+			onError: () => {
+				toast.error('Failed to create reminder')
+			},
 		}
 	)
-
-	// Data is the response returned from the post, error only exists if there's an error
-	// isLoading and isSuccess are Booleans representing loading and success states respectively
-	// You can use isLoading to show loading spinners and isSuccess to tell when the request completed successfully and inform the user
-	return { responseBody: data, error, isLoading, isSuccess }
 }
 
 export const useDeleteDeadline = () => {
@@ -100,6 +95,30 @@ export const useDeleteDeadline = () => {
 			},
 			onError: () => {
 				toast.error('Failed to delete reminder')
+			},
+		}
+	)
+}
+
+//updateReminders
+export const useUpdateReminders = () => {
+	const queryClient = useQueryClient()
+
+	return useMutation(
+		({ payload, object_id }) =>
+			axiosInstance({
+				data: payload,
+				method: 'PUT',
+				url: `/deadlines/${object_id}`,
+			}),
+		{
+			onSuccess: () => {
+				queryClient
+					.invalidateQueries('allReminders')
+					.then(() => toast.success(`Updated successfully`))
+			},
+			onError: () => {
+				toast.error('Failed to update reminder')
 			},
 		}
 	)
