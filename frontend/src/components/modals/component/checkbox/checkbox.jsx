@@ -25,7 +25,7 @@ const Checkbox = ({ id, label, check, onChange }) => {
 			)}
 			<label
 				htmlFor={id}
-				className="text-sm leading-none self-center flex items-center gap-x-2"
+				className="text-sm cursor-pointer leading-none self-center flex items-center gap-x-2"
 			>
 				<div className="inline-block h-5 w-5 border-solid border border-black p-px">
 					<div className={`${style.interior} bg-brand-primary h-full`}></div>
