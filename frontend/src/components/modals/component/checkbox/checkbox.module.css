@@ -1,0 +1,7 @@
+.interior {
+	display: none;
+}
+
+.checkbox:checked ~ label .interior {
+	display: block;
+}

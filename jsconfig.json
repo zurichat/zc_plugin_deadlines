@@ -12,7 +12,9 @@
 			"@controllers/*": ["controllers/*"],
 			"@models/*": ["models/*"],
 			"@routes/*": ["routes/*"],
-			"@types/*": ["types/*"]
+			"@types/*": ["types/*"],
+			"@sockets/*": ["sockets/*"]
 		}
-	}
+	},
+	"exclude": ["node_modules", "build"]
 }

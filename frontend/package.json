@@ -5,11 +5,14 @@
 	"dependencies": {
 		"@craco/craco": "^6.2.0",
 		"@headlessui/react": "^1.4.1",
+		"@heroicons/react": "^1.0.4",
 		"axios": "^0.21.1",
 		"react": "^17.0.2",
+		"react-activity": "^2.1.1",
 		"react-calendar": "^3.4.0",
 		"react-dom": "^17.0.2",
 		"react-query": "^3.21.1",
+		"react-router-dom": "^5.3.0",
 		"react-scripts": "4.0.3",
 		"react-test-renderer": "^17.0.2",
 		"web-vitals": "^1.0.1"
@@ -17,7 +20,7 @@
 	"scripts": {
 		"start": "craco start",
 		"build": "craco build",
-		"test": "craco test",
+		"test": "craco test --testPathIgnorePatterns=__compat__ --passWithNoTests",
 		"eject": "react-scripts eject",
 		"lint": "eslint . --fix"
 	},
@@ -47,16 +50,26 @@
 	"devDependencies": {
 		"@testing-library/jest-dom": "^5.14.1",
 		"@testing-library/react": "^12.0.0",
+		"@testing-library/react-hooks": "^7.0.2",
 		"@testing-library/user-event": "^13.2.1",
 		"@types/jest": "^27.0.1",
 		"autoprefixer": "^9.8.6",
 		"babel-eslint": "^10.1.0",
+		"craco-plugin-single-spa-application": "^1.0.8",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"eslint-plugin-react": "^7.25.0",
 		"eslint-plugin-unused-imports": "^1.1.4",
+		"install-peers": "^1.0.3",
 		"postcss": "^7.0.36",
 		"prettier": "2.3.2",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"single-spa-react": "^4.4.0",
 		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.9"
+	},
+	"peerDependencies": {
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2"
 	}
 }

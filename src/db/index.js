@@ -1,74 +1,151 @@
 import axios from 'axios'
 import env from '@config/environment'
-import { get } from 'mongoose'
 
-const { getDevBaseUrl, ORG_ID, PLUGIN_ID } = env
+const { getDevBaseUrl } = env
 
-const BASE_URL = `${getDevBaseUrl()}/data`
-const readBaseUrl = `${BASE_URL}/read`
-const writeBaseUrl = `${BASE_URL}/write`
+const { apiUrl, baseUrl, orgId, pluginId } = getDevBaseUrl()
+console.log({ apiUrl, baseUrl, orgId, pluginId })
+const readBaseUrl = `${baseUrl}/data/read`
+const writeBaseUrl = `${baseUrl}/data/write`
+const deleteBaseUrl = `${baseUrl}/data/delete`
+// eslint-disable no-underscore-dangle
+// eslint-disable class-methods-use-this
 
-export default function makeDb() {
-	// functions go here
-	/**
-	 * Persists data to a db on a thrid party api
-	 * @param {string} modelName
-	 * @param {[object] | object} data
-	 * @returns saved document
-	 */
-	const create = async (modelName, data) => {
-		if (typeof data !== 'object')
-			throw new Error('Invalid data format. Expected an array or object.')
+/** *
+ * create
+ * findAll
+ * findByid
+ * deleteById
+ * updateById
+ */
 
-		const dbResponse = await axios.post(writeBaseUrl, {
-			plugin_id: PLUGIN_ID,
-			organization_id: ORG_ID,
-			collection_name: modelName,
-			bulk_write: Array.isArray(data), // returns true if data is an array
-			payload: data,
-		})
-
-		// Response
-		if (Array.isArray(data)) {
-			return dbResponse.data.result.map((row) => ({
-				id: row.document.object_id,
-				...row.document.payload,
-			}))
-		}
-		return {
-			id: dbResponse.data.object_id,
-			...dbResponse.data.payload,
-		}
+export default class DatabaseOps {
+	constructor(modelName) {
+		this.modelName = modelName
 	}
 
-	async function findAll(modelName) {
-		/**
-		 * sample of details used
-		 * PLUGIN_ID zc_reminder
-		 * ORG_ID darwin_organization
-		 */
-
-		try {
-			const res = await axios.get(
-				`${readBaseUrl}/${PLUGIN_ID}/${collectionName}/${ORG_ID}`
-			)
-			return res.data
-		} catch (err) {
-			return err.response.data
-		}
-	}
-
-	async function findById(collectionName, id) {
-		// findById function that interacts with the database endpoint
+	async create(data) {
 		try {
 			const res = await axios({
-				url: `${readBaseUrl}/${PLUGIN_ID}/${collectionName}/${ORG_ID}?id=${id}`,
-				method: get,
+				url: writeBaseUrl,
+				method: 'post',
+				data: {
+					plugin_id: pluginId,
+					organization_id: orgId,
+					collection_name: this.modelName,
+					bulk_write: Array.isArray(data), // returns true if data is an array
+					payload: data,
+				},
+			})
+			// Response
+			return res.data.data
+		} catch (error) {
+			throw new Error(
+				'Server Internal error, we will figure it out, try again later'
+			)
+		}
+	}
+
+	async findAll() {
+		const url = `${readBaseUrl}/${pluginId}/${this.modelName}/${orgId}`
+		try {
+			const res = await axios({
+				url,
+				method: 'get',
+			})
+			return res.data.data.map((row) => this.render(row))
+		} catch (error) {
+			if (error?.response?.status === 404) return []
+
+			throw new Error(
+				'Server Internal error, we will figure it out, try again later'
+			)
+		}
+	}
+
+	async findById(id) {
+		const url = `${readBaseUrl}/${pluginId}/${this.modelName}/${orgId}?_id=${id}`
+		try {
+			const res = await axios({
+				url,
+				method: 'get',
+			})
+
+			return res.data.data ? this.render(res.data.data) : null
+		} catch (error) {
+			throw new Error(
+				'Server Internal error, we will figure it out, try again later'
+			)
+		}
+	}
+
+	async deleteOne(id) {
+		try {
+			const res = await axios({
+				url: deleteBaseUrl,
+				method: 'post',
+				data: {
+					plugin_id: pluginId,
+					organization_id: orgId,
+					collection_name: this.modelName,
+					bulk_write: false,
+					object_id: id,
+				},
 			})
 			return res.data.data
 		} catch (error) {
-			return error.response.data
+			console.log(error.message)
+			throw new Error(
+				'Server Internal error, we will figure it out, try again later'
+			)
 		}
 	}
-	return Object.freeze({ create, findAll, findById })
+
+	async updateById(id, data) {
+		try {
+			const res = await axios({
+				method: 'put',
+				url: writeBaseUrl,
+				data: {
+					plugin_id: pluginId,
+					organization_id: orgId,
+					collection_name: this.modelName,
+					object_id: id,
+					payload: data,
+				},
+			})
+			return res.data.data.modified_document > 0
+		} catch (error) {
+			throw new Error(
+				'Server Internal error, we will figure it out, try again later'
+			)
+		}
+	}
+
+	/* eslint class-methods-use-this: 0 */
+	async search(data, query) {
+		console.log('INCOMING', data, query)
+		// const result = data.filter((item) => item.title === query)
+		const formattedQuery = query.toLowerCase()
+		const result = data.filter((item) => {
+			return (
+				item.title.toLowerCase() === formattedQuery ||
+				item.creator.userId.toLowerCase() === formattedQuery ||
+				item.priority.toLowerCase() === formattedQuery ||
+				item.description.toLowerCase() === formattedQuery
+			)
+		})
+		console.log('RESULT GOTTEN', result)
+		return result
+	}
+
+	// Helper
+	render(data) {
+		// Change the `_id` field to `object_id` for uniformity
+		/* eslint no-underscore-dangle:0 */
+		data.object_id = data._id
+		delete data._id
+
+		return data
+	}
 }

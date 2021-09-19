@@ -24,6 +24,7 @@ module.exports = {
 		'quote-props': ['error', 'as-needed'],
 		'prefer-object-spread': ['error'],
 		'array-callback-return': ['error'],
+		'import/no-named-as-default': 0,
 		'prefer-destructuring': [
 			'error',
 			{
@@ -56,10 +57,10 @@ module.exports = {
 	settings: {
 		'import/resolver': {
 			'babel-module': {},
-		},
-		node: {
-			extensions: ['.js', '.jsx', '.ts', '.tsx'],
-			moduleDirectory: ['node_modules', 'src/', 'dist/'],
+			node: {
+				extensions: ['.js', '.jsx', '.ts', '.tsx'],
+				moduleDirectory: ['node_modules', 'src/', 'dist/'],
+			},
 		},
 	},
 }
