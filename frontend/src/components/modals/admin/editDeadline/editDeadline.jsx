@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { DateTime } from 'luxon'
+
 import ColTitleDes from '../../component/columnTitleDes'
 import TextField from '../../component/textField'
 import DatePicker from '../../component/datePicker2'
@@ -6,6 +8,7 @@ import RadioButton from '../../component/radioButton/radioButton'
 import Priority from '../../component/priority'
 import ModalBase from '../../modalBase/index'
 import ModalButton from '../../component/button'
+import { ModalContext } from '../../../../context/ModalContext'
 import { useAllReminders } from '../../../../api/reminders'
 
 // import ModalButton from '../../component/button'
@@ -34,22 +37,27 @@ const EditDeadline = ({ object_id }) => {
 			// shouldRemind,
 			// staus,
 		},
-	] = fetchedData.filter((deadline) => {
-		console.log(deadline)
-		return deadline.object_id === object_id
+	] = fetchedData.filter((deadline) => deadline.object_id === object_id)
+	const startDateStr = DateTime.fromISO(startDate, {
+		zone: 'UTC',
+	})
+
+	const dueDateStr = DateTime.fromISO(dueDate, {
+		zone: 'UTC',
 	})
 
 	let data = {
 		description,
 		title,
-		start: startDate,
-		due: dueDate,
+		start: startDateStr,
+		due: dueDateStr,
 		assignTo: assignee.channelName,
 		radio: priority,
 	} //should receive initial data from props
 
 	const [radio, setRadio] = useState(priority)
-
+	const { modalData, setModalData } = useContext(ModalContext)
+	const closeModal = () => setModalData({ ...modalData, modalShow: false })
 	return (
 		<ModalBase title="Edit Deadline">
 			<div className="flex flex-col gap-y-6">
@@ -87,9 +95,14 @@ const EditDeadline = ({ object_id }) => {
 						title="Start date"
 						writeUp={
 							<DatePicker
-								value={data.start}
+								value={`${data.start.year}-${`0${data.start.month}`.slice(
+									-2
+								)}-${data.start.day}`}
 								onChange={(value) => {
-									data = { ...data, start: value }
+									data = {
+										...data,
+										start: DateTime.fromSQL(value),
+									}
 								}}
 							/>
 						}
@@ -100,9 +113,14 @@ const EditDeadline = ({ object_id }) => {
 						title="Due date:"
 						writeUp={
 							<DatePicker
-								value={data.due}
+								value={`${data.due.year}-${`0${data.due.month}`.slice(-2)}-${
+									data.due.day
+								}`}
 								onChange={(value) => {
-									data = { ...data, due: value }
+									data = {
+										...data,
+										due: DateTime.fromSQL(value),
+									}
 								}}
 							/>
 						}
