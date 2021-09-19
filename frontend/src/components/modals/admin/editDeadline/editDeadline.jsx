@@ -124,7 +124,6 @@ const EditDeadline = ({ object_id }) => {
 										...data,
 										start: DateTime.fromSQL(value),
 									})
-									console.log(data.start)
 								}}
 							/>
 						}
