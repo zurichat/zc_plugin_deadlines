@@ -1,10 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { DateTime } from 'luxon'
+
 import ColTitleDes from '../../component/columnTitleDes'
 import TextField from '../../component/textField'
 import DatePicker from '../../component/datePicker2'
 import RadioButton from '../../component/radioButton/radioButton'
 import Priority from '../../component/priority'
 import ModalBase from '../../modalBase/index'
+import ModalButton from '../../component/button'
+import { ModalContext } from '../../../../context/ModalContext'
+import { useAllReminders } from '../../../../api/reminders'
+
+// import ModalButton from '../../component/button'
 
 // prop value format= {
 // 	title: 'fuck',
@@ -14,18 +21,43 @@ import ModalBase from '../../modalBase/index'
 // 	radio: 'high',
 //  assignTo: "#marketing"
 // }
-const EditDeadline = ({ details }) => {
+const EditDeadline = ({ object_id }) => {
+	const { fetchedData } = useAllReminders()
+
+	const [
+		{
+			assignee,
+			description,
+			dueDate,
+			startDate,
+			title,
+			// creator,
+			priority,
+			// reminders,
+			// shouldRemind,
+			// staus,
+		},
+	] = fetchedData.filter((deadline) => deadline.object_id === object_id)
+	const startDateStr = DateTime.fromISO(startDate, {
+		zone: 'UTC',
+	})
+
+	const dueDateStr = DateTime.fromISO(dueDate, {
+		zone: 'UTC',
+	})
+
 	let data = {
-		description: details.description,
-		title: details.title,
-		start: details.start,
-		due: details.due,
-		assignTo: details.assignTo,
-		radio: details.radio,
+		description,
+		title,
+		start: startDateStr,
+		due: dueDateStr,
+		assignTo: assignee.channelName,
+		radio: priority,
 	} //should receive initial data from props
 
-	const [radio, setRadio] = useState(data.radio)
-
+	const [radio, setRadio] = useState(priority)
+	const { modalData, setModalData } = useContext(ModalContext)
+	const closeModal = () => setModalData({ ...modalData, modalShow: false })
 	return (
 		<ModalBase title="Edit Deadline">
 			<div className="flex flex-col gap-y-6">
@@ -57,15 +89,21 @@ const EditDeadline = ({ details }) => {
 					alignStretch
 				/>
 
-				<div className="flex gap-x-12 w-full">
+				<div className="flex flex-col gap-y-6 w-full md:gap-x-12 md:flex-row">
 					<ColTitleDes
 						space
 						title="Start date"
 						writeUp={
 							<DatePicker
-								value={data.start}
+								value={`${data.start.year}-${`0${data.start.month}`.slice(
+									-2
+								)}-${data.start.day}`}
 								onChange={(value) => {
-									data = { ...data, start: value }
+									data = {
+										...data,
+										start: DateTime.fromS(value),
+									}
+									console.log(data.start)
 								}}
 							/>
 						}
@@ -76,9 +114,14 @@ const EditDeadline = ({ details }) => {
 						title="Due date:"
 						writeUp={
 							<DatePicker
-								value={data.due}
+								value={`${data.due.year}-${`0${data.due.month}`.slice(-2)}-${
+									data.due.day
+								}`}
 								onChange={(value) => {
-									data = { ...data, due: value }
+									data = {
+										...data,
+										due: DateTime.fromJSDate(value),
+									}
 								}}
 							/>
 						}
@@ -128,14 +171,11 @@ const EditDeadline = ({ details }) => {
 						}}
 					/>
 				</div>
-				<div className="flex justify-end">
-					<button className="w-16 h-7  text-sm text-brand-primary font-semibold">
-						Cancel
-					</button>
-					<button className="w-16 h-7  text-sm bg-brand-primary font-semibold text-brand-bg-white">
-						Update
-					</button>
-				</div>
+				<ModalButton
+					actionName="Update"
+					actionFunc={() => {}}
+					cancelFunc={closeModal}
+				/>
 			</div>
 		</ModalBase>
 	)

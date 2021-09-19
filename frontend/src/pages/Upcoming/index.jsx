@@ -30,14 +30,15 @@ const UpcomingPage = () => {
 								startDate={val.startDate}
 								dueDate={val.dueDate}
 								priority={val.priority}
+								object_id={val.object_id}
 							/>
 						</div>
 					))}
 			</FlipMove>
 		)
 	) : (
-		<div className="flex h-screen justify-center items-center">
-			<Skeleton counter={9} />
+		<div>
+			<Skeleton type="card" counter={8} />
 		</div>
 	)
 }
