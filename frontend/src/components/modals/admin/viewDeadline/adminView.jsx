@@ -20,9 +20,14 @@ const AdminView = (props) => {
 		title,
 		priority,
 		assigneeOnline,
+		object_id,
+		status,
 	} = props
 	// debugger
-	const [taskStatus, setTaskStatus] = useState({ status: false }) //should receive initial task status from props
+	const statusCheck = (status) => {
+		return status === 'completed'
+	}
+	const [taskStatus, setTaskStatus] = useState({ status: statusCheck(status) }) //should receive initial task status from props
 	const toggler = useRef()
 	const deadlineStatus = useRef()
 	const radioSelect = useRef()
@@ -69,6 +74,7 @@ const AdminView = (props) => {
 						deadlineStatus={deadlineStatus}
 						radioSelect={radioSelect}
 						toggleHolder={toggleHolder}
+						taskId={object_id}
 					/>
 				</div>
 				<div className="flex justify-end">

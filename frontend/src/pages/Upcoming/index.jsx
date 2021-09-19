@@ -6,7 +6,7 @@ import Skeleton from '../../components/reusableScreens/skeleton/skeleton'
 const UpcomingPage = () => {
 	const { fetchedData, isPlaceholderData, isLoading, isError } =
 		useAllReminders()
-
+	// debugger
 	return !isPlaceholderData && !isLoading ? (
 		isError ? (
 			<div className="text-center font-semibold">
@@ -27,6 +27,7 @@ const UpcomingPage = () => {
 								dueDate={val.dueDate}
 								priority={val.priority}
 								object_id={val.object_id}
+								status={val.status}
 							/>
 						</div>
 					))}

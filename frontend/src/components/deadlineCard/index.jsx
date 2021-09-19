@@ -16,6 +16,7 @@ const DeadlineCard = ({
 	dueDate,
 	priority,
 	object_id,
+	status,
 }) => {
 	const { setModalData } = useContext(ModalContext)
 
@@ -76,6 +77,7 @@ const DeadlineCard = ({
 				dueIn: remainingStr,
 				assigneeOnline: true,
 				object_id,
+				status,
 			},
 		})
 	}

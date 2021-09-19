@@ -7,6 +7,7 @@ const StatusChanger = ({
 	deadlineStatus,
 	radioSelect,
 	toggleHolder,
+	taskId,
 }) => {
 	const setDeadlineStatus = () => {
 		return currentStatus ? 'Completed' : 'Pending'
@@ -30,10 +31,9 @@ const StatusChanger = ({
 					onChange={(event) => {
 						setStatus({ status: event.target.checked })
 						currentStatus
-							? (toggler.current.classList.add('ml-5'),
-							  (deadlineStatus.current.innerText = 'Deadline Pending'))
-							: (toggler.current.classList.remove('ml-5'),
-							  (deadlineStatus.current.innerText = 'Deadline Met'))
+							? toggler.current.classList.add('ml-2')
+							: toggler.current.classList.remove('ml-2')
+						console.log(taskId)
 					}}
 				/>
 				<div
