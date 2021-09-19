@@ -10,6 +10,7 @@ import ModalBase from '../../modalBase/index'
 import ModalButton from '../../component/button'
 import { ModalContext } from '../../../../context/ModalContext'
 import { useAllReminders } from '../../../../api/reminders'
+import { useUpdateReminders } from '../../../../api/reminders'
 
 // import ModalButton from '../../component/button'
 
@@ -23,6 +24,7 @@ import { useAllReminders } from '../../../../api/reminders'
 // }
 const EditDeadline = ({ object_id }) => {
 	const { fetchedData } = useAllReminders()
+	const mutation = useUpdateReminders()
 
 	const [
 		{
@@ -58,6 +60,16 @@ const EditDeadline = ({ object_id }) => {
 	const [radio, setRadio] = useState(priority)
 	const { modalData, setModalData } = useContext(ModalContext)
 	const closeModal = () => setModalData({ ...modalData, modalShow: false })
+	const payload = {
+		title: data.title,
+		description: data.description,
+		startDate: data.start,
+		dueDate: data.due,
+		assignee: data.assignTo,
+	}
+	const updateReminders = () => {
+		mutation(payload, object_id)
+	}
 	return (
 		<ModalBase title="Edit Deadline">
 			<div className="flex flex-col gap-y-6">
