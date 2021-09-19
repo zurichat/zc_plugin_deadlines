@@ -7,7 +7,7 @@ import OverduePage from '../../pages/Overdue'
 const Pages = () => {
 	return (
 		<div className="">
-			<Disclosure>
+			<Disclosure defaultOpen="true">
 				{({ open }) => (
 					<>
 						<Disclosure.Button className="lg:border-b lg:pb-3 w-full py-2 lg:pt-0 inline-flex items-center ">
@@ -25,7 +25,7 @@ const Pages = () => {
 				)}
 			</Disclosure>
 
-			<Disclosure>
+			<Disclosure defaultOpen="true">
 				{({ open }) => (
 					<>
 						<Disclosure.Button className="lg:border-b lg:pb-3 w-full py-2 lg:pt-0 inline-flex items-center ">
