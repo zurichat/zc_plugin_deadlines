@@ -1,6 +1,7 @@
-import { React, useState } from 'react'
+import { React, useContext } from 'react'
 import { SearchIcon } from '@heroicons/react/solid'
 import { useAllReminders } from '../../../api/reminders'
+import { SearchContext } from '../../../context/searchContext/searchContext'
 
 // export const searchFunction = (searchTerm, fetchedData) => {
 // 	console.log(typeof searchTerm, searchTerm)
@@ -25,7 +26,8 @@ import { useAllReminders } from '../../../api/reminders'
 
 export const Searchbar = ({ ...props }) => {
 	const { fetchedData, isPlaceholderData } = useAllReminders()
-	const [input, setInput] = useState('')
+	// const [input, setInput] = useState('')
+	const [searchResult, setSearchResult] = useContext(SearchContext)
 
 	return (
 		<div
@@ -44,7 +46,9 @@ export const Searchbar = ({ ...props }) => {
 								const regex = new RegExp(`${e.target.value}`, 'ig')
 								return val.title.match(regex) || val.description.match(regex)
 							})
-							console.log(filtered)
+							setSearchResult(filtered)
+							console.log(filtered, 'searchbar.jsx')
+							// console.log(searchResult)
 						}
 					}}
 					id="task search"
