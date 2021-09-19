@@ -77,6 +77,10 @@ module.exports = {
 				'4/7': '57.1428571%',
 				'5/7': '71.4285714%',
 				'6/7': '85.7142857%',
+				'card-w': '65.45961002785515%',
+			},
+			minWidth: {
+				priority: '0.5rem',
 			},
 			height: {
 				'screen/1.5': '75vh',
@@ -84,6 +88,10 @@ module.exports = {
 				'screen/3': 'calc(100vh / 3)',
 				'screen/4': 'calc(100vh / 4)',
 				'screen/5': 'calc(100vh / 5)',
+				'card-full': '11.438rem',
+			},
+			minHeight: {
+				'card-full': '11.438rem',
 			},
 			borderWidth: {
 				'1/2': '0.5px',
@@ -104,5 +112,5 @@ module.exports = {
 	variants: {
 		extend: {},
 	},
-	plugins: [],
+	plugins: [require('@tailwindcss/line-clamp')],
 }
