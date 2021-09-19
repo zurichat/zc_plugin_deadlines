@@ -5,6 +5,7 @@ import DatePicker from '../../component/datePicker2'
 import RadioButton from '../../component/radioButton/radioButton'
 import Priority from '../../component/priority'
 import ModalBase from '../../modalBase/index'
+import { useAllReminders } from '../../../../api/reminders'
 
 // prop value format= {
 // 	title: 'fuck',
@@ -14,17 +15,34 @@ import ModalBase from '../../modalBase/index'
 // 	radio: 'high',
 //  assignTo: "#marketing"
 // }
-const EditDeadline = ({ details }) => {
+const EditDeadline = ({ object_id }) => {
+	const { fetchedData } = useAllReminders()
+
+	const [
+		{
+			assignee,
+			description,
+			dueDate,
+			startDate,
+			title,
+			// creator,
+			// priority,
+			// reminders,
+			// shouldRemind,
+			// staus,
+		},
+	] = fetchedData.filter((deadline) => deadline.object_id === object_id)
+
 	let data = {
-		description: details.description,
-		title: details.title,
-		start: details.start,
-		due: details.due,
-		assignTo: details.assignTo,
-		radio: details.radio,
+		description,
+		title,
+		start: startDate,
+		due: dueDate,
+		assignTo: assignee.channelName,
+		// radio: details.radio,
 	} //should receive initial data from props
 
-	const [radio, setRadio] = useState(data.radio)
+	const [radio, setRadio] = useState(null)
 
 	return (
 		<ModalBase title="Edit Deadline">
