@@ -59,10 +59,10 @@ const DeadlineCard = ({
 			  }`
 			: `Expired`
 
-	const UserViewDeadline = () => {
+	const adminViewDeadline = () => {
 		setModalData({
 			modalShow: true,
-			modalType: modal,
+			modalType: 'adminView',
 			modalData: {
 				priority,
 				title,
@@ -86,7 +86,7 @@ const DeadlineCard = ({
 				<div
 					id="header-text"
 					className="cursor-pointer"
-					onClick={UserViewDeadline}
+					onClick={adminViewDeadline}
 				>
 					<div className="flex justify-between">
 						<div className="flex">
