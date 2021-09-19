@@ -4,6 +4,7 @@ import TextField from '../../component/textField'
 import DatePicker from '../../component/datePicker2'
 import RadioButton from '../../component/radioButton/radioButton'
 import Priority from '../../component/priority'
+import axios from 'axios'
 
 const ModalForm = ({ closeModal }) => {
 	const [deadline, setDeadline] = useState({
@@ -23,7 +24,12 @@ const ModalForm = ({ closeModal }) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
-		console.log(this.state.deadline)
+		axios
+			.post('api/reminders.js/useCreateReminder', deadline)
+			.then((response) => setDeadline(response.data))
+			.error((error) => {
+				console.log(error)
+			})
 	}
 
 	return (
