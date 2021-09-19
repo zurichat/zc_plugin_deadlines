@@ -14,7 +14,7 @@ const ReminderToggle = ({ ...props }) => {
 			} relative inline-flex items-center h-6 rounded-full w-11`}
 			{...props}
 		>
-			<span className="sr-only">Enable notifications</span>
+			<span className="dtw-sr-only">Enable notifications</span>
 			<span
 				className={`${
 					enabled ? 'translate-x-6' : 'translate-x-1'

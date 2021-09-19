@@ -47,7 +47,7 @@ const ModalForm = ({ closeModal }) => {
 	}
 
 	return (
-		<div className="flex flex-col gap-y-6">
+		<div className="dtw-flex dtw-flex-col dtw-gap-y-6">
 			<ColTitleDes
 				title="Title"
 				writeUp={
@@ -74,7 +74,7 @@ const ModalForm = ({ closeModal }) => {
 				alignStretch
 			/>
 
-			<div className="flex gap-x-12 w-full">
+			<div className="dtw-flex dtw-gap-x-12 dtw-w-full">
 				<ColTitleDes
 					space
 					title="Start date"
@@ -112,8 +112,8 @@ const ModalForm = ({ closeModal }) => {
 				}
 				alignStretch
 			/>
-			<div className="flex flex-col gap-y-3">
-				<p className="text-sm leading-none">Select priority</p>
+			<div className="dtw-flex dtw-flex-col dtw-gap-y-3">
+				<p className="dtw-text-sm dtw-leading-none">Select priority</p>
 				<RadioButton
 					id="low"
 					selected={radio}
@@ -139,15 +139,15 @@ const ModalForm = ({ closeModal }) => {
 					}}
 				/>
 			</div>
-			<div className="flex justify-end">
+			<div className="dtw-flex dtw-justify-end">
 				<button
-					className="w-16 h-10  text-sm text-brand-primary font-semibold"
+					className="w-16 dtw-h-10  dtw-text-sm dtw-text-brand-primary font-semibold"
 					onClick={closeModal}
 				>
 					Cancel
 				</button>
 				<button
-					className="w-16 h-10  text-sm bg-brand-primary font-semibold text-brand-bg-white"
+					className="dtw-dtw-dtw-dtw-w-16 dtw-h-10  dtw-text-sm dtw-bg-brand-primary dtw-dtw-dtw-dtw-font-semibold dtw-text-brand-bg-white"
 					onClick={handleSubmit}
 				>
 					Create

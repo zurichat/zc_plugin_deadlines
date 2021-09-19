@@ -8,18 +8,18 @@ const ModalBase = ({ children, title }) => {
 	return (
 		<div
 			id="modal-container"
-			className="fixed top-0 w-full h-screen flex backdrop-filter backdrop-blur backdrop-brightness-50 z-50"
+			className="dtw-fixed dtw-top-0 dtw-w-full dtw-h-screen dtw-flex dtw-backdrop-filter dtw-backdrop-blur dtw-backdrop-brightness-50 dtw-z-50"
 		>
 			<div
 				id="overlay"
 				onClick={closeModal}
-				className="absolute h-screen w-full -z-10"
+				className="dtw-absolute dtw-h-screen dtw-w-full dtw--z-10"
 			/>
-			<div className="bg-white w-6/7 md:w-3/5 m-auto">
-				<div className="font-medium leading-6 py-6 px-7 flex items-center justify-between">
+			<div className="dtw-bg-white dtw-w-6/7 md:dtw-w-3/5 dtw-m-auto">
+				<div className="dtw-font-medium dtw-leading-6 dtw-py-6 dtw-px-7 dtw-flex dtw-items-center dtw-justify-between">
 					<h3>{title}</h3>
 				</div>
-				<div id="modal-child" className="px-7 py-8">
+				<div id="modal-child" className="dtw-px-7 dtw-py-8">
 					{/* Pass close function down */}
 					{cloneElement(children, { closeModal })}
 				</div>

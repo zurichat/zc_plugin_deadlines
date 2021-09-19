@@ -2,11 +2,15 @@ import React from 'react'
 
 const RowTitleDes = ({ title, writeUp }) => {
 	return (
-		<div className="flex gap-2 justify-start">
+		<div className="dtw-flex dtw-gap-2 dtw-justify-start">
 			<div>
-				<h3 className="font-semibold text-sm leading-none">{title}</h3>
+				<h3 className="dtw-font-semibold dtw-text-sm dtw-leading-none">
+					{title}
+				</h3>
 			</div>
-			<div className="text-xs leading-none self-center">{writeUp}</div>
+			<div className="dtw-text-xs dtw-leading-none dtw-self-center">
+				{writeUp}
+			</div>
 		</div>
 	)
 }

@@ -9,11 +9,11 @@ const UpcomingPage = () => {
 
 	return !isPlaceholderData && !isLoading ? (
 		isError ? (
-			<div className="text-center font-semibold">
+			<div className="dtw-text-center dtw-font-semibold">
 				An unexpected error occured &#128542;
 			</div>
 		) : (
-			<div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+			<div className="dtw-grid dtw-gap-4 dtw-grid-cols-1 sm:dtw-grid-cols-2 lg:dtw-grid-cols-3">
 				{Array.isArray(fetchedData) &&
 					fetchedData.length > 0 &&
 					fetchedData.map((val) => (

@@ -3,13 +3,13 @@ import React, { useState } from 'react'
 const DeadlineTitle = ({ title, ...props }) => {
 	const [titleState, setTitleState] = useState('')
 	return (
-		<div className="m-5 my-5 text-lg">
-			<label htmlFor="title" className="text-left font-bold">
+		<div className="dtw-m-5 dtw-my-5 dtw-text-lg">
+			<label htmlFor="title" className="dtw-text-left dtw-font-bold">
 				{title}
 			</label>
 			<br />
 			<input
-				className="border-b-2 border-gray-200 w-2/5 focus:outline-none focus:border-brand-primary"
+				className="dtw-border-b-2 dtw-border-gray-200 dtw-w-2/5 focus:dtw-outline-none focus:dtw-border-brand-primary"
 				type="text"
 				id="title"
 				value={titleState}

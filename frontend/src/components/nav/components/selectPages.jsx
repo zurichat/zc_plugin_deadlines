@@ -9,17 +9,19 @@ const SelectPage = () => {
 	const [value, setValue] = useState(null)
 
 	return (
-		<Menu as="div" className="w-full">
+		<Menu as="div" className="dtw-w-full">
 			<div>
-				<Menu.Button className="w-full py-2 lg:pt-0 inline-flex items-center ">
-					<p className="text-gray-800 font-bold mr-1">{value || 'Upcoming'}</p>
+				<Menu.Button className="dtw-w-full dtw-py-2 lg:dtw-pt-0 dtw-inline-flex dtw-items-center ">
+					<p className="dtw-text-gray-800 dtw-font-bold dtw-mr-1">
+						{value || 'Upcoming'}
+					</p>
 					<ChevronDownIcon
-						className="w-4 h-4 text-gray-800"
+						className="dtw-w-4 dtw-h-4 dtw-text-gray-800"
 						aria-hidden="true"
 					/>
 				</Menu.Button>
 			</div>
-			<Menu.Items className="absolute w-40 mt-2 divide-y rounded-md bg-white ring-1 ring-black ring-opacity-5 inline-flex flex-col">
+			<Menu.Items className="dtw-absolute dtw-w-40 dtw-mt-2 dtw-divide-y dtw-rounded-md dtw-bg-white dtw-ring-1 dtw-ring-black dtw-ring-opacity-5 dtw-inline-flex dtw-flex-col">
 				{page_tags.map((i, index) => (
 					<Menu.Item key={index} onClick={() => setValue(i)}>
 						{({ active }) =>
@@ -28,7 +30,7 @@ const SelectPage = () => {
 									<div
 										className={`${
 											active && 'bg-gray-400 bg-opacity-10'
-										}  py-2 text-sm text-gray-400 text-center  flex-shrink-0`}
+										}  dtw-py-2 text-sm text-gray-400 text-center  flex-shrink-0`}
 									>
 										{i}
 									</div>
@@ -38,7 +40,7 @@ const SelectPage = () => {
 									<div
 										className={`${
 											active && 'bg-gray-400 bg-opacity-10'
-										}  py-2 text-sm text-gray-400 text-center  flex-shrink-0`}
+										}  dtw-py-2 text-sm text-gray-400 text-center  flex-shrink-0`}
 									>
 										{i}
 									</div>

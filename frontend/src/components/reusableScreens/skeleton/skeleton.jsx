@@ -4,46 +4,46 @@ const Skeleton = ({ type, counter }) => {
 	const COUNTER = counter || 5
 
 	const TopMenuSkeleton = () => (
-		<div className="w-full sm:w-2/3 md:w-1/3 flex  justify-between mt-5 mb-14 bg-gray-white p-2 rounded">
-			<div className="w-36 h-5 bg-gray-200 mr-5 animate-pulse rounded"></div>
-			<div className="w-36 h-5 bg-gray-200 mr-5 animate-pulse rounded"></div>
-			<div className="w-36 h-5 bg-gray-200  animate-pulse rounded"></div>
+		<div className="dtw-w-full sm:dtw-w-2/3 md:dtw-w-1/3 dtw-flex  dtw-justify-between dtw-mt-5 dtw-mb-14 dtw-bg-gray-white dtw-p-2 dtw-rounded">
+			<div className="dtw-w-36 dtw-h-5 dtw-bg-gray-200 dtw-mr-5 dtw-animate-pulse dtw-rounded"></div>
+			<div className="dtw-w-36 dtw-h-5 dtw-bg-gray-200 dtw-mr-5 dtw-animate-pulse dtw-rounded"></div>
+			<div className="dtw-w-36 dtw-h-5 dtw-bg-gray-200  dtw-animate-pulse dtw-rounded"></div>
 		</div>
 	)
 
 	const CardSkeleton = () => (
-		<div className="flex flex-row bg-gray-white border-2 p-5 rounded-2xl">
-			<div className="w-2/3 pr-4 border-r-2">
-				<div className="w-2/3 h-5 mb-2 bg-gray-200 animate-pulse rounded"></div>
-				<div className="w-full h-3 bg-gray-200 mb-5 animate-pulse rounded"></div>
-				<div className="w-full h-3 bg-gray-200 mb-1 animate-pulse rounded"></div>
-				<div className="w-full h-3 bg-gray-200 mb-1 animate-pulse rounded"></div>
-				<div className="w-full h-3 bg-gray-200 mb-5 animate-pulse rounded"></div>
-				<div className="w-2/4 h-7 bg-gray-200 mb-1 animate-pulse rounded"></div>
+		<div className="dtw-flex dtw-flex-row dtw-bg-gray-white dtw-border-2 dtw-p-5 dtw-rounded-2xl">
+			<div className="dtw-w-2/3 dtw-pr-4 dtw-border-r-2">
+				<div className="dtw-w-2/3 dtw-h-5 dtw-mb-2 dtw-bg-gray-200 dtw-animate-pulse dtw-rounded"></div>
+				<div className="dtw-w-full dtw-h-3 dtw-bg-gray-200 dtw-mb-5 dtw-animate-pulse dtw-rounded"></div>
+				<div className="dtw-w-full dtw-h-3 dtw-bg-gray-200 dtw-mb-1 dtw-animate-pulse dtw-rounded"></div>
+				<div className="dtw-w-full dtw-h-3 dtw-bg-gray-200 dtw-mb-1 dtw-animate-pulse dtw-rounded"></div>
+				<div className="dtw-w-full dtw-h-3 dtw-bg-gray-200 dtw-mb-5 dtw-animate-pulse dtw-rounded"></div>
+				<div className="dtw-w-2/4 dtw-h-7 dtw-bg-gray-200 dtw-mb-1 dtw-animate-pulse dtw-rounded"></div>
 			</div>
 
-			<div className="w-1/3 flex flex-col space-y-2 ">
-				<div className="w-5 h-2 ml-auto bg-gray-200 animate-pulse mb-3 rounded-sm"></div>
+			<div className="dtw-w-1/3 dtw-flex dtw-flex-col dtw-space-y-2 ">
+				<div className="dtw-w-5 dtw-h-2 dtw-ml-auto dtw-bg-gray-200 dtw-animate-pulse dtw-mb-3 dtw-rounded-sm"></div>
 
-				<div className="w-full  flex flex-row justify-between p-2 rounded">
-					<div className="w-1/3 flex flex-col items-center ">
-						<div className="w-5 h-5 bg-gray-200 animate-pulse rounded-full"></div>
+				<div className="dtw-w-full  dtw-flex dtw-flex-row dtw-justify-between dtw-p-2 dtw-rounded">
+					<div className="dtw-w-1/3 dtw-flex dtw-flex-col dtw-items-center ">
+						<div className="dtw-w-5 dtw-h-5 dtw-bg-gray-200 dtw-animate-pulse dtw-rounded-full"></div>
 					</div>
-					<div className="w-2/3 flex flex-col space-y-2">
-						<div className="w-2/3 h-3 bg-gray-200 animate-pulse rounded"></div>
-						<div className="w-full h-3 bg-gray-200 animate-pulse rounded"></div>
+					<div className="dtw-w-2/3 dtw-flex dtw-flex-col dtw-space-y-2">
+						<div className="dtw-w-2/3 dtw-h-3 dtw-bg-gray-200 dtw-animate-pulse dtw-rounded"></div>
+						<div className="dtw-w-full dtw-h-3 dtw-bg-gray-200 dtw-animate-pulse dtw-rounded"></div>
 					</div>
 				</div>
 
-				<div className="w-full h-px ml-2 bg-gray-100"></div>
+				<div className="dtw-w-full dtw-h-px dtw-ml-2 dtw-bg-gray-100"></div>
 
-				<div className="w-full  flex flex-row justify-between p-2 rounded">
-					<div className="w-1/3 flex flex-col items-center ">
-						<div className="w-5 h-5 bg-gray-200 animate-pulse rounded-full"></div>
+				<div className="dtw-w-full  dtw-flex dtw-flex-row dtw-justify-between dtw-p-2 dtw-rounded">
+					<div className="dtw-w-1/3 dtw-flex dtw-flex-col dtw-items-center ">
+						<div className="dtw-w-5 dtw-h-5 dtw-bg-gray-200 dtw-animate-pulse dtw-rounded-full"></div>
 					</div>
-					<div className="w-2/3 flex flex-col space-y-2">
-						<div className="w-2/3 h-3 bg-gray-200 animate-pulse rounded"></div>
-						<div className="w-full h-3 bg-gray-200 animate-pulse rounded"></div>
+					<div className="dtw-w-2/3 dtw-flex dtw-flex-col dtw-space-y-2">
+						<div className="dtw-w-2/3 dtw-h-3 dtw-bg-gray-200 dtw-animate-pulse dtw-rounded"></div>
+						<div className="dtw-w-full dtw-h-3 dtw-bg-gray-200 dtw-animate-pulse dtw-rounded"></div>
 					</div>
 				</div>
 			</div>
@@ -53,7 +53,7 @@ const Skeleton = ({ type, counter }) => {
 	if (type === 'top') return <TopMenuSkeleton />
 	if (type === 'card')
 		return (
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+			<div className="dtw-grid dtw-grid-cols-1 sm:dtw-grid-cols-2 lg:dtw-grid-cols-3 dtw-gap-4">
 				{[...Array(COUNTER)].map((n, index) => (
 					<CardSkeleton key={index} n={n} />
 				))}
@@ -62,9 +62,9 @@ const Skeleton = ({ type, counter }) => {
 
 	if (type !== ('top' && 'card'))
 		return (
-			<div className="w-full p-5  min-h-screen">
+			<div className="dtw-w-full dtw-p-5  dtw-min-h-screen">
 				<TopMenuSkeleton />
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+				<div className="dtw-grid dtw-grid-cols-1 sm:dtw-grid-cols-2 lg:dtw-grid-cols-3 dtw-gap-4">
 					{[...Array(COUNTER)].map((n, index) => (
 						<CardSkeleton key={index} n={n} />
 					))}

@@ -3,14 +3,14 @@ import React from 'react'
 const TextArea = ({ value, onChange, ...props }) => {
 	return (
 		<div>
-			<label className="text-sm font-bold mb-1 block text-left">
+			<label className="dtw-text-sm dtw-font-bold dtw-mb-1 dtw-block dtw-text-left">
 				Description
 			</label>
 			<textarea
 				value={value}
 				onChange={onChange}
 				{...props}
-				className="w-full max-h-44 p-4 text-base block bg-lightGrey"
+				className="w-full dtw-max-h-44 dtw-p-4 dtw-text-base dtw-block dtw-bg-lightGrey"
 			/>
 		</div>
 	)

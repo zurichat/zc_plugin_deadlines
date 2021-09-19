@@ -37,10 +37,10 @@ const App = () => {
 				<AdminViewOther {...modalData.modalData} />
 			)}
 			<Toaster />
-			<nav className="p-5 ">
+			<nav className="dtw-p-5 ">
 				<Nav />
 			</nav>
-			<main className="p-5 ">
+			<main className="dtw-p-5 ">
 				<Switch>
 					<Route path="/" exact>
 						<UpcomingPage />

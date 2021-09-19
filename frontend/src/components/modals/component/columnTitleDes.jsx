@@ -6,9 +6,11 @@ const ColTitleDes = ({ space, title, writeUp, alignStretch }) => {
 	return (
 		<div className={`flex flex-col gap-2 ${stretch} ${flexAll}`}>
 			<div>
-				<h3 className="font-semibold text-sm leading-none">{title}</h3>
+				<h3 className="dtw-font-semibold dtw-text-sm dtw-leading-none">
+					{title}
+				</h3>
 			</div>
-			<div className="text-xs leading-none">{writeUp}</div>
+			<div className="dtw-text-xs dtw-leading-none">{writeUp}</div>
 		</div>
 	)
 }

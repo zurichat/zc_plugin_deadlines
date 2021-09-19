@@ -2,11 +2,11 @@ import React from 'react'
 
 const AssigneeInput = () => {
 	return (
-		<form className="w-full max-w-sm">
-			<label className="font-weight:700 text-align: left;">Assign to</label>
-			<div className="flex items-center border-b border-black-500 py-2">
+		<form className="dtw-w-full dtw-max-w-sm">
+			<label className="dtw-font-bold dtw-text-left">Assign to</label>
+			<div className="dtw-flex dtw-items-center dtw-border-b dtw-border-black-500 dtw-py-2">
 				<input
-					className="bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+					className="bg-transparent dtw-border-none dtw-w-full dtw-text-gray-700 dtw-mr-3 dtw-py-1 dtw-px-2 dtw-leading-tight dtw-focus:dtw-outline-none"
 					type="text"
 					aria-label="Full name"
 				/>

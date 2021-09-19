@@ -63,7 +63,7 @@ const EditDeadline = ({ object_id }) => {
 
 	return (
 		<ModalBase title="Edit Deadline">
-			<div className="flex flex-col gap-y-6">
+			<div className="dtw-flex dtw-flex-col dtw-gap-y-6">
 				<ColTitleDes
 					title="Title"
 					writeUp={
@@ -92,7 +92,7 @@ const EditDeadline = ({ object_id }) => {
 					alignStretch
 				/>
 
-				<div className="flex flex-col gap-y-6 w-full md:gap-x-12 md:flex-row">
+				<div className="dtw-flex dtw-flex-col dtw-gap-y-6 dtw-w-full md:dtw-gap-x-12 md:dtw-flex-row">
 					<ColTitleDes
 						space
 						title="Start date"
@@ -144,8 +144,8 @@ const EditDeadline = ({ object_id }) => {
 					}
 					alignStretch
 				/>
-				<div className="flex flex-col gap-y-3">
-					<p className="text-sm leading-none">select priority</p>
+				<div className="dtw-flex dtw-flex-col dtw-gap-y-3">
+					<p className="dtw-text-sm dtw-leading-none">select priority</p>
 					<RadioButton
 						id="low"
 						selected={radio}

@@ -5,7 +5,7 @@ import Priority from '../component/priority'
 
 const AdminViewOther = ({ details }) => {
 	const DeadlineTitle = (
-		<div className="flex gap-4">
+		<div className="dtw-flex dtw-gap-4">
 			{details.title} <Priority status={details.priority} forTitle />
 		</div>
 	)
@@ -13,36 +13,38 @@ const AdminViewOther = ({ details }) => {
 	return (
 		<ModalBase title={DeadlineTitle}>
 			<div>
-				<h2 className="text-gray-900 mb-2 font-bold">Description</h2>
-				<p className="text-gray-800">{details.description}</p>
-				<div className="mt-6 flex justify-start align-middle">
-					<div className="pr-6">
-						<h3 className="font-bold">Start Date</h3>
-						<p className="text-gray-600">{details.startDate}</p>
+				<h2 className="dtw-text-gray-900 dtw-mb-2 dtw-font-bold">
+					Description
+				</h2>
+				<p className="dtw-text-gray-800">{details.description}</p>
+				<div className="dtw-mt-6 dtw-flex dtw-justify-start dtw-align-middle">
+					<div className="dtw-pr-6">
+						<h3 className="dtw-font-bold">Start Date</h3>
+						<p className="dtw-text-gray-600">{details.startDate}</p>
 					</div>
-					<div className="pr-6">
-						<h3 className="font-bold">Due Date</h3>
-						<p className="text-gray-600">{details.dueDate}</p>
+					<div className="dtw-pr-6">
+						<h3 className="dtw-font-bold">Due Date</h3>
+						<p className="dtw-text-gray-600">{details.dueDate}</p>
 					</div>
-					<div className="pr-6">
-						<h3 className="font-bold">Due In</h3>
-						<p className="text-red-600">{details.dueIn}</p>
+					<div className="dtw-pr-6">
+						<h3 className="dtw-font-bold">Due In</h3>
+						<p className="dtw-text-red-600">{details.dueIn}</p>
 					</div>
 				</div>
-				<div className="start mt-6">
-					<h3 className="font-bold">Asssigned To</h3>
-					<p className="text-gray-600">{details.assignedTo}</p>
+				<div className="dtw-start dtw-mt-6">
+					<h3 className="dtw-font-bold">Asssigned To</h3>
+					<p className="dtw-text-gray-600">{details.assignedTo}</p>
 				</div>
-				<div className="start mt-6">
-					<h3 className="font-bold">Asssigned By</h3>
-					<div className="flex mt-2">
+				<div className="dtw-start dtw-mt-6">
+					<h3 className="dtw-font-bold">Asssigned By</h3>
+					<div className="dtw-flex dtw-mt-2">
 						<Avatar
 							src={details.src}
 							alt={details.src}
-							className="w-6 h-6"
+							className="w-6 dtw-h-6"
 							isOnline={details.assigneeOnline}
 						/>
-						<p className="text-gray-600 pl-5">{details.assignee}</p>
+						<p className="dtw-text-gray-600 dtw-pl-5">{details.assignee}</p>
 					</div>
 				</div>
 			</div>
