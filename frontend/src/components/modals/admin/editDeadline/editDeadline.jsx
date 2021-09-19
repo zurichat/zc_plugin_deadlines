@@ -113,8 +113,9 @@ const EditDeadline = ({ object_id }) => {
 								onChange={(value) => {
 									data = {
 										...data,
-										start: DateTime.fromSQL(value),
+										start: DateTime.fromS(value),
 									}
+									console.log(data.start)
 								}}
 							/>
 						}
@@ -131,7 +132,7 @@ const EditDeadline = ({ object_id }) => {
 								onChange={(value) => {
 									data = {
 										...data,
-										due: DateTime.fromSQL(value),
+										due: DateTime.fromJSDate(value),
 									}
 								}}
 							/>
@@ -153,7 +154,7 @@ const EditDeadline = ({ object_id }) => {
 					alignStretch
 				/>
 				<div className="flex flex-col gap-y-3">
-					<p className="text-sm leading-none">Select priority</p>
+					<p className="text-sm leading-none">select priority</p>
 					<RadioButton
 						id="low"
 						selected={radio}
