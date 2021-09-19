@@ -6,7 +6,7 @@ const TextField = ({ placeholder, value, onChange, name }) => {
 	const textChange = (e) => {
 		textValue = e.target.value
 		setTextValue(textValue)
-		onChange(textValue)
+		onChange(e)
 	}
 	return (
 		<input

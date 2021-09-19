@@ -88,8 +88,8 @@ const EditDeadline = ({ object_id }) => {
 						<TextField
 							placeholder="Deadline Title"
 							value={data.title}
-							onChange={(value) => {
-								setData({ ...data, title: value })
+							onChange={(e) => {
+								setData({ ...data, title: e.target.value })
 							}}
 						/>
 					}
@@ -102,8 +102,8 @@ const EditDeadline = ({ object_id }) => {
 						<TextField
 							placeholder="Deadline Description"
 							value={data.description}
-							onChange={(value) => {
-								setData({ ...data, description: value })
+							onChange={(e) => {
+								setData({ ...data, description: e.target.value })
 							}}
 						/>
 					}
@@ -154,8 +154,8 @@ const EditDeadline = ({ object_id }) => {
 						<TextField
 							placeholder="E.g. #channelName"
 							value={data.assignTo}
-							onChange={(value) => {
-								setData({ ...data, assignTo: value })
+							onChange={(e) => {
+								setData({ ...data, assignTo: e.target.value })
 							}}
 						/>
 					}

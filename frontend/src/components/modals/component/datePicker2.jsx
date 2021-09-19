@@ -4,7 +4,7 @@ const DatePicker = ({ value, uniqueId, onChange, name }) => {
 	const [date, setDate] = useState(value)
 	const onSelect = (e) => {
 		setDate(e.target.value)
-		onChange(e.target.value)
+		onChange(e)
 	}
 	return (
 		<>
