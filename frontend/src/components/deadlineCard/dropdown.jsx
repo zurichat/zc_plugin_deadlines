@@ -4,9 +4,11 @@ import { Menu, Transition } from '@headlessui/react'
 import { BsThreeDots } from 'react-icons/bs'
 import { BiEditAlt, BiTrashAlt } from 'react-icons/bi'
 import { ModalContext } from '../../context/ModalContext'
+import { useDeleteDeadline } from '../../api/reminders'
 
 const DeadlineCardDropdown = ({ object_id }) => {
 	const { setModalData } = useContext(ModalContext)
+	const mutation = useDeleteDeadline()
 
 	const editDeadline = () => {
 		setModalData({
@@ -19,8 +21,7 @@ const DeadlineCardDropdown = ({ object_id }) => {
 	}
 
 	const deleteDeadline = () => {
-		// delete workflow
-		console.log('Deleting', object_id)
+		mutation.mutate(object_id)
 	}
 
 	return (
