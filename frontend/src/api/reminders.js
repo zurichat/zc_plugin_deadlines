@@ -121,4 +121,13 @@ export const useReminder = (id) => {
 				},
 			}
 		)
+
+	return {
+		fetchedData: data,
+		isLoading,
+		error,
+		isPlaceholderData,
+		isError,
+		status,
+	}
 }
