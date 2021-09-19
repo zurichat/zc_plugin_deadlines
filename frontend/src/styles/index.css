@@ -3,5 +3,18 @@
 @tailwind utilities;
 
 * {
-	font-family: 'Lato', sans-serif;
+	font-family: "Lato", sans-serif;
+}
+
+.deadline-skeleton-animation {
+	animation: skeletonAnimation 100ms ease-out;
+}
+
+@keyframes skeletonAnimation {
+	from {
+		transform: scale(0.7);
+	}
+	to {
+		transform: scale(1);
+	}
 }

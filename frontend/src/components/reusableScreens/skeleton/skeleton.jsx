@@ -12,7 +12,7 @@ const Skeleton = ({ type, counter }) => {
 	)
 
 	const CardSkeleton = () => (
-		<div className="flex flex-row bg-gray-white border-2 p-5 rounded-2xl">
+		<div className="flex flex-row bg-gray-white border-2 p-5 rounded-2xl deadline-skeleton-animation">
 			<div className="w-2/3 pr-4 border-r-2">
 				<div className="w-2/3 h-5 mb-2 bg-gray-200 animate-pulse rounded"></div>
 				<div className="w-full h-3 bg-gray-200 mb-5 animate-pulse rounded"></div>
