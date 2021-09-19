@@ -29,6 +29,22 @@ export const Searchbar = ({ ...props }) => {
 	// const [input, setInput] = useState('')
 	const [searchResult, setSearchResult] = useContext(SearchContext)
 
+	const handleChange = (e) => {
+		// if (!isPlaceholderData && fetchedData && e.target.value !== '') {
+		const filtered = fetchedData.filter((val) => {
+			const regex = new RegExp(`${e.target.value}`, 'ig')
+			console.log(e.target.value)
+			return val.title.match(regex) || val.description.match(regex)
+		})
+		setSearchResult(filtered)
+		console.log(filtered, 'searchbar.jsx')
+		// console.log(searchResult)
+		// }
+		if (e.target.value === '') {
+			setSearchResult(null)
+		}
+	}
+
 	return (
 		<div
 			className="border rounded w-full py-2 px-5 inline-flex justify-between items-center focus-within:shadow-lg focus-within:ring-1 focus-within:ring-brand-primary"
@@ -40,17 +56,7 @@ export const Searchbar = ({ ...props }) => {
 					placeholder="Search"
 					type="text"
 					//value={input}
-					onChange={(e) => {
-						if (!isPlaceholderData && fetchedData && e.target.value !== '') {
-							const filtered = fetchedData.filter((val) => {
-								const regex = new RegExp(`${e.target.value}`, 'ig')
-								return val.title.match(regex) || val.description.match(regex)
-							})
-							setSearchResult(filtered)
-							console.log(filtered, 'searchbar.jsx')
-							// console.log(searchResult)
-						}
-					}}
+					onChange={(e) => handleChange(e)}
 					id="task search"
 				/>
 			</label>
