@@ -141,7 +141,7 @@ const EditDeadline = ({ object_id }) => {
 					alignStretch
 				/>
 				<div className="flex flex-col gap-y-3">
-					<p className="text-sm leading-none">select priority</p>
+					<p className="text-sm leading-none">Select priority</p>
 					<RadioButton
 						id="low"
 						selected={radio}
