@@ -118,7 +118,7 @@ const EditDeadline = ({ object_id }) => {
 							<DatePicker
 								value={`${data.start.year}-${`0${data.start.month}`.slice(
 									-2
-								)}-${`0${data.start.month}`.slice(-2)}`}
+								)}-${`0${data.start.day}`.slice(-2)}`}
 								onChange={(e) => {
 									setData({
 										...data,
