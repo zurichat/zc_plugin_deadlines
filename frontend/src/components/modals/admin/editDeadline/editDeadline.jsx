@@ -5,7 +5,9 @@ import DatePicker from '../../component/datePicker2'
 import RadioButton from '../../component/radioButton/radioButton'
 import Priority from '../../component/priority'
 import ModalBase from '../../modalBase/index'
+import ModalButton from '../../component/button'
 import { useAllReminders } from '../../../../api/reminders'
+
 // import ModalButton from '../../component/button'
 
 // prop value format= {
@@ -27,12 +29,15 @@ const EditDeadline = ({ object_id }) => {
 			startDate,
 			title,
 			// creator,
-			// priority,
+			priority,
 			// reminders,
 			// shouldRemind,
 			// staus,
 		},
-	] = fetchedData.filter((deadline) => deadline.object_id === object_id)
+	] = fetchedData.filter((deadline) => {
+		console.log(deadline)
+		return deadline.object_id === object_id
+	})
 
 	let data = {
 		description,
@@ -40,10 +45,10 @@ const EditDeadline = ({ object_id }) => {
 		start: startDate,
 		due: dueDate,
 		assignTo: assignee.channelName,
-		// radio: details.radio,
+		radio: priority,
 	} //should receive initial data from props
 
-	const [radio, setRadio] = useState(null)
+	const [radio, setRadio] = useState(priority)
 
 	return (
 		<ModalBase title="Edit Deadline">
@@ -147,11 +152,11 @@ const EditDeadline = ({ object_id }) => {
 						}}
 					/>
 				</div>
-				{/* <ModalButton
+				<ModalButton
 					actionName="Update"
 					actionFunc={() => {}}
 					cancelFunc={closeModal}
-				/> */}
+				/>
 			</div>
 		</ModalBase>
 	)
