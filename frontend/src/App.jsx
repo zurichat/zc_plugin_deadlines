@@ -1,10 +1,9 @@
 import React, { useContext } from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 
 import Nav from './components/nav'
-import CompletedPage from './pages/Completed/index'
-import UpcomingPage from './pages/Upcoming'
+import Pages from './components/nav/pages'
 import { ModalContext } from './context/ModalContext'
 import NewDeadline from './components/modals/admin/newDeadline'
 import UserViewDeadline from './components/modals/user/userViewDeadline/userView'
@@ -37,18 +36,11 @@ const App = () => {
 				<AdminViewOther {...modalData.modalData} />
 			)}
 			<Toaster />
-			<nav className="p-5 ">
+			<nav className="pt-5 px-5 pb-0  ">
 				<Nav />
 			</nav>
 			<main className="p-5 ">
-				<Switch>
-					<Route path="/" exact>
-						<UpcomingPage />
-					</Route>
-					<Route path="/completed">
-						<CompletedPage />
-					</Route>
-				</Switch>
+				<Pages />
 			</main>
 		</BrowserRouter>
 	)
