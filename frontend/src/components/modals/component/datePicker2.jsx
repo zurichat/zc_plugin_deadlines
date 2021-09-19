@@ -1,12 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
-const DatePicker = ({ value, uniqueId, onChange }) => {
+const DatePicker = ({ value, uniqueId, onChange, name }) => {
 	const [date, setDate] = useState(value)
-	let realDate = value
 	const onSelect = (e) => {
 		setDate(e.target.value)
-		realDate = e.target.value
-		onChange(realDate)
+		onChange(e)
 	}
 	return (
 		<>
@@ -16,6 +14,7 @@ const DatePicker = ({ value, uniqueId, onChange }) => {
 				id={uniqueId}
 				type="date"
 				value={date}
+				name={name}
 				onChange={onSelect}
 				required
 			/>
