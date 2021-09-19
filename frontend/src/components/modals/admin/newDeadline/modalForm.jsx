@@ -4,16 +4,16 @@ import TextField from '../../component/textField'
 import DatePicker from '../../component/datePicker2'
 import RadioButton from '../../component/radioButton/radioButton'
 import Priority from '../../component/priority'
-import axios from 'axios'
+import { useCreateDeadline } from '../../../../api/reminders'
 
 const ModalForm = ({ closeModal }) => {
+	const mutation = useCreateDeadline()
 	const [deadline, setDeadline] = useState({
 		title: '',
 		description: '',
 		startDate: '',
 		dueDate: '',
 		assignTo: '',
-		option: ['low', 'medium', 'high'],
 	})
 
 	const [radio, setRadio] = useState('')
@@ -22,14 +22,28 @@ const ModalForm = ({ closeModal }) => {
 		setDeadline({ ...deadline, [event.target.name]: event.target.value })
 	}
 
-	const handleSubmit = (event) => {
-		event.preventDefault()
-		axios
-			.post('api/reminders.js/useCreateReminder', deadline)
-			.then((response) => setDeadline(response.data))
-			.error((error) => {
-				console.log(error)
-			})
+	const handleSubmit = () => {
+		const otherData = {
+			assignee: {
+				channelId: '414057c561sd354656af34b4dt',
+				channelLink: 'https://google.com',
+				channelName: deadline.assignTo,
+			},
+			creator: {
+				userId: '414057c561sd354656af34b4dt',
+				userLink: 'https://google.com',
+				userName: 'Joe',
+			},
+			priority: radio,
+			shouldRemind: false,
+			status: 'pending',
+			reminders: [],
+		}
+
+		const payload = { ...otherData, ...deadline }
+		// console.log(payload)
+		mutation.mutate(payload)
+		closeModal()
 	}
 
 	return (
@@ -41,6 +55,7 @@ const ModalForm = ({ closeModal }) => {
 						placeholder="Deadline Title"
 						value={deadline.title}
 						onChange={handleChange}
+						name="title"
 					/>
 				}
 				alignStretch
@@ -53,6 +68,7 @@ const ModalForm = ({ closeModal }) => {
 						placeholder="Deadline Description"
 						value={deadline.description}
 						onChange={handleChange}
+						name="description"
 					/>
 				}
 				alignStretch
@@ -63,7 +79,11 @@ const ModalForm = ({ closeModal }) => {
 					space
 					title="Start date"
 					writeUp={
-						<DatePicker value={deadline.startDate} onChange={handleChange} />
+						<DatePicker
+							value={deadline.startDate}
+							name="startDate"
+							onChange={handleChange}
+						/>
 					}
 					alignStretch
 				/>
@@ -71,7 +91,11 @@ const ModalForm = ({ closeModal }) => {
 					space
 					title="Due date:"
 					writeUp={
-						<DatePicker value={deadline.dueDate} onChange={handleChange} />
+						<DatePicker
+							value={deadline.dueDate}
+							name="dueDate"
+							onChange={handleChange}
+						/>
 					}
 					alignStretch
 				/>
@@ -83,6 +107,7 @@ const ModalForm = ({ closeModal }) => {
 						placeholder="E.g. #channelName"
 						value={deadline.assignTo}
 						onChange={handleChange}
+						name="assignTo"
 					/>
 				}
 				alignStretch
@@ -94,7 +119,6 @@ const ModalForm = ({ closeModal }) => {
 					selected={radio}
 					label={<Priority status="low" />}
 					onChange={() => {
-						deadline.option = 'low'
 						setRadio('low')
 					}}
 				/>
@@ -103,7 +127,6 @@ const ModalForm = ({ closeModal }) => {
 					selected={radio}
 					label={<Priority status="medium" />}
 					onChange={() => {
-						deadline.option = 'medium'
 						setRadio('medium')
 					}}
 				/>
@@ -112,7 +135,6 @@ const ModalForm = ({ closeModal }) => {
 					selected={radio}
 					label={<Priority status="high" />}
 					onChange={() => {
-						deadline.option = 'high'
 						setRadio('high')
 					}}
 				/>
@@ -126,7 +148,7 @@ const ModalForm = ({ closeModal }) => {
 				</button>
 				<button
 					className="w-16 h-10  text-sm bg-brand-primary font-semibold text-brand-bg-white"
-					onSubmit={handleSubmit}
+					onClick={handleSubmit}
 				>
 					Create
 				</button>
