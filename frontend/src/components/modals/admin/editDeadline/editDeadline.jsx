@@ -119,10 +119,10 @@ const EditDeadline = ({ object_id }) => {
 								value={`${data.start.year}-${`0${data.start.month}`.slice(
 									-2
 								)}-${`0${data.start.month}`.slice(-2)}`}
-								onChange={(value) => {
+								onChange={(e) => {
 									setData({
 										...data,
-										start: DateTime.fromSQL(value),
+										start: DateTime.fromSQL(e.target.value),
 									})
 								}}
 							/>
@@ -137,10 +137,10 @@ const EditDeadline = ({ object_id }) => {
 								value={`${data.due.year}-${`0${data.due.month}`.slice(
 									-2
 								)}-${`0${data.due.day}`.slice(-2)}`}
-								onChange={(value) => {
+								onChange={(e) => {
 									setData({
 										...data,
-										due: DateTime.fromSQL(value),
+										due: DateTime.fromSQL(e.target.value),
 									})
 								}}
 							/>
