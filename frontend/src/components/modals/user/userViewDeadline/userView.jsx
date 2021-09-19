@@ -27,7 +27,7 @@ import Priority from '../../component/priority'
 // 	{ label: '2 hours to deadline', checked: false },
 // ],
 // }
-export default function UserViewDeadline({
+const UserViewDeadline = ({
 	description,
 	startDate,
 	dueDate,
@@ -40,7 +40,7 @@ export default function UserViewDeadline({
 	priority,
 	checkbox,
 	assigneeOnline,
-}) {
+}) => {
 	const DeadlineTitle = (
 		<div className="flex gap-4">
 			{title} <Priority status={priority} forTitle />
@@ -92,3 +92,5 @@ export default function UserViewDeadline({
 		</ModalBase>
 	)
 }
+
+export default UserViewDeadline
