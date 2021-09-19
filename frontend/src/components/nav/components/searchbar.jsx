@@ -1,34 +1,31 @@
 import { React, useState } from 'react'
-
 import { SearchIcon } from '@heroicons/react/solid'
-import axios from 'axios'
-import { RemindersContext } from '../../../context/RemindersContext'
+import { useAllReminders } from '../../../api/reminders'
 
-export const axiosInstance = axios.create({
-	baseURL: '/api/v1/search',
-})
+// export const searchFunction = (searchTerm, fetchedData) => {
+// 	console.log(typeof searchTerm, searchTerm)
+// 	if (searchTerm !== '') {
+// 		const result = fetchedData.filter((data) => {
+// 			return (
+// 				data.title.includes(searchTerm.toString().toLowerCase()) ||
+// 				data.title.includes(searchTerm.toString().toUpperCase()) ||
+// 				data.description.includes(searchTerm.toString().toLowerCase()) ||
+// 				data.description.includes(searchTerm.toString().toUppercase()) ||
+// 				data.assignee.includes(searchTerm.toString().toLowerCase()) ||
+// 				data.assignee.includes(searchTerm.toString().toUpperCase()) ||
+// 				data.title.includes(searchTerm.toString()) ||
+// 				data.description.includes(searchTerm.toString()) ||
+// 				data.assignee.includes(searchTerm.toString())
+// 			)
+// 		})
 
-const { remindersDispatch: dispatch } = useContext(RemindersContext)
+// 		return result
+// 	}
+// }
 
-const Searchbar = ({ ...props }) => {
+export const Searchbar = ({ ...props }) => {
+	const { fetchedData, isPlaceholderData } = useAllReminders()
 	const [input, setInput] = useState('')
-
-	const onChange = (e, { value }) => {
-		const searchText = value.trim().replace(/" "/g, '')
-
-		searchReminders(searchText)(dispatch)
-	}
-
-	const handleEnterSubmit = (e) => {
-		if (e.key === 'Enter') {
-			handleSubmit(e)
-		}
-	}
-
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		setInput('')
-	}
 
 	return (
 		<div
@@ -40,18 +37,20 @@ const Searchbar = ({ ...props }) => {
 					className="text-gray-400 leading-tight text-sm focus:text-black focus:outline-none mr-5"
 					placeholder="Search"
 					type="text"
-					value={input}
-					onChange={onChange}
+					//value={input}
+					onChange={(e) => {
+						if (!isPlaceholderData && fetchedData && e.target.value !== '') {
+							const filtered = fetchedData.filter((val) => {
+								const regex = new RegExp(`${e.target.value}`, 'ig')
+								return val.title.match(regex) || val.description.match(regex)
+							})
+							console.log(filtered)
+						}
+					}}
 					id="task search"
-					onKeyDown={handleEnterSubmit}
 				/>
 			</label>
-			<SearchIcon
-				className="text-gray-400 w-3.5"
-				type="submit"
-				onClick={handleSubmit}
-			/>
+			<SearchIcon className="text-gray-400 w-3.5" />
 		</div>
 	)
 }
-export default Searchbar

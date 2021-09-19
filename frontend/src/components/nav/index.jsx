@@ -3,7 +3,7 @@ import React from 'react'
 import { SearchIcon, FilterIcon } from '@heroicons/react/outline'
 
 import Sortbar from './components/sortbar'
-import Searchbar from './components/searchbar'
+import { Searchbar } from '../nav/components/searchbar'
 import CreateNewDeadlineButton from './components/button'
 import SelectPage from './components/selectPages'
 
