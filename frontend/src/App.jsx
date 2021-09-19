@@ -19,7 +19,7 @@ const App = () => {
 	const { modalData } = useContext(ModalContext)
 
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename="/deadlines">
 			{modalData.modalShow && modalData.modalType === 'adminCreate' && (
 				<NewDeadline />
 			)}
