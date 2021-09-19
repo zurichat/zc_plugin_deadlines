@@ -9,7 +9,7 @@ import Priority from '../../component/priority'
 import ModalBase from '../../modalBase/index'
 import ModalButton from '../../component/button'
 import { ModalContext } from '../../../../context/ModalContext'
-import { useAllReminders, useEditDeadline } from '../../../../api/reminders'
+import { useAllReminders, useUpdateReminders } from '../../../../api/reminders'
 
 // import ModalButton from '../../component/button'
 
@@ -23,6 +23,7 @@ import { useAllReminders, useEditDeadline } from '../../../../api/reminders'
 // }
 const EditDeadline = ({ object_id }) => {
 	const { fetchedData } = useAllReminders()
+	const mutation = useUpdateReminders()
 
 	const [
 		{
@@ -59,7 +60,6 @@ const EditDeadline = ({ object_id }) => {
 	const [radio, setRadio] = useState(priority)
 	const { modalData, setModalData } = useContext(ModalContext)
 	const closeModal = () => setModalData({ ...modalData, modalShow: false })
-	const mutation = useEditDeadline()
 
 	const update = () => {
 		const payload = {
@@ -71,36 +71,13 @@ const EditDeadline = ({ object_id }) => {
 			description: data.description,
 			reminders,
 			shouldRemind,
-			startDate,
-			dueDate,
+			startDate: data.start.toISO(),
+			dueDate: data.due.toISO(),
 			status,
 		}
-		mutation.mutate(object_id, payload)
+		mutation.mutate({ object_id, payload })
+		closeModal()
 	}
-	// export const useEditDeadline = () => {
-	// 	const queryClient = useQueryClient()
-
-	// 	return useMutation(
-	// 		async (object_id, payload) => {
-	// 			const res = await axiosInstance({
-	// 				data: payload,
-	// 				method: 'PUT',
-	// 				url: `/deadlines/${object_id}`,
-	// 			})
-	// 			return res
-	// 		},
-	// 		{
-	// 			onSuccess: () => {
-	// 				queryClient
-	// 					.invalidateQueries('allReminders')
-	// 					.then(() => toast.success(`Updated successfully`))
-	// 			},
-	// 			onError: () => {
-	// 				toast.error('Failed to update reminder')
-	// 			},
-	// 		}
-	// 	)
-	// }
 
 	return (
 		<ModalBase title="Edit Deadline">
@@ -141,12 +118,13 @@ const EditDeadline = ({ object_id }) => {
 							<DatePicker
 								value={`${data.start.year}-${`0${data.start.month}`.slice(
 									-2
-								)}-${data.start.day}`}
+								)}-${`0${data.start.month}`.slice(-2)}`}
 								onChange={(value) => {
 									setData({
 										...data,
 										start: DateTime.fromSQL(value),
 									})
+									console.log(data.start)
 								}}
 							/>
 						}
@@ -157,9 +135,9 @@ const EditDeadline = ({ object_id }) => {
 						title="Due date:"
 						writeUp={
 							<DatePicker
-								value={`${data.due.year}-${`0${data.due.month}`.slice(-2)}-${
-									data.due.day
-								}`}
+								value={`${data.due.year}-${`0${data.due.month}`.slice(
+									-2
+								)}-${`0${data.due.day}`.slice(-2)}`}
 								onChange={(value) => {
 									setData({
 										...data,
