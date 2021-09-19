@@ -7,12 +7,12 @@
 }
 
 .deadline-skeleton-animation {
-	animation: skeletonAnimation 100ms ease-out;
+	animation: skeletonAnimation 300ms ease-in-out;
 }
 
 @keyframes skeletonAnimation {
 	from {
-		transform: scale(0.7);
+		transform: scale(0.23);
 	}
 	to {
 		transform: scale(1);
