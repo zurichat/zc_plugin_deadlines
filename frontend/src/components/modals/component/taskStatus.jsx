@@ -40,7 +40,7 @@ const StatusChanger = ({
 					ref={toggleHolder}
 					className={
 						currentStatus
-							? 'flex w-9 h-4 mt-1 duration-500 border-2 border-black rounded-full bg-brand-success relative'
+							? 'flex w-9 h-4 mt-1 duration-500 border-2 border-black rounded-full bg-brand-text-leftNav relative'
 							: 'flex w-9 h-4 mt-1 duration-500 border-2 border-black rounded-full bg-brand-bg-white relative'
 					}
 				>
@@ -48,8 +48,8 @@ const StatusChanger = ({
 						ref={toggler}
 						className={
 							currentStatus
-								? 'flex w-3 duration-300 h-3 ml-5 rounded-full bg-brand-secondary relative'
-								: 'flex w-3 duration-300 h-3 rounded-full bg-brand-secondary relative'
+								? 'flex w-3 duration-300 h-3 ml-5 rounded-full bg-brand-success relative'
+								: 'flex w-3 duration-300 h-3 rounded-full bg-brand-success relative'
 						}
 					></div>
 				</div>
