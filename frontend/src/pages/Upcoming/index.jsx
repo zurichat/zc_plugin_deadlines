@@ -16,7 +16,7 @@ const UpcomingPage = () => {
 		) : (
 			<FlipMove
 				appearAnimation="elevator"
-				className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden"
+				className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-2 px-1 overflow-hidden"
 			>
 				{Array.isArray(fetchedData) &&
 					fetchedData.length > 0 &&
@@ -38,7 +38,7 @@ const UpcomingPage = () => {
 		)
 	) : (
 		<div>
-			<Skeleton type="card" counter={8} />
+			<Skeleton type="card" counter={12} />
 		</div>
 	)
 }
