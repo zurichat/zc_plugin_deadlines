@@ -30,10 +30,10 @@ const App = () => {
 				<AdminView {...modalData.modalData} />
 			)}
 			{modalData.modalShow && modalData.modalType === 'adminEdit' && (
-				<EditDeadline details={{ ...modalData.modalData }} />
+				<EditDeadline {...modalData.modalData} />
 			)}
 			{modalData.modalShow && modalData.modalType === 'adminViewOther' && (
-				<AdminViewOther details={{ ...modalData.modalData }} />
+				<AdminViewOther {...modalData.modalData} />
 			)}
 			<nav className="p-5 ">
 				<Nav />
