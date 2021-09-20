@@ -117,13 +117,13 @@ export const useUpdateReminders = () => {
 				},
 			}),
 		{
-			onSuccess: () => {
-				queryClient
-					.invalidateQueries('allReminders')
-					.then(() => toast.success(`Updated successfully`))
+			onSuccess: (_, { noToast }) => {
+				queryClient.invalidateQueries('allReminders').then(() => {
+					if (!noToast) toast.success(`Updated successfully`)
+				})
 			},
-			onError: () => {
-				toast.error('Failed to update reminder')
+			onError: (_, { noToast }) => {
+				if (!noToast) toast.error('Failed to update reminder')
 			},
 		}
 	)
