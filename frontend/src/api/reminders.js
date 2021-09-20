@@ -4,11 +4,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 import errorHandler from './utils/errorHandler'
 
 const axiosInstance = axios.create({
-	// baseURL: 'http://localhost:3008/api/v1',
 	baseURL: 'https://reminders.zuri.chat/api/v1',
-	headers: {
-		'Access-Control-Allow-Origin': '*',
-	},
 })
 
 export const useAllReminders = () => {
@@ -87,7 +83,12 @@ export const useDeleteDeadline = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation(
-		(object_id) => axiosInstance.delete(`/deadlines/${object_id}`),
+		(object_id) =>
+			axiosInstance.delete(`/deadlines/${object_id}`, {
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+				},
+			}),
 		{
 			onSuccess: () => {
 				queryClient
@@ -111,6 +112,9 @@ export const useUpdateReminders = () => {
 				data: payload,
 				method: 'PUT',
 				url: `/deadlines/${object_id}`,
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+				},
 			}),
 		{
 			onSuccess: () => {
@@ -128,14 +132,22 @@ export const useUpdateReminders = () => {
 export const useCreateDeadline = () => {
 	const queryClient = useQueryClient()
 
-	return useMutation((payload) => axiosInstance.post(`/deadlines/`, payload), {
-		onSuccess: () => {
-			queryClient
-				.invalidateQueries('allReminders')
-				.then(() => toast.success(`Deadline added successfully`))
-		},
-		onError: () => {
-			toast.error('Failed to add deadline')
-		},
-	})
+	return useMutation(
+		(payload) =>
+			axiosInstance.post(`/deadlines/`, payload, {
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+				},
+			}),
+		{
+			onSuccess: () => {
+				queryClient
+					.invalidateQueries('allReminders')
+					.then(() => toast.success(`Deadline added successfully`))
+			},
+			onError: () => {
+				toast.error('Failed to add deadline')
+			},
+		}
+	)
 }
