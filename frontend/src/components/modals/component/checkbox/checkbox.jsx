@@ -28,7 +28,9 @@ const Checkbox = ({ id, label, check, onChange }) => {
 				className="dtw-text-sm dtw-cursor-pointer dtw-leading-none dtw-self-center dtw-flex dtw-items-center dtw-gap-x-2"
 			>
 				<div className="dtw-inline-block dtw-h-5 dtw-w-5 dtw-border-solid dtw-border dtw-border-black dtw-p-px">
-					<div className={`${style.interior} bg-brand-primary h-full`}></div>
+					<div
+						className={`${style.interior} dtw-bg-brand-primary dtw-h-full`}
+					></div>
 				</div>
 
 				{label}

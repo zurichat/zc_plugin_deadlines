@@ -22,13 +22,15 @@ export default function CustomSwitch({ label, onSwitch }) {
 					checked={enabled}
 					onChange={whenSwitched}
 					className={`${
-						enabled ? 'bg-brand-primary' : 'bg-gray-400'
-					} relative inline-dtw-flex dtw-items-center h-4 rounded-full w-10 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary bg-opacity-25`}
+						enabled ? 'dtw-bg-brand-primary' : 'dtw-bg-gray-400'
+					} dtw-relative dtw-inline-dtw-flex dtw-items-center dtw-h-4 dtw-rounded-full dtw-w-10 dtw-transition-colors focus:dtw-outline-none focus:dtw-ring-2 focus:dtw-ring-offset-2 focus:dtw-ring-brand-primary dtw-bg-opacity-25`}
 				>
 					<span
 						className={`${
-							enabled ? 'translate-x-6 bg-brand-primary' : 'translate-x-0'
-						} inline-block w-6 h-6 transform rounded-full bg-gray-500 transition-transform`}
+							enabled
+								? 'dtw-translate-x-6 bg-brand-primary'
+								: 'dtw-translate-x-0'
+						} dtw-inline-block dtw-w-6 dtw-h-6 dtw-transform dtw-rounded-full dtw-bg-gray-500 dtw-transition-transform`}
 					/>
 				</Switch>
 			</div>

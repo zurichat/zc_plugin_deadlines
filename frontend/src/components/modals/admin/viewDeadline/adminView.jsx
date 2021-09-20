@@ -56,7 +56,7 @@ const AdminView = (props) => {
 					}
 				/>
 				<div className="dtw-flex ">
-					<div ref={deadlineStatus} className="dtw-h-6 dtw-w-20 "></div>
+					<div ref={deadlineStatus} className="dtw-h-6 dtw-w-20"></div>
 					<StatusChanger
 						currentStatus={taskStatus.status}
 						toggler={toggler}
@@ -66,10 +66,10 @@ const AdminView = (props) => {
 					/>
 				</div>
 				<div className="dtw-flex dtw-justify-end">
-					<button className="dtw-w-16 dtw-h-7  dtw-text-sm dtw-text-brand-primary dtw-font-semibold">
+					<button className="dtw-w-16 dtw-h-7 dtw-text-sm dtw-text-brand-primary dtw-font-semibold">
 						Cancel
 					</button>
-					<button className="dtw-w-16 dtw-h-7  dtw-text-sm dtw-bg-brand-primary dtw-font-semibold dtw-text-brand-bg-white">
+					<button className="dtw-w-16 dtw-h-7 dtw-text-sm dtw-bg-brand-primary dtw-font-semibold dtw-text-brand-bg-white">
 						Update
 					</button>
 				</div>
