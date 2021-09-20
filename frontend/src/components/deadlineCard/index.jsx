@@ -21,12 +21,12 @@ const DeadlineCard = ({
 
 	const priority_bg =
 		priority === 'low'
-			? 'dtw-bg-brand-priority-low'
+			? 'bg-brand-priority-low'
 			: priority === 'medium'
-			? 'dtw-bg-brand-priority-medium'
+			? 'bg-brand-priority-medium'
 			: priority === 'high'
-			? 'dtw-bg-brand-priority-high'
-			: 'dtw-bg-gray'
+			? 'bg-brand-priority-high'
+			: 'bg-gray'
 
 	const startDateStr = DateTime.fromISO(startDate, {
 		zone: 'UTC',
