@@ -5,6 +5,9 @@ import { MESSAGE } from '@utils/constant'
 import env from '@config/environment'
 // import makeDb from '../db'
 import DatabaseOps from '../db'
+import { sort } from 'agenda/dist/agenda/sort'
+
+import sortedData from '@utils/sort.deadlines'
 
 const DeadLine = new DatabaseOps('deadlines')
 const Agenda = require('agenda')
@@ -49,7 +52,11 @@ const deadlineController = {
 	},
 	getAll: async (req, res, next) => {
 		try {
-			const data = await DeadLine.findAll()
+			let data = await DeadLine.findAll()
+
+			if (req.query.sort) {
+				data = sortedData(req.query.sort, data)
+			}
 
 			return Response.send(
 				res,
