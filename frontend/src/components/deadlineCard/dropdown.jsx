@@ -3,6 +3,8 @@ import { Menu, Transition } from '@headlessui/react'
 
 import { BsThreeDots } from 'react-icons/bs'
 import { BiEditAlt, BiTrashAlt } from 'react-icons/bi'
+import { IoMdPerson } from 'react-icons/io'
+
 import { ModalContext } from '../../context/ModalContext'
 import { useDeleteDeadline } from '../../api/reminders'
 
@@ -19,10 +21,10 @@ const DeadlineCardDropdown = ({ object_id }) => {
 			},
 		})
 	}
-	const adminView = () => {
+	const adminViewOther = () => {
 		setModalData({
 			modalShow: true,
-			modalType: 'adminView',
+			modalType: 'adminViewOther',
 			modalData: {
 				object_id,
 			},
@@ -70,11 +72,11 @@ const DeadlineCardDropdown = ({ object_id }) => {
 								<button
 									className={`${
 										active ? 'bg-gray-100 text-gray-900' : 'text-gray-900'
-									} group flex rounded-t-md items-center w-full px-4 py-2 gap-2`}
-									onClick={adminView}
+									} group flex rounded-b-md items-center w-full px-4 py-2 gap-2`}
+									onClick={adminViewOther}
 								>
-									<BiEditAlt />
-									Status
+									<IoMdPerson />
+									adminViewOther
 								</button>
 							)}
 						</Menu.Item>

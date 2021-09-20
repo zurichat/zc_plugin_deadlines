@@ -8,37 +8,47 @@ const axiosInstance = axios.create({
 })
 
 export const useAllReminders = () => {
-	const { isLoading, data, error, isPlaceholderData, isError, status } =
-		useQuery(
-			'allReminders',
-			async () => {
-				try {
-					const res = await axiosInstance({
-						method: 'GET',
-						url: '/deadlines',
-					})
-					return res.data.data
-				} catch (error) {
-					throw errorHandler(error)
+	const {
+		isLoading,
+		isSearchActive,
+		foundReminders,
+		data,
+		error,
+		isPlaceholderData,
+		isError,
+		status,
+	} = useQuery(
+		'allReminders',
+		async () => {
+			try {
+				const res = await axiosInstance({
+					method: 'GET',
+					url: '/deadlines',
+				})
+				return res.data.data
+			} catch (error) {
+				throw errorHandler(error)
+			}
+		},
+		{
+			placeholderData: () => {
+				return {
+					data: {
+						result: [],
+					},
 				}
 			},
-			{
-				placeholderData: () => {
-					return {
-						data: {
-							result: [],
-						},
-					}
-				},
-			}
-		)
+		}
+	)
+
+	const currentReminders = isSearchActive ? foundReminders : data
 
 	// fetchedData is the response returned from the get query, error only exists if there's an error
 	// isLoading and isPlaceholderData are Booleans representing loading and palceholder data states respectively
 	// isPlaceholder exists primarily to deal with react calling methods on undefined when mounting components
 
 	return {
-		fetchedData: data,
+		fetchedData: currentReminders,
 		isLoading,
 		error,
 		isPlaceholderData,
@@ -73,7 +83,12 @@ export const useDeleteDeadline = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation(
-		(object_id) => axiosInstance.delete(`/deadlines/${object_id}`),
+		(object_id) =>
+			axiosInstance.delete(`/deadlines/${object_id}`, {
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+				},
+			}),
 		{
 			onSuccess: () => {
 				queryClient
@@ -97,6 +112,9 @@ export const useUpdateReminders = () => {
 				data: payload,
 				method: 'PUT',
 				url: `/deadlines/${object_id}`,
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+				},
 			}),
 		{
 			onSuccess: () => {
@@ -114,14 +132,22 @@ export const useUpdateReminders = () => {
 export const useCreateDeadline = () => {
 	const queryClient = useQueryClient()
 
-	return useMutation((payload) => axiosInstance.post(`/deadlines/`, payload), {
-		onSuccess: () => {
-			queryClient
-				.invalidateQueries('allReminders')
-				.then(() => toast.success(`Deadline added successfully`))
-		},
-		onError: () => {
-			toast.error('Failed to add deadline')
-		},
-	})
+	return useMutation(
+		(payload) =>
+			axiosInstance.post(`/deadlines/`, payload, {
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+				},
+			}),
+		{
+			onSuccess: () => {
+				queryClient
+					.invalidateQueries('allReminders')
+					.then(() => toast.success(`Deadline added successfully`))
+			},
+			onError: () => {
+				toast.error('Failed to add deadline')
+			},
+		}
+	)
 }

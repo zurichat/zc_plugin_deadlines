@@ -101,7 +101,9 @@ const DeadlineCard = ({
 							/>
 						</div>
 					</div>
-					<p className="text-brand-text-body text-opacity-50 text-sm md:text-base">{`Assigned by ${assigner} to #${assignees}`}</p>
+					<p className="text-brand-text-body text-opacity-50 text-sm md:text-base">{`Assigned by ${assigner} to #${String(
+						assignees
+					).replace(/#/g, '')}`}</p>
 				</div>
 				<p className="text-brand-text-body mt-4 mb-6 text-sm md:text-base line-clamp-2">
 					{description}
