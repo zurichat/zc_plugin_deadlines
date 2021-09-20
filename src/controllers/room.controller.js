@@ -1,7 +1,7 @@
 import Response from '@utils/response.handler'
 import DatabaseOps from '../db'
 
-const Room = new DatabaseOps('rooms')
+export const Room = new DatabaseOps('rooms')
 
 const roomController = {
 	create: async (req, res, next) => {

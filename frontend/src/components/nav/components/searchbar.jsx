@@ -1,23 +1,20 @@
-import { React, useState } from 'react'
-
+import { React, useContext } from 'react'
 import { SearchIcon } from '@heroicons/react/solid'
+import { useAllReminders } from '../../../api/reminders'
+import { SearchContext } from '../../../context/searchContext/searchContext'
+export const Searchbar = ({ ...props }) => {
+	const { fetchedData } = useAllReminders()
+	const [searchResult, setSearchResult] = useContext(SearchContext)
 
-const Searchbar = ({ ...props }) => {
-	const [input, setInput] = useState('')
-
-	const handleInput = (e) => {
-		setInput(e.target.value)
-	}
-
-	const handleEnterSubmit = (e) => {
-		if (e.key === 'Enter') {
-			handleSubmit(e)
+	const handleChange = (e) => {
+		const filtered = fetchedData.filter((val) => {
+			const regex = new RegExp(`${e.target.value}`, 'ig')
+			return val.title.match(regex) || val.description.match(regex)
+		})
+		setSearchResult(filtered)
+		if (searchResult && e.target.value === '') {
+			setSearchResult(null)
 		}
-	}
-
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		setInput('')
 	}
 
 	return (
@@ -30,18 +27,11 @@ const Searchbar = ({ ...props }) => {
 					className="text-gray-400 leading-tight text-sm focus:text-black focus:outline-none mr-5"
 					placeholder="Search"
 					type="text"
-					value={input}
-					onChange={handleInput}
+					onChange={(e) => handleChange(e)}
 					id="task search"
-					onKeyDown={handleEnterSubmit}
 				/>
 			</label>
-			<SearchIcon
-				className="text-gray-400 w-3.5"
-				type="submit"
-				onClick={handleSubmit}
-			/>
+			<SearchIcon className="text-gray-400 w-3.5" />
 		</div>
 	)
 }
-export default Searchbar

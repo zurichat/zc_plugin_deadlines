@@ -1,44 +1,54 @@
 import axios from 'axios'
-import { useMutation, useQuery } from 'react-query'
+import toast from 'react-hot-toast'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import errorHandler from './utils/errorHandler'
-import validateCreateReminderData from './utils/validation'
 
 const axiosInstance = axios.create({
 	baseURL: 'https://reminders.zuri.chat/api/v1',
 })
 
 export const useAllReminders = () => {
-	const { isLoading, data, error, isPlaceholderData, isError, status } =
-		useQuery(
-			'allReminders',
-			async () => {
-				try {
-					const res = await axiosInstance({
-						method: 'GET',
-						url: '/deadlines',
-					})
-					return res.data.data
-				} catch (error) {
-					throw errorHandler(error)
+	const {
+		isLoading,
+		isSearchActive,
+		foundReminders,
+		data,
+		error,
+		isPlaceholderData,
+		isError,
+		status,
+	} = useQuery(
+		'allReminders',
+		async () => {
+			try {
+				const res = await axiosInstance({
+					method: 'GET',
+					url: '/deadlines',
+				})
+				return res.data.data
+			} catch (error) {
+				throw errorHandler(error)
+			}
+		},
+		{
+			placeholderData: () => {
+				return {
+					data: {
+						result: [],
+					},
 				}
 			},
-			{
-				placeholderData: () => {
-					return {
-						data: {
-							result: [],
-						},
-					}
-				},
-			}
-		)
+		}
+	)
+
+	const currentReminders = isSearchActive ? foundReminders : data
 
 	// fetchedData is the response returned from the get query, error only exists if there's an error
 	// isLoading and isPlaceholderData are Booleans representing loading and palceholder data states respectively
 	// isPlaceholder exists primarily to deal with react calling methods on undefined when mounting components
 
 	return {
-		fetchedData: data,
+		fetchedData: currentReminders,
 		isLoading,
 		error,
 		isPlaceholderData,
@@ -47,28 +57,97 @@ export const useAllReminders = () => {
 	}
 }
 
-export const useCreateReminder = (payload) => {
-	const { data, error, isLoading, isSuccess } = useMutation(
-		'createReminder',
-		async () => {
-			if (validateCreateReminderData(payload)) {
-				try {
-					const res = await axiosInstance({
-						data: payload,
-						method: 'POST',
-						url: '/reminders',
-					})
-
-					return res
-				} catch (error) {
-					throw errorHandler(error)
-				}
-			}
+//createReminders
+export const useCreateReminders = () => {
+	return useMutation(
+		(payload, object_id) =>
+			axiosInstance({
+				data: payload,
+				method: 'POST',
+				url: `/deadlines/${object_id}`,
+			}),
+		{
+			onSuccess: () => {
+				queryClient
+					.invalidateQueries('allReminders')
+					.then(() => toast.success(`Created successfully`))
+			},
+			onError: () => {
+				toast.error('Failed to create reminder')
+			},
 		}
 	)
+}
 
-	// Data is the response returned from the post, error only exists if there's an error
-	// isLoading and isSuccess are Booleans representing loading and success states respectively
-	// You can use isLoading to show loading spinners and isSuccess to tell when the request completed successfully and inform the user
-	return { responseBody: data, error, isLoading, isSuccess }
+export const useDeleteDeadline = () => {
+	const queryClient = useQueryClient()
+
+	return useMutation(
+		(object_id) =>
+			axiosInstance.delete(`/deadlines/${object_id}`, {
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+				},
+			}),
+		{
+			onSuccess: () => {
+				queryClient
+					.invalidateQueries('allReminders')
+					.then(() => toast.success(`Deleted successfully`))
+			},
+			onError: () => {
+				toast.error('Failed to delete reminder')
+			},
+		}
+	)
+}
+
+//updateReminders
+export const useUpdateReminders = () => {
+	const queryClient = useQueryClient()
+
+	return useMutation(
+		({ payload, object_id }) =>
+			axiosInstance({
+				data: payload,
+				method: 'PUT',
+				url: `/deadlines/${object_id}`,
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+				},
+			}),
+		{
+			onSuccess: () => {
+				queryClient
+					.invalidateQueries('allReminders')
+					.then(() => toast.success(`Updated successfully`))
+			},
+			onError: () => {
+				toast.error('Failed to update reminder')
+			},
+		}
+	)
+}
+
+export const useCreateDeadline = () => {
+	const queryClient = useQueryClient()
+
+	return useMutation(
+		(payload) =>
+			axiosInstance.post(`/deadlines/`, payload, {
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+				},
+			}),
+		{
+			onSuccess: () => {
+				queryClient
+					.invalidateQueries('allReminders')
+					.then(() => toast.success(`Deadline added successfully`))
+			},
+			onError: () => {
+				toast.error('Failed to add deadline')
+			},
+		}
+	)
 }

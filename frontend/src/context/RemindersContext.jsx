@@ -30,7 +30,8 @@ const remindersReducer = (state, action) => {
 						return (
 							item.title.toLowerCase().search(payload.toLowerCase()) !== -1 ||
 							item.description.toLowerCase().search(payload.toLowerCase()) !==
-								-1
+								-1 ||
+							item.assignees.toLowerCase().search(payload.toLowerCase()) !== -1
 						)
 					}),
 					data: action.payload.data,

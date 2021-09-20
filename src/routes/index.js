@@ -284,9 +284,38 @@ router.put('/deadlines/:id', deadlineValidation.updateSchema, deadlineController
  *      description: A successful response and the deadlines
  *    500:
  *      description: An error occurred
+ *
+ */
+
+/**
+ * @swagger
+ * /api/v1/deadlines?sort={parameter}:
+ *  get:
+ *   summary: Sorts deadlines when fetched
+ *   description: returns all the deadlines object in the database in a based on a sort parameter
+ * 
+ *   parameters:
+ *    - in: path
+ *      name: duedate-asc
+ *      description: sorts by Due Date(ascending order)
+ *    - in: path
+ *      name: duedate-desc
+ *      description: sorts by Due Date(descending order)
+ *    - in: path
+ *      name: newest-to-oldest
+ *      description: sorts by newest to oldest
+ *    - in: path
+ *      name: oldest-to-newest
+ *      description: sorts by oldest to newest
+ *
+ *   responses:
+ *    200:
+ *      description: A successful response and the deadlines
+ *    500:
+ *      description: An error occurred
+ *
  */
 router.get('/deadlines', deadlineController.getAll)
-
 
 /**
  * @swagger
@@ -335,7 +364,7 @@ router.post(
 )
 
 /**
- * SIDEBAR AND ROOMS
+ * ROOMS, SIDEBAR AND PLUGIN INFO
  */
 
 /**
@@ -490,5 +519,13 @@ router.get('/rooms/:id/add', roomController.addToRoom)
  *      description: An error occurred
  */
 router.get('/rooms/:id/remove', roomController.deleteFromRoom)
+
+router.get(
+	'/sidebar',
+	roomValidation.sidebarQueries,
+	sidebarController.getSideBar
+)
+
+router.get('/info', sidebarController.getPluginInfo)
 
 export default router

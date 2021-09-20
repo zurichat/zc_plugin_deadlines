@@ -9,12 +9,31 @@ import dotenv from 'dotenv'
 import routes from '@routes/index'
 import path from 'path'
 import { errorHandler } from '@shared/errors/ErrorClass'
+import cors from 'cors'
 
 dotenv.config()
 const build = path.resolve('frontend', 'build')
 const publicPath = path.resolve('frontend', 'public')
 
 const app = express()
+
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*')
+	res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE')
+	res.header(
+		'Access-Control-Allow-Headers',
+		'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+	)
+	next()
+})
+
+app.options('*', cors())
+
+app.use(
+	cors({
+		origin: '*',
+	})
+)
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
