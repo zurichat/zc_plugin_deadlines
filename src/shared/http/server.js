@@ -19,7 +19,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(build))
-app.use('/public', express.static(publicPath))
+// app.use('/public', express.static(publicPath))
 app.use('/api/v1', routes)
 
 // swagger setup
