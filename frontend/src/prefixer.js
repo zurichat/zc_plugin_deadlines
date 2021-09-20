@@ -3,16 +3,15 @@ const recursive = require('recursive-readdir')
 
 const changeForm = (path) => {
 	const data = fs.readFileSync(path, 'utf8')
-	let list_class = data.match(/(?<=className=")(.*)(?=")/g)
 
+	let list_class = data.match(/(?<=className=[{'"])(.*?)(?=[}'"])/g)
 	if (!list_class) return data
 
 	list_class = list_class.map((classes) => {
-		return classes.split(' ')
+		return classes.trim().split(' ')
 	})
 
-	//eslint-disable-next-line
-	list_class = [].concat.apply([], list_class)
+	list_class = list_class.flat()
 	list_class = list_class.filter((el) => el !== '')
 	list_class = list_class.map((classes) => {
 		if (classes.includes(':')) {
@@ -22,14 +21,17 @@ const changeForm = (path) => {
 		}
 	})
 
-	//eslint-disable-next-line
-	list_class = [].concat.apply([], list_class)
+	list_class = list_class.flat()
 	list_class = list_class.filter((el) => el !== '')
 	const old_class = list_class
-	// console.log('old', old_class)
+	// console.log('old', list_class)
 
 	list_class = list_class.map((classes) => {
 		if (!classes.includes('dtw-')) {
+			if (classes.includes('`')) {
+				return `\`dtw-${classes.replace('`', '')}`
+			}
+
 			return `dtw-${classes}`
 		} else {
 			return classes
@@ -44,7 +46,6 @@ const changeForm = (path) => {
 				return_data[i].trim().includes(old_class[j]) &&
 				return_data[i] !== ''
 			) {
-				if (old_class[j] === 'border-1/2') console.log('border')
 				return_data[i] = return_data[i].replace(old_class[j], list_class[j])
 				break
 			}
