@@ -5,7 +5,6 @@ import { SearchIcon, FilterIcon } from '@heroicons/react/outline'
 import Sortbar from './components/sortbar'
 import { Searchbar } from '../nav/components/searchbar'
 import CreateNewDeadlineButton from './components/button'
-import SelectPage from './components/selectPages'
 
 import { SearchContext } from '../../context/searchContext/searchContext'
 import SearchModal from '../../components/modals/searchModal/searchModal'
@@ -13,7 +12,7 @@ import SearchModal from '../../components/modals/searchModal/searchModal'
 const Nav = () => {
 	const [searchResult, setSearchResult] = useState('')
 	return (
-		<SearchContext.Provider value={[searchResult, setSearchResult]}>
+    <SearchContext.Provider value={[searchResult, setSearchResult]}>
 			<>
 				<nav className="space-y-1 md:space-y-0   lg:border-b">
 					<div className="flex flex-col lg:flex-row justify-between items-center">
@@ -28,6 +27,7 @@ const Nav = () => {
 						</div>
 						<div className="lg:hidden self-start">
 							<CreateNewDeadlineButton />
+
 						</div>
 
 						<div className="flex justify-between ">
@@ -45,7 +45,7 @@ const Nav = () => {
 							</div>
 						</div>
 					</div>
-					<div className="hidden lg:block">
+          <div className="hidden lg:block">
 						<SelectPage />
 					</div>
 				</nav>

@@ -20,6 +20,7 @@ module.exports = {
 
 	devServer: {
 		port: 8500,
+		https: true,
 	},
 	style: {
 		postcss: {
