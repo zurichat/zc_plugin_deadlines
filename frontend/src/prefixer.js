@@ -8,7 +8,7 @@ const changeForm = (path) => {
 	if (!list_class) return data
 
 	list_class = list_class.map((classes) => {
-		return classes.trim().split(' ')
+		return classes.split(' ')
 	})
 
 	list_class = list_class.flat()
@@ -24,24 +24,22 @@ const changeForm = (path) => {
 	list_class = list_class.flat()
 	list_class = list_class.filter((el) => el !== '')
 	const old_class = list_class
-	// console.log('old', list_class)
 
 	list_class = list_class.map((classes) => {
 		if (!classes.includes('dtw-')) {
 			if (classes.includes('`')) {
 				return `\`dtw-${classes.replace('`', '')}`
 			}
-
 			return `dtw-${classes}`
 		} else {
 			return classes
 		}
 	})
-	// console.log('new', list_class)
 
 	let return_data = data.split(' ')
-	for (i = 0; i < return_data.length; i++) {
-		for (j = 0; j < old_class.length; j++) {
+
+	for (i = 1; i < return_data.length; i++) {
+		for (j = 1; j < old_class.length; j++) {
 			if (
 				return_data[i].trim().includes(old_class[j]) &&
 				return_data[i] !== ''
@@ -53,9 +51,9 @@ const changeForm = (path) => {
 	}
 	return_data = return_data.join(' ')
 
-	// console.log(return_data)
 	return return_data
 }
+
 // changeForm('./components/deadlineCard/index.jsx')
 
 const ignoreFunc = (file, stats) => {
