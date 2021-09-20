@@ -107,7 +107,7 @@ export const useUpdateReminders = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation(
-		({ payload, object_id }) =>
+		({ payload, object_id, noToast }) =>
 			axiosInstance({
 				data: payload,
 				method: 'PUT',
@@ -117,13 +117,13 @@ export const useUpdateReminders = () => {
 				},
 			}),
 		{
-			onSuccess: () => {
-				queryClient
-					.invalidateQueries('allReminders')
-					.then(() => toast.success(`Updated successfully`))
+			onSuccess: (_, { noToast }) => {
+				queryClient.invalidateQueries('allReminders').then(() => {
+					if (!noToast) toast.success(`Updated successfully`)
+				})
 			},
-			onError: () => {
-				toast.error('Failed to update reminder')
+			onError: (_, { noToast }) => {
+				if (!noToast) toast.error('Failed to update reminder')
 			},
 		}
 	)
