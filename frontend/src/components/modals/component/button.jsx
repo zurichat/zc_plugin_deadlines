@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ModalButton = ({ cancelFunc, actionFunc, actionName }) => {
+const ModalButton = ({ cancelFunc, actionFunc, actionName, ...props }) => {
 	return (
-		<div className="flex justify-end gap-4">
+		<div className="flex justify-end gap-4" {...props}>
 			<button
 				className="h-11 px-5 text-sm text-brand-primary font-semibold"
 				onClick={cancelFunc}
@@ -12,6 +12,7 @@ const ModalButton = ({ cancelFunc, actionFunc, actionName }) => {
 			<button
 				className="h-11 px-5 text-sm bg-brand-primary font-semibold text-brand-bg-white"
 				onClick={actionFunc}
+				type="submit"
 			>
 				{actionName}
 			</button>
