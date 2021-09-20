@@ -4,7 +4,11 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 import errorHandler from './utils/errorHandler'
 
 const axiosInstance = axios.create({
+	// baseURL: 'http://localhost:3008/api/v1',
 	baseURL: 'https://reminders.zuri.chat/api/v1',
+	headers: {
+		'Access-Control-Allow-Origin': '*',
+	},
 })
 
 export const useAllReminders = () => {
