@@ -60,7 +60,16 @@ const EditDeadline = ({ object_id }) => {
 	const [radio, setRadio] = useState(priority)
 	const { modalData, setModalData } = useContext(ModalContext)
 	const closeModal = () => setModalData({ ...modalData, modalShow: false })
-
+	const payload = {
+		title: data.title,
+		description: data.description,
+		startDate: data.start,
+		dueDate: data.due,
+		assignee: data.assignTo,
+	}
+	const updateReminders = () => {
+		mutation(payload, object_id)
+	}
 	return (
 		<ModalBase title="Edit Deadline">
 			<div className="dtw-flex dtw-flex-col dtw-gap-y-6">
@@ -70,8 +79,8 @@ const EditDeadline = ({ object_id }) => {
 						<TextField
 							placeholder="Deadline Title"
 							value={data.title}
-							onChange={(e) => {
-								data = { ...data, title: e.target.value }
+							onChange={(value) => {
+								data = { ...data, title: value }
 							}}
 						/>
 					}
@@ -84,15 +93,15 @@ const EditDeadline = ({ object_id }) => {
 						<TextField
 							placeholder="Deadline Description"
 							value={data.description}
-							onChange={(e) => {
-								data = { ...data, description: e.target.value }
+							onChange={(value) => {
+								data = { ...data, description: value }
 							}}
 						/>
 					}
 					alignStretch
 				/>
 
-				<div className="dtw-flex dtw-flex-col dtw-gap-y-6 dtw-w-full md:dtw-gap-x-12 md:dtw-flex-row">
+				<div className="dtw-flex dtw-flex-col dtw-gap-y-6 dtw-full md:dtw-gap-x-12 md:dtw-flex-row">
 					<ColTitleDes
 						space
 						title="Start date"
@@ -101,12 +110,11 @@ const EditDeadline = ({ object_id }) => {
 								value={`${data.start.year}-${`0${data.start.month}`.slice(
 									-2
 								)}-${data.start.day}`}
-								onChange={(e) => {
+								onChange={(value) => {
 									data = {
 										...data,
-										start: DateTime.fromS(e.target.value),
+										start: DateTime.fromSQL(value),
 									}
-									console.log(data.start)
 								}}
 							/>
 						}
@@ -120,10 +128,10 @@ const EditDeadline = ({ object_id }) => {
 								value={`${data.due.year}-${`0${data.due.month}`.slice(-2)}-${
 									data.due.day
 								}`}
-								onChange={(e) => {
+								onChange={(value) => {
 									data = {
 										...data,
-										due: DateTime.fromJSDate(e.target.value),
+										due: DateTime.fromSQL(value),
 									}
 								}}
 							/>
@@ -137,15 +145,15 @@ const EditDeadline = ({ object_id }) => {
 						<TextField
 							placeholder="E.g. #channelName"
 							value={data.assignTo}
-							onChange={(e) => {
-								data = { ...data, assignTo: e.target.value }
+							onChange={(value) => {
+								data = { ...data, assignTo: value }
 							}}
 						/>
 					}
 					alignStretch
 				/>
 				<div className="dtw-flex dtw-flex-col dtw-gap-y-3">
-					<p className="dtw-text-sm dtw-leading-none">select priority</p>
+					<p className="dtw-text-sm dtw-leading-none">Select priority</p>
 					<RadioButton
 						id="low"
 						selected={radio}
@@ -176,10 +184,7 @@ const EditDeadline = ({ object_id }) => {
 				</div>
 				<ModalButton
 					actionName="Update"
-					actionFunc={() => {
-						mutation.mutate({ payload: data, object_id })
-						closeModal()
-					}}
+					actionFunc={() => {}}
 					cancelFunc={closeModal}
 				/>
 			</div>

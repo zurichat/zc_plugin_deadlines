@@ -67,8 +67,8 @@ const Sortbar = () => {
 						{({ active }) => (
 							<div
 								className={`${
-									active && 'bg-gray-400 bg-opacity-10'
-								} dtw-px-5 py-1.5 dtw-text-sm dtw-text-gray-400 text-center flex-shrink-0`}
+									active && 'dtw-bg-gray-400 dtw-bg-opacity-10'
+								} dtw-px-5 py-1.5 dtw-text-sm dtw-text-gray-400 dtw-text-center dtw-flex-shrink-0`}
 							>
 								{i}
 							</div>

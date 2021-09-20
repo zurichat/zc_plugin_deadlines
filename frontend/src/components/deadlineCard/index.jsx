@@ -95,7 +95,7 @@ const DeadlineCard = ({
 							</p>
 							<div
 								id="priority"
-								className={`min-w-priority h-2 dtw-rounded-full self-center ml-1 md:ml-2 ${priority_bg}`}
+								className={`dtw-min-w-priority dtw-h-2 dtw-rounded-full dtw-self-center ml-1 md:dtw-ml-2 ${priority_bg}`}
 							/>
 						</div>
 					</div>
@@ -117,7 +117,7 @@ const DeadlineCard = ({
 					<span
 						className={
 							DateTime.fromISO(dueDate).diffNow().as('hours') < 3
-								? 'text-brand-text-overdue dtw-text-xs xs:dtw-text-sm md:dtw-text-base'
+								? 'dtw-text-brand-text-overdue dtw-text-xs xs:dtw-text-sm md:dtw-text-base'
 								: 'dtw-text-brand-text-body dtw-text-xs xs:dtw-text-sm md:dtw-text-base'
 						}
 					>

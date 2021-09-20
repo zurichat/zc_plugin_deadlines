@@ -40,8 +40,8 @@ const StatusChanger = ({
 						ref={toggler}
 						className={
 							currentStatus
-								? 'dtw-flex w-3 duration-300 h-3 ml-5 dtw-rounded-full bg-brand-secondary dtw-relative'
-								: 'dtw-flex w-3 duration-300 h-3 dtw-rounded-full bg-brand-secondary dtw-relative'
+								? 'dtw-flex dtw-w-3 dtw-duration-300 dtw-h-3 dtw-ml-5 dtw-rounded-full dtw-bg-brand-secondary dtw-relative'
+								: 'dtw-flex dtw-w-3 dtw-duration-300 dtw-h-3 dtw-rounded-full dtw-bg-brand-secondary dtw-relative'
 						}
 					></div>
 				</div>

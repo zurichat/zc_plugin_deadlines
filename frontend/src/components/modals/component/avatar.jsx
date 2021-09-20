@@ -12,7 +12,7 @@ const Avatar = ({ src, alt, isOnline }) => {
 				className="dtw-h-full dtw-w-full"
 			/>
 			<div
-				className={`absolute rounded-1/2 border-2 ${onlineStyle} bottom-0 -right-1 h-3 w-3 `}
+				className={`dtw-absolute dtw-rounded-1/2 dtw-border-2 ${onlineStyle} dtw-bottom-0 dtw--right-1 dtw-h-3 dtw-w-3 `}
 			></div>
 		</div>
 	)

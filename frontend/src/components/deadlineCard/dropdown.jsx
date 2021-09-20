@@ -47,8 +47,10 @@ const DeadlineCardDropdown = ({ object_id }) => {
 							{({ active }) => (
 								<button
 									className={`${
-										active ? 'bg-gray-100 text-gray-900' : 'text-gray-900'
-									} group dtw-flex rounded-t-md dtw-items-center w-full px-4 py-2 gap-2`}
+										active
+											? 'dtw-bg-gray-100 dtw-text-gray-900'
+											: 'dtw-text-gray-900'
+									} group dtw-flex rounded-t-md dtw-items-center dtw-w-full dtw-px-4 dtw-py-2 dtw-gap-2`}
 									onClick={editDeadline}
 								>
 									<BiEditAlt />
@@ -60,8 +62,10 @@ const DeadlineCardDropdown = ({ object_id }) => {
 							{({ active }) => (
 								<button
 									className={`${
-										active ? 'bg-red-500 text-white' : 'text-gray-900'
-									} group dtw-flex rounded-b-md dtw-items-center w-full px-4 py-2 gap-2`}
+										active
+											? 'dtw-bg-red-500 dtw-text-white'
+											: 'dtw-text-gray-900'
+									} group dtw-flex dtw-rounded-b-md dtw-items-center dtw-w-full dtw-px-4 dtw-py-2 dtw-gap-2`}
 									onClick={deleteDeadline}
 								>
 									<BiTrashAlt />

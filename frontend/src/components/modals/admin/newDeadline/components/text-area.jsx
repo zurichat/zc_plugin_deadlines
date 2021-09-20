@@ -10,7 +10,7 @@ const TextArea = ({ value, onChange, ...props }) => {
 				value={value}
 				onChange={onChange}
 				{...props}
-				className="w-full dtw-max-h-44 dtw-p-4 dtw-text-base dtw-block dtw-bg-lightGrey"
+				className="dtw-w-full dtw-max-h-44 dtw-p-4 dtw-text-base dtw-block dtw-bg-lightGrey"
 			/>
 		</div>
 	)

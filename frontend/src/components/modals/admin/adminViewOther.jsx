@@ -41,7 +41,7 @@ const AdminViewOther = ({ details }) => {
 						<Avatar
 							src={details.src}
 							alt={details.src}
-							className="w-6 dtw-h-6"
+							className="dtw-w-6 dtw-h-6"
 							isOnline={details.assigneeOnline}
 						/>
 						<p className="dtw-text-gray-600 dtw-pl-5">{details.assignee}</p>

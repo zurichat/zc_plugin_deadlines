@@ -141,13 +141,13 @@ const ModalForm = ({ closeModal }) => {
 			</div>
 			<div className="dtw-flex dtw-justify-end">
 				<button
-					className="w-16 dtw-h-10  dtw-text-sm dtw-text-brand-primary font-semibold"
+					className="dtw-w-16 dtw-h-10  dtw-text-sm dtw-text-brand-primary dtw-font-semibold"
 					onClick={closeModal}
 				>
 					Cancel
 				</button>
 				<button
-					className="dtw-dtw-dtw-dtw-w-16 dtw-h-10  dtw-text-sm dtw-bg-brand-primary dtw-dtw-dtw-dtw-font-semibold dtw-text-brand-bg-white"
+					className="dtw-w-16 dtw-h-10  dtw-text-sm dtw-bg-brand-primary dtw-font-semibold dtw-text-brand-bg-white"
 					onClick={handleSubmit}
 				>
 					Create

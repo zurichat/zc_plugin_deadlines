@@ -29,8 +29,8 @@ const SelectPage = () => {
 								<Link to="/">
 									<div
 										className={`${
-											active && 'bg-gray-400 bg-opacity-10'
-										}  dtw-py-2 text-sm text-gray-400 text-center  flex-shrink-0`}
+											active && 'dtw-bg-gray-400 dtw-bg-opacity-10'
+										}  dtw-py-2 dtw-text-sm dtw-text-gray-400 dtw-text-center  dtw-flex-shrink-0`}
 									>
 										{i}
 									</div>
@@ -39,8 +39,8 @@ const SelectPage = () => {
 								<Link to="/completed">
 									<div
 										className={`${
-											active && 'bg-gray-400 bg-opacity-10'
-										}  dtw-py-2 text-sm text-gray-400 text-center  flex-shrink-0`}
+											active && 'dtw-bg-gray-400 dtw-bg-opacity-10'
+										}  dtw-py-2 dtw-text-sm dtw-text-gray-400 dtw-text-center  dtw-flex-shrink-0`}
 									>
 										{i}
 									</div>
