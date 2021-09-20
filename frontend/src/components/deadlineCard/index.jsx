@@ -85,7 +85,7 @@ const DeadlineCard = ({
 			<div className="dtw-w-card-w">
 				<div
 					id="header-text"
-					className="cursor-pointer"
+					className="dtw-cursor-pointer"
 					onClick={UserViewDeadline}
 				>
 					<div className="dtw-flex dtw-justify-between">
@@ -99,7 +99,9 @@ const DeadlineCard = ({
 							/>
 						</div>
 					</div>
-					<p className="dtw-text-brand-text-body dtw-text-opacity-50 dtw-text-sm md:dtw-text-base">{`Assigned by ${assigner} to #${assignees}`}</p>
+					<p className="dtw-text-brand-text-body dtw-text-opacity-50 dtw-text-sm md:dtw-text-base">{`Assigned by ${assigner} to #${String(
+						assignees
+					).replace('#', '')}`}</p>
 				</div>
 				<p className="dtw-text-brand-text-body dtw-mt-4 dtw-mb-6 dtw-text-sm md:dtw-text-base dtw-line-clamp-2">
 					{description}
@@ -116,8 +118,8 @@ const DeadlineCard = ({
 					&nbsp;
 					<span
 						className={
-							DateTime.fromISO(dueDate).diffNow().as('hours') < 3
-								? 'text-brand-text-overdue dtw-text-xs xs:dtw-text-sm md:dtw-text-base'
+							DateTime.fromISO(dueDate).diffNow().as('hours') < 48
+								? 'dtw-text-brand-text-overdue dtw-text-xs xs:dtw-text-sm md:dtw-text-base'
 								: 'dtw-text-brand-text-body dtw-text-xs xs:dtw-text-sm md:dtw-text-base'
 						}
 					>
@@ -148,7 +150,7 @@ const DeadlineCard = ({
 				</div>
 				<div
 					id="y-divider"
-					className="border-1/2 dtw-border-opacity-50 dtw-w-full dtw-mt-2 dtw-mb-6"
+					className="dtw-border-1/2 dtw-border-opacity-50 dtw-w-full dtw-mt-2 dtw-mb-6"
 				/>
 				<div id="dueDate" className="dtw-flex">
 					<div className="dtw-mr-2 dtw-pt-1">
