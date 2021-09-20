@@ -8,7 +8,7 @@ const ModalBase = ({ children, title }) => {
 	return (
 		<div
 			id="modal-container"
-			className="absolute w-full h-screen flex backdrop-filter backdrop-blur backdrop-brightness-50"
+			className="absolute w-full h-screen flex backdrop-filter backdrop-blur backdrop-brightness-50 z-10"
 		>
 			<div
 				id="overlay"
