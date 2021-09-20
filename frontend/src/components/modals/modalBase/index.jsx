@@ -4,6 +4,7 @@ import { ModalContext } from '../../../context/ModalContext'
 const ModalBase = ({ children, title }) => {
 	const { modalData, setModalData } = useContext(ModalContext)
 	const closeModal = () => setModalData({ ...modalData, modalShow: false })
+	// debugger
 
 	return (
 		<div
