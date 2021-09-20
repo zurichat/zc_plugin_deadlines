@@ -22,7 +22,7 @@ const StatusChanger = ({
 
 	return (
 		<div className="flex ">
-			<label className="h-6 w-12 mx-3">
+			<label className="h-6 w-12 mx-3 cursor-pointer">
 				<input
 					ref={radioSelect}
 					className=" absolute -ml-20 opacity-0"
@@ -33,7 +33,11 @@ const StatusChanger = ({
 						currentStatus
 							? toggler.current.classList.add('ml-2')
 							: toggler.current.classList.remove('ml-2')
-						mutation.mutate({ payload: setDeadlineStatus(), taskId })
+						mutation.mutate({
+							payload: setDeadlineStatus(),
+							taskId,
+							noToast: true,
+						})
 					}}
 				/>
 				<div
