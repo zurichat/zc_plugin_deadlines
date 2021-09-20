@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 
+import { useUpdateReminders } from '../../../api/reminders'
+
 const StatusChanger = ({
 	currentStatus,
 	setStatus,
@@ -12,11 +14,18 @@ const StatusChanger = ({
 	const setDeadlineStatus = () => {
 		return currentStatus ? 'Completed' : 'Pending'
 	}
+	const mutation = useUpdateReminders()
 	useEffect(() => {
 		radioSelect.current.checked = currentStatus
 		console.log(radioSelect.current.checked)
+		console.log(currentStatus)
 		deadlineStatus.current.innerText = setDeadlineStatus()
+		// mutation.mutate({ payload: setDeadlineStatus(), taskId })
 	})
+
+	useEffect(() => {
+		mutation.mutate({ payload: setDeadlineStatus(), taskId })
+	}, [currentStatus])
 	return (
 		<div className="flex ">
 			{/* <div
@@ -29,11 +38,17 @@ const StatusChanger = ({
 					className=" absolute -ml-20 opacity-0"
 					type="checkbox"
 					onChange={(event) => {
+						// debugger
 						setStatus({ status: event.target.checked })
 						currentStatus
 							? toggler.current.classList.add('ml-2')
 							: toggler.current.classList.remove('ml-2')
+						// useUpdateReminders.mutate({
+						// 	payload: setDeadlineStatus(),
+						// 	taskId,
+						// })
 						console.log(taskId)
+						// console.log(currentStatus)
 					}}
 				/>
 				<div
