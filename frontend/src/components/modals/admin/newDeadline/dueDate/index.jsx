@@ -33,7 +33,7 @@ const DueDatePicker = ({ dateValue, inputDisabled, className, ...props }) => {
 			</label>
 			<div className="dtw-text-left dtw-mt-1">
 				<input
-					className="h-full dtw-w-full dtw-text-header dtw-tracking-wide  dtw-uppercase dtw-px-4 dtw-py-1 dtw-font-normal dtw-text-xs dtw-bg-white dtw-border dtw-rounded-md dtw-border-leftNav"
+					className="dtw-h-full dtw-w-full dtw-text-header dtw-tracking-wide  dtw-uppercase dtw-px-4 dtw-py-1 dtw-font-normal dtw-text-xs dtw-bg-white dtw-border dtw-rounded-md dtw-border-leftNav"
 					type="date"
 					id="due"
 					value={value}

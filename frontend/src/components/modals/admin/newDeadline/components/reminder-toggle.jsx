@@ -10,15 +10,15 @@ const ReminderToggle = ({ ...props }) => {
 			checked={enabled}
 			onChange={setEnabled}
 			className={`${
-				enabled ? 'bg-green-200' : 'bg-gray-200'
-			} relative inline-flex items-center h-6 rounded-full w-11`}
+				enabled ? 'dtw-bg-green-200' : 'dtw-bg-gray-200'
+			} dtw-relative dtw-inline-flex dtw-items-center dtw-h-6 dtw-rounded-full dtw-w-11`}
 			{...props}
 		>
 			<span className="dtw-sr-only">Enable notifications</span>
 			<span
 				className={`${
-					enabled ? 'translate-x-6' : 'translate-x-1'
-				} inline-block w-4 h-4 transform bg-brand-primary rounded-full`}
+					enabled ? 'dtw-translate-x-6' : 'dtw-translate-x-1'
+				} dtw-inline-block dtw-w-4 dtw-h-4 dtw-transform dtw-bg-brand-primary dtw-rounded-full`}
 			/>
 		</Switch>
 	)

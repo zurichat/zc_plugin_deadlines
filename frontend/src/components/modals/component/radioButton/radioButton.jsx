@@ -8,7 +8,7 @@ const RadioButton = ({ id, label, selected, onChange }) => {
 				<input
 					type="radio"
 					id={id}
-					className={`${style.checkbox} hidden`}
+					className={`${style.checkbox} dtw-hidden`}
 					onChange={onChange}
 					name="setPriority"
 					checked={selected.toLowerCase() === id.toLowerCase()}
@@ -20,7 +20,7 @@ const RadioButton = ({ id, label, selected, onChange }) => {
 			>
 				<div className="dtw-inline-block dtw-h-4 dtw-w-4 dtw-rounded-1/2 dtw-border-solid dtw-border dtw-border-black dtw-p-px">
 					<div
-						className={`${style.interior} dtw-rounded-1/2 bg-brand-primary h-full`}
+						className={`${style.interior} dtw-rounded-1/2 dtw-bg-brand-primary dtw-h-full`}
 					></div>
 				</div>
 
