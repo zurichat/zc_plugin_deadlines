@@ -83,12 +83,7 @@ export const useDeleteDeadline = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation(
-		(object_id) =>
-			axiosInstance.delete(`/deadlines/${object_id}`, {
-				headers: {
-					'Access-Control-Allow-Origin': '*',
-				},
-			}),
+		(object_id) => axiosInstance.delete(`/deadlines/${object_id}`),
 		{
 			onSuccess: () => {
 				queryClient
@@ -112,18 +107,15 @@ export const useUpdateReminders = () => {
 				data: payload,
 				method: 'PUT',
 				url: `/deadlines/${object_id}`,
-				headers: {
-					'Access-Control-Allow-Origin': '*',
-				},
 			}),
 		{
-			onSuccess: () => {
-				queryClient
-					.invalidateQueries('allReminders')
-					.then(() => toast.success(`Updated successfully`))
+			onSuccess: (_, { noToast }) => {
+				queryClient.invalidateQueries('allReminders').then(() => {
+					if (!noToast) toast.success(`Updated successfully`)
+				})
 			},
-			onError: () => {
-				toast.error('Failed to update reminder')
+			onError: (_, { noToast }) => {
+				if (!noToast) toast.error('Failed to update reminder')
 			},
 		}
 	)

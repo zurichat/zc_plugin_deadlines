@@ -16,6 +16,7 @@ const DeadlineCard = ({
 	dueDate,
 	priority,
 	object_id,
+	status,
 }) => {
 	const { setModalData } = useContext(ModalContext)
 
@@ -59,7 +60,7 @@ const DeadlineCard = ({
 			  }`
 			: `Expired`
 
-	const UserViewDeadline = () => {
+	const userViewDeadline = () => {
 		setModalData({
 			modalShow: true,
 			modalType: 'userView',
@@ -76,6 +77,7 @@ const DeadlineCard = ({
 				dueIn: remainingStr,
 				assigneeOnline: true,
 				object_id,
+				status,
 			},
 		})
 	}
@@ -86,7 +88,7 @@ const DeadlineCard = ({
 				<div
 					id="header-text"
 					className="cursor-pointer"
-					onClick={UserViewDeadline}
+					onClick={userViewDeadline}
 				>
 					<div className="flex justify-between">
 						<div className="flex">
