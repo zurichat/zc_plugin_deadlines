@@ -107,7 +107,7 @@ export const useUpdateReminders = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation(
-		({ payload, object_id, noToast }) =>
+		({ payload, object_id }) =>
 			axiosInstance({
 				data: payload,
 				method: 'PUT',
