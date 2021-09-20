@@ -19,6 +19,15 @@ const DeadlineCardDropdown = ({ object_id }) => {
 			},
 		})
 	}
+	const adminViewOther = () => {
+		setModalData({
+			modalShow: true,
+			modalType: 'adminViewOther',
+			modalData: {
+				object_id,
+			},
+		})
+	}
 
 	const deleteDeadline = () => {
 		mutation.mutate(object_id)
@@ -66,6 +75,19 @@ const DeadlineCardDropdown = ({ object_id }) => {
 								>
 									<BiTrashAlt />
 									Delete
+								</button>
+							)}
+						</Menu.Item>
+						<Menu.Item as="li" className=" flex items-center">
+							{({ active }) => (
+								<button
+									className={`${
+										active ? 'bg-red-500 text-white' : 'text-gray-900'
+									} group flex rounded-b-md items-center w-full px-4 py-2 gap-2`}
+									onClick={adminViewOther}
+								>
+									<BiTrashAlt />
+									adminViewOther
 								</button>
 							)}
 						</Menu.Item>
