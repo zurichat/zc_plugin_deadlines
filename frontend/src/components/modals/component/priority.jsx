@@ -15,7 +15,7 @@ const Priority = ({ status, forTitle }) => {
 			break
 	}
 
-	const bg_color = `bg-brand-priority-${color}`
+	const bg_color = `dtw-bg-brand-priority-${color}`
 	const title = forTitle ? '| Priority Level - ' : ''
 
 	return (
