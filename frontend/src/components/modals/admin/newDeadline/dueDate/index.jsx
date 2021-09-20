@@ -8,7 +8,10 @@ const DueDatePicker = ({ dateValue, inputDisabled, className, ...props }) => {
 	}
 
 	return (
-		<div className={`dtw-w-full dtw-flex dtw-flex-col ${className}`} {...props}>
+		<div
+			className={`dtw-w-full dtw-flex dtw-flex-col dtw-${className}`}
+			{...props}
+		>
 			<label
 				className="dtw-text-left dtw-flex dtw-items-center"
 				dtw-htmlFor="due"

@@ -15,7 +15,7 @@ const Priority = ({ status, forTitle }) => {
 			break
 	}
 
-	const bg_color = `dtw-bg-brand-priority-${color}`
+	const bg_color = `bg-brand-priority-${color}`
 	const title = forTitle ? '| Priority Level - ' : ''
 
 	return (
@@ -23,7 +23,7 @@ const Priority = ({ status, forTitle }) => {
 			<div className="dtw-capitalize dtw-text-sm dtw-leading-none dtw-self-center">
 				{title} {status}
 			</div>
-			<div className={`dtw-h-3 dtw-w-3 dtw-rounded-1/2 ${bg_color}`}></div>
+			<div className={`dtw-h-3 dtw-w-3 dtw-rounded-1/2 dtw-${bg_color}`}></div>
 		</div>
 	)
 }
