@@ -17,15 +17,9 @@ const StatusChanger = ({
 	const mutation = useUpdateReminders()
 	useEffect(() => {
 		radioSelect.current.checked = currentStatus
-		console.log(radioSelect.current.checked)
-		console.log(currentStatus)
 		deadlineStatus.current.innerText = setDeadlineStatus()
-		// mutation.mutate({ payload: setDeadlineStatus(), taskId })
 	})
 
-	useEffect(() => {
-		mutation.mutate({ payload: setDeadlineStatus(), taskId })
-	}, [currentStatus])
 	return (
 		<div className="flex ">
 			<label className="h-6 w-12 mx-3">
@@ -39,12 +33,7 @@ const StatusChanger = ({
 						currentStatus
 							? toggler.current.classList.add('ml-2')
 							: toggler.current.classList.remove('ml-2')
-						// useUpdateReminders.mutate({
-						// 	payload: setDeadlineStatus(),
-						// 	taskId,
-						// })
-						console.log(taskId)
-						// console.log(currentStatus)
+						mutation.mutate({ payload: setDeadlineStatus(), taskId })
 					}}
 				/>
 				<div
