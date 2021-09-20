@@ -28,10 +28,6 @@ const StatusChanger = ({
 	}, [currentStatus])
 	return (
 		<div className="flex ">
-			{/* <div
-				ref={deadlineStatus}
-				className="h-6 w-6 border-black border-2 rounded"
-			></div> */}
 			<label className="h-6 w-12 mx-3">
 				<input
 					ref={radioSelect}
