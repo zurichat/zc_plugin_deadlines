@@ -83,12 +83,7 @@ export const useDeleteDeadline = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation(
-		(object_id) =>
-			axiosInstance.delete(`/deadlines/${object_id}`, {
-				headers: {
-					'Access-Control-Allow-Origin': '*',
-				},
-			}),
+		(object_id) => axiosInstance.delete(`/deadlines/${object_id}`),
 		{
 			onSuccess: () => {
 				queryClient
@@ -112,9 +107,6 @@ export const useUpdateReminders = () => {
 				data: payload,
 				method: 'PUT',
 				url: `/deadlines/${object_id}`,
-				headers: {
-					'Access-Control-Allow-Origin': '*',
-				},
 			}),
 		{
 			onSuccess: (_, { noToast }) => {
