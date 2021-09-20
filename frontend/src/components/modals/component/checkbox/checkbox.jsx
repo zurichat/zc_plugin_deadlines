@@ -11,7 +11,8 @@ const Checkbox = ({ id, label, check, onChange }) => {
 				<input
 					type="checkbox"
 					id={id}
-					className={`${style.checkbox} hidden`}
+					// Use element selectors for css module
+					className="dtw-hidden"
 					onChange={change}
 					defaultChecked
 				/>
@@ -19,7 +20,7 @@ const Checkbox = ({ id, label, check, onChange }) => {
 				<input
 					type="checkbox"
 					id={id}
-					className={`${style.checkbox} hidden`}
+					className="dtw-hidden"
 					onChange={change}
 				/>
 			)}

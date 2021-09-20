@@ -147,7 +147,7 @@ const ModalForm = ({ closeModal }) => {
 					Cancel
 				</button>
 				<button
-					className="dtw-w-16 dtw-h-10  dtw-text-sm dtw-bg-brand-primary dtw-font-semibold dtw-text-brand-bg-white"
+					className="dtw-h-10  dtw-text-sm dtw-bg-brand-primary dtw-font-semibold dtw-w-14 dtw-text-brand-bg-white"
 					onClick={handleSubmit}
 				>
 					Create

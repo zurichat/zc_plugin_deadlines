@@ -95,7 +95,7 @@ const DeadlineCard = ({
 							</p>
 							<div
 								id="priority"
-								className={`min-w-priority h-2 dtw-rounded-full self-center ml-1 md:ml-2 ${priority_bg}`}
+								className={`dtw-min-w-priority dtw-h-2 dtw-rounded-full dtw-self-center dtw-ml-1 md:dtw-ml-2 dtw-${priority_bg}`}
 							/>
 						</div>
 					</div>
