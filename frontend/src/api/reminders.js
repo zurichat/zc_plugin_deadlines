@@ -4,41 +4,55 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 import errorHandler from './utils/errorHandler'
 
 const axiosInstance = axios.create({
+	// baseURL: 'http://localhost:3008/api/v1',
 	baseURL: 'https://reminders.zuri.chat/api/v1',
+	headers: {
+		'Access-Control-Allow-Origin': '*',
+	},
 })
 
 export const useAllReminders = () => {
-	const { isLoading, data, error, isPlaceholderData, isError, status } =
-		useQuery(
-			'allReminders',
-			async () => {
-				try {
-					const res = await axiosInstance({
-						method: 'GET',
-						url: '/deadlines',
-					})
-					return res.data.data
-				} catch (error) {
-					throw errorHandler(error)
+	const {
+		isLoading,
+		isSearchActive,
+		foundReminders,
+		data,
+		error,
+		isPlaceholderData,
+		isError,
+		status,
+	} = useQuery(
+		'allReminders',
+		async () => {
+			try {
+				const res = await axiosInstance({
+					method: 'GET',
+					url: '/deadlines',
+				})
+				return res.data.data
+			} catch (error) {
+				throw errorHandler(error)
+			}
+		},
+		{
+			placeholderData: () => {
+				return {
+					data: {
+						result: [],
+					},
 				}
 			},
-			{
-				placeholderData: () => {
-					return {
-						data: {
-							result: [],
-						},
-					}
-				},
-			}
-		)
+		}
+	)
+
+	const currentReminders = isSearchActive ? foundReminders : data
 
 	// fetchedData is the response returned from the get query, error only exists if there's an error
 	// isLoading and isPlaceholderData are Booleans representing loading and palceholder data states respectively
 	// isPlaceholder exists primarily to deal with react calling methods on undefined when mounting components
 
 	return {
-		fetchedData: data,
+		fetchedData: currentReminders,
 		isLoading,
 		error,
 		isPlaceholderData,
