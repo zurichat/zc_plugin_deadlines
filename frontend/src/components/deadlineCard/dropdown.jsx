@@ -1,24 +1,24 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 
 import { BsThreeDots } from 'react-icons/bs'
 import { BiEditAlt, BiTrashAlt } from 'react-icons/bi'
-import { ModalContext } from '../../context/ModalContext'
+// import { ModalContext } from '../../context/ModalContext'
 import { useDeleteDeadline } from '../../api/reminders'
 
 const DeadlineCardDropdown = ({ object_id }) => {
-	const { setModalData } = useContext(ModalContext)
+	// const { setModalData } = useContext(ModalContext)
 	const mutation = useDeleteDeadline()
 
-	const editDeadline = () => {
-		setModalData({
-			modalShow: true,
-			modalType: 'adminEdit',
-			modalData: {
-				object_id,
-			},
-		})
-	}
+	// const editDeadline = () => {
+	// 	setModalData({
+	// 		modalShow: true,
+	// 		modalType: 'adminEdit',
+	// 		modalData: {
+	// 			object_id,
+	// 		},
+	// 	})
+	// }
 
 	const deleteDeadline = () => {
 		mutation.mutate(object_id)
@@ -49,7 +49,7 @@ const DeadlineCardDropdown = ({ object_id }) => {
 									className={`${
 										active ? 'bg-gray-100 text-gray-900' : 'text-gray-900'
 									} group flex rounded-t-md items-center w-full px-4 py-2 gap-2`}
-									onClick={editDeadline}
+									// onClick={editDeadline}
 								>
 									<BiEditAlt />
 									Edit

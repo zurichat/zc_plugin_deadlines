@@ -77,7 +77,7 @@ const AdminView = (props) => {
 						taskId={object_id}
 					/>
 				</div>
-				<div className="flex justify-end">
+				{/* <div className="flex justify-end">
 					<button
 						onClick={closeModal}
 						className="w-16 h-7  text-sm text-brand-primary font-semibold"
@@ -87,7 +87,7 @@ const AdminView = (props) => {
 					<button className="w-16 h-7  text-sm bg-brand-primary font-semibold text-brand-bg-white">
 						Update
 					</button>
-				</div>
+				</div> */}
 			</div>
 		</ModalBase>
 	)
