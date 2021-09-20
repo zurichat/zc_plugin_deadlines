@@ -16,15 +16,15 @@ const StatusChanger = ({
 		deadlineStatus.current.innerText = setDeadlineStatus()
 	})
 	return (
-		<div className="flex ">
+		<div className="dtw-flex ">
 			{/* <div
 				ref={deadlineStatus}
-				className="h-6 w-6 border-black border-2 rounded"
+				className="dtw-h-6 dtw-w-6 dtw-border-black dtw-border-2 dtw-rounded"
 			></div> */}
-			<label className="h-6 w-12 mx-3">
+			<label className="dtw-h-6 dtw-w-12 dtw-mx-3">
 				<input
 					ref={radioSelect}
-					className=" absolute -ml-20 opacity-0"
+					className=" dtw-absolute dtw--ml-20 dtw-opacity-0"
 					type="checkbox"
 					onChange={(event) => {
 						setStatus({ status: event.target.checked })
@@ -35,13 +35,13 @@ const StatusChanger = ({
 							  (deadlineStatus.current.innerText = 'Completed'))
 					}}
 				/>
-				<div className="flex w-9 h-4 mt-1 border-2 border-black rounded-full bg-brand-primary relative">
+				<div className="dtw-flex dtw-w-9 dtw-h-4 dtw-mt-1 dtw-border-2 dtw-border-black dtw-rounded-full dtw-bg-brand-primary dtw-relative">
 					<div
 						ref={toggler}
 						className={
 							currentStatus
-								? 'flex w-3 duration-300 h-3 ml-5 rounded-full bg-brand-secondary relative'
-								: 'flex w-3 duration-300 h-3 rounded-full bg-brand-secondary relative'
+								? 'dtw-flex w-3 duration-300 h-3 ml-5 dtw-rounded-full bg-brand-secondary dtw-relative'
+								: 'dtw-flex w-3 duration-300 h-3 dtw-rounded-full bg-brand-secondary dtw-relative'
 						}
 					></div>
 				</div>

@@ -27,21 +27,21 @@ const AdminView = (props) => {
 	const radioSelect = useRef()
 
 	const DeadlineTitle = (
-		<div className="flex gap-4">
+		<div className="dtw-flex dtw-gap-4">
 			{title} <Priority status={priority} forTitle />
 		</div>
 	)
 	return (
 		<ModalBase title={DeadlineTitle}>
-			<div className=" flex flex-col gap-7">
+			<div className=" dtw-flex dtw-flex-col dtw-gap-7">
 				<ColTitleDes title="Description" writeUp={description} />
-				<div className="flex ">
-					<div className="flex gap-6">
+				<div className="dtw-flex ">
+					<div className="dtw-flex dtw-gap-6">
 						<ColTitleDes title="Start Date" writeUp={startDate} />
 						<ColTitleDes title="Due Date" writeUp={dueDate} />
 						<ColTitleDes
 							title="Due In"
-							writeUp={<span className="text-brand-error">{dueIn} </span>}
+							writeUp={<span className="dtw-text-brand-error">{dueIn} </span>}
 						/>
 					</div>
 				</div>
@@ -55,8 +55,8 @@ const AdminView = (props) => {
 						/>
 					}
 				/>
-				<div className="flex ">
-					<div ref={deadlineStatus} className="h-6 w-20 "></div>
+				<div className="dtw-flex ">
+					<div ref={deadlineStatus} className="dtw-h-6 dtw-w-20 "></div>
 					<StatusChanger
 						currentStatus={taskStatus.status}
 						toggler={toggler}
@@ -65,11 +65,11 @@ const AdminView = (props) => {
 						radioSelect={radioSelect}
 					/>
 				</div>
-				<div className="flex justify-end">
-					<button className="w-16 h-7  text-sm text-brand-primary font-semibold">
+				<div className="dtw-flex dtw-justify-end">
+					<button className="dtw-w-16 dtw-h-7  dtw-text-sm dtw-text-brand-primary dtw-font-semibold">
 						Cancel
 					</button>
-					<button className="w-16 h-7  text-sm bg-brand-primary font-semibold text-brand-bg-white">
+					<button className="dtw-w-16 dtw-h-7  dtw-text-sm dtw-bg-brand-primary dtw-font-semibold dtw-text-brand-bg-white">
 						Update
 					</button>
 				</div>

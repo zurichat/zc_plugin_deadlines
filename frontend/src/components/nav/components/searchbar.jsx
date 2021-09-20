@@ -22,12 +22,12 @@ const Searchbar = ({ ...props }) => {
 
 	return (
 		<div
-			className="border rounded w-full py-2 px-5 inline-flex justify-between items-center focus-within:shadow-lg focus-within:ring-1 focus-within:ring-brand-primary"
+			className="dtw-border dtw-rounded dtw-w-full dtw-py-2 dtw-px-5 dtw-inline-flex dtw-justify-between dtw-items-center focus-within:dtw-shadow-lg focus-within:dtw-ring-1 focus-within:dtw-ring-brand-primary"
 			{...props}
 		>
 			<label htmlFor="task search" role="search">
 				<input
-					className="text-gray-400 leading-tight text-sm focus:text-black focus:outline-none mr-5"
+					className="dtw-text-gray-400 dtw-leading-tight dtw-text-sm focus:dtw-text-black focus:dtw-outline-none dtw-mr-5"
 					placeholder="Search"
 					type="text"
 					value={input}
@@ -37,7 +37,7 @@ const Searchbar = ({ ...props }) => {
 				/>
 			</label>
 			<SearchIcon
-				className="text-gray-400 w-3.5"
+				className="dtw-text-gray-400 dtw-w-3.5"
 				type="submit"
 				onClick={handleSubmit}
 			/>

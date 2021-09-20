@@ -6,7 +6,7 @@ const Checkbox = ({ id, label, check, onChange }) => {
 		onChange(checked)
 	}
 	return (
-		<div className="flex justify-start gap-x-2">
+		<div className="dtw-flex dtw-justify-start dtw-gap-x-2">
 			{check ? (
 				<input
 					type="checkbox"
@@ -25,9 +25,9 @@ const Checkbox = ({ id, label, check, onChange }) => {
 			)}
 			<label
 				htmlFor={id}
-				className="text-sm cursor-pointer leading-none self-center flex items-center gap-x-2"
+				className="dtw-text-sm dtw-cursor-pointer dtw-leading-none dtw-self-center dtw-flex dtw-items-center dtw-gap-x-2"
 			>
-				<div className="inline-block h-5 w-5 border-solid border border-black p-px">
+				<div className="dtw-inline-block dtw-h-5 dtw-w-5 dtw-border-solid dtw-border dtw-border-black dtw-p-px">
 					<div className={`${style.interior} bg-brand-primary h-full`}></div>
 				</div>
 

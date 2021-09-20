@@ -3,7 +3,7 @@ import React from 'react'
 const SaveDeadlineButton = ({ ...props }) => {
 	return (
 		<button
-			className=" bg-brand-primary text-white p-2 sm:py-2 sm:px-6 rounded-sm"
+			className=" dtw-bg-brand-primary dtw-text-white dtw-p-2 sm:dtw-py-2 sm:dtw-px-6 dtw-rounded-sm"
 			{...props}
 		>
 			Save Deadline

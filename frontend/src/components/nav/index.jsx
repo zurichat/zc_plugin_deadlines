@@ -9,37 +9,37 @@ import SelectPage from './components/selectPages'
 
 const Nav = () => {
 	return (
-		<nav className="space-y-1 md:space-y-0   lg:border-b">
-			<div className="flex flex-col lg:flex-row justify-between items-center">
-				<div className="flex justify-between items-center w-full lg:w-auto">
-					<div className="lg:hidden">
+		<nav className="dtw-space-y-1 md:dtw-space-y-0   lg:dtw-border-b">
+			<div className="dtw-flex dtw-flex-col lg:dtw-flex-row dtw-justify-between dtw-items-center">
+				<div className="dtw-flex dtw-justify-between dtw-items-center dtw-w-full lg:dtw-w-auto">
+					<div className="lg:dtw-hidden">
 						<SelectPage />
 					</div>
-					<div className="flex">
-						<SearchIcon className="lg:hidden text-gray-400 w-3.5 mr-3" />
-						<FilterIcon className=" lg:hidden text-gray-400 w-3.5" />
+					<div className="dtw-flex">
+						<SearchIcon className="lg:dtw-hidden dtw-text-gray-400 dtw-w-3.5 dtw-mr-3" />
+						<FilterIcon className=" lg:dtw-hidden dtw-text-gray-400 dtw-w-3.5" />
 					</div>
 				</div>
-				<div className="lg:hidden self-start">
+				<div className="lg:dtw-hidden dtw-self-start">
 					<CreateNewDeadlineButton />
 				</div>
 
-				<div className="flex justify-between ">
-					<div className="hidden lg:block">
+				<div className="dtw-flex dtw-justify-between ">
+					<div className="dtw-hidden lg:dtw-block">
 						<CreateNewDeadlineButton />
 					</div>
-					<div className=" flex ">
-						<div className="hidden lg:block px-4">
+					<div className=" dtw-flex ">
+						<div className="dtw-hidden lg:dtw-block dtw-px-4">
 							<Searchbar />
 						</div>
 
-						<div className="hidden lg:block ">
+						<div className="dtw-hidden lg:dtw-block ">
 							<Sortbar />
 						</div>
 					</div>
 				</div>
 			</div>
-			<div className="hidden lg:block">
+			<div className="dtw-hidden lg:dtw-block">
 				<SelectPage />
 			</div>
 		</nav>

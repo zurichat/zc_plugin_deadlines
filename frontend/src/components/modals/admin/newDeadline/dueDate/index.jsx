@@ -8,9 +8,12 @@ const DueDatePicker = ({ dateValue, inputDisabled, className, ...props }) => {
 	}
 
 	return (
-		<div className={`w-full flex flex-col ${className}`} {...props}>
-			<label className="text-left flex items-center" htmlFor="due">
-				<div className="mr-1 w-4 h-4 rounded-full bg-white flex justify-center items-center">
+		<div className={`dtw-w-full dtw-flex dtw-flex-col ${className}`} {...props}>
+			<label
+				className="dtw-text-left dtw-flex dtw-items-center"
+				dtw-htmlFor="due"
+			>
+				<div className="dtw-mr-1 dtw-w-4 dtw-h-4 dtw-rounded-full dtw-bg-white dtw-flex dtw-justify-center dtw-items-center">
 					<svg
 						width="9"
 						height="8"
@@ -24,11 +27,13 @@ const DueDatePicker = ({ dateValue, inputDisabled, className, ...props }) => {
 						/>
 					</svg>
 				</div>
-				<span className="block font-bold text-header">Due Date</span>
+				<span className="dtw-block dtw-font-bold dtw-text-header">
+					Due Date
+				</span>
 			</label>
-			<div className="text-left mt-1">
+			<div className="dtw-text-left dtw-mt-1">
 				<input
-					className="h-full w-full text-header tracking-wide  uppercase px-4 py-1 font-normal text-xs bg-white border rounded-md border-leftNav"
+					className="h-full dtw-w-full dtw-text-header dtw-tracking-wide  dtw-uppercase dtw-px-4 dtw-py-1 dtw-font-normal dtw-text-xs dtw-bg-white dtw-border dtw-rounded-md dtw-border-leftNav"
 					type="date"
 					id="due"
 					value={value}

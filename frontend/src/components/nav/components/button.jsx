@@ -6,7 +6,7 @@ const CreateNewDeadlineButton = (admin) => {
 	return admin ? (
 		<>
 			<button
-				className="w-30 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded"
+				className="dtw-w-30 dtw-bg-green-500 hover:dtw-bg-green-700 dtw-text-white dtw-py-2 dtw-px-4 dtw-rounded"
 				onClick={() =>
 					setModalData({
 						...modalData,
@@ -19,7 +19,7 @@ const CreateNewDeadlineButton = (admin) => {
 			</button>
 		</>
 	) : (
-		<div className="hidden"></div>
+		<div className="dtw-hidden"></div>
 	)
 }
 

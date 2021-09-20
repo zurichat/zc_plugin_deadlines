@@ -28,7 +28,7 @@ const Dropdown = ({ ...props }) => {
 		<div>
 			<select
 				{...props}
-				className="border-b-2 border-solid border-gray-200 h-16 outline-none py-0 px-2"
+				className="dtw-border-b-2 dtw-border-solid dtw-border-gray-200 dtw-h-16 dtw-outline-none dtw-py-0 dtw-px-2"
 			>
 				<option value="null">Select an assignee</option>
 				{assignees.map((assignee) => (

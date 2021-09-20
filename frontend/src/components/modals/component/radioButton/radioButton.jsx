@@ -3,7 +3,7 @@ import style from './radio.module.css'
 
 const RadioButton = ({ id, label, selected, onChange }) => {
 	return (
-		<div className="flex justify-start">
+		<div className="dtw-flex dtw-justify-start">
 			{
 				<input
 					type="radio"
@@ -16,11 +16,11 @@ const RadioButton = ({ id, label, selected, onChange }) => {
 			}
 			<label
 				htmlFor={id}
-				className="text-sm cursor-pointer leading-none self-center flex items-center gap-x-2"
+				className="dtw-text-sm dtw-cursor-pointer dtw-leading-none dtw-self-center dtw-flex dtw-items-center dtw-gap-x-2"
 			>
-				<div className="inline-block h-4 w-4 rounded-1/2 border-solid border border-black p-px">
+				<div className="dtw-inline-block dtw-h-4 dtw-w-4 dtw-rounded-1/2 dtw-border-solid dtw-border dtw-border-black dtw-p-px">
 					<div
-						className={`${style.interior} rounded-1/2 bg-brand-primary h-full`}
+						className={`${style.interior} dtw-rounded-1/2 bg-brand-primary h-full`}
 					></div>
 				</div>
 

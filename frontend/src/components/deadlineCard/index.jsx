@@ -81,83 +81,86 @@ const DeadlineCard = ({
 	}
 
 	return (
-		<div className="ring-1 ring-brand-border ring-opacity-50 flex p-4 rounded-xl min-h-full justify-evenly">
-			<div className="w-card-w">
+		<div className="dtw-ring-1 dtw-ring-brand-border dtw-ring-opacity-50 dtw-flex dtw-p-4 dtw-rounded-xl dtw-min-h-full dtw-justify-evenly">
+			<div className="dtw-w-card-w">
 				<div
 					id="header-text"
 					className="cursor-pointer"
 					onClick={UserViewDeadline}
 				>
-					<div className="flex justify-between">
-						<div className="flex">
-							<p className="font-semibold md:text-lg text-brand-text-header">
+					<div className="dtw-flex dtw-justify-between">
+						<div className="dtw-flex">
+							<p className="dtw-font-semibold md:dtw-text-lg dtw-text-brand-text-header">
 								{title}
 							</p>
 							<div
 								id="priority"
-								className={`min-w-priority h-2 rounded-full self-center ml-1 md:ml-2 ${priority_bg}`}
+								className={`min-w-priority h-2 dtw-rounded-full self-center ml-1 md:ml-2 ${priority_bg}`}
 							/>
 						</div>
 					</div>
-					<p className="text-brand-text-body text-opacity-50 text-sm md:text-base">{`Assigned by ${assigner} to #${assignees}`}</p>
+					<p className="dtw-text-brand-text-body dtw-text-opacity-50 dtw-text-sm md:dtw-text-base">{`Assigned by ${assigner} to #${assignees}`}</p>
 				</div>
-				<p className="text-brand-text-body mt-4 mb-6 text-sm md:text-base line-clamp-2">
+				<p className="dtw-text-brand-text-body dtw-mt-4 dtw-mb-6 dtw-text-sm md:dtw-text-base dtw-line-clamp-2">
 					{description}
 				</p>
-				<div id="dueIn" className="flex items-center">
-					<div className="mr-2">
-						<div className="bg-brand-svg-green rounded-full p-1 w-5 h-5 flex items-center justify-center">
+				<div id="dueIn" className="dtw-flex dtw-items-center">
+					<div className="dtw-mr-2">
+						<div className="dtw-bg-brand-svg-green dtw-rounded-full dtw-p-1 dtw-w-5 dtw-h-5 dtw-flex dtw-items-center dtw-justify-center">
 							<Clock />
 						</div>
 					</div>
-					<b className="text-brand-text-body text-xs xs:text-sm md:text-base">
+					<b className="dtw-text-brand-text-body dtw-text-xs xs:dtw-text-sm md:dtw-text-base">
 						Due In:
 					</b>
 					&nbsp;
 					<span
 						className={
 							DateTime.fromISO(dueDate).diffNow().as('hours') < 3
-								? 'text-brand-text-overdue text-xs xs:text-sm md:text-base'
-								: 'text-brand-text-body text-xs xs:text-sm md:text-base'
+								? 'text-brand-text-overdue dtw-text-xs xs:dtw-text-sm md:dtw-text-base'
+								: 'dtw-text-brand-text-body dtw-text-xs xs:dtw-text-sm md:dtw-text-base'
 						}
 					>
 						{remainingStr}
 					</span>
 				</div>
 			</div>
-			<div id="y-divider" className="border-1/2 border-opacity-50 mx-4" />
-			<div className="flex flex-col justify-between">
+			<div
+				id="y-divider"
+				className="dtw-border-1/2 dtw-border-opacity-50 dtw-mx-4"
+			/>
+			<div className="dtw-flex dtw-flex-col dtw-justify-between">
 				<DeadlineCardDropdown object_id={object_id} />
-				<div id="startDate" className="flex">
-					<div className="mr-2 pt-1">
-						<div className="bg-brand-svg-blue rounded-full p-1 w-5 h-5 flex items-center justify-center">
+				<div id="startDate" className="dtw-flex">
+					<div className="dtw-mr-2 dtw-pt-1">
+						<div className="dtw-bg-brand-svg-blue dtw-rounded-full dtw-p-1 dtw-w-5 dtw-h-5 dtw-flex dtw-items-center dtw-justify-center">
 							<Date />
 						</div>
 					</div>
 					<div>
-						<p className="text-brand-text-body text-opacity-60 text-xs md:text-sm">
+						<p className="dtw-text-brand-text-body dtw-text-opacity-60 dtw-text-xs md:dtw-text-sm">
 							Start Date:
 						</p>
-						<b className="text-brand-text-body text-xs md:text-sm">
+						<b className="dtw-text-brand-text-body dtw-text-xs md:dtw-text-sm">
 							{startDateStr}
 						</b>
 					</div>
 				</div>
 				<div
 					id="y-divider"
-					className="border-1/2 border-opacity-50 w-full mt-2 mb-6"
+					className="border-1/2 dtw-border-opacity-50 dtw-w-full dtw-mt-2 dtw-mb-6"
 				/>
-				<div id="dueDate" className="flex">
-					<div className="mr-2 pt-1">
-						<div className="bg-brand-svg-blue rounded-full p-1 w-5 h-5 flex items-center justify-center">
+				<div id="dueDate" className="dtw-flex">
+					<div className="dtw-mr-2 dtw-pt-1">
+						<div className="dtw-bg-brand-svg-blue dtw-rounded-full dtw-p-1 dtw-w-5 dtw-h-5 dtw-flex dtw-items-center dtw-justify-center">
 							<Date />
 						</div>
 					</div>
 					<div>
-						<p className="text-brand-text-body text-opacity-60 text-xs md:text-sm">
+						<p className="dtw-text-brand-text-body dtw-text-opacity-60 dtw-text-xs md:dtw-text-sm">
 							Due Date:
 						</p>
-						<b className="text-brand-text-body text-xs md:text-sm">
+						<b className="dtw-text-brand-text-body dtw-text-xs md:dtw-text-sm">
 							{dueDateStr}
 						</b>
 					</div>

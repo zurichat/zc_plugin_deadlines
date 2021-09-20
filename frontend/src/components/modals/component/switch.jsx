@@ -12,16 +12,18 @@ export default function CustomSwitch({ label, onSwitch }) {
 
 	return (
 		<Switch.Group>
-			<div className="flex items-center">
-				<Switch.Label className="mr-4">
-					<h3 className="font-semibold text-base leading-none">{label}</h3>
+			<div className="dtw-flex dtw-items-center">
+				<Switch.Label className="dtw-mr-4">
+					<h3 className="dtw-font-semibold dtw-text-base dtw-leading-none">
+						{label}
+					</h3>
 				</Switch.Label>
 				<Switch
 					checked={enabled}
 					onChange={whenSwitched}
 					className={`${
 						enabled ? 'bg-brand-primary' : 'bg-gray-400'
-					} relative inline-flex items-center h-4 rounded-full w-10 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary bg-opacity-25`}
+					} relative inline-dtw-flex dtw-items-center h-4 rounded-full w-10 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary bg-opacity-25`}
 				>
 					<span
 						className={`${

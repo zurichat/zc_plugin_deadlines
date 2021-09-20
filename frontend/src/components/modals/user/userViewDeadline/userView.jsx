@@ -43,7 +43,7 @@ const UserViewDeadline = ({
 	assigneeOnline,
 }) => {
 	const DeadlineTitle = (
-		<div className="flex gap-4">
+		<div className="dtw-flex dtw-gap-4">
 			{title} <Priority status={priority} forTitle />
 		</div>
 	)
@@ -63,14 +63,14 @@ const UserViewDeadline = ({
 
 	return (
 		<ModalBase title={DeadlineTitle}>
-			<div className="flex flex-col gap-7">
+			<div className="dtw-flex dtw-flex-col dtw-gap-7">
 				<ColTitleDes title="Description" writeUp={description} />
-				<div className="flex gap-6">
+				<div className="dtw-flex dtw-gap-6">
 					<ColTitleDes title="Start Date" writeUp={startDate} />
 					<ColTitleDes title="Due Date" writeUp={dueDate} />
 					<ColTitleDes
 						title="Due In"
-						writeUp={<span className="text-brand-error">{dueIn} </span>}
+						writeUp={<span className="dtw-text-brand-error">{dueIn} </span>}
 					/>
 				</div>
 				<ColTitleDes title="Assigned To" writeUp={assignedTo} />
