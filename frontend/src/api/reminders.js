@@ -5,10 +5,7 @@ import errorHandler from './utils/errorHandler'
 import validateCreateReminderData from './utils/validation'
 
 const axiosInstance = axios.create({
-	baseURL:
-		process.env.NODE_ENV === 'development'
-			? 'http://localhost:5621/api/v1'
-			: 'https://reminders.zuri.chat/api/v1',
+	baseURL: 'https://reminders.zuri.chat/api/v1',
 })
 
 export const useAllReminders = () => {
