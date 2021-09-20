@@ -9,8 +9,7 @@ import Priority from '../../component/priority'
 import ModalBase from '../../modalBase/index'
 import ModalButton from '../../component/button'
 import { ModalContext } from '../../../../context/ModalContext'
-import { useAllReminders } from '../../../../api/reminders'
-import { useUpdateReminders } from '../../../../api/reminders'
+import { useAllReminders, useUpdateReminders } from '../../../../api/reminders'
 
 // import ModalButton from '../../component/button'
 
@@ -33,13 +32,15 @@ const EditDeadline = ({ object_id }) => {
 			dueDate,
 			startDate,
 			title,
-			// creator,
+			creator,
 			priority,
-			// reminders,
-			// shouldRemind,
-			// staus,
+			reminders,
+			shouldRemind,
+			status,
 		},
-	] = fetchedData.filter((deadline) => deadline.object_id === object_id)
+	] = fetchedData.filter((deadline) => {
+		return deadline.object_id === object_id
+	})
 	const startDateStr = DateTime.fromISO(startDate, {
 		zone: 'UTC',
 	})
@@ -47,19 +48,36 @@ const EditDeadline = ({ object_id }) => {
 	const dueDateStr = DateTime.fromISO(dueDate, {
 		zone: 'UTC',
 	})
-
-	let data = {
+	const [data, setData] = useState({
 		description,
 		title,
 		start: startDateStr,
 		due: dueDateStr,
 		assignTo: assignee.channelName,
 		radio: priority,
-	} //should receive initial data from props
+	})
 
 	const [radio, setRadio] = useState(priority)
 	const { modalData, setModalData } = useContext(ModalContext)
 	const closeModal = () => setModalData({ ...modalData, modalShow: false })
+
+	const update = () => {
+		const payload = {
+			assignee: { ...assignee, channelName: data.assignTo },
+			creator: { ...creator },
+			object_id,
+			priority: data.radio,
+			title: data.title,
+			description: data.description,
+			reminders,
+			shouldRemind,
+			startDate: data.start.toISO(),
+			dueDate: data.due.toISO(),
+			status,
+		}
+		mutation.mutate({ object_id, payload })
+		closeModal()
+	}
 
 	return (
 		<ModalBase title="Edit Deadline">
@@ -71,7 +89,7 @@ const EditDeadline = ({ object_id }) => {
 							placeholder="Deadline Title"
 							value={data.title}
 							onChange={(e) => {
-								data = { ...data, title: e.target.value }
+								setData({ ...data, title: e.target.value })
 							}}
 						/>
 					}
@@ -85,7 +103,7 @@ const EditDeadline = ({ object_id }) => {
 							placeholder="Deadline Description"
 							value={data.description}
 							onChange={(e) => {
-								data = { ...data, description: e.target.value }
+								setData({ ...data, description: e.target.value })
 							}}
 						/>
 					}
@@ -100,13 +118,12 @@ const EditDeadline = ({ object_id }) => {
 							<DatePicker
 								value={`${data.start.year}-${`0${data.start.month}`.slice(
 									-2
-								)}-${data.start.day}`}
+								)}-${`0${data.start.day}`.slice(-2)}`}
 								onChange={(e) => {
-									data = {
+									setData({
 										...data,
-										start: DateTime.fromS(e.target.value),
-									}
-									console.log(data.start)
+										start: DateTime.fromSQL(e.target.value),
+									})
 								}}
 							/>
 						}
@@ -117,14 +134,14 @@ const EditDeadline = ({ object_id }) => {
 						title="Due date:"
 						writeUp={
 							<DatePicker
-								value={`${data.due.year}-${`0${data.due.month}`.slice(-2)}-${
-									data.due.day
-								}`}
+								value={`${data.due.year}-${`0${data.due.month}`.slice(
+									-2
+								)}-${`0${data.due.day}`.slice(-2)}`}
 								onChange={(e) => {
-									data = {
+									setData({
 										...data,
-										due: DateTime.fromJSDate(e.target.value),
-									}
+										due: DateTime.fromSQL(e.target.value),
+									})
 								}}
 							/>
 						}
@@ -138,7 +155,7 @@ const EditDeadline = ({ object_id }) => {
 							placeholder="E.g. #channelName"
 							value={data.assignTo}
 							onChange={(e) => {
-								data = { ...data, assignTo: e.target.value }
+								setData({ ...data, assignTo: e.target.value })
 							}}
 						/>
 					}
@@ -151,7 +168,7 @@ const EditDeadline = ({ object_id }) => {
 						selected={radio}
 						label={<Priority status="low" />}
 						onChange={() => {
-							data.radio = 'low'
+							setData({ ...data, radio: 'low' })
 							setRadio('low')
 						}}
 					/>
@@ -160,7 +177,7 @@ const EditDeadline = ({ object_id }) => {
 						selected={radio}
 						label={<Priority status="medium" />}
 						onChange={() => {
-							data.radio = 'medium'
+							setData({ ...data, radio: 'medium' })
 							setRadio('medium')
 						}}
 					/>
@@ -169,17 +186,14 @@ const EditDeadline = ({ object_id }) => {
 						selected={radio}
 						label={<Priority status="high" />}
 						onChange={() => {
-							data.radio = 'high'
+							setData({ ...data, radio: 'high' })
 							setRadio('high')
 						}}
 					/>
 				</div>
 				<ModalButton
 					actionName="Update"
-					actionFunc={() => {
-						mutation.mutate({ payload: data, object_id })
-						closeModal()
-					}}
+					actionFunc={update}
 					cancelFunc={closeModal}
 				/>
 			</div>
