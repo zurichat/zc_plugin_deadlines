@@ -47,6 +47,7 @@ async function populateDB() {
 				// obj,
 			},
 		})
+		console.log(i)
 	}
 }
 
