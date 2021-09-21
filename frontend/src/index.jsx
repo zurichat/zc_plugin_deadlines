@@ -8,6 +8,7 @@ import 'react-activity/dist/Spinner.css'
 
 import { ModalContextProvider } from './context/ModalContext'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { SortProvider } from './components/sort'
 
 const queryClient = new QueryClient()
 
@@ -15,7 +16,9 @@ ReactDOM.render(
 	<React.StrictMode>
 		<QueryClientProvider client={queryClient}>
 			<ModalContextProvider>
-				<App />
+				<SortProvider>
+					<App />
+				</SortProvider>
 			</ModalContextProvider>
 		</QueryClientProvider>
 	</React.StrictMode>,

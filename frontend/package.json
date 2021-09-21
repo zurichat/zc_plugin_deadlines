@@ -22,9 +22,9 @@
 	"scripts": {
 		"start": "craco start",
 		"build": "craco build",
-		"test": "craco test --testPathIgnorePatterns=__compat__ --passWithNoTests",
+		"test": "craco test --passWithNoTests --watchAll=false",
 		"eject": "react-scripts eject",
-		"lint": "eslint . --fix"
+		"lint": "eslint --cache  --fix"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -57,6 +57,7 @@
 		"@types/jest": "^27.0.1",
 		"autoprefixer": "^9.8.6",
 		"babel-eslint": "^10.1.0",
+		"concurrently": "^6.2.1",
 		"craco-plugin-single-spa-application": "^1.0.8",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-prettier": "^4.0.0",
@@ -64,7 +65,8 @@
 		"eslint-plugin-unused-imports": "^1.1.4",
 		"install-peers": "^1.0.3",
 		"postcss": "^7.0.36",
-		"prettier": "2.3.2",
+		"prettier": "^2.4.1",
+		"pretty-quick": "^3.1.1",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"single-spa-react": "^4.4.0",
