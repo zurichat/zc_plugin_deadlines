@@ -14,7 +14,7 @@ const Nav = () => {
 	return (
 		<SearchContext.Provider value={[searchResult, setSearchResult]}>
 			<>
-				<nav className="space-y-1 md:space-y-0">
+				<nav className="space-y-1 md:space-y-0   lg:border-b">
 					<div className="flex flex-col lg:flex-row justify-between items-center">
 						<div className="flex justify-between items-center w-full lg:w-auto">
 							<div className="lg:hidden"></div>

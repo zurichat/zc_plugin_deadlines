@@ -4,10 +4,10 @@ import { StatusCodes } from 'http-status-codes'
 import { MESSAGE } from '@utils/constant'
 import env from '@config/environment'
 // import makeDb from '../db'
+import DatabaseOps from '../db'
 import { sort } from 'agenda/dist/agenda/sort'
 
 import sortedData from '@utils/sort.deadlines'
-import DatabaseOps from '../db'
 
 const DeadLine = new DatabaseOps('deadlines')
 const Agenda = require('agenda')

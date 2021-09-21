@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "eslint -c .eslintrc.js \"src/**\" --fix",
-		"prepare": "husky install && husky install frontend/.husky",
+		"prepare": "husky install",
 		"holoInstall": "yarn install && cd frontend && yarn install",
 		"test": "cross-env NODE_ENV=production mocha ./tests/**/*.spec.js -r @babel/register --timeout=100000 --exit",
 		"test:watch": "cross-env NODE_ENV=test mocha ./tests/**/*.spec.js -r @babel/register --timeout=100000 --watch --exit",
@@ -55,6 +55,7 @@
 		"lint-staged": "^11.1.2",
 		"mocha": "^9.1.1",
 		"nodemon": "^2.0.12",
+		"prettier": "^2.3.2",
 		"rimraf": "^3.0.2"
 	},
 	"lint-staged": {
@@ -62,7 +63,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "yarn exec pretty-quick --staged && yarn exec concurrently yarn:test yarn:lint"
+			"pre-commit": "yarn lint-staged"
 		}
 	},
 	"dependencies": {

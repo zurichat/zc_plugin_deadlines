@@ -41,6 +41,7 @@ const ModalForm = ({ closeModal }) => {
 		}
 
 		const payload = { ...otherData, ...deadline }
+		// console.log(payload)
 		mutation.mutate(payload)
 		closeModal()
 	}
