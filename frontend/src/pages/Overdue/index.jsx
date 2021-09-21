@@ -9,7 +9,6 @@ const OverduePage = () => {
 		useAllReminders()
 	const { sort } = useContext(SortContext)
 
-	const test = 'bad'
 	const date = new Date()
 	const dateNow = date.toISOString()
 	const getDate = (a) => {
