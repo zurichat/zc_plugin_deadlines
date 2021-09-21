@@ -63,7 +63,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "yarn lint-staged"
+			"pre-commit": "yarn exec pretty-quick --staged && yarn exec concurrently yarn:test yarn:lint"
 		}
 	},
 	"dependencies": {
