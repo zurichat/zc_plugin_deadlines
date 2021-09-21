@@ -6,7 +6,6 @@ import { SortContext } from '../../sort'
 
 const Sortbar = () => {
 	const { sort, setSort } = useContext(SortContext)
-	console.log(sort)
 	const sort_tags = [
 		'Newest to Oldest',
 		'Oldest to Newest',
@@ -17,7 +16,6 @@ const Sortbar = () => {
 
 	const handleSort = (i) => {
 		setSort({ ...sort, i })
-		console.log(sort)
 	}
 
 	// 	const sortData = (array, value) => {

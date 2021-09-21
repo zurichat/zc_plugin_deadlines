@@ -8,7 +8,6 @@ const OverduePage = () => {
 	const { fetchedData, isPlaceholderData, isLoading, isError } =
 		useAllReminders()
 	const { sort } = useContext(SortContext)
-	console.log(sort)
 
 	const date = new Date()
 	const dateNow = date.toISOString()
