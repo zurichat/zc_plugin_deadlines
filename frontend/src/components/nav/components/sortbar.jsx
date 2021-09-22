@@ -15,7 +15,6 @@ const Sortbar = () => {
 	]
 	const handleSort = (i) => {
 		setSort(i)
-		console.log(sort)
 	}
 	// const { dispatch, actionTypes, initialData } = useContext(RemindersContext)
 	//  const handleSort = (i) => {
