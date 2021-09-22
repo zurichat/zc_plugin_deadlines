@@ -1,9 +1,9 @@
-import React, { createContext, useState, useMemo, useContext } from 'react'
+import React, { createContext, useState } from 'react'
 
-export const SortContext = createContext(null)
+export const SortContext = createContext({})
 
-export const SortProvider = ({ children }) => {
-	const [sort, setSort] = useState('')
+export const SortContextProvider = ({ children }) => {
+	const [sort, setSort] = useState(null)
 
 	return (
 		<SortContext.Provider value={{ sort, setSort }}>
@@ -12,17 +12,17 @@ export const SortProvider = ({ children }) => {
 	)
 }
 
-export const useSort = (array) => {
-	const { sort } = useContext(SortContext)
+// export const useSort = (array) => {
+// 	const { sort } = useContext(SortContext)
 
-	const sortedArray = useMemo(() => {
-		switch (sort) {
-			case 'asc':
-				return [...array].sort()
-			case 'desc':
-				return [...array].sort().reverse()
-		}
-	}, [array, sort])
+// 	const sortedArray = useMemo(() => {
+// 		switch (sort) {
+// 			case 'asc':
+// 				return [...array].sort()
+// 			case 'desc':
+// 				return [...array].sort().reverse()
+// 		}
+// 	}, [array, sort])
 
-	return sort ? sortedArray : array
-}
+// 	return sort ? sortedArray : array
+// }
