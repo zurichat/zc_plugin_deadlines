@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import './styles/index.css'
 import './styles/scroll.css'
 import 'react-activity/dist/Spinner.css'
+import { SortContextProvider } from './components/sort'
 
 const Base = () => {
 	const queryClient = new QueryClient()
@@ -15,7 +16,9 @@ const Base = () => {
 		<React.StrictMode>
 			<QueryClientProvider client={queryClient}>
 				<ModalContextProvider>
-					<App />
+					<SortContextProvider>
+						<App />
+					</SortContextProvider>
 				</ModalContextProvider>
 			</QueryClientProvider>
 		</React.StrictMode>

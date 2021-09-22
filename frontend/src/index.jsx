@@ -12,6 +12,8 @@ import { SortContextProvider } from './components/sort'
 
 const queryClient = new QueryClient()
 
+// Do your wrapping here for dev and in base.jsx for prod. To be safe, wrap in both files
+
 ReactDOM.render(
 	<React.StrictMode>
 		<QueryClientProvider client={queryClient}>
