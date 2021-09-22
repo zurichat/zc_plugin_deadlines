@@ -31,12 +31,10 @@ const OverduePage = () => {
 				)
 			case 'Due Date (Descending)':
 				return [...array].sort(
-					(a, b) => getDate(b.dueDate) - getDate(b.dueDate)
+					(a, b) => getDate(b.dueDate) - getDate(a.dueDate)
 				)
 			default:
-				return [...array].sort(
-					(a, b) => getDate(a.startDate) - getDate(b.startDate)
-				)
+				return array
 		}
 	}
 	const sortedData = sortData(fetchedData, sort)
