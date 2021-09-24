@@ -28,7 +28,6 @@ module.exports = (webpackConfigEnv, argv) => {
 	})
 
 	return mergeWithRules(mergeRules)(defaultConfig, {
-		devtool: 'inline-source-map',
 		devServer: {
 			historyApiFallback: true,
 			// https: true,
