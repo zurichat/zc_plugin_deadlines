@@ -1,11 +1,14 @@
 import React, { useContext } from 'react'
-import { DateTime } from 'luxon'
+import dayjs from 'dayjs'
+import duration from 'dayjs/plugin/duration'
 
 import date from '../../assets/svg/date.svg'
 import clock from '../../assets/svg/clock-group.svg'
 import { ModalContext } from '../../context/ModalContext'
 import avatar from '../../assets/png/avatar1.png'
 import DeadlineCardDropdown from './dropdown'
+
+dayjs.extend(duration)
 
 const DeadlineCard = ({
 	title,
@@ -29,17 +32,16 @@ const DeadlineCard = ({
 			? 'bg-brand-priority-high'
 			: 'bg-gray'
 
-	const startDateStr = DateTime.fromISO(startDate, {
-		zone: 'UTC',
-	}).toLocaleString(DateTime.DATE_MED)
+	// console.log()
 
-	const dueDateStr = DateTime.fromISO(dueDate, {
-		zone: 'UTC',
-	}).toLocaleString(DateTime.DATE_MED)
+	const startDateStr = dayjs(startDate).format('MMM D, YYYY')
 
-	const remaining = DateTime.fromISO(dueDate)
-		.diffNow(['days', 'hours', 'minutes', 'seconds', 'months'])
-		.toObject()
+	const dueDateStr = dayjs(dueDate).format('MMM D, YYYY')
+
+	const now = dayjs(Date.now())
+	const due = dayjs(dueDate)
+
+	const remaining = dayjs.duration(due.diff(now))['$d']
 
 	const remainingStr =
 		remaining['months'] > 0
@@ -120,7 +122,7 @@ const DeadlineCard = ({
 					&nbsp;
 					<span
 						className={
-							DateTime.fromISO(dueDate).diffNow().as('hours') < 3
+							due.diff(now) / 1000 / 3600 < 24
 								? 'text-brand-text-overdue text-xs xs:text-sm md:text-base'
 								: 'text-brand-text-body text-xs xs:text-sm md:text-base'
 						}
