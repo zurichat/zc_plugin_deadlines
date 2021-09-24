@@ -1,7 +1,7 @@
 import axios from 'axios'
-import toast from 'react-hot-toast'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import errorHandler from './utils/errorHandler'
+import { toast } from 'react-toastify'
 
 const axiosInstance = axios.create({
 	baseURL: 'https://reminders.zuri.chat/api/v1',
@@ -109,14 +109,23 @@ export const useUpdateReminders = () => {
 				url: `/deadlines/${object_id}`,
 			}),
 		{
-			onSuccess: (_, { noToast }) => {
+			onSettled: (_, { noToast }) => {
 				queryClient.invalidateQueries('allReminders').then(() => {
 					if (!noToast) toast.success(`Updated successfully`)
 				})
 			},
-			onError: (_, { noToast }) => {
-				if (!noToast) toast.error('Failed to update reminder')
-			},
+
+			// Until CORS issue is fixed
+
+			// onSuccess: (_, { noToast }) => {
+			// 	queryClient.invalidateQueries('allReminders').then(() => {
+			// 		if (!noToast) toast.success(`Updated successfully`)
+			// 	})
+			// },
+			// onError: (error, { noToast }) => {
+			// 	console.log(error, !!error.includes(/Network Error/i))
+			// 	if (!noToast) toast.error('Failed to update reminder')
+			// },
 		}
 	)
 }

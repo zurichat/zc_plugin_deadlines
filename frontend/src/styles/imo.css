@@ -1,0 +1,239 @@
+.imo-unstyled {
+	border: none;
+	padding: 0;
+	width: auto;
+	overflow: visible;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	line-height: normal;
+	cursor: pointer;
+	-webkit-font-smoothing: inherit;
+	-moz-osx-font-smoothing: inherit;
+	-webkit-appearance: none;
+}
+
+.imo-unstyled::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+.imo-trigger {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	margin: 10px;
+	border-radius: 5px;
+	background-color: navajowhite;
+	height: 50px;
+	width: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+	font-family: sans-serif;
+	z-index: 10500;
+}
+
+.imo-popup {
+	box-sizing: border-box;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 50%;
+	z-index: 10000;
+	background-color: black;
+	color: white;
+	font-family: sans-serif;
+	padding: 24px;
+	overflow-y: auto;
+}
+
+.imo-popup a:visited,
+imo-popup a {
+	color: white;
+}
+
+.imo-popup .imo-module-dialog {
+	left: calc(50% - 200px);
+}
+
+.imo-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.imo-list {
+	margin-left: 16px;
+}
+
+.imo-list > *:not(:last-child) {
+	margin-bottom: 8px;
+}
+
+.imo-list-container *,
+.imo-modal-container * {
+	font-family: sans-serif;
+	box-sizing: border-box;
+}
+
+.imo-module-dialog {
+	position: fixed;
+	z-index: 30000000;
+	top: 30%;
+	max-width: 600px;
+	margin: 0 auto;
+	border: 4px solid navajowhite;
+	background-color: white;
+	padding: 1em;
+	left: 50%;
+	right: auto;
+	transform: translateX(-50%);
+}
+
+.imo-module-dialog input {
+	width: 100%;
+	font-size: 16px;
+	box-sizing: border-box;
+	padding-right: 20px;
+}
+
+.imo-module-dialog table {
+	margin-bottom: 16px;
+}
+
+.imo-module-dialog table td:first-child {
+	text-align: right;
+	padding-right: 16px;
+	word-break: keep-all;
+}
+
+.imo-module-dialog table td {
+	word-break: break-all;
+}
+
+.imo-module-dialog.imo-overridden {
+	border: 4px solid salmon;
+}
+
+.imo-table-header-actions {
+	display: flex;
+	align-items: center;
+}
+
+.imo-overrides-table {
+	border-collapse: collapse;
+	margin-top: 32px;
+}
+
+.imo-overrides-table tr td:first-child {
+	display: flex;
+	align-items: center;
+	padding-right: 32px;
+	position: relative;
+}
+
+.imo-needs-refresh {
+	position: absolute;
+	right: 8px;
+	font-size: 32px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.imo-needs-refresh::before {
+	content: '\27F2';
+}
+
+.imo-status {
+	height: 16px;
+	width: 16px;
+	border-radius: 8px;
+	border: 1px solid white;
+	margin-right: 8px;
+}
+
+.imo-disabled-override {
+	background-color: lightblue;
+}
+
+.imo-next-override {
+	background-color: darkred;
+}
+
+.imo-current-override {
+	background-color: salmon;
+}
+
+.imo-default-module {
+	background-color: lightgoldenrodyellow;
+}
+
+.imo-external-override {
+	background-color: orange;
+}
+
+.imo-next-default {
+	background-color: darkgoldenrod;
+}
+
+.imo-dev-lib-override {
+	background-color: lightpink;
+}
+
+.imo-overrides-table tbody tr:hover {
+	cursor: pointer;
+	background-color: #404040;
+}
+
+.imo-overrides-table td,
+.imo-overrides-table th {
+	line-height: 18px;
+	padding: 16px;
+	border: 1px solid white;
+}
+
+.imo-add-new {
+	margin-left: 16px;
+}
+
+.imo-clear-input {
+	position: absolute;
+	top: 0;
+	right: 4px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+.imo-modal-container {
+	font-family: sans-serif;
+}
+
+.imo-modal {
+	background-color: rgba(61, 70, 77, 0.6);
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	z-index: 20000000;
+}
+
+.imo-list-search,
+.imo-list-container button,
+.imo-modal-container button {
+	font-size: 14px;
+	height: 27px;
+	line-height: 27px;
+}
+
+.imo-list-search {
+	line-height: 22px;
+	border: none;
+	padding: 5px;
+}
