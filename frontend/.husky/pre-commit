@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn exec pretty-quick --staged && yarn exec concurrently yarn:test yarn:lint
+npx lint-staged && yarn --cwd ./frontend exec pretty-quick --staged && yarn --cwd ./frontend test && yarn --cwd ./frontend lint
