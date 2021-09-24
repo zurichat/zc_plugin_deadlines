@@ -8,12 +8,16 @@ const roomController = {
 		const { title, description, iconUrl, members } = req.body
 		const isArchived = req.body.is_archived || false
 		const isPrivate = req.body.is_private || false
+
 		const creator = {
 			userId: req.user.id,
 			userName:
 				req.user.display_name || `${req.user.first_name} ${req.user.last_name}`,
 			userLink: `https://api.zuri.chat/users/${req.user.id}`,
-		} // adding the creator field as the logged in user
+		} 
+
+		// add the creator to the members list
+		members.push(creator) 
 
 		const { orgId } = req.params
 
