@@ -319,6 +319,7 @@ router.put(
  *
  */
 router.get('/deadlines', deadlineController.getAll)
+router.post('/deadlines/alliwant', deadlineController.searchDeadlineByChannel)
 
 /**
  * @swagger

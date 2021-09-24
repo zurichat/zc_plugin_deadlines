@@ -4,10 +4,10 @@ import { StatusCodes } from 'http-status-codes'
 import { MESSAGE } from '@utils/constant'
 import env from '@config/environment'
 // import makeDb from '../db'
-import DatabaseOps from '../db'
 import { sort } from 'agenda/dist/agenda/sort'
-
 import sortedData from '@utils/sort.deadlines'
+
+import DatabaseOps from '../db'
 
 const DeadLine = new DatabaseOps('deadlines')
 const Agenda = require('agenda')
@@ -162,6 +162,22 @@ const deadlineController = {
 			const { text } = req.body
 			const result = await DeadLine.findAll('deadlines')
 			const data = await DeadLine.search(result, text)
+			return Response.send(
+				res,
+				200,
+				data,
+				'Deadlines fetched successfully',
+				true
+			)
+		} catch (error) {
+			return next(error)
+		}
+	},
+
+	searchDeadlineByChannel: async (req, res, next) => {
+		try {
+			const { text } = req.body
+			const data = await DeadLine.searchByChannel(text)
 			return Response.send(
 				res,
 				200,

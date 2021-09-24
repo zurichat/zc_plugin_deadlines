@@ -139,6 +139,21 @@ export default class DatabaseOps {
 		return result
 	}
 
+	async searchByChannel(query) {
+		const deadlines = await this.findAll('deadlines')
+		const result = deadlines.filter((deadline) => {
+			return (
+				deadline.assignee.channelId === query ||
+				deadline.assignee.channelName === query
+			)
+		})
+		const data = result.sort((a, b) => {
+			const sort = new Date(b.dueDate).getTime() - new Date(a.dueDate).getTime()
+			return sort
+		})
+		return data
+	}
+
 	// Helper
 	render(data) {
 		// Change the `_id` field to `object_id` for uniformity
