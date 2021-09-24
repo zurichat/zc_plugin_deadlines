@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 
 import './styles/index.css'
 import './styles/scroll.css'
-import 'react-activity/dist/Spinner.css'
 import { SortContextProvider } from './components/sort'
 
 const Base = () => {

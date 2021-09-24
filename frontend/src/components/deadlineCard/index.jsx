@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { DateTime } from 'luxon'
 
-import { ReactComponent as Date } from '../../assets/svg/date.svg'
-import { ReactComponent as Clock } from '../../assets/svg/clock-group.svg'
+import date from '../../assets/svg/date.svg'
+import clock from '../../assets/svg/clock-group.svg'
 import { ModalContext } from '../../context/ModalContext'
 import avatar from '../../assets/png/avatar1.png'
 import DeadlineCardDropdown from './dropdown'
@@ -111,7 +111,7 @@ const DeadlineCard = ({
 				<div id="dueIn" className="flex items-center">
 					<div className="mr-2">
 						<div className="bg-brand-svg-green rounded-full p-1 w-5 h-5 flex items-center justify-center">
-							<Clock />
+							<img src={clock} />
 						</div>
 					</div>
 					<b className="text-brand-text-body text-xs xs:text-sm md:text-base">
@@ -135,7 +135,7 @@ const DeadlineCard = ({
 				<div id="startDate" className="flex">
 					<div className="mr-2 pt-1">
 						<div className="bg-brand-svg-blue rounded-full p-1 w-5 h-5 flex items-center justify-center">
-							<Date />
+							<img src={date} />
 						</div>
 					</div>
 					<div>
@@ -154,7 +154,7 @@ const DeadlineCard = ({
 				<div id="dueDate" className="flex">
 					<div className="mr-2 pt-1">
 						<div className="bg-brand-svg-blue rounded-full p-1 w-5 h-5 flex items-center justify-center">
-							<Date />
+							<img src={date} />
 						</div>
 					</div>
 					<div>
