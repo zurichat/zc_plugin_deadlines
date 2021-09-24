@@ -21,8 +21,8 @@ jobs:
 
       - name: install Dependencies
         run: |
-          CI="" yarn run holoInstall
-          CI="" yarn build
+          yarn run holoInstall
+          yarn build
 
       - name: Exec remote commands via SSH
         uses: appleboy/ssh-action@master
