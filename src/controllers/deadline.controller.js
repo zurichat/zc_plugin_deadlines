@@ -1,10 +1,5 @@
 import Response from '@utils/response.handler'
 // eslint-disable-next-line import/no-unresolved
-import { StatusCodes } from 'http-status-codes'
-import { MESSAGE } from '@utils/constant'
-import env from '@config/environment'
-// import makeDb from '../db'
-import { sort } from 'agenda/dist/agenda/sort'
 
 import sortedData from '@utils/sort.deadlines'
 import DatabaseOps from '../db'
@@ -20,15 +15,21 @@ const deadlineController = {
 			startDate,
 			dueDate,
 			assignee,
-			creator,
 			priority,
 			shouldRemind,
 			reminders,
 		} = req.body
-		const status = req.body.status || 'uncompleted' // adding a default for status field
+		const status = req.body.status || 'pending' // adding a default for status field
+		const creator = {
+			userId: req.user.id,
+			userName:
+				req.user.display_name || `${req.user.first_name} ${req.user.last_name}`,
+			userLink: `https://api.zuri.chat/users/${req.user.id}`,
+		} // adding the creator field as the logged in user
+		const { orgId } = req.params
 
 		try {
-			const savedRecord = await DeadLine.create({
+			const createData = {
 				title,
 				description,
 				startDate,
@@ -39,7 +40,8 @@ const deadlineController = {
 				shouldRemind,
 				reminders,
 				status,
-			})
+			}
+			const savedRecord = await DeadLine.create(createData, orgId)
 			return Response.send(
 				res,
 				201,
@@ -52,7 +54,8 @@ const deadlineController = {
 	},
 	getAll: async (req, res, next) => {
 		try {
-			let data = await DeadLine.findAll()
+			const { orgId } = req.params
+			let data = await DeadLine.findAll(orgId)
 
 			if (req.query.sort) {
 				data = sortedData(req.query.sort, data)
@@ -71,7 +74,8 @@ const deadlineController = {
 	},
 	getById: async (req, res, next) => {
 		try {
-			const data = await DeadLine.findById(req.params.id)
+			const { orgId, id } = req.params
+			const data = await DeadLine.findById(id, orgId)
 
 			if (!data) {
 				return Response.send(res, 404, data, 'Deadline not found', false)
@@ -90,7 +94,8 @@ const deadlineController = {
 	},
 	deleteById: async (req, res, next) => {
 		try {
-			const data = await DeadLine.deleteOne(req.params.id)
+			const { orgId, id } = req.params
+			const data = await DeadLine.deleteOne(id, orgId)
 			return Response.send(
 				res,
 				200,
@@ -114,18 +119,21 @@ const deadlineController = {
 			reminders,
 			status,
 		} = req.body
+
+		const updateData = {
+			title,
+			description,
+			startDate,
+			dueDate,
+			assignee,
+			priority,
+			shouldRemind,
+			reminders,
+			status,
+		}
+		const { orgId, id } = req.params
 		try {
-			const data = await DeadLine.updateById(req.params.id, {
-				title,
-				description,
-				startDate,
-				dueDate,
-				assignee,
-				priority,
-				shouldRemind,
-				reminders,
-				status,
-			})
+			const data = await DeadLine.updateById(id, updateData, orgId)
 
 			if (!data) {
 				return Response.send(

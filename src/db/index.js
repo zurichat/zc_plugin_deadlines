@@ -3,8 +3,8 @@ import env from '@config/environment'
 
 const { getDevBaseUrl } = env
 
-const { apiUrl, baseUrl, orgId, pluginId } = getDevBaseUrl()
-console.log({ apiUrl, baseUrl, orgId, pluginId })
+const { apiUrl, baseUrl, pluginId } = getDevBaseUrl()
+console.log({ apiUrl, baseUrl, pluginId })
 const readBaseUrl = `${baseUrl}/data/read`
 const writeBaseUrl = `${baseUrl}/data/write`
 const deleteBaseUrl = `${baseUrl}/data/delete`
@@ -24,7 +24,7 @@ export default class DatabaseOps {
 		this.modelName = modelName
 	}
 
-	async create(data) {
+	async create(data, orgId) {
 		try {
 			const res = await axios({
 				url: writeBaseUrl,
@@ -46,14 +46,15 @@ export default class DatabaseOps {
 		}
 	}
 
-	async findAll() {
+	async findAll(orgId) {
 		const url = `${readBaseUrl}/${pluginId}/${this.modelName}/${orgId}`
 		try {
 			const res = await axios({
 				url,
 				method: 'get',
 			})
-			return res.data.data.map((row) => this.render(row))
+
+			return res.data.data ? res.data.data.map((row) => this.render(row)) : []
 		} catch (error) {
 			if (error?.response?.status === 404) return []
 
@@ -63,7 +64,7 @@ export default class DatabaseOps {
 		}
 	}
 
-	async findById(id) {
+	async findById(id, orgId) {
 		const url = `${readBaseUrl}/${pluginId}/${this.modelName}/${orgId}?_id=${id}`
 		try {
 			const res = await axios({
@@ -79,7 +80,7 @@ export default class DatabaseOps {
 		}
 	}
 
-	async deleteOne(id) {
+	async deleteOne(id, orgId) {
 		try {
 			const res = await axios({
 				url: deleteBaseUrl,
@@ -101,7 +102,7 @@ export default class DatabaseOps {
 		}
 	}
 
-	async updateById(id, data) {
+	async updateById(id, data, orgId) {
 		try {
 			const res = await axios({
 				method: 'put',

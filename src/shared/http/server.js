@@ -10,6 +10,9 @@ import routes from '@routes/index'
 import path from 'path'
 import { errorHandler } from '@shared/errors/ErrorClass'
 import cors from 'cors'
+import * as roomValidation from '@validations/room.validation'
+import sidebarController from '@controllers/plugin.controller'
+import isAuthenticated from '../../middlewares/isAuthenticated'
 
 dotenv.config()
 const build = path.resolve('frontend', 'build')
@@ -39,7 +42,14 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(build))
 // app.use('/public', express.static(publicPath))
-app.use('/api/v1', routes)
+app.use('/api/v1', isAuthenticated, routes)
+app.get(
+	'/api/v1/sidebar',
+	roomValidation.sidebarQueries,
+	sidebarController.getSideBar
+)
+
+app.get('/api/v1/info', sidebarController.getPluginInfo)
 
 // swagger setup
 const swaggerUi = require('swagger-ui-express')

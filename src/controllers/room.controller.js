@@ -5,36 +5,30 @@ export const Room = new DatabaseOps('rooms')
 
 const roomController = {
 	create: async (req, res, next) => {
-		// "_id": "613b6aed41f5856617552f26", // Auto-generated
-		// "createdAt": "2021-09-10T14:25:38.492Z",  // Auto-generated
-		// "iconUrl": "https://zuri.chat/zurichatlogo.svg", // Default value
-		// "isArchived": false, // Default value
-		// "isPrivate": true,
-		// "members": [
-		// 	"6139fe2859842c7444fb0218"
-		// ],
-		// "organisationId": "6133c5a68006324323416896",
-		// "ownerId": "6139fe2859842c7444fb0218",
-		// "pluginId": "6134c6a40366b6816a0b75cd",
-		// "roomId": "f1d268d3-f6af-4038-8bfd-bfb6fc80bbfb", // Auto-generated
-		// "roomName": "All Files",
-		// "roomType": "plugin"
-
-		const { title, description, iconUrl, members, organizationId, ownerId } =
-			req.body
+		const { title, description, iconUrl, members } = req.body
 		const isArchived = req.body.is_archived || false
 		const isPrivate = req.body.is_private || false
+		const creator = {
+			userId: req.user.id,
+			userName:
+				req.user.display_name || `${req.user.first_name} ${req.user.last_name}`,
+			userLink: `https://api.zuri.chat/users/${req.user.id}`,
+		} // adding the creator field as the logged in user
+
+		const { orgId } = req.params
 
 		try {
-			const savedRecord = await Room.create({
+			const createData = {
 				title,
 				description,
 				iconUrl,
 				isArchived,
 				isPrivate,
 				members,
-				ownerId,
-			})
+				creator,
+			}
+			const savedRecord = await Room.create(createData, orgId)
+
 			return Response.send(res, 201, savedRecord, 'Room created successfully')
 		} catch (error) {
 			return next(error)
@@ -42,7 +36,8 @@ const roomController = {
 	},
 	getAll: async (req, res, next) => {
 		try {
-			const data = await Room.findAll()
+			const { orgId } = req.params
+			const data = await Room.findAll(orgId)
 
 			return Response.send(res, 200, data, 'Rooms retrieved successfully', true)
 		} catch (err) {
@@ -51,7 +46,8 @@ const roomController = {
 	},
 	getById: async (req, res, next) => {
 		try {
-			const data = await Room.findById(req.params.id)
+			const { orgId, id } = req.params
+			const data = await Room.findById(id, orgId)
 
 			if (!data) {
 				return Response.send(res, 404, data, 'Room not found', false)
@@ -64,33 +60,29 @@ const roomController = {
 	},
 	deleteById: async (req, res, next) => {
 		try {
-			const data = await Room.deleteOne(req.params.id)
+			const { orgId, id } = req.params
+			const data = await Room.deleteOne(id, orgId)
 			return Response.send(res, 200, data, 'Room deleted successfully', true)
 		} catch (err) {
 			return next(err)
 		}
 	},
 	updateById: async (req, res, next) => {
-		const {
+		const { title, description, iconUrl, isArchived, isPrivate, members } =
+			req.body
+
+		const updateData = {
 			title,
 			description,
 			iconUrl,
 			isArchived,
 			isPrivate,
 			members,
-			organizationId,
-			ownerId,
-		} = req.body
+		}
+
+		const { orgId, id } = req.params
 		try {
-			const data = await Room.updateById(req.params.id, {
-				title,
-				description,
-				iconUrl,
-				isArchived,
-				isPrivate,
-				members,
-				ownerId,
-			})
+			const data = await Room.updateById(id, updateData, orgId)
 
 			if (!data) {
 				return Response.send(
@@ -109,10 +101,10 @@ const roomController = {
 	},
 	addToRoom: async (req, res, next) => {
 		try {
-			const { userId } = req.query
-			const { id } = req.params
+			const { user } = req.body
+			const { id, orgId } = req.params
 
-			const savedRoom = await Room.findById(id)
+			const savedRoom = await Room.findById(id, orgId)
 			if (!savedRoom) {
 				return Response.send(
 					res,
@@ -125,16 +117,16 @@ const roomController = {
 
 			const updatedata = {
 				...savedRoom,
-				members: savedRoom.members.push(userId),
+				members: savedRoom.members.push(user),
 			}
 
-			const response = await Room.updateById(id, updatedata)
+			const response = await Room.updateById(id, updatedata, orgId)
 
 			return Response.send(
 				res,
 				200,
 				response,
-				`User, with id:${userId}, added successfully`,
+				`User, with id:${user.id}, added successfully`,
 				true
 			)
 		} catch (error) {
@@ -143,10 +135,10 @@ const roomController = {
 	},
 	deleteFromRoom: async (req, res, next) => {
 		try {
-			const { userId } = req.query
-			const { id } = req.params
+			const { user } = req.body
+			const { id, orgId } = req.params
 
-			const savedRoom = await Room.findById(id)
+			const savedRoom = await Room.findById(id, orgId)
 			if (!savedRoom) {
 				return Response.send(
 					res,
@@ -159,16 +151,16 @@ const roomController = {
 
 			const updatedata = {
 				...savedRoom,
-				members: savedRoom.members.filter((u) => u !== userId),
+				members: savedRoom.members.filter((u) => u.id !== user.id),
 			}
 
-			const response = await Room.updateById(id, updatedata)
+			const response = await Room.updateById(id, updatedata, orgId)
 
 			return Response.send(
 				res,
 				200,
 				response,
-				`User, with id:${userId}, removed successfully`,
+				`User, with id:${user.id}, removed successfully`,
 				true
 			)
 		} catch (error) {

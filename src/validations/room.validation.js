@@ -10,8 +10,7 @@ const createSchema = async (req, res, next) => {
 		title: Joi.string().trim().required().label('Title'),
 		description: Joi.string().trim().required().label('Description'),
 		iconUrl: Joi.string().trim().required().uri().label('Icon Url'),
-		members: Joi.array().required().label('Members'),
-		ownerId: Joi.string().required().label('Owner ID'),
+		members: Joi.array().label('Members'),
 		isArchived: Joi.boolean().label('isArchived'),
 		isPrivate: Joi.boolean().label('isPrivate'),
 	})
@@ -32,7 +31,6 @@ const updateSchema = async (req, res, next) => {
 		description: Joi.string().trim().label('Description'),
 		iconUrl: Joi.string().trim().uri().label('Icon Url'),
 		members: Joi.array().trim().label('Members'),
-		ownerId: Joi.string().trim().label('Owner ID'),
 		isArchived: Joi.boolean().label('isArchived'),
 		isPrivate: Joi.boolean().label('isPrivate'),
 	})
@@ -46,13 +44,17 @@ const idParams = async (req, res, next) => {
 	validateParamRequest(req, next, schema)
 }
 
-const addRoomSchema = async (req, res, next) => {
+const addToRoomSchema = async (req, res, next) => {
 	const schema = Joi.object({
-		orgId: Joi.string().trim().required().label('Organization Id'),
-		userId: Joi.string().trim().required().label('User Id'),
-		title: Joi.string().trim().required().label('Title'),
+		user: Joi.object({
+			userName: Joi.string().trim().required().label('user.userName'),
+			userId: Joi.string().trim().required().label('user.userId'),
+			userLink: Joi.string().trim().uri().required().label('user.userLink'),
+		})
+			.required()
+			.label('User'),
 	})
-	validateQueryRequest(req, next, schema)
+	validateBodyRequest(req, next, schema)
 }
 
 const sidebarQueries = async (req, res, next) => {
@@ -67,7 +69,7 @@ export {
 	searchSchema,
 	createSchema,
 	updateSchema,
-	addRoomSchema,
+	addToRoomSchema,
 	idParams,
 	sidebarQueries,
 }

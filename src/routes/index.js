@@ -6,7 +6,6 @@
 
 import { Router } from 'express'
 import deadlineController from '@controllers/deadline.controller'
-import sidebarController from '@controllers/plugin.controller'
 import roomController from '@controllers/room.controller'
 import * as deadlineValidation from '@validations/deadline.validation'
 import * as roomValidation from '@validations/room.validation'
@@ -221,7 +220,7 @@ router.get('/ping', (req, res) =>
  *    500:
  *      description: An error occurred
  */
-router.get('/deadlines/:id', deadlineController.getById)
+router.get('/:orgId/deadlines/:id', deadlineController.getById)
 
 /**
  * @swagger
@@ -240,7 +239,7 @@ router.get('/deadlines/:id', deadlineController.getById)
  *    500:
  *      description: An error occurred
  */
-router.delete('/deadlines/:id', deadlineController.deleteById)
+router.delete('/:orgId/deadlines/:id', deadlineController.deleteById)
 
 /**
  * @swagger
@@ -267,13 +266,10 @@ router.delete('/deadlines/:id', deadlineController.deleteById)
  *      description: Deadline with that ID not found
  */
 router.put(
-	'/deadlines/:id',
+	'/:orgId/deadlines/:id',
 	deadlineValidation.updateSchema,
 	deadlineController.updateById
 )
-// .put(idParams, updateSchema, reminderController.updateById)
-
-// router.delete('/reminders/:id', idParams, reminderController.deleteReminder)
 
 /**
  * @swagger
@@ -318,7 +314,7 @@ router.put(
  *      description: An error occurred
  *
  */
-router.get('/deadlines', deadlineController.getAll)
+router.get('/:orgId/deadlines', deadlineController.getAll)
 
 /**
  * @swagger
@@ -340,7 +336,7 @@ router.get('/deadlines', deadlineController.getAll)
  *      description: An error occurred
  */
 router.post(
-	'/deadlines',
+	'/:orgId/deadlines',
 	deadlineValidation.createSchema,
 	deadlineController.create
 )
@@ -365,7 +361,7 @@ router.post(
  *      description: An error occurred
  */
 router.post(
-	'/search',
+	'/:orgId/search',
 	deadlineValidation.searchSchema,
 	deadlineController.searchDeadline
 )
@@ -391,9 +387,9 @@ router.post(
  *    500:
  *      description: An error occurred
  */
-router.get('/rooms/:id', roomController.getById)
+router.get('/:orgId/rooms/:id', roomController.getById)
 
-router.options('/rooms/:id', cors())
+router.options('/:orgId/rooms/:id', cors())
 /**
  * @swagger
  * /api/v1/rooms/:id:
@@ -411,7 +407,7 @@ router.options('/rooms/:id', cors())
  *    500:
  *      description: An error occurred
  */
-router.delete('/rooms/:id', roomController.deleteById)
+router.delete('/:orgId/rooms/:id', roomController.deleteById)
 
 /**
  * @swagger
@@ -439,7 +435,11 @@ router.delete('/rooms/:id', roomController.deleteById)
  *    500:
  *      description: An error occurred
  */
-router.put('/rooms/:id', roomValidation.updateSchema, roomController.updateById)
+router.put(
+	'/:orgId/rooms/:id',
+	roomValidation.updateSchema,
+	roomController.updateById
+)
 
 /**
  * @swagger
@@ -454,7 +454,7 @@ router.put('/rooms/:id', roomValidation.updateSchema, roomController.updateById)
  *    500:
  *      description: An error occurred
  */
-router.get('/rooms', roomController.getAll)
+router.get('/:orgId/rooms', roomController.getAll)
 
 /**
  * @swagger
@@ -475,7 +475,7 @@ router.get('/rooms', roomController.getAll)
  *    500:
  *      description: An error occurred
  */
-router.post('/rooms', roomValidation.createSchema, roomController.create)
+router.post('/:orgId/rooms', roomValidation.createSchema, roomController.create)
 
 /**
  * @swagger
@@ -500,7 +500,11 @@ router.post('/rooms', roomValidation.createSchema, roomController.create)
  *    500:
  *      description: An error occurred
  */
-router.get('/rooms/:id/add', roomController.addToRoom)
+router.post(
+	'/:orgId/rooms/:id/add',
+	roomValidation.addToRoomSchema,
+	roomController.addToRoom
+)
 
 /**
  * @swagger
@@ -525,14 +529,10 @@ router.get('/rooms/:id/add', roomController.addToRoom)
  *    500:
  *      description: An error occurred
  */
-router.get('/rooms/:id/remove', roomController.deleteFromRoom)
-
-router.get(
-	'/sidebar',
-	roomValidation.sidebarQueries,
-	sidebarController.getSideBar
+router.post(
+	'/:orgId/rooms/:id/remove',
+	roomValidation.addToRoomSchema,
+	roomController.deleteFromRoom
 )
-
-router.get('/info', sidebarController.getPluginInfo)
 
 export default router

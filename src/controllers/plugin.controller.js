@@ -11,9 +11,12 @@ const value = getDevBaseUrl()
 const sortRooms = (rooms, userId) => {
 	let matchedRooms = []
 	let publicRooms = []
-	if (rooms?.length > 0 && Array.isArray(rooms)) {
+
+	if (Array.isArray(rooms) && rooms.length) {
 		matchedRooms = rooms.filter(
-			(room) => room.members.includes(userId) ?? room.ownerId === userId
+			(room) =>
+				room.members.some((u) => u.userId === userId) ||
+				room.creator.userId === userId
 		)
 		publicRooms = rooms.filter((room) => room.isPrivate === false)
 	}
@@ -24,7 +27,10 @@ const sidebarController = {
 	getSideBar: async (req, res, next) => {
 		try {
 			const { orgId, userId } = req.query
-			const rooms = await Room.findAll()
+
+			// Get the User details and check if the user is logged into the organization
+
+			const rooms = await Room.findAll(orgId)
 			const { matchedRooms, publicRooms } = sortRooms(rooms, userId)
 			const sidebar = {
 				name: 'Reminders Plugin',
@@ -61,8 +67,8 @@ const sidebarController = {
 			},
 			scaffold_structure: 'Monolith',
 			team: 'HNG 8.0/Team Darwin',
-			sidebar_url: 'https://reminders.zuri.chat/api/sideBar',
-			ping_url: 'https://reminders.zuri.chat/api/ping',
+			sidebar_url: 'https://reminders.zuri.chat/api/v1/sidebar',
+			ping_url: 'https://reminders.zuri.chat/api/v1/ping',
 			homepage_url: 'https://reminders.zuri.chat/',
 		}
 

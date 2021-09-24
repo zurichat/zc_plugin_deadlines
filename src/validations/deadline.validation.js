@@ -20,13 +20,6 @@ const createSchema = async (req, res, next) => {
 		})
 			.required()
 			.label('Assignee'),
-		creator: Joi.object({
-			userName: Joi.string().trim().required().label('creator.userName'),
-			userId: Joi.string().trim().required().label('creator.userId'),
-			userLink: Joi.string().trim().uri().required().label('creator.userLink'),
-		})
-			.required()
-			.label('Creator'),
 		startDate: Joi.date().required().label('Start date'),
 		dueDate: Joi.date().required().label('Due date'),
 		priority: Joi.string()

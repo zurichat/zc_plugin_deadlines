@@ -46,18 +46,9 @@ export class RequiredPropertyError extends Error {
 }
 
 export const errorHandler = (err, req, res, next) => {
-	console.log(err)
-	if (process.env.NODE_ENV === 'development') {
-		if (!err.statusCode) err.statusCode = 500
-		return res.status(err.statusCode).json({
-			status: false,
-			title: err.name,
-			errorMessage: err.message,
-			stack: err.stack,
-		})
-	}
+	if (process.env.NODE_ENV === 'development') console.log(err)
 
-	if (!err.statusCode) err.statusCode = 500
+	err.statusCode = err.statusCode || 500 // defaults the statusCode to 500
 	return res.status(err.statusCode).json({
 		status: false,
 		message: err.message,
