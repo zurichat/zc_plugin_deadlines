@@ -9,7 +9,7 @@ const lifecycles = singleSpaReact({
 	ReactDOM,
 	rootComponent: Base,
 	errorBoundary() {
-		return <div>Error in Deadlines. Check browser console for details.</div>
+		return <div>Error in my-app. Check browser console for details.</div>
 	},
 })
 

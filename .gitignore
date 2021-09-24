@@ -2,7 +2,6 @@ node_modules
 .eslintcache
 .env
 dist
-build
 seedData.js
 yarn-error.log
 .DS_Store

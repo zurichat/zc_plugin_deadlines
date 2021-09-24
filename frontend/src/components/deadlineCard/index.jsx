@@ -1,14 +1,11 @@
 import React, { useContext } from 'react'
-import dayjs from 'dayjs'
-import duration from 'dayjs/plugin/duration'
+import { DateTime } from 'luxon'
 
-import date from '../../assets/svg/date.svg'
-import clock from '../../assets/svg/clock-group.svg'
+import { ReactComponent as Date } from '../../assets/svg/date.svg'
+import { ReactComponent as Clock } from '../../assets/svg/clock-group.svg'
 import { ModalContext } from '../../context/ModalContext'
 import avatar from '../../assets/png/avatar1.png'
 import DeadlineCardDropdown from './dropdown'
-
-dayjs.extend(duration)
 
 const DeadlineCard = ({
 	title,
@@ -32,16 +29,17 @@ const DeadlineCard = ({
 			? 'bg-brand-priority-high'
 			: 'bg-gray'
 
-	// console.log()
+	const startDateStr = DateTime.fromISO(startDate, {
+		zone: 'UTC',
+	}).toLocaleString(DateTime.DATE_MED)
 
-	const startDateStr = dayjs(startDate).format('MMM D, YYYY')
+	const dueDateStr = DateTime.fromISO(dueDate, {
+		zone: 'UTC',
+	}).toLocaleString(DateTime.DATE_MED)
 
-	const dueDateStr = dayjs(dueDate).format('MMM D, YYYY')
-
-	const now = dayjs(Date.now())
-	const due = dayjs(dueDate)
-
-	const remaining = dayjs.duration(due.diff(now))['$d']
+	const remaining = DateTime.fromISO(dueDate)
+		.diffNow(['days', 'hours', 'minutes', 'seconds', 'months'])
+		.toObject()
 
 	const remainingStr =
 		remaining['months'] > 0
@@ -113,7 +111,7 @@ const DeadlineCard = ({
 				<div id="dueIn" className="flex items-center">
 					<div className="mr-2">
 						<div className="bg-brand-svg-green rounded-full p-1 w-5 h-5 flex items-center justify-center">
-							<img src={clock} />
+							<Clock />
 						</div>
 					</div>
 					<b className="text-brand-text-body text-xs xs:text-sm md:text-base">
@@ -122,7 +120,7 @@ const DeadlineCard = ({
 					&nbsp;
 					<span
 						className={
-							due.diff(now) / 1000 / 3600 < 24
+							DateTime.fromISO(dueDate).diffNow().as('hours') < 3
 								? 'text-brand-text-overdue text-xs xs:text-sm md:text-base'
 								: 'text-brand-text-body text-xs xs:text-sm md:text-base'
 						}
@@ -137,7 +135,7 @@ const DeadlineCard = ({
 				<div id="startDate" className="flex">
 					<div className="mr-2 pt-1">
 						<div className="bg-brand-svg-blue rounded-full p-1 w-5 h-5 flex items-center justify-center">
-							<img src={date} />
+							<Date />
 						</div>
 					</div>
 					<div>
@@ -156,7 +154,7 @@ const DeadlineCard = ({
 				<div id="dueDate" className="flex">
 					<div className="mr-2 pt-1">
 						<div className="bg-brand-svg-blue rounded-full p-1 w-5 h-5 flex items-center justify-center">
-							<img src={date} />
+							<Date />
 						</div>
 					</div>
 					<div>
