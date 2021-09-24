@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import { DateTime } from 'luxon'
 
 import ColTitleDes from '../../component/columnTitleDes'
 import TextField from '../../component/textField'
@@ -10,8 +11,16 @@ import ModalButton from '../../component/button'
 import { ModalContext } from '../../../../context/ModalContext'
 import { useAllReminders, useUpdateReminders } from '../../../../api/reminders'
 
-import dayjs from 'dayjs'
+// import ModalButton from '../../component/button'
 
+// prop value format= {
+// 	title: 'fuck',
+// 	description: 'locuebcif efifhbvsfdi srivfbskbvdib  ivab',
+// 	start: '2021-11-03',
+// 	due: '2021-11-09',
+// 	radio: 'high',
+//  assignTo: "#marketing"
+// }
 const EditDeadline = ({ object_id }) => {
 	const { fetchedData } = useAllReminders()
 	const mutation = useUpdateReminders()
@@ -32,10 +41,13 @@ const EditDeadline = ({ object_id }) => {
 	] = fetchedData.filter((deadline) => {
 		return deadline.object_id === object_id
 	})
-	const startDateStr = dayjs(startDate).format('YYYY-MM-DD')
+	const startDateStr = DateTime.fromISO(startDate, {
+		zone: 'UTC',
+	})
 
-	const dueDateStr = dayjs(dueDate).format('YYYY-MM-DD')
-
+	const dueDateStr = DateTime.fromISO(dueDate, {
+		zone: 'UTC',
+	})
 	const [data, setData] = useState({
 		description,
 		title,
@@ -59,8 +71,8 @@ const EditDeadline = ({ object_id }) => {
 			description: data.description,
 			reminders,
 			shouldRemind,
-			startDate: data.start,
-			dueDate: data.due,
+			startDate: data.start.toISO(),
+			dueDate: data.due.toISO(),
 			status,
 		}
 		mutation.mutate({ object_id, payload })
@@ -104,11 +116,13 @@ const EditDeadline = ({ object_id }) => {
 						title="Start date"
 						writeUp={
 							<DatePicker
-								value={startDateStr}
+								value={`${data.start.year}-${`0${data.start.month}`.slice(
+									-2
+								)}-${`0${data.start.day}`.slice(-2)}`}
 								onChange={(e) => {
 									setData({
 										...data,
-										start: dayjs(e.target.value, 'YYYY-MM-DD').toISOString(),
+										start: DateTime.fromSQL(e.target.value),
 									})
 								}}
 							/>
@@ -120,11 +134,13 @@ const EditDeadline = ({ object_id }) => {
 						title="Due date:"
 						writeUp={
 							<DatePicker
-								value={dueDateStr}
+								value={`${data.due.year}-${`0${data.due.month}`.slice(
+									-2
+								)}-${`0${data.due.day}`.slice(-2)}`}
 								onChange={(e) => {
 									setData({
 										...data,
-										due: dayjs(e.target.value, 'YYYY-MM-DD').toISOString(),
+										due: DateTime.fromSQL(e.target.value),
 									})
 								}}
 							/>
