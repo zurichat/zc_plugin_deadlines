@@ -13,7 +13,6 @@ import AdminViewOther from './components/modals/admin/adminViewOther'
 
 import './styles/index.css'
 import './styles/scroll.css'
-import 'react-activity/dist/Spinner.css'
 
 const App = () => {
 	const { modalData } = useContext(ModalContext)

@@ -7,7 +7,10 @@ import StatusChanger from '../../component/taskStatus'
 import ModalBase from '../../modalBase'
 import Priority from '../../component/priority'
 import { useAllReminders } from '../../../../api/reminders'
-import { DateTime } from 'luxon'
+
+import dayjs from 'dayjs'
+import duration from 'dayjs/plugin/duration'
+dayjs.extend(duration)
 
 const AdminView = ({ object_id }) => {
 	const { fetchedData } = useAllReminders()
@@ -27,17 +30,14 @@ const AdminView = ({ object_id }) => {
 	const { userName } = creator
 	const { channelName } = assignee
 	// debugger
-	const startDateStr = DateTime.fromISO(startDate, {
-		zone: 'UTC',
-	}).toLocaleString(DateTime.DATE_MED)
+	const startDateStr = dayjs(startDate).format('MMM D, YYYY')
 
-	const dueDateStr = DateTime.fromISO(dueDate, {
-		zone: 'UTC',
-	}).toLocaleString(DateTime.DATE_MED)
+	const dueDateStr = dayjs(dueDate).format('MMM D, YYYY')
 
-	const remaining = DateTime.fromISO(dueDate)
-		.diffNow(['days', 'hours', 'minutes', 'seconds', 'months'])
-		.toObject()
+	const now = dayjs(Date.now())
+	const due = dayjs(dueDate)
+
+	const remaining = dayjs.duration(due.diff(now))['$d']
 
 	const remainingStr =
 		remaining['months'] > 0
