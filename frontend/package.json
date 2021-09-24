@@ -22,7 +22,7 @@
 	},
 	"scripts": {
 		"start": "webpack serve --port 9001",
-		"build": "rm -rf dist && NODE_ENV=production webpack --mode=production",
+		"build": "rm -rf dist && NODE_ENV=production CI=true webpack --mode=production",
 		"test": "cross-env BABEL_ENV=test jest",
 		"eject": "react-scripts eject",
 		"lint": "eslint src --ext js",
@@ -32,7 +32,6 @@
 		"format": "prettier --write .",
 		"check-format": "prettier --check .",
 		"watch-tests": "cross-env BABEL_ENV=test jest --watch",
-		"prepare": "husky install",
 		"coverage": "cross-env BABEL_ENV=test jest --coverage"
 	},
 	"eslintConfig": {

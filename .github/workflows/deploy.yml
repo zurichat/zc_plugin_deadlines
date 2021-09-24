@@ -3,9 +3,7 @@ name: Reminders Deployment Pipeline
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ dev ]
-
-
+    branches: [dev]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -15,16 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Use cached node_modules
         uses: c-hive/gha-yarn-cache@v2
         with:
-         directory: frontend
-         
+          directory: frontend
+
       - name: install Dependencies
         run: |
-          yarn run holoInstall
-          yarn build
+          CI="" yarn run holoInstall
+          CI="" yarn build
 
       - name: Exec remote commands via SSH
         uses: appleboy/ssh-action@master
@@ -40,7 +38,7 @@ jobs:
             git checkout dev
             git pull origin dev
             yarn run holoInstall
-            
+
       - name: copy build to server
         uses: Creepios/sftp-action@v1.0.1
         with:
@@ -49,13 +47,13 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           localPath: './frontend/build/'
           remotePath: '/var/www/zc_plugin_reminder/frontend/build'
-            
+
       - name: restart pm2
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOSTNAME }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          script: 
+          script:
             PORT=3008 pm2 start yarn --name "reminders_plugin" --max-memory-restart 670M  -- start
             pm2 list
