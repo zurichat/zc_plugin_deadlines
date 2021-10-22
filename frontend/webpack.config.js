@@ -28,6 +28,9 @@ module.exports = (webpackConfigEnv, argv) => {
 	})
 
 	return mergeWithRules(mergeRules)(defaultConfig, {
+		output: {
+			path: path.join(__dirname, 'build'),
+		},
 		devServer: {
 			historyApiFallback: true,
 			// https: true,
