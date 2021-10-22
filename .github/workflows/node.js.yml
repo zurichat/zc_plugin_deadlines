@@ -28,11 +28,11 @@ jobs:
           cache: 'yarn'
 
       - name: Install monorepo dependencies
-        run: yarn install
+        run: CI="" yarn install
 
       - name: Install frontend dependencies
         working-directory: ./frontend
-        run: yarn install
+        run: CI="" yarn install
 
       - name: Run tests
         working-directory: ./frontend
@@ -40,4 +40,4 @@ jobs:
 
       - name: Build
         working-directory: ./frontend
-        run: yarn build
+        run: CI="" yarn build
