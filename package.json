@@ -1,89 +1,47 @@
 {
-	"name": "@zuri/zuri-plugin-deadlines",
-	"version": "1.0.0",
-	"description": "## #team-darwin",
-	"main": "index.js",
+  "name": "zc_plugin_deadlines",
+  "version": "1.0.0",
+  "description": "The reminder plugin is an external feature that gives users the ability to set tasks and reminders on the whatever they are setting. It comes in handy when you and your teammate wants to prioritize doing a certain task or feature over a certain time frame. Users are able to assign tasks to a teammate or an entire channel by navigating directly to the plugin, input the necessary details for that reminder and the teammates are notified accordingly. It aims to serve the entire Zuri Chat.",
+  "main": "index.js",
 	"scripts": {
 		"lint": "eslint -c .eslintrc.js \"src/**\" --fix",
-		"prepare": "husky install && husky install frontend/.husky",
-		"holoInstall": "yarn install && cd frontend && yarn install",
+		"prepare": "husky install backend/.husky && husky install frontend/.husky",
+    "install:backend": "cd backend && yarn install",
+    "install:frontend": "cd frontend && yarn install",
 		"test": "cross-env NODE_ENV=production mocha ./tests/**/*.spec.js -r @babel/register --timeout=100000 --exit",
 		"test:watch": "cross-env NODE_ENV=test mocha ./tests/**/*.spec.js -r @babel/register --timeout=100000 --watch --exit",
-		"start:backend": "cross-env NODE_ENV=production nodemon --exec babel-node ./src/index.js",
+		"start:backend": "cd backend && yarn start:backend",
 		"start:frontend": "cd frontend && npm start",
 		"start:root": "cd root && npm start",
 		"dev:frontend": "npm-run-all --parallel start:frontend start:root",
+  
+
+		"holoInstall": "yarn install && yarn install:backend && yarn install:frontend",
 		"dev": "npm-run-all --parallel start:backend dev:frontend",
+
+    
 		"clean": "rimraf dist",
 		"build": "cd frontend && yarn build && cd .. && yarn clean && babel src -d dist --source-maps --copy-files",
 		"start": "node ./dist/index.js"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/zurichat/zc_plugin_reminder.git"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/zurichat/zc_plugin_reminder/issues"
-	},
-	"homepage": "https://github.com/zurichat/zc_plugin_reminder#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zurichat/zc_plugin_deadlines.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zurichat/zc_plugin_deadlines/issues"
+  },
 	"devDependencies": {
-		"@babel/cli": "^7.14.8",
-		"@babel/core": "^7.15.0",
-		"@babel/node": "^7.14.9",
-		"@babel/plugin-proposal-class-properties": "^7.14.5",
-		"@babel/plugin-transform-runtime": "^7.15.0",
-		"@babel/preset-env": "^7.15.0",
-		"babel-plugin-module-resolver": "^4.1.0",
-		"chai": "^4.3.4",
-		"craco-plugin-single-spa-application": "^1.0.8",
-		"cross-env": "^7.0.3",
-		"eslint": "^7.32.0",
-		"eslint-config-airbnb-base": "^14.2.1",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-import-resolver-babel-module": "^5.3.1",
-		"eslint-plugin-import": "^2.24.2",
-		"eslint-plugin-prettier": "^4.0.0",
 		"husky": "^7.0.2",
-		"lint-staged": "^11.1.2",
-		"mocha": "^9.1.1",
-		"nodemon": "^2.0.12",
-		"npm-run-all": "^4.1.5",
-		"postcss-loader": "^6.1.1",
-		"prettier": "^2.3.2",
-		"pretty-quick": "^3.1.1",
-		"rimraf": "^3.0.2",
-		"style-loader": "^3.3.0"
-	},
-	"lint-staged": {
-		"*.{js,jsx}": "eslint --cache --no-error-on-unmatched-pattern --fix"
+		"npm-run-all": "^4.1.5"
 	},
 	"husky": {
 		"hooks": {
 			"pre-commit": "yarn exec pretty-quick --staged && yarn:lint"
 		}
 	},
-	"dependencies": {
-		"@babel/runtime-corejs3": "^7.15.3",
-		"@craco/craco": "^6.2.0",
-		"agenda": "^4.2.1",
-		"amqplib": "^0.8.0",
-		"axios": "^0.21.1",
-		"centrifuge": "^2.8.0",
-		"cors": "^2.8.5",
-		"dotenv": "^10.0.0",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-prettier": "^4.0.0",
-		"express": "^4.17.1",
-		"faker": "^5.5.3",
-		"http-status-codes": "^2.1.4",
-		"joi": "^17.4.2",
-		"mongoose": "^6.0.3",
-		"react-icons": "^4.2.0",
-		"supertest": "^6.1.6",
-		"swagger-jsdoc": "^6.1.0",
-		"swagger-ui-express": "^4.1.6"
-	}
+  "homepage": "https://github.com/zurichat/zc_plugin_deadlines#readme"
 }
